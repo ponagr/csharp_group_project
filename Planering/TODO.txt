@@ -1,0 +1,45 @@
+Prio:
+    GameHandler
+        Tydligt flöde
+    GameLevel
+        Skapa Player,Enemy chars 
+        Skapa nivå1, och movement-metod
+        Interaktion mellan "chars"
+    GameObject-Enemy-Player
+        Lägg till dom viktigaste egenskaperna
+        och metoderna
+    Combat
+        Implementera Enemy och Player tillsammans
+        med GameLevel
+        Skapa lite roliga visuals, som player och Enemy
+        "streckgubbar"
+        för att komma till combat
+    Skapa Arv för olika typer av Enemy
+        med specifika metoder och unika egenskaper
+    Lägg till XP och Levels för Player och XP-drop hos Enemy
+    Lägga till fler stats och multipliers
+
+Inte Prio:
+    Items, Coins och Inventory
+        nån sorts random droprate från enemykill
+        och loot av kistor
+    ResourceBar/HealthBar/XpBar
+    Fler GameLevels, nivå2 nivå3 osv,
+        Olika unika funktioner, se kortare distans på nivå2
+        kunna gå genom en dörr eller ner för en trappa och
+        komma till ett mindre rum(ny "map") eller att nivån 
+        utvidgas
+    Få Enemys att gå runt random på mapen?
+        Få assasin att inte synas på mappen
+        en specifik "aggro-range" för enemy-klasser
+    Fler funktioner för player, typ hoppa över enemy eller liknande
+    Meny
+        Play game, Load, Save, Exit
+        json
+        Nån rolig bild/ikon 
+    Story
+    Generera RandomMaps?
+    Multiplayer?
+    Implementera i MonoGame eller liknande?
+     
+    
