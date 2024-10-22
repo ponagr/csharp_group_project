@@ -65,6 +65,37 @@ public static class GameLevel
                 gameMap[posX - 1, posY] = Player; // Byter plats
                 gameMap[posX, posY] = Empty; // Där vi stod blir tom
             }
+            else if(gameMap[posX -1,posY] == Enemy)
+            {
+                //EnemyCombat();
+                //Om enemy dör(CurrentHealth == 0), ta bort Enemy från map
+                //Lägg till Empty där Enemy fanns
+            }
+            else if(gameMap[posX -1,posY] == Coin)
+            {
+                //Lägg till +1 Coin till Player.Coin
+                Console.WriteLine("+1 peng");
+            }
+            else if(gameMap[posX -1,posY] == Trap)
+            {
+                // Förlorar hp, -50 hp typ
+                Console.WriteLine("Du trampade på en mina");;
+            }
+            else if(gameMap[posX -1,posY] == Chest)
+            {
+                // Slumpa items/guld, 1-3 typ
+                Console.WriteLine("Du gick på en kista");
+            }
+            else if(gameMap[posX -1,posY] == Door || gameMap[posX -1, posY] == Door2)
+            {
+                // Loada nästa level
+                Console.WriteLine("Du klarade nivån");
+            }
+            else
+            {
+                //Spelaren går in i en vägg, kan inte flytta dit
+                Console.WriteLine("Du kan inte gå hit");
+            }
         }
         if (keyPressed.Key == ConsoleKey.A)
         {
@@ -72,6 +103,39 @@ public static class GameLevel
             {
                 gameMap[posX, posY-1] = Player; 
                 gameMap[posX, posY] = Empty; 
+            }
+            else if(gameMap[posX,posY-1] == Enemy)
+            {
+                //EnemyCombat();
+                //Om enemy dör(CurrentHealth == 0), ta bort Enemy från map
+                //Lägg till Empty där Enemy fanns
+            }
+            else if(gameMap[posX ,posY-1] == Coin)
+            {
+                //Lägg till +1 Coin till Player.Coin
+                Console.WriteLine("+1 peng");
+            }
+            else if(gameMap[posX ,posY-1] == Trap)
+            {
+                // Förlorar hp, -50 hp typ
+                //Ta sedan bort kistan och gör platsen till Empty
+                Console.WriteLine("Du trampade på en mina");;
+            }
+            else if(gameMap[posX ,posY-1] == Chest)
+            {
+                // Slumpa items/guld, 1-3 typ
+                //Ta sedan bort kistan och gör platsen till Empty
+                Console.WriteLine("Du gick på en kista");
+            }
+            else if(gameMap[posX ,posY-1] == Door || gameMap[posX , posY-1] == Door2)
+            {
+                // Loada nästa level
+                Console.WriteLine("Du klarade nivån");
+            }
+            else
+            {
+                //Spelaren går in i en vägg, kan inte flytta dit
+                Console.WriteLine("Du kan inte gå hit");
             }
         }
         if (keyPressed.Key == ConsoleKey.S)
