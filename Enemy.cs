@@ -1,6 +1,6 @@
 public class Enemy : GameObject
 {
-    
+    public int XpDrop = 25;
 
     public Enemy()
     {
@@ -16,5 +16,11 @@ public class Enemy : GameObject
         BaseAgility = 10;
         TotalAgility = BaseAgility;
         //Aggro-range
+    }
+    public void Attack(Player player)
+    {
+        double damageDone = TotalDamage - player.TotalResistance;
+        player.CurrentHp -= damageDone;
+        Console.WriteLine($"{player.Name} tog {damageDone} i skada");
     }
 }
