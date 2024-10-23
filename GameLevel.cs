@@ -1,3 +1,5 @@
+using System.Drawing;
+
 public static class GameLevel
 {
     public static char Player = '@';
@@ -12,33 +14,33 @@ public static class GameLevel
     public static char Door = '\\';
     public static char Door2 = '/';
 
-    public static char[,] gameLevel1 = new char[,]
+    public static char[,] gameLevel1 = new char[,] // GÖRA VAR SIN MAP FÖR ATT DET E KUL :)
     {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23
-           { ' ', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', '£', ' ', ' ', ' ', ' ', ' ', '¤', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '|' },
-           { '|', ' ', ' ', ' ', '@', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '£', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', '¤', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'B', ' ', '\\' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '/' },
-           { '|', ' ', ' ', ' ', ' ', '£', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '¤', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', '$', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+           { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' },
+           { '|', '@', ' ', ' ', ' ', ' ', ' ', ' ', '¤', ' ', ' ', '|', '#', '|', ' ', ' ', ' ', ' ', ' ', ' ', 'B', ' ', '|' },
+           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
+           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '£', '|', '_', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
+           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|', '£', ' ', ' ', ' ', ' ', ' ', ' ', '_', '|', ' ', '|' },
+           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '£', ' ', '|', ' ', ' ', '|' },
+           { '|', ' ', ' ', ' ', ' ', ' ', ' ', '¤', '|', ' ', ' ', '|', '$', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '\\' },
+           { '|', ' ', '_', '_', '|', ' ', '|', '_', '_', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '_', '_', '_', '/' },
+           { '|', ' ', ' ', '#', '|', '£', '|', '$', ' ', ' ', ' ', '|', '£', '|', '_', '_', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+           { '|', ' ', ' ', ' ', '|', ' ', '|', ' ', '£', ' ', '¤', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+           { '|', ' ', ' ', ' ', '|', ' ', '|', '$', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', '£', ' ', '|' },
            { '|', '_', '_', '_', '_', '£', '_', '_', '_', '_', '_', '|', '_', '_', '_', '_', '_', '_', '_', '_', ' ', '_', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+           { '|', ' ', ' ', ' ', '|', ' ', '|', ' ', ' ', ' ', ' ', '|', ' ', ' ', '$', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+           { '|', ' ', ' ', '#', '|', ' ', '|', '$', ' ', ' ', '£', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+           { '|', ' ', ' ', ' ', '|', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+           { '|', '£', '_', '_', '|', ' ', '|', '_', '_', ' ', ' ', ' ', ' ', ' ', '£', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+           { '|', '£', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '_', '_', '_', '_', '_', '_', ' ', '|', ' ', ' ', '|' },
+           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+           { '|', ' ', ' ', ' ', '|', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', ' ', ' ', ' ', '£', ' ', '|', ' ', ' ', '|' },
+           { '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', '|' },
+           { '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+           { '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '$', '|', ' ', ' ', ' ', ' ', ' ', '$', ' ', ' ', ' ', ' ', '|' },
            { '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|' },//23
     };
-
+   
     public static void MovePlayer(char[,] gameMap)
     {
         int posX = 0;
@@ -50,7 +52,7 @@ public static class GameLevel
         {
             for (int j = 0; j < gameMap.GetLength(1); j++)
             {
-                if (gameMap[i,j] == Player)
+                if (gameMap[i, j] == Player)
                 {
                     posX = i;
                     posY = j;
@@ -60,33 +62,33 @@ public static class GameLevel
 
         if (keyPressed.Key == ConsoleKey.W)
         {
-            if (gameMap[posX -1,posY] == Empty)
+            if (gameMap[posX - 1, posY] == Empty)
             {
                 gameMap[posX - 1, posY] = Player; // Byter plats
                 gameMap[posX, posY] = Empty; // Där vi stod blir tom
             }
-            else if(gameMap[posX -1,posY] == Enemy)
+            else if (gameMap[posX - 1, posY] == Enemy)
             {
                 //EnemyCombat();
                 //Om enemy dör(CurrentHealth == 0), ta bort Enemy från map
                 //Lägg till Empty där Enemy fanns
             }
-            else if(gameMap[posX -1,posY] == Coin)
+            else if (gameMap[posX - 1, posY] == Coin)
             {
                 //Lägg till +1 Coin till Player.Coin
                 Console.WriteLine("+1 peng");
             }
-            else if(gameMap[posX -1,posY] == Trap)
+            else if (gameMap[posX - 1, posY] == Trap)
             {
                 // Förlorar hp, -50 hp typ
-                Console.WriteLine("Du trampade på en mina");;
+                Console.WriteLine("Du trampade på en mina"); ;
             }
-            else if(gameMap[posX -1,posY] == Chest)
+            else if (gameMap[posX - 1, posY] == Chest)
             {
                 // Slumpa items/guld, 1-3 typ
                 Console.WriteLine("Du gick på en kista");
             }
-            else if(gameMap[posX -1,posY] == Door || gameMap[posX -1, posY] == Door2)
+            else if (gameMap[posX - 1, posY] == Door || gameMap[posX - 1, posY] == Door2)
             {
                 // Loada nästa level
                 Console.WriteLine("Du klarade nivån");
@@ -99,35 +101,36 @@ public static class GameLevel
         }
         if (keyPressed.Key == ConsoleKey.A)
         {
-            if (gameMap[posX,posY-1] == Empty)
+            if (gameMap[posX, posY - 1] == Empty)
             {
-                gameMap[posX, posY-1] = Player; 
-                gameMap[posX, posY] = Empty; 
+                gameMap[posX, posY - 1] = Player;
+                gameMap[posX, posY] = Empty;
             }
-            else if(gameMap[posX,posY-1] == Enemy)
+            else if (gameMap[posX, posY - 1] == Enemy)
             {
                 //EnemyCombat();
                 //Om enemy dör(CurrentHealth == 0), ta bort Enemy från map
                 //Lägg till Empty där Enemy fanns
             }
-            else if(gameMap[posX ,posY-1] == Coin)
+            else if (gameMap[posX, posY - 1] == Coin)
             {
                 //Lägg till +1 Coin till Player.Coin
+                //Ta sedan bort kistan och gör platsen till Empty
                 Console.WriteLine("+1 peng");
             }
-            else if(gameMap[posX ,posY-1] == Trap)
+            else if (gameMap[posX, posY - 1] == Trap)
             {
                 // Förlorar hp, -50 hp typ
                 //Ta sedan bort kistan och gör platsen till Empty
-                Console.WriteLine("Du trampade på en mina");;
+                Console.WriteLine("Du trampade på en mina"); ;
             }
-            else if(gameMap[posX ,posY-1] == Chest)
+            else if (gameMap[posX, posY - 1] == Chest)
             {
                 // Slumpa items/guld, 1-3 typ
                 //Ta sedan bort kistan och gör platsen till Empty
                 Console.WriteLine("Du gick på en kista");
             }
-            else if(gameMap[posX ,posY-1] == Door || gameMap[posX , posY-1] == Door2)
+            else if (gameMap[posX, posY - 1] == Door || gameMap[posX, posY - 1] == Door2)
             {
                 // Loada nästa level
                 Console.WriteLine("Du klarade nivån");
@@ -140,21 +143,23 @@ public static class GameLevel
         }
         if (keyPressed.Key == ConsoleKey.S)
         {
-            if (gameMap[posX +1,posY] == Empty)
+            if (gameMap[posX + 1, posY] == Empty)
             {
-                gameMap[posX + 1, posY] = Player; 
-                gameMap[posX, posY] = Empty; 
+                gameMap[posX + 1, posY] = Player;
+                gameMap[posX, posY] = Empty;
             }
         }
         if (keyPressed.Key == ConsoleKey.D)
         {
-            if (gameMap[posX,posY+1] == Empty)
+            if (gameMap[posX, posY + 1] == Empty)
             {
-                gameMap[posX, posY+1] = Player; 
-                gameMap[posX, posY] = Empty; 
+                gameMap[posX, posY + 1] = Player;
+                gameMap[posX, posY] = Empty;
             }
         }
     }
+    
+
 
     public static void PrintGameBoard(char[,] gameMap)  //Tar in och skriver ut den leveln som skickas in till metoden
     {
@@ -163,7 +168,7 @@ public static class GameLevel
         Console.Clear();
         Console.WriteLine();
 
-        // INFO OM KARTAN
+        // INFO OM KARTAN 
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Write($"Player: {Player} ");
         Console.ResetColor();
@@ -191,66 +196,67 @@ public static class GameLevel
         // SKRIVER UT MAP
         for (int i = 0; i < gameMap.GetLength(0); i++)
         {
-            
+
             for (int j = 0; j < gameMap.GetLength(1); j++)
             {
-                if (gameMap[i,j] == Player)
+                if (gameMap[i, j] == Player)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write(gameMap[i,j] + "  ");
+                    Console.Write(gameMap[i, j] + "  ");
                     Console.ResetColor();
                 }
-                else if (gameMap[i,j] == Enemy)
+                else if (gameMap[i, j] == Enemy)
                 {
                     Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.Write(gameMap[i,j] + "  ");
+                    Console.Write(gameMap[i, j] + "  ");
                     Console.ResetColor();
                 }
-                else if (gameMap[i,j] == Chest)
+                else if (gameMap[i, j] == Chest)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(gameMap[i,j] + "  ");
+                    Console.Write(gameMap[i, j] + "  ");
                     Console.ResetColor();
                 }
-                else if (gameMap[i,j] == Trap)
+                else if (gameMap[i, j] == Trap)
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.Write(gameMap[i,j] + "  ");
+                    Console.Write(gameMap[i, j] + "  ");
                     Console.ResetColor();
                 }
-                else if (gameMap[i,j] == Boss)
+                else if (gameMap[i, j] == Boss)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(gameMap[i,j] + "  ");
+                    Console.Write(gameMap[i, j] + "  ");
                     Console.ResetColor();
                 }
-                else if (gameMap[i,j] == Coin)
+                else if (gameMap[i, j] == Coin)
                 {
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.Write(gameMap[i,j] + "  ");
+                    Console.Write(gameMap[i, j] + "  ");
                     Console.ResetColor();
                 }
-                else if (gameMap[i,j] == Wall || gameMap[i,j] == Terrain)
-                {
-                    Console.ForegroundColor = ConsoleColor.Cyan;             
-                    Console.Write(gameMap[i,j] + "  ");
-                    Console.ResetColor();
-                }
-                else if (gameMap[i,j] == Door || gameMap[i,j] == Door2)
+                else if (gameMap[i, j] == Wall || gameMap[i, j] == Terrain)
                 {
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.Write(gameMap[i,j] + "  ");
+                    Console.Write(gameMap[i, j] + "  ");
+                    Console.ResetColor();
+                }
+                else if (gameMap[i, j] == Door || gameMap[i, j] == Door2)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write(gameMap[i, j] + "  ");
                     Console.ResetColor();
                 }
                 else
                 {
-                    Console.Write(gameMap[i,j] + "  ");
+                    Console.Write(gameMap[i, j] + "  ");
                 }
-                
+
             }
             Console.WriteLine();
         }
-        
+
         Console.WriteLine();
     }
+    
 }
