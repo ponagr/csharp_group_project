@@ -23,6 +23,8 @@ Inte Prio:
     Items, Coins och Inventory
         nån sorts random droprate från enemykill
         och loot av kistor
+    Chests: 
+        Få chests att byta färg när man öppnat dem (bool, jämföra koordinater?)
     ResourceBar/HealthBar/XpBar
     Fler GameLevels, nivå2 nivå3 osv,
         Olika unika funktioner, se kortare distans på nivå2
