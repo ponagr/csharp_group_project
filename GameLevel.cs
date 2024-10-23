@@ -1,5 +1,7 @@
 using System.Drawing;
+using System.Runtime.InteropServices;
 
+#region MAPS
 public static class GameLevel
 {
     public static char Player = '@';
@@ -9,10 +11,13 @@ public static class GameLevel
     public static char Wall = '|';
     public static char Terrain = '_';
     public static char Chest = '#';
+    public static bool isOpen = false;
     public static char Trap = '¤';
     public static char Empty = ' ';
     public static char Door = '\\';
     public static char Door2 = '/';
+
+    // public static List<int> openChestCordinates = new List<int>();
 
     public static char[,] gameLevel1 = new char[,] // GÖRA VAR SIN MAP FÖR ATT DET E KUL :)
     {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23
@@ -23,8 +28,8 @@ public static class GameLevel
            { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|', '£', ' ', ' ', ' ', ' ', ' ', ' ', '_', '|', ' ', '|' },
            { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '£', ' ', '|', ' ', ' ', '|' },
            { '|', ' ', ' ', ' ', ' ', ' ', ' ', '¤', '|', ' ', ' ', '|', '$', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '\\' },
-           { '|', ' ', '_', '_', '|', ' ', '|', '_', '_', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '_', '_', '_', '/' },
-           { '|', ' ', ' ', '#', '|', '£', '|', '$', ' ', ' ', ' ', '|', '£', '|', '_', '_', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+           { '|', ' ', '_', '_', '|', ' ', '|', '_', '_', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '/' },
+           { '|', ' ', ' ', '#', '|', '£', '|', '$', ' ', ' ', ' ', '|', '£', '|', '_', '_', ' ', ' ', ' ', '_', '_', '_', '|' },
            { '|', ' ', ' ', ' ', '|', ' ', '|', ' ', '£', ' ', '¤', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
            { '|', ' ', ' ', ' ', '|', ' ', '|', '$', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', '£', ' ', '|' },
            { '|', '_', '_', '_', '_', '£', '_', '_', '_', '_', '_', '|', '_', '_', '_', '_', '_', '_', '_', '_', ' ', '_', '|' },
@@ -40,12 +45,14 @@ public static class GameLevel
            { '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '$', '|', ' ', ' ', ' ', ' ', ' ', '$', ' ', ' ', ' ', ' ', '|' },
            { '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|' },//23
     };
+    #endregion
    
-    public static void MovePlayer(char[,] gameMap)
+   #region MOVEMENT
+    public static void MovePlayer(char[,] gameMap, Player player)
     {
         int posX = 0;
         int posY = 0;
-
+        // static List<
         var keyPressed = Console.ReadKey();
 
         for (int i = 0; i < gameMap.GetLength(0); i++)
@@ -76,17 +83,26 @@ public static class GameLevel
             else if (gameMap[posX - 1, posY] == Coin)
             {
                 //Lägg till +1 Coin till Player.Coin
-                Console.WriteLine("+1 peng");
+                player.Gold += 1;
+                //Console.WriteLine("+1 peng");
+                gameMap[posX - 1, posY] = Player;
+                gameMap[posX, posY] = Empty;
             }
             else if (gameMap[posX - 1, posY] == Trap)
             {
-                // Förlorar hp, -50 hp typ
-                Console.WriteLine("Du trampade på en mina"); ;
+                player.CurrentHp -= 20;
+                Console.WriteLine("Du trampade på en mina"); 
+                gameMap[posX - 1, posY] = Player;
+                gameMap[posX, posY] = Empty;
             }
             else if (gameMap[posX - 1, posY] == Chest)
             {
                 // Slumpa items/guld, 1-3 typ
                 Console.WriteLine("Du gick på en kista");
+                // gameMap[posX - 1, posY]
+                // openChestCordinates.Add(posX - 1);
+                // openChestCordinates.Add(posY);
+                gameMap[posX - 1, posY] = Empty;
             }
             else if (gameMap[posX - 1, posY] == Door || gameMap[posX - 1, posY] == Door2)
             {
@@ -116,13 +132,17 @@ public static class GameLevel
             {
                 //Lägg till +1 Coin till Player.Coin
                 //Ta sedan bort kistan och gör platsen till Empty
+                player.Gold += 1;
                 Console.WriteLine("+1 peng");
+                gameMap[posX, posY - 1] = Player;
+                gameMap[posX, posY] = Empty;
             }
             else if (gameMap[posX, posY - 1] == Trap)
             {
-                // Förlorar hp, -50 hp typ
-                //Ta sedan bort kistan och gör platsen till Empty
-                Console.WriteLine("Du trampade på en mina"); ;
+                player.CurrentHp -= 20;
+                Console.WriteLine("Du trampade på en mina"); 
+                gameMap[posX, posY - 1] = Player;
+                gameMap[posX, posY] = Empty;
             }
             else if (gameMap[posX, posY - 1] == Chest)
             {
@@ -148,6 +168,46 @@ public static class GameLevel
                 gameMap[posX + 1, posY] = Player;
                 gameMap[posX, posY] = Empty;
             }
+            else if (gameMap[posX +1, posY] == Enemy)
+            {
+                //EnemyCombat();
+                //Om enemy dör(CurrentHealth == 0), ta bort Enemy från map
+                //Lägg till Empty där Enemy fanns
+            }
+            else if (gameMap[posX +1, posY] == Coin)
+            {
+                //Lägg till +1 Coin till Player.Coin
+                //Ta sedan bort kistan och gör platsen till Empty
+                player.Gold += 1;
+                Console.WriteLine("+1 peng");
+                gameMap[posX +1, posY] = Player;
+                gameMap[posX, posY] = Empty;
+            }
+            else if (gameMap[posX +1, posY] == Trap)
+            {
+                player.CurrentHp -= 20;
+                Console.WriteLine("Du trampade på en mina"); 
+                gameMap[posX +1, posY] = Player;
+                gameMap[posX, posY] = Empty;
+            }
+            else if (gameMap[posX +1, posY] == Chest)
+            {
+                // Slumpa items/guld, 1-3 typ
+                //Ta sedan bort kistan och gör platsen till Empty
+                Console.WriteLine("Du gick på en kista");
+
+                gameMap[posX +1, posY] = Empty;
+            }
+            else if (gameMap[posX +1, posY] == Door || gameMap[posX +1, posY] == Door2)
+            {
+                // Loada nästa level
+                Console.WriteLine("Du klarade nivån");
+            }
+            else
+            {
+                //Spelaren går in i en vägg, kan inte flytta dit
+                Console.WriteLine("Du kan inte gå hit");
+            }
         }
         if (keyPressed.Key == ConsoleKey.D)
         {
@@ -156,12 +216,50 @@ public static class GameLevel
                 gameMap[posX, posY + 1] = Player;
                 gameMap[posX, posY] = Empty;
             }
+            else if (gameMap[posX, posY + 1] == Enemy)
+            {
+                //EnemyCombat();
+                //Om enemy dör(CurrentHealth == 0), ta bort Enemy från map
+                //Lägg till Empty där Enemy fanns
+            }
+            else if (gameMap[posX, posY + 1] == Coin)
+            {
+                player.Gold += 1;
+                Console.WriteLine("+1 peng");
+                gameMap[posX, posY + 1] = Player;
+                gameMap[posX, posY] = Empty;
+            }
+            else if (gameMap[posX, posY + 1] == Trap)
+            {
+                player.CurrentHp -= 20;
+                Console.WriteLine("Du trampade på en mina");
+                gameMap[posX, posY + 1] = Player;
+                gameMap[posX, posY] = Empty;
+            }
+            else if (gameMap[posX, posY + 1] == Chest)
+            {
+                // Slumpa items/guld, 1-3 typ
+                //Ta sedan bort kistan och gör platsen till Empty
+                Console.WriteLine("Du gick på en kista");
+                gameMap[posX, posY +1] = Empty;
+            }
+            else if (gameMap[posX, posY + 1] == Door || gameMap[posX, posY + 1] == Door2)
+            {
+                // Loada nästa level
+                Console.WriteLine("Du klarade nivån");
+            }
+            else
+            {
+                //Spelaren går in i en vägg, kan inte flytta dit
+                Console.WriteLine("Du kan inte gå hit");
+            }
         }
+        // Console.ReadKey();
     }
-    
+    #endregion
 
-
-    public static void PrintGameBoard(char[,] gameMap)  //Tar in och skriver ut den leveln som skickas in till metoden
+#region PRINTGAMEBOARD
+    public static void PrintGameBoard(char[,] gameMap, Player player)  //Tar in och skriver ut den leveln som skickas in till metoden
     {
         //Metodanrop ska ligga i while loop i annan metod för att uppdatera utskriften varje gång vi gör en input och anropar
         //switch/case
@@ -211,9 +309,15 @@ public static class GameLevel
                     Console.Write(gameMap[i, j] + "  ");
                     Console.ResetColor();
                 }
-                else if (gameMap[i, j] == Chest)
+                else if (gameMap[i, j] == Chest && !isOpen)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(gameMap[i, j] + "  ");
+                    Console.ResetColor();
+                }
+                else if (gameMap[i,j] == Chest && isOpen)
+                {
+                    Console.ForegroundColor = ConsoleColor.Gray;
                     Console.Write(gameMap[i, j] + "  ");
                     Console.ResetColor();
                 }
@@ -237,8 +341,9 @@ public static class GameLevel
                 }
                 else if (gameMap[i, j] == Wall || gameMap[i, j] == Terrain)
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.Write(gameMap[i, j] + "  ");
+                    Console.BackgroundColor = ConsoleColor.DarkCyan;
+                  //  Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write("   ");
                     Console.ResetColor();
                 }
                 else if (gameMap[i, j] == Door || gameMap[i, j] == Door2)
@@ -257,6 +362,10 @@ public static class GameLevel
         }
 
         Console.WriteLine();
+        Console.WriteLine($"Coins: {player.Gold}");
+        player.ShowHp();
+
+        
     }
-    
+    #endregion
 }
