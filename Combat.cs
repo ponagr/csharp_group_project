@@ -7,10 +7,12 @@ public static class Combat
 
     public static void FightMode(Player player, Enemy enemy)
     {
-        bool isFighting = true;
 
-        while (isFighting)
+        while (true)
         {
+
+            player.ShowHp();
+            enemy.ShowHp();
             Console.WriteLine("1. Attack");
             Console.WriteLine("2. Heal");
             Console.WriteLine("3. Fly");
@@ -25,17 +27,16 @@ public static class Combat
                     break;
                 case "3":
                     //player.Flee();
-                    isFighting = false;
-                    break;
+                    return;
                 default:
-
                     break;
 
             }
             if (enemy.CurrentHp == 0)
             {
                 player.EnemyKilled(enemy);
-                isFighting = false;
+                Console.ReadKey();
+                return;
             }
             enemy.Attack(player);
 
