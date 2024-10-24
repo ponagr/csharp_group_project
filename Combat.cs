@@ -63,6 +63,7 @@ public static class Combat
                     break;
 
             }
+
             if (enemy.CurrentHp == 0)
             {
                 player.EnemyKilled(enemy);  //Skriver ut skadan
@@ -70,6 +71,7 @@ public static class Combat
                 return;
             }
             enemyDamage = enemy.Attack(player);
+
 
             // Console.Clear();
             // player.ShowHp();
