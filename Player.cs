@@ -18,7 +18,7 @@ public class Player : GameObject
         CurrentHp = TotalHp;
         BaseDamage = 15;
         TotalDamage = BaseDamage;
-        BaseResistance = 0;
+        BaseResistance = 5;
         TotalResistance = BaseResistance;
         BaseAgility = 10;
         TotalAgility = BaseAgility;
@@ -31,13 +31,16 @@ public class Player : GameObject
         double damageDone = TotalDamage - enemy.TotalResistance;
         enemy.CurrentHp -= damageDone;
         //Console.WriteLine($"{enemy.Name} tog {damageDone} i skada");
-        return $"{enemy.Name} tog {damageDone} i skada";
+        return $"DMG {damageDone} -->";
     }
 
     public void EnemyKilled(Enemy enemy)
     {
         CurrentXp += enemy.XpDrop;
-        Console.WriteLine($"{Name} fick +{enemy.XpDrop}XP");
+        Console.WriteLine($"{enemy.Name} dog");
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.WriteLine($"+{enemy.XpDrop}XP  ");
+        Console.ResetColor();
         if (CurrentXp >= MaxXp)
         {
             LevelUp();
@@ -46,12 +49,42 @@ public class Player : GameObject
     public void LevelUp()
     {
         Level++;
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine($"{Name} reached level: {Level}");
+        double BaseHpAdded = BaseHp * 0.2;
+        double BaseDamageAdded = BaseDamage * 0.2;
+        double BaseResistanceAdded = BaseResistance * 0.2;
+        double BaseAgilityAdded = BaseAgility * 0.2;
+        BaseHp = BaseHp + BaseHpAdded;
+        BaseDamage = BaseDamage + BaseDamageAdded;
+        BaseResistance = BaseResistance + BaseResistanceAdded;
+        BaseAgility = BaseAgility + BaseAgilityAdded;
+        Console.WriteLine($"+{BaseHpAdded} Hp");
+        Console.WriteLine($"+{BaseDamageAdded} Damage");
+        Console.WriteLine($"+{BaseResistanceAdded} Resistance");
+        Console.WriteLine($"+{BaseAgilityAdded} Agility");
+        Console.ResetColor();
     }
     public void ShowHp()
     {
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine($"HP: {CurrentHp}/{TotalHp}({PercentHp:F0}%)");
+        Console.WriteLine($"{CurrentHp}/{TotalHp}({PercentHp:F0}%)");
         Console.ResetColor();
+    }
+
+    public static void PrintPlayerCharacter()
+    {
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("        .");
+        Console.WriteLine("     0  | ");
+        Console.WriteLine("[.]-||--T");
+        Console.WriteLine("    /\\  	");
+        Console.WriteLine("   /  \\");
+        Console.ResetColor();
+        Console.WriteLine();
+
+
     }
 
 }
