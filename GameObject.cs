@@ -4,7 +4,7 @@ public class GameObject
     public string Description { get; set; } //Assassin eller Mage osv
     public double BaseHp { get; set; }
     public double TotalHp { get; set; }
-    public double CurrentHp { get; set; }
+    public double CurrentHp { get; set; }   //if CurrentHp < 0, CurrentHp = 0;
     public double PercentHp
     {
         get { return CurrentHp / TotalHp * 100; }

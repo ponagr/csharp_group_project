@@ -64,6 +64,7 @@ public static class Combat
                     playerDamage = player.Attack(enemy);   //Skriver ut skadan // SPARAR den returnerade stringen i playerDamage
                     break;
                 case "2":
+                    player.CurrentHp = 100;
                     //player.Heal();
                     break;
                 case "3":
@@ -73,8 +74,7 @@ public static class Combat
                     break;
 
             }
-
-            if (enemy.CurrentHp == 0)
+            if (enemy.CurrentHp <= 0)   //Fixa så att enemy.CurrentHp inte kan bli lägre än 0
             {
                 Console.SetCursorPosition(30, 0); // VISAR HEALTHBAREN FÖR ATT KUNNA SE NÄR HAN E DÖD
                 HealthBar.PrintEnemyHealthBar(enemy);

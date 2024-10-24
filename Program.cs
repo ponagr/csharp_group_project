@@ -3,7 +3,7 @@
     static void Main(string[] args)
     {
         bool gameOver = false;
-        Player player = new Player("player");
+        Player player = new Player("Player");
         Enemy enemy = new Enemy();
         while (!gameOver)
         {
