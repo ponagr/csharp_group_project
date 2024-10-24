@@ -17,6 +17,9 @@ public static class GameLevel
     public static char Door = '\\';
     public static char Door2 = '/';
 
+    // static int posX;
+    // static int posY;
+
     // public static List<int> openChestCordinates = new List<int>();
 
     public static char[,] gameLevel1 = new char[,] // GÖRA VAR SIN MAP FÖR ATT DET E KUL :)
@@ -304,7 +307,24 @@ public static class GameLevel
 
         Console.WriteLine();
 
-        // SKRIVER UT MAP
+        // int posX = 0;
+        // int posY = 0;
+
+        // for (int i = 0; i < gameMap.GetLength(0); i++)
+        // {
+        //     for (int j = 0; j < gameMap.GetLength(1); j++)
+        //     {
+        //         if (gameMap[i, j] == Player)
+        //         {
+        //             posX = i;
+        //             posY = j;
+        //         }
+        //     }
+        // }
+
+        // // SKRIVER UT MAP
+        
+
         for (int i = 0; i < gameMap.GetLength(0); i++)
         {
 
@@ -375,8 +395,11 @@ public static class GameLevel
         }
 
         Console.WriteLine();
+        HealthBar.PrintPlayerHealthBar(player);
         Console.WriteLine($"Coins: {player.Gold}");
-        player.ShowHp();
+        //player.ShowHp();
+       
+        // Console.SetCursorPosition(0, gameMap.GetLength(0) + 1);
 
 
     }

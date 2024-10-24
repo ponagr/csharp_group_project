@@ -25,11 +25,13 @@ public class Player : GameObject
         // InventoryArray
     }
 
-    public void Attack(Enemy enemy)
+
+    public string Attack(Enemy enemy)
     {
         double damageDone = TotalDamage - enemy.TotalResistance;
         enemy.CurrentHp -= damageDone;
-        Console.WriteLine($"{enemy.Name} tog {damageDone} i skada");
+        //Console.WriteLine($"{enemy.Name} tog {damageDone} i skada");
+        return $"{enemy.Name} tog {damageDone} i skada";
     }
 
     public void EnemyKilled(Enemy enemy)
@@ -44,6 +46,12 @@ public class Player : GameObject
     public void LevelUp()
     {
         Level++;
+    }
+    public void ShowHp()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"HP: {CurrentHp}/{TotalHp}({PercentHp:F0}%)");
+        Console.ResetColor();
     }
 
 }

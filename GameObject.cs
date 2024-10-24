@@ -16,9 +16,5 @@ public class GameObject
     public double BaseAgility {get; set;} // Smidighet, crit-chance, dodge osv
     public double TotalAgility {get; set;}  
 
-    public void ShowHp()
-    {
-        Console.WriteLine($"HP: {CurrentHp}/{TotalHp}({PercentHp}%)");
-    }
 
 }
