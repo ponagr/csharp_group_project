@@ -10,6 +10,7 @@
 - [x] Utveckla nivå 1 och implementera movement-metod.
 - [x] Enklare interaktion mellan karaktärer (Player och Enemy).
 - [ ] SetCururposition på mappen
+- [ ] Hjärta för att få liv på banan
 
 ### GameObject - Enemy - Player
 - [ ] Lägg till viktiga egenskaper och metoder för Player och Enemy.
@@ -28,28 +29,37 @@
 - [x] Lägg till XP-drop hos Enemy.
 
 ### Fler Stats och Multipliers
-- [ ] Utveckla fler stats och multipliers för både Player och Enemy.
+- [x] Utveckla fler stats och multipliers för både Player.
+- [ ] Utveckla fler stats och multipliers för både Enemy.
 
 ---
 
 ## Ej Prioriterade Funktioner
 
 ### Items, Coins och Inventory
+- [ ] Skapa item-klass och olika items att lägga i flera listor och slumpa ifrån
 - [ ] Implementera en random drop-rate från dödade fiender och loot-system för kistor.
+- [ ] Skapa en inventory (array med typ 5 items) i player-klassen
+- [ ] Begränsningar beroende på itemtyp - hjälm, plate osv.
+- [ ] Lägg till en Merchant som man kan sälja/köpa ifrån - en char-ikon i stället för klass.
+- [ ] Potions
+- [ ] T.ex nycklar i kistor för att kunan öppna gates på banan för att komma vidare 
 
 ### Chests
 - [ ] Få kistor att byta färg när de har öppnats (använda bool och koordinatjämförelse).
 
 ### ResourceBar/HealthBar/XPBar
 - [ ] Utveckla UI-element för resurser, hälsa och XP.
+- [ ] Lägg till Xp-bar under mappen
 
 ### Fler GameLevels
 - [ ] Utveckla nivå 2, nivå 3 osv. med unika funktioner, som kortare distanser och nya områden (t.ex. dörrar, trappor).
+- [ ] Lägg till t.ex. vatten med en ö man behöver hoppa till
 
 ### Random Enemy Movement
 - [ ] Implementera random rörelse för fiender på kartan.
 - [ ] Göra vissa fiender osynliga på kartan (t.ex. assassins).
-- [ ] Definiera en specifik aggro-range för olika enemy-klasser.
+- [ ] Definiera en specifik aggro-range för olika enemy-klasser.               
 
 ### Fler Player-funktioner
 - [ ] Implementera ytterligare funktioner för Player, som att hoppa över fiender.
@@ -72,5 +82,5 @@
 ### Multiplayer
 - [ ] Utforska möjligheten för multiplayer-läge.
 
-### Implementering i MonoGame
+### Implementering i Monogame / Unity
 - [ ] Utvärdera möjligheten att implementera spelet i MonoGame eller liknande ramverk.
