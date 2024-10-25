@@ -81,6 +81,7 @@ public static class Combat
                 Console.SetCursorPosition(30, 1);
                 Console.Write("  ");
                 enemy.ShowHp();
+                
                 Console.SetCursorPosition(0, 8);
                 player.EnemyKilled(enemy);  //Skriver ut skadan
                 Console.WriteLine("            ");

@@ -43,7 +43,7 @@
 - [ ] Begränsningar beroende på itemtyp - hjälm, plate osv.
 - [ ] Lägg till en Merchant som man kan sälja/köpa ifrån - en char-ikon i stället för klass.
 - [ ] Potions
-- [ ] T.ex nycklar i kistor för att kunan öppna gates på banan för att komma vidare 
+- [ ] T.ex nycklar i kistor för att kunna öppna gates på banan för att komma vidare 
 
 ### Chests
 - [ ] Få kistor att byta färg när de har öppnats (använda bool och koordinatjämförelse).
@@ -53,7 +53,7 @@
 - [ ] Lägg till Xp-bar under mappen
 
 ### Fler GameLevels
-- [ ] Utveckla nivå 2, nivå 3 osv. med unika funktioner, som kortare distanser och nya områden (t.ex. dörrar, trappor).
+- [ ] Utveckla nivå 2, nivå 3 osv. m d unika funktioner, som kortare distanser och nya områden (t.ex. dörrar, trappor).
 - [ ] Lägg till t.ex. vatten med en ö man behöver hoppa till
 
 ### Random Enemy Movement

@@ -36,11 +36,19 @@ public class Player : GameObject
 
     public void EnemyKilled(Enemy enemy)
     {
+        
+        enemy.PrintDeadText();
+
         CurrentXp += enemy.XpDrop;
-        Console.WriteLine($"{enemy.Name} dog");
+        Console.SetCursorPosition(0, 8);
+       // Console.WriteLine($"{enemy.Name} dog");
         Console.ForegroundColor = ConsoleColor.DarkYellow;
-        Console.WriteLine($"+{enemy.XpDrop}XP  ");
+        Console.WriteLine($"+{enemy.XpDrop} XP        ");
+
+        Console.SetCursorPosition(0, 9);
+        Console.WriteLine("             \n            \n              \n          "); // För att input-text ska försvinna
         Console.ResetColor();
+        
         if (CurrentXp >= MaxXp)
         {
             CurrentXp = 0;
@@ -86,5 +94,6 @@ public class Player : GameObject
         Console.ResetColor();
         Console.WriteLine();
     }
+
 
 }
