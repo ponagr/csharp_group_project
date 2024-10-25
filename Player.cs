@@ -43,6 +43,8 @@ public class Player : GameObject
         Console.ResetColor();
         if (CurrentXp >= MaxXp)
         {
+            CurrentXp = 0;
+            MaxXp += 50;
             LevelUp();
         }
     }
