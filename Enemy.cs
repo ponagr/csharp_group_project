@@ -70,6 +70,7 @@ public class Enemy : GameObject
         Console.WriteLine("        |          | ");
 
         Thread.Sleep(400);
+
         Console.SetCursorPosition(30, 6);
         Console.WriteLine("  |     |          | ");
 
@@ -92,5 +93,6 @@ public class Enemy : GameObject
         Thread.Sleep(700);
         Console.SetCursorPosition(30, 8);
         Console.WriteLine("        |            ");
+
     }
 }
