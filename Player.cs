@@ -16,7 +16,7 @@ public class Player : GameObject
         BaseHp = 100;
         TotalHp = BaseHp;
         CurrentHp = TotalHp;
-        BaseDamage = 15;
+        BaseDamage = 20;
         TotalDamage = BaseDamage;
         BaseResistance = 5;
         TotalResistance = BaseResistance;
@@ -85,8 +85,6 @@ public class Player : GameObject
         Console.WriteLine("   /  \\");
         Console.ResetColor();
         Console.WriteLine();
-
-
     }
 
 }
