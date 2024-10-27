@@ -1,29 +1,28 @@
 public class Enemy : GameObject
 {
-    public int XpDrop = 25;
-    Random random = new Random();
+    public int XpDrop = 33;
+    //Lägg till en AggroRange senare
+
     public Enemy()
     {
+        Random random = new Random();
         Name = "Enemy";
         Description = "Enemy";
-        BaseHp = 75 + (random.Next(0, 25));
-        TotalHp = BaseHp;
+        BaseHp = 75 + random.Next(0, 25);
         CurrentHp = TotalHp;
-        BaseDamage = 10 + (random.Next(0, 10));
-        TotalDamage = BaseDamage;
-        BaseResistance = 0 + (random.Next(0, 5));
-        TotalResistance = BaseResistance;
-        BaseAgility = 5 + (random.Next(0, 5));
-        TotalAgility = BaseAgility;
-        //Aggro-range
+        BaseDamage = 10 + random.Next(0, 10);
+        BaseResistance = 0 + random.Next(0, 5);
+        BaseAgility = 5 + random.Next(0, 5);
     }
+
     public string Attack(Player player)
     {
-        double damageDone = TotalDamage - player.TotalResistance;
+        Random random = new Random();
+        double damageDone = TotalDamage + random.Next(0,10) - player.TotalResistance;
         player.CurrentHp -= damageDone;
-        // Console.WriteLine($"{player.Name} tog {damageDone} i skada");
         return $"<-- {damageDone} DMG";
     }
+
     public void ShowHp()
     {
         Console.ForegroundColor = ConsoleColor.Red;
