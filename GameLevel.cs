@@ -17,10 +17,7 @@ public static class GameLevel
     public static char Door = '\\';
     public static char Door2 = '/';
 
-    // static int posX;
-    // static int posY;
 
-    // public static List<int> openChestCordinates = new List<int>();
 
     public static char[,] gameLevel1 = new char[,] // GÖRA VAR SIN MAP FÖR ATT DET E KUL :)
     {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23
@@ -55,7 +52,7 @@ public static class GameLevel
     {
         int posX = 0;
         int posY = 0;
-        // static List<
+
         var keyPressed = Console.ReadKey();
 
         for (int i = 0; i < gameMap.GetLength(0); i++)
@@ -89,9 +86,9 @@ public static class GameLevel
             }
             else if (gameMap[posX - 1, posY] == Coin)
             {
-                //Lägg till +1 Coin till Player.Coin
-                player.Gold += 1;
-                //Console.WriteLine("+1 peng");
+                Random random = new Random();
+                player.Gold += random.Next(1,6);
+                Console.WriteLine($"+{random} guld");
                 gameMap[posX - 1, posY] = Player;
                 gameMap[posX, posY] = Empty;
             }
@@ -136,16 +133,14 @@ public static class GameLevel
                 {
                     gameMap[posX, posY - 1] = Empty;
                 }
-                //EnemyCombat();
                 //Om enemy dör(CurrentHealth == 0), ta bort Enemy från map
                 //Lägg till Empty där Enemy fanns
             }
             else if (gameMap[posX, posY - 1] == Coin)
             {
-                //Lägg till +1 Coin till Player.Coin
-                //Ta sedan bort kistan och gör platsen till Empty
-                player.Gold += 1;
-                Console.WriteLine("+1 peng");
+                Random random = new Random();
+                player.Gold += random.Next(1,6);
+                Console.WriteLine($"+{random} guld");
                 gameMap[posX, posY - 1] = Player;
                 gameMap[posX, posY] = Empty;
             }
@@ -190,10 +185,9 @@ public static class GameLevel
             }
             else if (gameMap[posX + 1, posY] == Coin)
             {
-                //Lägg till +1 Coin till Player.Coin
-                //Ta sedan bort kistan och gör platsen till Empty
-                player.Gold += 1;
-                Console.WriteLine("+1 peng");
+                Random random = new Random();
+                player.Gold += random.Next(1,6);
+                Console.WriteLine($"+{random} guld");
                 gameMap[posX + 1, posY] = Player;
                 gameMap[posX, posY] = Empty;
             }
@@ -240,8 +234,9 @@ public static class GameLevel
             }
             else if (gameMap[posX, posY + 1] == Coin)
             {
-                player.Gold += 1;
-                Console.WriteLine("+1 peng");
+                Random random = new Random();
+                player.Gold += random.Next(1,6);
+                Console.WriteLine($"+{random} guld");
                 gameMap[posX, posY + 1] = Player;
                 gameMap[posX, posY] = Empty;
             }
@@ -270,7 +265,13 @@ public static class GameLevel
                 Console.WriteLine("Du kan inte gå hit");
             }
         }
-        // Console.ReadKey();
+        if (keyPressed.Key == ConsoleKey.C) //Visa playerStats
+        {
+            Console.Clear();
+            player.UI(player);
+            player.ShowStats();
+            Console.ReadKey();
+        }
     }
     #endregion
 
@@ -284,47 +285,30 @@ public static class GameLevel
 
         // INFO OM KARTAN 
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"Player: {Player} ");
+        Console.Write($" Player: {Player}  ");
         Console.ResetColor();
         Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.Write($"Enemy: {Enemy} ");
+        Console.Write($"Enemy: {Enemy}  ");
         Console.ResetColor();
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.Write($"Chest: {Chest} ");
+        Console.Write($"Chest: {Chest}  ");
         Console.ResetColor();
         Console.ForegroundColor = ConsoleColor.DarkYellow;
-        Console.Write($"Coin: {Coin} ");
+        Console.Write($"Coin: {Coin}  ");
         Console.ResetColor();
         Console.ForegroundColor = ConsoleColor.DarkGray;
-        Console.Write($"Trap: {Trap} ");
+        Console.Write($"Trap: {Trap}  ");
         Console.ResetColor();
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.Write($"Boss: {Boss} ");
+        Console.Write($"Boss: {Boss}  ");
         Console.ResetColor();
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"Door: {Door} ");
+        Console.Write($"Door: {Door}  ");
         Console.ResetColor();
 
         Console.WriteLine();
 
-        // int posX = 0;
-        // int posY = 0;
-
-        // for (int i = 0; i < gameMap.GetLength(0); i++)
-        // {
-        //     for (int j = 0; j < gameMap.GetLength(1); j++)
-        //     {
-        //         if (gameMap[i, j] == Player)
-        //         {
-        //             posX = i;
-        //             posY = j;
-        //         }
-        //     }
-        // }
-
         // // SKRIVER UT MAP
-        
-
         for (int i = 0; i < gameMap.GetLength(0); i++)
         {
 
@@ -375,7 +359,6 @@ public static class GameLevel
                 else if (gameMap[i, j] == Wall || gameMap[i, j] == Terrain)
                 {
                     Console.BackgroundColor = ConsoleColor.DarkCyan;
-                    //  Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.Write("   ");
                     Console.ResetColor();
                 }
@@ -389,17 +372,22 @@ public static class GameLevel
                 {
                     Console.Write(gameMap[i, j] + "  ");
                 }
-
             }
             Console.WriteLine();
         }
 
-        Console.WriteLine();
-        HealthBar.PrintPlayerHealthBar(player);
-        Console.WriteLine($"Coins: {player.Gold}");
-        //player.ShowHp();
-       
-        // Console.SetCursorPosition(0, gameMap.GetLength(0) + 1);
+        player.UI(player);
+        // Console.WriteLine();
+        // int curretLine = Console.CursorTop;
+        // HealthBar.PrintPlayerHealthBar(player);
+        // player.ShowHp();
+        // Console.SetCursorPosition(29, curretLine);
+        // Console.ForegroundColor = ConsoleColor.Yellow;
+        // Console.WriteLine($"Coins: {player.Gold}");
+        // Console.SetCursorPosition(50, curretLine);
+        // Console.ForegroundColor = ConsoleColor.Magenta;
+        // player.ShowXp();
+        // Console.ResetColor();
 
 
     }
