@@ -154,26 +154,26 @@ public static class Combat
             Console.SetCursorPosition(0, 1);
             player.ShowHp();    //Ska uppdateras
 
-            Console.SetCursorPosition(30, 0);
+            Console.SetCursorPosition(39, 0);
             HealthBar.PrintEnemyHealthBar(enemy);
-            Console.SetCursorPosition(30, 1);
+            Console.SetCursorPosition(39, 1);
             enemy.ShowHp();     //Ska uppdateras
 
             Console.WriteLine();
 
             //Damage
-            Console.SetCursorPosition(16, 3);
+            Console.SetCursorPosition(20, 3);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(playerDamage);
-            Console.SetCursorPosition(16, 4);
+            Console.SetCursorPosition(20, 4);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(enemyDamage);
             Console.ResetColor();
 
-            //Gubben
+            //Gubben och Fiende
             Console.SetCursorPosition(0, 2);
             Player.PrintPlayerCharacter();
-            Console.SetCursorPosition(25, 2);
+            Console.SetCursorPosition(39, 2);
             Enemy.PrintEnemyCharacter();
 
             //Menyn

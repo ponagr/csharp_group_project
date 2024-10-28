@@ -43,25 +43,28 @@ public class Player : GameObject
         Random random = new Random();
 
         double damageDone = TotalDamage + random.Next(0,15) - enemy.TotalResistance;
+        AttackPlayerAnimation();
+        Thread.Sleep(200);
+
         enemy.CurrentHp -= damageDone;
         return $"DMG {damageDone} -->";
     }
 
     public void EnemyKilled(Enemy enemy)
     {
-        
+
         enemy.PrintDeadText();
 
         CurrentXp += enemy.XpDrop;
         Console.SetCursorPosition(0, 8);
-       // Console.WriteLine($"{enemy.Name} dog");
+        // Console.WriteLine($"{enemy.Name} dog");
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine($"+{enemy.XpDrop} XP        ");
 
         Console.SetCursorPosition(0, 9);
         Console.WriteLine("             \n            \n              \n          "); // För att input-text ska försvinna
         Console.ResetColor();
-        
+
         if (CurrentXp >= MaxXp)
         {
             int transferXpToNextLevel = CurrentXp - MaxXp;  //Räkna ut hur mycket xp som ska överföras till nästa level
@@ -123,18 +126,58 @@ public class Player : GameObject
         Console.ResetColor();
     }
 
+    public void AttackPlayerAnimation()
+    {
+        PrintPlayerHit1();
+        Thread.Sleep(500);
+        PrintPlayerHit2();
+        Thread.Sleep(500);
+    }
+
     public static void PrintPlayerCharacter()
     {
-
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("        .");
-        Console.WriteLine("     0  | ");
-        Console.WriteLine("[.]-||--T");
-        Console.WriteLine("    /\\  	");
-        Console.WriteLine("   /  \\");
+        Console.WriteLine("       .");
+        Console.WriteLine("    0  | ");
+        Console.WriteLine("[]-||--T");
+        Console.WriteLine("   /\\  	");
+        Console.WriteLine("  /  \\");
         Console.ResetColor();
         Console.WriteLine();
     }
 
+    public static void PrintPlayerHit1()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.SetCursorPosition(0, 2);
+        Console.WriteLine("            .     ");
+        Console.SetCursorPosition(0, 3);
+        Console.WriteLine("     0  ~ /       ");
+        Console.SetCursorPosition(0, 4);
+        Console.WriteLine(" []/||--T         ");
+        Console.SetCursorPosition(0, 5);
+        Console.WriteLine("    /\\  	     ");
+        Console.SetCursorPosition(0, 6);
+        Console.WriteLine("   /  \\          ");
+        Console.ResetColor();
+        Console.WriteLine();
+    }
+
+    public static void PrintPlayerHit2()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.SetCursorPosition(0, 2);
+        Console.WriteLine("                   ");
+        Console.SetCursorPosition(0, 3);
+        Console.WriteLine("      0            ");
+        Console.SetCursorPosition(0, 4);
+        Console.WriteLine("    /||--+--*      ");
+        Console.SetCursorPosition(0, 5);
+        Console.WriteLine("   []/\\  	     ");
+        Console.SetCursorPosition(0, 6);
+        Console.WriteLine("    /  \\          ");
+        Console.ResetColor();
+        Console.WriteLine();
+    }
 
 }
