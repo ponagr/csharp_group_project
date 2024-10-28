@@ -66,11 +66,11 @@ public class Enemy : GameObject
         Console.SetCursorPosition(30, 7);
         Console.WriteLine("                         "); // --"--
 
-        Thread.Sleep(400);
+        Thread.Sleep(300);
         Console.SetCursorPosition(30, 6);
         Console.WriteLine("        |          | ");
 
-        Thread.Sleep(500);
+        Thread.Sleep(400);
         Console.SetCursorPosition(30, 6);
         Console.WriteLine("  |     |          | ");
 
@@ -78,20 +78,20 @@ public class Enemy : GameObject
         Console.SetCursorPosition(30, 6);
         Console.WriteLine("  | |   | |        | ");
 
-        Thread.Sleep(500);
+        Thread.Sleep(400);
         Console.SetCursorPosition(30, 7);
-        Console.WriteLine("  |                 ");
+        Console.WriteLine("        |            ");
 
-        Thread.Sleep(600);
+        Thread.Sleep(450);
         Console.SetCursorPosition(30, 7);
-        Console.WriteLine("  |            |    ");
+        Console.WriteLine("  |     |            ");
+
+        Thread.Sleep(550);
+        Console.SetCursorPosition(30, 7);
+        Console.WriteLine("  |     |      |     ");
 
         Thread.Sleep(700);
-        Console.SetCursorPosition(30, 7);
-        Console.WriteLine("  |     |      |    ");
-
-        Thread.Sleep(800);
         Console.SetCursorPosition(30, 8);
-        Console.WriteLine("        |              ");
+        Console.WriteLine("        |            ");
     }
 }
