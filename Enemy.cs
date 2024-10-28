@@ -48,7 +48,7 @@ public class Enemy : GameObject
         Console.WriteLine();
     }
 
-    public void PrintDeadText() // Likadan fast grön eller liknande till vår gubbe?
+   public void PrintDeadText() // Likadan fast grön eller liknande till vår gubbe?
     {
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.SetCursorPosition(30, 2);
@@ -70,7 +70,6 @@ public class Enemy : GameObject
         Console.WriteLine("        |          | ");
 
         Thread.Sleep(400);
-
         Console.SetCursorPosition(30, 6);
         Console.WriteLine("  |     |          | ");
 
@@ -93,6 +92,5 @@ public class Enemy : GameObject
         Thread.Sleep(700);
         Console.SetCursorPosition(30, 8);
         Console.WriteLine("        |            ");
-
     }
 }
