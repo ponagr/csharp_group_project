@@ -5,7 +5,7 @@ public class Player : GameObject
     public int Level { get; set; }
     public int Gold { get; set; }
 
-    public Item[] Inventory { get; set; } = new Item[15];
+    public List<Item> Inventory { get; set; } = new List<Item>();
     public Weapon[] Weapon { get; set; } = new Weapon[1];
     public Helm[] Helm { get; set; } = new Helm[1];
     public Legs[] Legs { get; set; } = new Legs[1];
@@ -27,7 +27,17 @@ public class Player : GameObject
 
     }
 
-    public void 
+    public void Loot(Item item)     //Lägg till Item till inventory
+    {
+        if (Inventory.Length < 15)
+        {
+            Inventory.Add(item)
+        }
+        else
+        {
+            Console.WriteLine("Inventory är full");
+        }
+    }
 
     public void ShowXp()
     {
