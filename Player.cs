@@ -5,6 +5,13 @@ public class Player : GameObject
     public int Level { get; set; }
     public int Gold { get; set; }
 
+    public Item[] Inventory { get; set; } = new Item[15];
+    public Weapon[] Weapon { get; set; } = new Weapon[1];
+    public Helm[] Helm { get; set; } = new Helm[1];
+    public Legs[] Legs { get; set; } = new Legs[1];
+    public Gloves[] Gloves { get; set; } = new Gloves[1];
+    public Boots[] Boots { get; set; } = new Boots[1];
+
     public Player(string name)
     {
         Name = name;
@@ -19,6 +26,8 @@ public class Player : GameObject
         BaseAgility = 10;
 
     }
+
+    public void 
 
     public void ShowXp()
     {
