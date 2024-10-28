@@ -27,7 +27,7 @@ POTION, HJÄLM, RUSTNING, VAPEN, XP
             /___________\
 
 
-        /\
+        /\  10 RADER
        /  \
        |  |
        |  |
