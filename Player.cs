@@ -4,13 +4,16 @@ public class Player : GameObject
     public int MaxXp { get; set; }
     public int Level { get; set; }
     public int Gold { get; set; }
+    public Consumable HealingPot { get; set; }
 
-    public List<Item> Inventory { get; set; } = new List<Item>();
+    public Inventory Inventory { get; set; }
     public Weapon[] Weapon { get; set; } = new Weapon[1];
     public Helm[] Helm { get; set; } = new Helm[1];
     public Legs[] Legs { get; set; } = new Legs[1];
     public Gloves[] Gloves { get; set; } = new Gloves[1];
     public Boots[] Boots { get; set; } = new Boots[1];
+    public BreastPlate[] BreastPlate { get; set; } = new BreastPlate[1];
+    public Gear[] Gear { get; set; } = new Gear[6];
 
     public Player(string name)
     {
@@ -24,14 +27,61 @@ public class Player : GameObject
         BaseDamage = 20;
         BaseResistance = 5;
         BaseAgility = 10;
+        HealingPot = new Consumable();
+        Inventory = new Inventory();
+    }
 
+    public void InventoryInfo()
+    {
+        ShowStats();
+        Console.WriteLine();
+        HealingPot.ShowConsumable();
+        Console.WriteLine();
+        Inventory.ShowInventory();
+        Console.WriteLine();
+        ShowActiveGear();
+        Console.WriteLine();
+
+    }
+
+    public void ShowActiveGear()
+    {
+        for (int i = 0; i < Gear.Length; i++)
+        {
+            if (Gear[i] != null)
+            {
+                Console.WriteLine($"{Gear[i].ShowGear}"); 
+            }
+            else
+            {
+                Console.WriteLine("Här var det tomt");
+            }
+
+        }
+        
     }
 
     public void Loot(Item item)     //Lägg till Item till inventory
     {
-        if (Inventory.Length < 15)
+        if (Inventory.inventory.Count < 15)
         {
-            Inventory.Add(item)
+            Console.WriteLine($"{Name} har lootat {item.ItemName},{item.ItemType}");
+            if (item is Consumable)
+            {
+                if (HealingPot.Ammount < HealingPot.MaxAmmount)
+                {
+                    HealingPot.Ammount += 1;
+                }
+                else
+                {
+                    Console.WriteLine("Du har det maximala antalet Healing Potions redan");
+                }
+            }
+            else
+            {
+                Inventory.inventory.Add(item);
+            }
+            
         }
         else
         {
@@ -46,15 +96,26 @@ public class Player : GameObject
 
     public string Heal()
     {
-        double missingHealth = TotalHp - CurrentHp;     //Räkna ut hur mycket hp spelaren saknar
-        Random random = new Random();
-        double healAmmount = 50 + random.Next(0, 20);
-        if (healAmmount > missingHealth)    //Om Heal är mer än spelarens saknade hp, heala till fullt, så att currentHealth inte kan bli mer än TotalHp
+        double healAmmount;
+        if (HealingPot.Ammount > 0)
         {
-            healAmmount = missingHealth;
+            double missingHealth = TotalHp - CurrentHp;     //Räkna ut hur mycket hp spelaren saknar
+            // Random random = new Random();
+            healAmmount = HealingPot.Healing; //50 + random.Next(0, 20);
+            if (healAmmount > missingHealth)    //Om Heal är mer än spelarens saknade hp, heala till fullt, så att currentHealth inte kan bli mer än TotalHp
+            {
+                healAmmount = missingHealth;
+            }
+            CurrentHp += healAmmount;
+            HealingPot.Ammount--;
+            return $"+{healAmmount}HP";
         }
-        CurrentHp += healAmmount;
-        return $"+{healAmmount}HP";
+        else
+        {
+            return "Du har inga Healing Pots och kan därför inte heala dig";
+        }
+        
+        
     }
 
     public string Attack(Enemy enemy)
