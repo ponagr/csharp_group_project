@@ -33,9 +33,13 @@ public static class Combat
 
             //Gubben
             Console.SetCursorPosition(0, 2);
+
             Textures.PrintPlayerCharacter();
             Console.SetCursorPosition(25, 2);
             Textures.PrintEnemyCharacter();
+
+
+
 
             //Menyn
             Console.SetCursorPosition(0, 8);
@@ -52,7 +56,6 @@ public static class Combat
                 Console.SetCursorPosition(0, 9);
                 Console.Write($"2. Heal - "); player.HealingPot.ShowItem();
             }
-    
             Console.SetCursorPosition(0, 10);
             Console.WriteLine("3. Fly");
             Console.SetCursorPosition(0, 12);
@@ -107,13 +110,12 @@ public static class Combat
             }
             enemyDamage = enemy.Attack(player);
 
+
             if (input == "1")    //Vid attack
             {
                 Textures.AttackPlayerAnimation();
                 Clear.PlayerDamage();   //Rensa damagetext, och enemys hp
                 Clear.EnemyHp();
-                
-
 
                 Console.SetCursorPosition(30, 0);   //Uppdatera sedan
                 HealthBar.PrintEnemyHealthBar(enemy);
@@ -127,18 +129,16 @@ public static class Combat
             }
 
             //Vänta 1 sekund, och uppdatera sedan players hp och hpbar, samt enemys damage till player
+
             Thread.Sleep(500);
             Textures.AttackEnemyAnimation();
             Clear.EnemyDamage();    //Rensa sedan damagetext och players hp
             Clear.PlayerHp();
 
-
-
             Console.SetCursorPosition(0, 0);       //Och uppdatera detta
             HealthBar.PrintPlayerHealthBar(player);
             Console.SetCursorPosition(0, 1);
             player.ShowHp();
-
 
             Clear.PlayerDamage();
             Console.SetCursorPosition(16, 3);
@@ -147,7 +147,6 @@ public static class Combat
             Console.ResetColor();
 
             Thread.Sleep(1000);
-
         }
     }
 

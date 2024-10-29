@@ -17,9 +17,9 @@ public class Enemy : GameObject
 
     public string Attack(Player player)
     {
-
         Random random = new Random();
         double damageDone = TotalDamage + random.Next(0, 10) - player.TotalResistance;
+
         player.CurrentHp -= damageDone;
         return $"<-- {damageDone} DMG";
     }
