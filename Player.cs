@@ -42,9 +42,8 @@ public class Player : GameObject
     {
         Random random = new Random();
 
-        double damageDone = TotalDamage + random.Next(0,15) - enemy.TotalResistance;
-        AttackPlayerAnimation();
-        Thread.Sleep(200);
+        double damageDone = TotalDamage + random.Next(0, 15) - enemy.TotalResistance;
+
 
         enemy.CurrentHp -= damageDone;
         return $"DMG {damageDone} -->";
@@ -101,7 +100,7 @@ public class Player : GameObject
     }
 
     public void ShowStats()     //Visa spelarens stats
-    {   
+    {
         Console.WriteLine("\n\n");
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine($"Health: {TotalHp}");
@@ -126,27 +125,7 @@ public class Player : GameObject
         Console.ResetColor();
     }
 
-    public void AttackPlayerAnimation()
-    {
-        PrintPlayerHit1();
-        Thread.Sleep(500);
-        PrintPlayerHit2();
-        Thread.Sleep(500);
-    }
-
-    public static void PrintPlayerCharacter()
-    {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("       .");
-        Console.WriteLine("    0  | ");
-        Console.WriteLine("[]-||--T");
-        Console.WriteLine("   /\\  	");
-        Console.WriteLine("  /  \\");
-        Console.ResetColor();
-        Console.WriteLine();
-    }
-
-    public static void PrintPlayerHit1()
+    public static void AttackPlayerAnimation()
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.SetCursorPosition(0, 2);
@@ -159,13 +138,10 @@ public class Player : GameObject
         Console.WriteLine("    /\\  	     ");
         Console.SetCursorPosition(0, 6);
         Console.WriteLine("   /  \\          ");
-        Console.ResetColor();
         Console.WriteLine();
-    }
 
-    public static void PrintPlayerHit2()
-    {
-        Console.ForegroundColor = ConsoleColor.Green;
+        Thread.Sleep(300);
+
         Console.SetCursorPosition(0, 2);
         Console.WriteLine("                   ");
         Console.SetCursorPosition(0, 3);
@@ -176,6 +152,18 @@ public class Player : GameObject
         Console.WriteLine("   []/\\  	     ");
         Console.SetCursorPosition(0, 6);
         Console.WriteLine("    /  \\          ");
+        Console.ResetColor();
+        Console.WriteLine();
+    }
+
+    public static void PrintPlayerCharacter()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("       .");
+        Console.WriteLine("    0  | ");
+        Console.WriteLine("[]-||--T");
+        Console.WriteLine("   /\\  	");
+        Console.WriteLine("  /  \\");
         Console.ResetColor();
         Console.WriteLine();
     }

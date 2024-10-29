@@ -79,7 +79,7 @@ public static class Combat
                 Console.ReadKey();
                 return;
             }
-            
+
 
             if (input == "2")   //Om vi healar, uppdatera player.CurrentHp innan enemy attackerar
             {
@@ -96,10 +96,13 @@ public static class Combat
             }
             enemyDamage = enemy.Attack(player);
 
-            if(input == "1")    //Vid attack
+            if (input == "1")    //Vid attack
             {
+                Player.AttackPlayerAnimation();
                 Clear.PlayerDamage();   //Rensa damagetext, och enemys hp
                 Clear.EnemyHp();
+                
+
 
                 Console.SetCursorPosition(30, 0);   //Uppdatera sedan
                 HealthBar.PrintEnemyHealthBar(enemy);
@@ -113,15 +116,17 @@ public static class Combat
             }
 
             //Vänta 1 sekund, och uppdatera sedan players hp och hpbar, samt enemys damage till player
-            Thread.Sleep(1000);
-
+            Thread.Sleep(500);
+            Enemy.AttackEnemyAnimation();
             Clear.EnemyDamage();    //Rensa sedan damagetext och players hp
             Clear.PlayerHp();
+
+
 
             Console.SetCursorPosition(0, 0);       //Och uppdatera detta
             HealthBar.PrintPlayerHealthBar(player);
             Console.SetCursorPosition(0, 1);
-            player.ShowHp();    
+            player.ShowHp();
 
 
             Clear.PlayerDamage();
@@ -211,7 +216,7 @@ public static class Combat
                 Console.SetCursorPosition(30, 1);
                 Console.Write("  ");
                 enemy.ShowHp();
-                
+
                 Console.SetCursorPosition(0, 8);
                 player.EnemyKilled(enemy);  //Skriver ut skadan
                 Console.WriteLine("            ");

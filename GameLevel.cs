@@ -226,7 +226,7 @@ public static class GameLevel
             }
             else if (gameMap[posX, posY + 1] == Enemy)
             {
-                Combat.FightMode(player, enemy);
+                Combat.TestFightMode(player, enemy);
                 if (enemy.CurrentHp <= 0)
                 {
                     gameMap[posX, posY + 1] = Empty;

@@ -19,21 +19,11 @@ public class Enemy : GameObject
     {
 
         Random random = new Random();
-        double damageDone = TotalDamage + random.Next(0,10) - player.TotalResistance;
-
-        AttackEnemyAnimation();
+        double damageDone = TotalDamage + random.Next(0, 10) - player.TotalResistance;
         player.CurrentHp -= damageDone;
         return $"<-- {damageDone} DMG";
     }
 
-
-    public void AttackEnemyAnimation()
-    {
-        PrintEnemyHit1();
-        Thread.Sleep(500);
-        PrintEnemyHit2();
-        Thread.Sleep(500);
-    }
 
     public void ShowHp()
     {
@@ -60,7 +50,7 @@ public class Enemy : GameObject
         Console.WriteLine();
     }
 
-    public static void PrintEnemyHit1()
+    public static void AttackEnemyAnimation()
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.SetCursorPosition(39, 2);
@@ -74,12 +64,9 @@ public class Enemy : GameObject
         Console.SetCursorPosition(39, 6);
         Console.WriteLine("    |  \\ ");
         Console.WriteLine();
-        Console.ResetColor();
-    }
 
-    public static void PrintEnemyHit2()
-    {
-        Console.ForegroundColor = ConsoleColor.Red;
+        Thread.Sleep(300);
+
         Console.SetCursorPosition(39, 3);
         Console.WriteLine("      0  ");
         Console.SetCursorPosition(39, 4);
@@ -136,5 +123,6 @@ public class Enemy : GameObject
         Thread.Sleep(700);
         Console.SetCursorPosition(30, 8);
         Console.WriteLine("        |            ");
+        Console.ResetColor();
     }
 }
