@@ -16,7 +16,8 @@ public static class GameLevel
     public static char Empty = ' ';
     public static char Door = '\\';
     public static char Door2 = '/';
-    
+    public static char Heart = '\u2665';
+
 
 
 
@@ -26,7 +27,7 @@ public static class GameLevel
            { '|', '@', '£', ' ', ' ', ' ', ' ', ' ', '¤', ' ', ' ', '|', '#', '|', ' ', ' ', ' ', ' ', ' ', ' ', 'B', ' ', '|' },
            { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
            { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '£', '|', '_', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
-           { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|', '£', ' ', ' ', ' ', ' ', ' ', ' ', '_', '|', ' ', '|' },
+           { '|', ' ', ' ', ' ', ' ', '\u2665', ' ', ' ', '|', ' ', ' ', '|', '£', ' ', ' ', ' ', ' ', ' ', ' ', '_', '|', ' ', '|' },
            { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '£', ' ', '|', ' ', ' ', '|' },
            { '|', ' ', ' ', ' ', ' ', ' ', ' ', '¤', '|', ' ', ' ', '|', '$', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '\\' },
            { '|', ' ', '_', '_', '|', ' ', '|', '_', '_', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '/' },
@@ -89,7 +90,7 @@ public static class GameLevel
             else if (gameMap[posX - 1, posY] == Coin)
             {
                 Random random = new Random();
-                player.Gold += random.Next(1,6);
+                player.Gold += random.Next(1, 6);
                 Console.WriteLine($"+{random} guld");
                 gameMap[posX - 1, posY] = Player;
                 gameMap[posX, posY] = Empty;
@@ -120,11 +121,21 @@ public static class GameLevel
                 // Loada nästa level
                 Console.WriteLine("Du klarade nivån");
             }
+            else if (gameMap[posX - 1, posY] == Heart)
+            {
+                player.HealingPot.Ammount = 5;
+                player.CurrentHp = player.TotalHp;
+                gameMap[posX - 1, posY] = Empty;
+            }
             else
             {
                 //Spelaren går in i en vägg, kan inte flytta dit
                 Console.WriteLine("Du kan inte gå hit");
             }
+
+
+
+
         }
         if (keyPressed.Key == ConsoleKey.A)
         {
@@ -146,7 +157,7 @@ public static class GameLevel
             else if (gameMap[posX, posY - 1] == Coin)
             {
                 Random random = new Random();
-                player.Gold += random.Next(1,6);
+                player.Gold += random.Next(1, 6);
                 Console.WriteLine($"+{random} guld");
                 gameMap[posX, posY - 1] = Player;
                 gameMap[posX, posY] = Empty;
@@ -174,6 +185,12 @@ public static class GameLevel
                 // Loada nästa level
                 Console.WriteLine("Du klarade nivån");
             }
+            else if (gameMap[posX, posY - 1] == Heart)
+            {
+                player.HealingPot.Ammount = 5;
+                player.CurrentHp = player.TotalHp;
+                gameMap[posX, posY - 1] = Empty;
+            }
             else
             {
                 //Spelaren går in i en vägg, kan inte flytta dit
@@ -198,7 +215,7 @@ public static class GameLevel
             else if (gameMap[posX + 1, posY] == Coin)
             {
                 Random random = new Random();
-                player.Gold += random.Next(1,6);
+                player.Gold += random.Next(1, 6);
                 Console.WriteLine($"+{random} guld");
                 gameMap[posX + 1, posY] = Player;
                 gameMap[posX, posY] = Empty;
@@ -228,6 +245,12 @@ public static class GameLevel
                 // Loada nästa level
                 Console.WriteLine("Du klarade nivån");
             }
+            else if (gameMap[posX + 1, posY] == Heart)
+            {
+                player.HealingPot.Ammount = 5;
+                player.CurrentHp = player.TotalHp;
+                gameMap[posX + 1, posY] = Empty;
+            }
             else
             {
                 //Spelaren går in i en vägg, kan inte flytta dit
@@ -243,7 +266,7 @@ public static class GameLevel
             }
             else if (gameMap[posX, posY + 1] == Enemy)
             {
-                Combat.FightMode(player, enemy);
+                Combat.TestFightMode(player, enemy);
                 if (enemy.CurrentHp <= 0)
                 {
                     gameMap[posX, posY + 1] = Empty;
@@ -252,7 +275,7 @@ public static class GameLevel
             else if (gameMap[posX, posY + 1] == Coin)
             {
                 Random random = new Random();
-                player.Gold += random.Next(1,6);
+                player.Gold += random.Next(1, 6);
                 Console.WriteLine($"+{random} guld");
                 gameMap[posX, posY + 1] = Player;
                 gameMap[posX, posY] = Empty;
@@ -280,6 +303,12 @@ public static class GameLevel
             {
                 // Loada nästa level
                 Console.WriteLine("Du klarade nivån");
+            }
+            else if (gameMap[posX, posY + 1] == Heart)
+            {
+                player.HealingPot.Ammount = 5;
+                player.CurrentHp = player.TotalHp;
+                gameMap[posX, posY + 1] = Empty;
             }
             else
             {

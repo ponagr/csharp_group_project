@@ -5,6 +5,8 @@
         bool gameOver = false;
         Player player = new Player("Player");
         Enemy enemy = new Enemy();
+        Items.ItemsToAdd();
+
         while (!gameOver)
         {
             GameLevel.PrintGameBoard(GameLevel.gameLevel1, player);
