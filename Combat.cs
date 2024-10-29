@@ -40,8 +40,19 @@ public static class Combat
             //Menyn
             Console.SetCursorPosition(0, 8);
             Console.WriteLine("1. Attack");
-            Console.SetCursorPosition(0, 9);
-            Console.WriteLine("2. Heal");
+            if (player.HealingPot.Ammount == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.SetCursorPosition(0, 9);
+                Console.Write($"2. Heal - "); player.HealingPot.ShowItem();
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.SetCursorPosition(0, 9);
+                Console.Write($"2. Heal - "); player.HealingPot.ShowItem();
+            }
+    
             Console.SetCursorPosition(0, 10);
             Console.WriteLine("3. Fly");
             Console.SetCursorPosition(0, 12);
