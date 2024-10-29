@@ -16,7 +16,7 @@ public static class GameLevel
     public static char Empty = ' ';
     public static char Door = '\\';
     public static char Door2 = '/';
-
+    
 
 
     public static char[,] gameLevel1 = new char[,] // GÖRA VAR SIN MAP FÖR ATT DET E KUL :)
@@ -52,6 +52,7 @@ public static class GameLevel
     {
         int posX = 0;
         int posY = 0;
+        Chest chest = new Chest();
 
         var keyPressed = Console.ReadKey();
 
@@ -102,6 +103,11 @@ public static class GameLevel
             else if (gameMap[posX - 1, posY] == Chest)
             {
                 // Slumpa items/guld, 1-3 typ
+                foreach (Item item in chest.ChestLoot)
+                {
+                    player.Loot(item);
+                }
+                Console.ReadKey();
                 Console.WriteLine("Du gick på en kista");
                 // gameMap[posX - 1, posY]
                 // openChestCordinates.Add(posX - 1);
@@ -155,6 +161,11 @@ public static class GameLevel
             {
                 // Slumpa items/guld, 1-3 typ
                 //Ta sedan bort kistan och gör platsen till Empty
+                foreach (Item item in chest.ChestLoot)
+                {
+                    player.Loot(item);
+                }
+                Console.ReadKey();
                 Console.WriteLine("Du gick på en kista");
             }
             else if (gameMap[posX, posY - 1] == Door || gameMap[posX, posY - 1] == Door2)
@@ -201,6 +212,11 @@ public static class GameLevel
             else if (gameMap[posX + 1, posY] == Chest)
             {
                 // Slumpa items/guld, 1-3 typ
+                foreach (Item item in chest.ChestLoot)
+                {
+                    player.Loot(item);
+                }
+                Console.ReadKey();
                 //Ta sedan bort kistan och gör platsen till Empty
                 Console.WriteLine("Du gick på en kista");
 
@@ -250,6 +266,11 @@ public static class GameLevel
             else if (gameMap[posX, posY + 1] == Chest)
             {
                 // Slumpa items/guld, 1-3 typ
+                foreach (Item item in chest.ChestLoot)
+                {
+                    player.Loot(item);
+                }
+                Console.ReadKey();
                 //Ta sedan bort kistan och gör platsen till Empty
                 Console.WriteLine("Du gick på en kista");
                 gameMap[posX, posY + 1] = Empty;
@@ -269,7 +290,7 @@ public static class GameLevel
         {
             Console.Clear();
             player.UI(player);
-            player.ShowStats();
+            player.InventoryInfo();
             Console.ReadKey();
         }
     }
