@@ -17,7 +17,58 @@ public static class Items
         Boots boots = new Boots("Foppatofflor", 0, 0, 5, -5);
 
         AddItem(boots);
+        AddItem(helm);
+        AddItem(weapon1);
+        AddItem(weapon);
+        AddItem(legs);
+        AddItem(gloves);
+        AddItem(consumable);
 
+    }
+
+    public static void ShowAllItems()
+    {
+        foreach(Item item in itemList)
+        {
+            Console.WriteLine(item.ItemName);
+        }
+    }
+}
+public class Inventory
+{
+    public List<Item> inventory { get; set; } = new List<Item>();
+
+    public void Loot(Item item)     //Lägg till Item till inventory
+    {
+        if (inventory.Count < 15)
+        {
+            inventory.Add(item);
+        }
+        else
+        {
+            Console.WriteLine("Inventory är full");
+        }
+    }
+
+    public void ShowInventory()
+    {
+        if (inventory.Count > 0)
+        {
+            foreach (Item item in inventory)
+            {
+                Console.WriteLine($"{item.ItemName}, {item.ItemType}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Din inventory är tom");
+        }
+        
+    }
+
+    public void InventoryMenu()
+    {
+        Console.WriteLine("Välj ett item för att interagera");
     }
 }
 
@@ -32,12 +83,20 @@ public abstract class Item
 public class Consumable : Item
 {
     public double Healing { get; set; }
+    public int Ammount { get; set; }
+    public int MaxAmmount { get; set; }
     public Consumable()
     {
         ItemName = "Healing Potion";
         ItemType = "Consumable";
         Healing = 50;
-        
+        Ammount = 3;
+        MaxAmmount = 5;   
+    }
+
+    public void ShowConsumable()
+    {
+        Console.WriteLine($"Health Potions: {Ammount}/{MaxAmmount}");
     }
 }
 
@@ -56,6 +115,16 @@ public class Gear : Item
         Resistance = resistance;
         Agility = agility;
     }
+
+    public void ShowGear()
+    {
+        Console.WriteLine($"{ItemName}, {ItemType}");
+    }
+
+    public void ShowStats()
+    {
+        Console.WriteLine($"{Damage} Damage, {Health} Health, {Resistance} Resistance, {Agility} Agility");
+    }
 }
 public class Helm : Gear
 {
@@ -65,12 +134,12 @@ public class Helm : Gear
         ItemType = "Helm";
     }
 }
-public class Chest : Gear
+public class BreastPlate : Gear
 {
-    public Chest(string name, double damage, double health, double resistance, double agility)
+    public BreastPlate(string name, double damage, double health, double resistance, double agility)
     : base(name, damage, health, resistance, agility)
     {
-        ItemType = "Chest";
+        ItemType = "Breastplate";
     }
 }
 public class Legs : Gear
@@ -105,6 +174,28 @@ public class Weapon : Gear
     {
         WeaponType = weaponType;
         ItemType = "Weapon";
+    }
+}
+
+public class Chest
+{
+    public List<Item> ChestLoot { get; set; } = new List<Item>();
+
+    public Chest()
+    {
+        // ChestLoot = new List<Item>();
+        // Random rnd = new Random();
+        // int itemsInChest = rnd.Next(1, 2);
+        Random random = new Random();
+        int itemIndex;
+        List<Item> items = new List<Item>();
+        // for (int i = 0; i < itemsInChest; i++)
+        // {
+            itemIndex = random.Next(0, Items.itemList.Count);
+            items.Add(Items.itemList[itemIndex]);
+        // }
+        ChestLoot = items;
+        
     }
 }
 
