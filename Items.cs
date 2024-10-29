@@ -1,3 +1,5 @@
+using System.Diagnostics.Contracts;
+
 public static class Items 
 {
     public static List<Item> itemList = new List<Item>();
@@ -52,11 +54,12 @@ public class Inventory
 
     public void ShowInventory()
     {
+        Console.WriteLine($"Inventory - Space: {inventory.Count}/15");
         if (inventory.Count > 0)
         {
-            foreach (Item item in inventory)
+            for (int i = 0; i < inventory.Count; i++)
             {
-                Console.WriteLine($"{item.ItemName}, {item.ItemType}");
+                Console.WriteLine($"[{i}] - {inventory[i].ItemName}, {inventory[i].ItemType}");
             }
         }
         else
@@ -68,7 +71,13 @@ public class Inventory
 
     public void InventoryMenu()
     {
+        Console.Clear();
+        ShowInventory();
+
+
         Console.WriteLine("Välj ett item för att interagera");
+        int i = int.Parse(Console.ReadLine());
+        
     }
 }
 
@@ -77,6 +86,13 @@ public abstract class Item
 {
     public string ItemType { get; set; }
     public string ItemName { get; set; }
+    public double Damage { get; set; }
+    public double Health { get; set; }
+    public double Resistance { get; set; }
+    public double Agility { get; set; }
+
+    public abstract void ShowItem();
+    public abstract void ShowStats();
 
 }
 
@@ -94,18 +110,22 @@ public class Consumable : Item
         MaxAmmount = 5;   
     }
 
-    public void ShowConsumable()
+    public override void ShowItem()
     {
         Console.WriteLine($"Health Potions: {Ammount}/{MaxAmmount}");
+    }
+    public override void ShowStats()
+    {
+        Console.WriteLine("");
     }
 }
 
 public class Gear : Item
 {
-    public double Damage { get; set; }
-    public double Health { get; set; }
-    public double Resistance { get; set; }
-    public double Agility { get; set; }
+    // public double Damage { get; set; }
+    // public double Health { get; set; }
+    // public double Resistance { get; set; }
+    // public double Agility { get; set; }
 
     public Gear(string name, double damage, double health, double resistance, double agility)
     {
@@ -116,12 +136,12 @@ public class Gear : Item
         Agility = agility;
     }
 
-    public void ShowGear()
+    public override void ShowItem()
     {
         Console.WriteLine($"{ItemName}, {ItemType}");
     }
 
-    public void ShowStats()
+    public override void ShowStats()
     {
         Console.WriteLine($"{Damage} Damage, {Health} Health, {Resistance} Resistance, {Agility} Agility");
     }
@@ -184,18 +204,26 @@ public class Chest
     public Chest()
     {
         // ChestLoot = new List<Item>();
-        // Random rnd = new Random();
-        // int itemsInChest = rnd.Next(1, 2);
+        Random rnd = new Random();
+        int itemsInChest = 2; //rnd.Next(1, 3);
         Random random = new Random();
         int itemIndex;
         List<Item> items = new List<Item>();
-        // for (int i = 0; i < itemsInChest; i++)
-        // {
+        for (int i = 0; i < itemsInChest; i++)
+        {
             itemIndex = random.Next(0, Items.itemList.Count);
             items.Add(Items.itemList[itemIndex]);
-        // }
+        }
         ChestLoot = items;
         
+    }
+
+    public void PrintChest()
+    {
+        foreach (Item item in ChestLoot)
+        {
+            Console.WriteLine(item.ItemName, item.ItemType);
+        }
     }
 }
 
