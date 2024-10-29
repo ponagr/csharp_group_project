@@ -33,9 +33,9 @@ public static class Combat
 
             //Gubben
             Console.SetCursorPosition(0, 2);
-            Player.PrintPlayerCharacter();
+            Textures.PrintPlayerCharacter();
             Console.SetCursorPosition(25, 2);
-            Enemy.PrintEnemyCharacter();
+            Textures.PrintEnemyCharacter();
 
             //Menyn
             Console.SetCursorPosition(0, 8);
@@ -98,7 +98,7 @@ public static class Combat
 
             if (input == "1")    //Vid attack
             {
-                Player.AttackPlayerAnimation();
+                Textures.AttackPlayerAnimation();
                 Clear.PlayerDamage();   //Rensa damagetext, och enemys hp
                 Clear.EnemyHp();
                 
@@ -117,7 +117,7 @@ public static class Combat
 
             //Vänta 1 sekund, och uppdatera sedan players hp och hpbar, samt enemys damage till player
             Thread.Sleep(500);
-            Enemy.AttackEnemyAnimation();
+            Textures.AttackEnemyAnimation();
             Clear.EnemyDamage();    //Rensa sedan damagetext och players hp
             Clear.PlayerHp();
 
@@ -177,9 +177,9 @@ public static class Combat
 
             //Gubben och Fiende
             Console.SetCursorPosition(0, 2);
-            Player.PrintPlayerCharacter();
+            Textures.PrintPlayerCharacter();
             Console.SetCursorPosition(39, 2);
-            Enemy.PrintEnemyCharacter();
+            Textures.PrintEnemyCharacter();
 
             //Menyn
             Console.SetCursorPosition(0, 8);

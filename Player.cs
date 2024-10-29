@@ -52,7 +52,7 @@ public class Player : GameObject
     public void EnemyKilled(Enemy enemy)
     {
 
-        enemy.PrintDeadText();
+        Textures.PrintDeadText();
 
         CurrentXp += enemy.XpDrop;
         Console.SetCursorPosition(0, 8);
@@ -123,49 +123,6 @@ public class Player : GameObject
         Console.ForegroundColor = ConsoleColor.Magenta;
         ShowXp();
         Console.ResetColor();
-    }
-
-    public static void AttackPlayerAnimation()
-    {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.SetCursorPosition(0, 2);
-        Console.WriteLine("            .     ");
-        Console.SetCursorPosition(0, 3);
-        Console.WriteLine("     0  ~ /       ");
-        Console.SetCursorPosition(0, 4);
-        Console.WriteLine(" []/||--T         ");
-        Console.SetCursorPosition(0, 5);
-        Console.WriteLine("    /\\  	     ");
-        Console.SetCursorPosition(0, 6);
-        Console.WriteLine("   /  \\          ");
-        Console.WriteLine();
-
-        Thread.Sleep(300);
-
-        Console.SetCursorPosition(0, 2);
-        Console.WriteLine("                   ");
-        Console.SetCursorPosition(0, 3);
-        Console.WriteLine("      0            ");
-        Console.SetCursorPosition(0, 4);
-        Console.WriteLine("    /||--+--*      ");
-        Console.SetCursorPosition(0, 5);
-        Console.WriteLine("   []/\\  	     ");
-        Console.SetCursorPosition(0, 6);
-        Console.WriteLine("    /  \\          ");
-        Console.ResetColor();
-        Console.WriteLine();
-    }
-
-    public static void PrintPlayerCharacter()
-    {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("       .");
-        Console.WriteLine("    0  | ");
-        Console.WriteLine("[]-||--T");
-        Console.WriteLine("   /\\  	");
-        Console.WriteLine("  /  \\");
-        Console.ResetColor();
-        Console.WriteLine();
     }
 
 }

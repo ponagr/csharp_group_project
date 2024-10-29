@@ -9,7 +9,7 @@
 - [x] Skapa Player- och en Enemy-karaktär.
 - [x] Utveckla nivå 1 och implementera movement-metod.
 - [x] Enklare interaktion mellan karaktärer (Player och Enemy).
-- [ ] SetCururposition på mappen
+- [ ] SetCururposition på mappen FÖR ATT SLIPPA GLITCH
 - [ ] Hjärta för att få liv på banan
 
 ### GameObject - Enemy - Player
