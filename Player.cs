@@ -393,13 +393,48 @@ public class Player : GameObject
         }
     }
 
-    public string Attack(Enemy enemy)
+public string Attack(Enemy enemy, out string critical)
     {
-        Random random = new Random();
-        double damageDone = TotalDamage + random.Next(0, 15) - enemy.TotalResistance;
+        Random rndCrit = new Random();
+        double damageDone;
+        int critChange = Convert.ToInt32(BaseAgility); // Om Agility är 10
+        int crit = rndCrit.Next(0, 101); // 0 - 10
+        double damage;
+        bool attackCrit = false;
 
-        enemy.CurrentHp -= damageDone;
-        return $"DMG {damageDone} -->";
+        if (crit <= critChange) 
+        {
+            damage = TotalDamage * 1.8;
+            attackCrit = true;
+        }
+        else
+        {
+            damage = TotalDamage;
+        }
+
+        Random rndDamage = new Random();
+        Random rndDodge = new Random();
+        int dodgeChange = Convert.ToInt32(BaseAgility);
+        int dodge = rndDodge.Next(0, 101);
+        if (dodge <= dodgeChange)
+        {
+            critical = "";
+            return $"{enemy.Name} DODGED";
+        }
+        else if (attackCrit)
+        {
+            damageDone = damage + rndDamage.Next(0, 10) - enemy.TotalResistance;
+            enemy.CurrentHp -= damageDone;
+            critical = "CRITICAL";
+            return $"{damageDone:F0} DMG -->";
+        }
+        else
+        {
+            damageDone = damage + rndDamage.Next(0, 10) - enemy.TotalResistance;
+            enemy.CurrentHp -= damageDone;
+            critical = "";
+            return $"{damageDone:F0} DMG -->";
+        }
     }
 
     public void EnemyKilled(Enemy enemy)
@@ -448,7 +483,7 @@ public class Player : GameObject
     public void ShowHp()
     {
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine($"{CurrentHp}/{TotalHp}({PercentHp:F0}%)");
+        Console.WriteLine($"{CurrentHp:F0}/{TotalHp:F0}({PercentHp:F0}%)");
         Console.ResetColor();
     }
 
@@ -462,7 +497,6 @@ public class Player : GameObject
         Console.WriteLine($"Agility: {TotalAgility}");
         Console.ResetColor();
         Console.WriteLine();
-        
     }
 
     public void UI(Player player)   //Skriv ut spelarens Hp, Guld och Xp

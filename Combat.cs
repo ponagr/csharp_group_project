@@ -4,9 +4,10 @@ using System.Security.Cryptography.X509Certificates;
 public static class Combat
 {
 
-    public static void TestFightMode(Player player, Enemy enemy)
+    public static void FightMode(Player player, Enemy enemy)
     {
-
+        string criticalPlayer = "";
+        string criticalEnemy = "";
         string enemyDamage = "";
         string playerDamage = "";
         string playerHealing = "";
@@ -66,7 +67,7 @@ public static class Combat
             switch (input)
             {
                 case "1":
-                    playerDamage = player.Attack(enemy);   //Skriver ut skadan // SPARAR den returnerade stringen i playerDamage
+                    playerDamage = player.Attack(enemy, out criticalPlayer);   //Skriver ut skadan // SPARAR den returnerade stringen i playerDamage
                     break;
                 case "2":
                     playerHealing = player.Heal();
@@ -108,7 +109,7 @@ public static class Combat
                 Console.WriteLine(playerHealing);
                 Console.ResetColor();
             }
-            enemyDamage = enemy.Attack(player);
+            enemyDamage = enemy.Attack(player, out criticalEnemy);
 
 
             if (input == "1")    //Vid attack
@@ -122,8 +123,10 @@ public static class Combat
                 Console.SetCursorPosition(30, 1);
                 enemy.ShowHp();
 
-                Console.SetCursorPosition(16, 3);
                 Console.ForegroundColor = ConsoleColor.Green;
+                Console.SetCursorPosition(16, 3);
+                Console.WriteLine(criticalPlayer);
+                Console.SetCursorPosition(16, 4);
                 Console.WriteLine(playerDamage);
                 Console.ResetColor();
             }
@@ -141,109 +144,14 @@ public static class Combat
             player.ShowHp();
 
             Clear.PlayerDamage();
-            Console.SetCursorPosition(16, 3);
             Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(16, 3);
+            Console.WriteLine(criticalEnemy);
+            Console.SetCursorPosition(16, 4);
             Console.WriteLine(enemyDamage);
             Console.ResetColor();
 
             Thread.Sleep(1000);
         }
     }
-
-
-    public static void FightMode(Player player, Enemy enemy)
-    {
-        //Position.FightMode(player, enemy);
-        // Console.Clear();
-        // player.ShowHp();
-        // enemy.ShowHp();
-        string enemyDamage = "";
-        string playerDamage = "";
-        while (true)
-        {
-            Console.Clear();
-
-            //HP
-            Console.SetCursorPosition(0, 0);  //Rad, Kolumn
-            HealthBar.PrintPlayerHealthBar(player);
-            Console.SetCursorPosition(0, 1);
-            player.ShowHp();    //Ska uppdateras
-
-            Console.SetCursorPosition(39, 0);
-            HealthBar.PrintEnemyHealthBar(enemy);
-            Console.SetCursorPosition(39, 1);
-            enemy.ShowHp();     //Ska uppdateras
-
-            Console.WriteLine();
-
-            //Damage
-            Console.SetCursorPosition(20, 3);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(playerDamage);
-            Console.SetCursorPosition(20, 4);
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(enemyDamage);
-            Console.ResetColor();
-
-            //Gubben och Fiende
-            Console.SetCursorPosition(0, 2);
-            Textures.PrintPlayerCharacter();
-            Console.SetCursorPosition(39, 2);
-            Textures.PrintEnemyCharacter();
-
-            //Menyn
-            Console.SetCursorPosition(0, 8);
-            Console.WriteLine("1. Attack");
-            Console.SetCursorPosition(0, 9);
-            Console.WriteLine("2. Heal");
-            Console.SetCursorPosition(0, 10);
-            Console.WriteLine("3. Fly");
-            Console.SetCursorPosition(0, 12);
-            Console.Write("Input: ");
-
-
-            string input = Console.ReadLine();
-            switch (input)
-            {
-                case "1":
-                    playerDamage = player.Attack(enemy);   //Skriver ut skadan // SPARAR den returnerade stringen i playerDamage
-                    break;
-                case "2":
-                    player.CurrentHp = 100;
-                    //player.Heal();
-                    break;
-                case "3":
-                    //player.Flee();
-                    return;
-                default:
-                    break;
-
-            }
-            if (enemy.CurrentHp <= 0)   //Fixa så att enemy.CurrentHp inte kan bli lägre än 0
-            {
-                Console.SetCursorPosition(30, 0); // VISAR HEALTHBAREN FÖR ATT KUNNA SE NÄR HAN E DÖD
-                HealthBar.PrintEnemyHealthBar(enemy);
-                Console.SetCursorPosition(30, 1);
-                Console.Write("  ");
-                enemy.ShowHp();
-
-                Console.SetCursorPosition(0, 8);
-                player.EnemyKilled(enemy);  //Skriver ut skadan
-                Console.WriteLine("            ");
-                Console.WriteLine("            "); // FÖR ATT DÖLJA TIDIGARE TEXT
-                Console.WriteLine("            ");
-                Console.ReadKey();
-                return;
-            }
-            enemyDamage = enemy.Attack(player);
-
-
-            // Console.Clear();
-            // player.ShowHp();
-            // enemy.ShowHp();
-
-
-        }
-    }
-
 }
