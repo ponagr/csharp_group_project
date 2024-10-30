@@ -91,7 +91,7 @@ public static class Combat
                 Console.WriteLine("            ");
                 Console.WriteLine("            "); // FÖR ATT DÖLJA TIDIGARE TEXT
                 Console.WriteLine("            ");
-                Console.ReadKey();
+                Console.ReadKey(true);
                 return;
             }
 
