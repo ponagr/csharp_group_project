@@ -9,6 +9,27 @@ public class Player : GameObject
     public int Gold { get; set; }
     public Consumable HealingPot { get; set; }
 
+    public double BonusAgility { get; set; }
+    public double BonusHp { get; set; }
+    public double BonusDamage { get; set; }
+    public double BonusResistance { get; set; }
+    public override double TotalHp
+    {
+        get { return BaseHp + BonusHp; }
+    }
+    public override double TotalDamage
+    {
+        get { return BaseDamage + BonusDamage; }
+    }
+    public override double TotalAgility
+    {
+        get { return BaseAgility + BonusAgility; }
+    }
+    public override double TotalResistance
+    {
+        get { return BaseResistance + BonusResistance; }
+    }
+
     public Inventory Inventory { get; set; }
     public Item[] Weapon { get; set; } = new Item[1];
     public Item[] Helm { get; set; } = new Item[1];
@@ -16,7 +37,7 @@ public class Player : GameObject
     public Item[] Gloves { get; set; } = new Item[1];
     public Item[] Boots { get; set; } = new Item[1];
     public Item[] BreastPlate { get; set; } = new Item[1];
-    public Item[] Gear { get; set; } = new Item[6];
+    public Item[] EquippedGear { get; set; } = new Item[6];
 
     public Player(string name)
     {
@@ -35,27 +56,55 @@ public class Player : GameObject
         Inventory = new Inventory();
     }
 
-    public void InventoryInfo() // NÄR VI TRYCKER C
+    public void CountStats()
+    {   
+        double bonusDamage = 0;
+        double bonusHp = 0;
+        double bonusAgility = 0;
+        double bonusResistance = 0;
+        for (int i = 0; i < EquippedGear.Length; i++)
+        {
+            if (EquippedGear[i] != null)
+            {
+                bonusDamage += EquippedGear[i].Damage;
+                bonusHp += EquippedGear[i].Health;
+                bonusAgility += EquippedGear[i].Agility;
+                bonusResistance += EquippedGear[i].Resistance;
+            } 
+        }
+        BonusAgility = bonusAgility;
+        BonusHp = bonusHp;
+        BonusDamage = bonusDamage;
+        BonusResistance = bonusResistance;
+        CurrentHp = TotalHp; // För att man ska få maxhp när man uppgraderar armor
+    }
+    #region INVENTORY
+    public void InventoryInfo(Player player) // NÄR VI TRYCKER C
     {
-        ShowStats();
-        Console.WriteLine();
-        HealingPot.ShowItem();
-        Console.WriteLine();
-        Inventory.ShowInventory();
-        Console.WriteLine();
-        ShowWornGear();
-        Console.WriteLine("\nTryck 'E' för att hantera equipments");
-        Console.WriteLine("Tryck 'C' för att gå tillbaka");
-        var keyInput = Console.ReadKey();
-        if (keyInput.Key == ConsoleKey.E)
+        while (true)
         {
-            InventoryMenu();
+            Console.Clear();
+            UI(player);
+            ShowStats();
+            Console.WriteLine();
+            HealingPot.ShowItem();
+            Console.WriteLine();
+            Inventory.ShowInventory();
+            Console.WriteLine();
+            ShowWornGear();
+            Console.WriteLine("\nTryck 'E' för att hantera equipments");
+            Console.WriteLine("Tryck 'C' för att gå tillbaka");
+            var keyInput = Console.ReadKey(true);
+            if (keyInput.Key == ConsoleKey.E)
+            {
+                InventoryMenu();
+            }
+            else if (keyInput.Key == ConsoleKey.C)
+            {
+                return;
+            }
+            Console.WriteLine();
         }
-        else if (keyInput.Key == ConsoleKey.C)
-        {
-            return;
-        }
-        Console.WriteLine();
 
     }
     public void InventoryMenu()
@@ -63,11 +112,16 @@ public class Player : GameObject
         Console.Clear();
         ShowWornGear();
         Console.WriteLine();
-        Inventory.ShowInventory();
+        Inventory.ShowEquipmentInventory();
         
-
-        Console.WriteLine("Välj ett item för att interagera");
-        int i = int.Parse(Console.ReadLine());
+        Console.WriteLine("Välj ett item för att interagera ([C] - tillbaka)");
+        var input = Console.ReadKey(true);
+        if (input.Key == ConsoleKey.C)
+        {
+            return;
+        }
+        string strInput = input.KeyChar.ToString();
+        int i = int.Parse(strInput);
         if (Inventory.inventory[i] is Gear)
         {
             // Item gear = Inventory.inventory[i]
@@ -79,7 +133,8 @@ public class Player : GameObject
         }
          
     }
-
+    #endregion
+    #region GEAR
     public void CompareGear(Item itemToEquip, Item equippedItem, out Item item)
     {
         item = equippedItem;
@@ -158,7 +213,7 @@ public class Player : GameObject
 
         
         Console.WriteLine("Vill du byta? J/N");
-        var input = Console.ReadKey();
+        var input = Console.ReadKey(true);
         if ( input.Key == ConsoleKey.J)
         {
             item = itemToEquip;
@@ -174,13 +229,14 @@ public class Player : GameObject
     public void EquipGear(Item gear)
     {
         Item item;
-        for (int i = 0; i < Gear.Length; i++)
+        for (int i = 0; i < EquippedGear.Length; i++)
         {
             if (gear is Weapon)
             {
                 if (Weapon[0] == null)
                 {
                     Weapon[0] = gear;
+                    EquippedGear[0] = gear;
                     Inventory.inventory.Remove(gear);
                     Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
                 }
@@ -190,6 +246,7 @@ public class Player : GameObject
                     
                     Inventory.inventory.Add(Weapon[0]);
                     Weapon[0] = item;
+                    EquippedGear[0] = item;
                     Inventory.inventory.Remove(item);
                 }
                 break;
@@ -199,6 +256,7 @@ public class Player : GameObject
                 if (BreastPlate[0] == null)
                 {
                     BreastPlate[0] = gear;
+                    EquippedGear[1] = gear;
                     Inventory.inventory.Remove(gear);
                     Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
                 }
@@ -207,6 +265,7 @@ public class Player : GameObject
                     CompareGear(gear, BreastPlate[0], out item);
                     Inventory.inventory.Add(BreastPlate[0]);
                     BreastPlate[0] = item;
+                    EquippedGear[1] = item;
                     Inventory.inventory.Remove(item);
                 }
                 break;
@@ -216,6 +275,7 @@ public class Player : GameObject
                 if (Legs[0] == null)
                 {
                     Legs[0] = gear;
+                    EquippedGear[2] = gear;
                     Inventory.inventory.Remove(gear);
                     Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
                 }
@@ -224,6 +284,7 @@ public class Player : GameObject
                     CompareGear(gear, Legs[0], out item);
                     Inventory.inventory.Add(Legs[0]);
                     Legs[0] = item;
+                    EquippedGear[2] = item;
                     Inventory.inventory.Remove(item);
                 }
                 break;
@@ -233,6 +294,7 @@ public class Player : GameObject
                 if (Boots[0] == null)
                 {
                     Boots[0] = gear;
+                    EquippedGear[3] = gear;
                     Inventory.inventory.Remove(gear);
                     Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
                 }
@@ -241,6 +303,7 @@ public class Player : GameObject
                     CompareGear(gear, Boots[0], out item);
                     Inventory.inventory.Add(Boots[0]);
                     Boots[0] = item;
+                    EquippedGear[3] = item;
                     Inventory.inventory.Remove(item);
                 }
                 break;
@@ -250,6 +313,7 @@ public class Player : GameObject
                 if (Gloves[0] == null)
                 {
                     Gloves[0] = gear;
+                    EquippedGear[4] = gear;
                     Inventory.inventory.Remove(gear);
                     Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
                 }
@@ -258,6 +322,7 @@ public class Player : GameObject
                     CompareGear(gear, Gloves[0], out item);
                     Inventory.inventory.Add(Gloves[0]);
                     Gloves[0] = item;
+                    EquippedGear[4] = item;
                     Inventory.inventory.Remove(item);
                 }
                 break;
@@ -267,6 +332,7 @@ public class Player : GameObject
                 if (Helm[0] == null)
                 {
                     Helm[0] = gear;
+                    EquippedGear[5] = gear;
                     Inventory.inventory.Remove(gear);
                     Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
                 }
@@ -275,11 +341,13 @@ public class Player : GameObject
                     CompareGear(gear, Helm[0], out item);
                     Inventory.inventory.Add(Helm[0]);
                     Helm[0] = item;
+                    EquippedGear[5] = item;
                     Inventory.inventory.Remove(item);
                 }
                 break;
             }
         }
+        CountStats();
         return;
     }
 
@@ -336,7 +404,8 @@ public class Player : GameObject
         }
         
     }
-
+    #endregion
+    #region LOOT
     public void Loot(Item item)     //Lägg till Item till inventory
     {
         Console.WriteLine();
@@ -365,12 +434,8 @@ public class Player : GameObject
             Console.WriteLine("Inventory är full");
         }
     }
-
-    public void ShowXp()
-    {
-        Console.Write($"Level: {Level} ({CurrentXp}/{MaxXp})XP");
-    }
-
+    #endregion
+    #region HEAL
     public string Heal()
     {
         double healAmmount;
@@ -392,8 +457,9 @@ public class Player : GameObject
             return " ";
         }
     }
-
-public string Attack(Enemy enemy, out string critical)
+    #endregion
+    #region ATTACK
+    public string Attack(Enemy enemy, out string critical)
     {
         Random rndCrit = new Random();
         double damageDone;
@@ -436,7 +502,8 @@ public string Attack(Enemy enemy, out string critical)
             return $"{damageDone:F0} DMG -->";
         }
     }
-
+    #endregion
+    #region XP OCH LEVELUP
     public void EnemyKilled(Enemy enemy)
     {
 
@@ -480,6 +547,8 @@ public string Attack(Enemy enemy, out string critical)
         Console.WriteLine($"+{BaseAgilityAdded:F0} Agility");
         Console.ResetColor();
     }
+    #endregion
+    #region UI OCH STATS
     public void ShowHp()
     {
         Console.ForegroundColor = ConsoleColor.Green;
@@ -499,6 +568,11 @@ public string Attack(Enemy enemy, out string critical)
         Console.WriteLine();
     }
 
+    public void ShowXp()
+    {
+        Console.Write($"Level: {Level} ({CurrentXp}/{MaxXp})XP");
+    }
+
     public void UI(Player player)   //Skriv ut spelarens Hp, Guld och Xp
     {
         Console.WriteLine();
@@ -513,6 +587,7 @@ public string Attack(Enemy enemy, out string critical)
         ShowXp();
         Console.ResetColor();
     }
+    #endregion
 
 
 
