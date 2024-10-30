@@ -31,12 +31,12 @@ public class Player : GameObject
     }
 
     public Inventory Inventory { get; set; }
-    public Item[] Weapon { get; set; } = new Item[1];
-    public Item[] Helm { get; set; } = new Item[1];
-    public Item[] Legs { get; set; } = new Item[1];
-    public Item[] Gloves { get; set; } = new Item[1];
-    public Item[] Boots { get; set; } = new Item[1];
-    public Item[] BreastPlate { get; set; } = new Item[1];
+    public TWeapon Weapon { get; set; }
+    public THelm Helm { get; set; }
+    public TLegs Legs { get; set; }
+    public TGloves Gloves { get; set; }
+    public TBoots Boots { get; set; }
+    public TBreastPlate BreastPlate { get; set; }
     public Item[] EquippedGear { get; set; } = new Item[6];
 
     public Player(string name)
@@ -124,7 +124,6 @@ public class Player : GameObject
         int i = int.Parse(strInput);
         if (Inventory.inventory[i] is Gear)
         {
-            // Item gear = Inventory.inventory[i]
             EquipGear(Inventory.inventory[i]);
         }
         else
@@ -210,7 +209,6 @@ public class Player : GameObject
             Console.WriteLine($"+{diff} Agility");
             Console.ResetColor();
         }
-
         
         Console.WriteLine("Vill du byta? J/N");
         var input = Console.ReadKey(true);
@@ -225,127 +223,52 @@ public class Player : GameObject
         }
         
     }
+    public void Blabla(Item gear, Item itemToChange, int index)
+    {
 
+        if (itemToChange == null)
+        {
+            EquippedGear[index] = gear;
+            Inventory.inventory.Remove(gear);
+            Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
+        }
+        else if (Weapon != null)
+        {
+            Item item;
+            CompareGear(gear, Weapon, out item);
+            
+            Inventory.inventory.Add(gear);
+            itemToChange = item;
+            EquippedGear[index] = itemToChange;
+            Inventory.inventory.Remove(itemToChange);
+        }
+    }
     public void EquipGear(Item gear)
     {
-        Item item;
-        for (int i = 0; i < EquippedGear.Length; i++)
+
+        if (gear is TWeapon)
         {
-            if (gear is Weapon)
-            {
-                if (Weapon[0] == null)
-                {
-                    Weapon[0] = gear;
-                    EquippedGear[0] = gear;
-                    Inventory.inventory.Remove(gear);
-                    Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
-                }
-                else if (Weapon[0] != null)
-                {
-                    CompareGear(gear, Weapon[0], out item);
-                    
-                    Inventory.inventory.Add(Weapon[0]);
-                    Weapon[0] = item;
-                    EquippedGear[0] = item;
-                    Inventory.inventory.Remove(item);
-                }
-                break;
-            }
-            if (gear is BreastPlate)
-            {
-                if (BreastPlate[0] == null)
-                {
-                    BreastPlate[0] = gear;
-                    EquippedGear[1] = gear;
-                    Inventory.inventory.Remove(gear);
-                    Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
-                }
-                else if (BreastPlate[0] != null)
-                {
-                    CompareGear(gear, BreastPlate[0], out item);
-                    Inventory.inventory.Add(BreastPlate[0]);
-                    BreastPlate[0] = item;
-                    EquippedGear[1] = item;
-                    Inventory.inventory.Remove(item);
-                }
-                break;
-            }
-            if (gear is Legs)
-            {
-                if (Legs[0] == null)
-                {
-                    Legs[0] = gear;
-                    EquippedGear[2] = gear;
-                    Inventory.inventory.Remove(gear);
-                    Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
-                }
-                else if (Legs[0] != null)
-                {
-                    CompareGear(gear, Legs[0], out item);
-                    Inventory.inventory.Add(Legs[0]);
-                    Legs[0] = item;
-                    EquippedGear[2] = item;
-                    Inventory.inventory.Remove(item);
-                }
-                break;
-            }
-            if (gear is Boots)
-            {
-                if (Boots[0] == null)
-                {
-                    Boots[0] = gear;
-                    EquippedGear[3] = gear;
-                    Inventory.inventory.Remove(gear);
-                    Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
-                }
-                else if (Boots[0] != null)
-                {
-                    CompareGear(gear, Boots[0], out item);
-                    Inventory.inventory.Add(Boots[0]);
-                    Boots[0] = item;
-                    EquippedGear[3] = item;
-                    Inventory.inventory.Remove(item);
-                }
-                break;
-            }
-            if (gear is Gloves)
-            {
-                if (Gloves[0] == null)
-                {
-                    Gloves[0] = gear;
-                    EquippedGear[4] = gear;
-                    Inventory.inventory.Remove(gear);
-                    Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
-                }
-                else if (Gloves[0] != null)
-                {
-                    CompareGear(gear, Gloves[0], out item);
-                    Inventory.inventory.Add(Gloves[0]);
-                    Gloves[0] = item;
-                    EquippedGear[4] = item;
-                    Inventory.inventory.Remove(item);
-                }
-                break;
-            }
-            if (gear is Helm)
-            {
-                if (Helm[0] == null)
-                {
-                    Helm[0] = gear;
-                    EquippedGear[5] = gear;
-                    Inventory.inventory.Remove(gear);
-                    Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
-                }
-                else if (Helm[0] != null)
-                {
-                    CompareGear(gear, Helm[0], out item);
-                    Inventory.inventory.Add(Helm[0]);
-                    Helm[0] = item;
-                    EquippedGear[5] = item;
-                    Inventory.inventory.Remove(item);
-                }
-                break;
-            }
+            Blabla(gear, Weapon, 0);
+        }
+        if (gear is TBreastPlate)
+        {
+            Blabla(gear, BreastPlate, 2);
+        }
+        if (gear is TLegs)
+        {
+            Blabla(gear, Legs, 4);
+        }
+        if (gear is TBoots)
+        {
+            Blabla(gear, Boots, 5);
+        }
+        if (gear is TGloves)
+        {
+            Blabla(gear, Gloves, 3);
+        }
+        if (gear is THelm)
+        {
+            Blabla(gear, Helm, 1);
         }
         CountStats();
         return;
@@ -354,49 +277,49 @@ public class Player : GameObject
     public void ShowWornGear()
     {
         Console.WriteLine("Worn Equipment:");
-        if (Weapon[0] != null)
+        if (EquippedGear[0] != null)
         {
-            Weapon[0].ShowItem();
+            EquippedGear[0].ShowStats();
         }
         else
         {
             Console.WriteLine("Weapon: (Empty)");
         }
-        if (BreastPlate[0] != null)
+        if (EquippedGear[2] != null)
         {
-            BreastPlate[0].ShowItem();
+            EquippedGear[2].ShowStats();
         }
         else
         {
             Console.WriteLine("Chest: (Empty)");
         }
-        if (Helm[0] != null)
+        if (EquippedGear[1] != null)
         {
-            Helm[0].ShowItem();
+            EquippedGear[1].ShowStats();
         }
         else
         {
             Console.WriteLine("Helm: (Empty)");
         }
-        if (Boots[0] != null)
+        if (EquippedGear[5] != null)
         {
-            Boots[0].ShowItem();
+            EquippedGear[5].ShowStats();
         }
         else
         {
             Console.WriteLine("Boots: (Empty)");
         }
-        if (Gloves[0] != null)
+        if (EquippedGear[3] != null)
         {
-            Gloves[0].ShowItem();
+            EquippedGear[3].ShowStats();
         }
         else
         {
             Console.WriteLine("Gloves: (Empty)");
         }
-        if (Legs[0] != null)
+        if (EquippedGear[4] != null)
         {
-            Legs[0].ShowItem();
+            EquippedGear[4].ShowStats();
         }
         else
         {
