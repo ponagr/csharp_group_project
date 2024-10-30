@@ -69,6 +69,22 @@ public class Inventory
         }
         
     }
+    public void ShowEquipmentInventory() // Fär att visas inventory MED stats
+    {
+        Console.WriteLine($"Inventory - Space: {inventory.Count}/15");
+        if (inventory.Count > 0)
+        {
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                Console.Write($"[{i}] - {inventory[i].ItemName}, {inventory[i].ItemType} - ");
+                inventory[i].ShowStats();
+            }
+        }
+        else
+        {
+            Console.WriteLine("Din inventory är tom");
+        }
+    }
 
     public void InventoryMenu()
     {
