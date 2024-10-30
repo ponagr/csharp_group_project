@@ -31,12 +31,7 @@ public class Player : GameObject
     }
 
     public Inventory Inventory { get; set; }
-    public TWeapon Weapon { get; set; }
-    public THelm Helm { get; set; }
-    public TLegs Legs { get; set; }
-    public TGloves Gloves { get; set; }
-    public TBoots Boots { get; set; }
-    public TBreastPlate BreastPlate { get; set; }
+   
     public Item[] EquippedGear { get; set; } = new Item[6];
 
     public Player(string name)
@@ -137,9 +132,12 @@ public class Player : GameObject
     public void CompareGear(Item itemToEquip, Item equippedItem, out Item item)
     {
         item = equippedItem;
-        if (itemToEquip.Damage == equippedItem.Damage)
+        if (itemToEquip.Damage > equippedItem.Damage)
         {
-            
+            Console.ForegroundColor = ConsoleColor.Green;
+            double diff = itemToEquip.Damage - equippedItem.Damage;
+            Console.WriteLine($"+{diff} Damage");
+            Console.ResetColor();
         }
         else if (itemToEquip.Damage < equippedItem.Damage)
         {
@@ -148,16 +146,13 @@ public class Player : GameObject
             Console.WriteLine($"-{diff} Damage");
             Console.ResetColor();
         }
-        else
+        
+        if (itemToEquip.Resistance > equippedItem.Resistance)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            double diff = equippedItem.Damage - itemToEquip.Damage;
-            Console.WriteLine($"+{diff} Damage");
+            double diff = itemToEquip.Resistance - equippedItem.Resistance;
+            Console.WriteLine($"+{diff} Resistance");
             Console.ResetColor();
-        }
-        if (itemToEquip.Resistance == equippedItem.Resistance)
-        {
-            
         }
         else if (itemToEquip.Resistance < equippedItem.Resistance)
         {
@@ -166,16 +161,13 @@ public class Player : GameObject
             Console.WriteLine($"-{diff} Resistance");
             Console.ResetColor();
         }
-        else
+
+        if (itemToEquip.Health > equippedItem.Health)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            double diff = equippedItem.Resistance - itemToEquip.Resistance;
-            Console.WriteLine($"+{diff} Resistance");
+            double diff = itemToEquip.Health - equippedItem.Health;
+            Console.WriteLine($"+{diff} Health");
             Console.ResetColor();
-        }
-        if (itemToEquip.Health == equippedItem.Health)
-        {
-            
         }
         else if (itemToEquip.Health < equippedItem.Health)
         {
@@ -184,16 +176,13 @@ public class Player : GameObject
             Console.WriteLine($"-{diff} Health");
             Console.ResetColor();
         }
-        else
+
+        if (itemToEquip.Agility > equippedItem.Agility)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            double diff = equippedItem.Health - itemToEquip.Health;
-            Console.WriteLine($"+{diff} Health");
+            double diff = itemToEquip.Agility - equippedItem.Agility;
+            Console.WriteLine($"+{diff} Agility");
             Console.ResetColor();
-        }
-        if (itemToEquip.Agility == equippedItem.Agility)
-        {
-            
         }
         else if (itemToEquip.Agility < equippedItem.Agility)
         {
@@ -202,13 +191,7 @@ public class Player : GameObject
             Console.WriteLine($"-{diff} Agility");
             Console.ResetColor();
         }
-        else
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            double diff = equippedItem.Agility - itemToEquip.Agility;
-            Console.WriteLine($"+{diff} Agility");
-            Console.ResetColor();
-        }
+
         
         Console.WriteLine("Vill du byta? J/N");
         var input = Console.ReadKey(true);
@@ -223,52 +206,49 @@ public class Player : GameObject
         }
         
     }
-    public void Blabla(Item gear, Item itemToChange, int index)
+    public void Blabla(Item gear, Item equippedItem, int index)
     {
-
-        if (itemToChange == null)
+        if (equippedItem == null)
         {
             EquippedGear[index] = gear;
             Inventory.inventory.Remove(gear);
             Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
         }
-        else if (Weapon != null)
+        else if (equippedItem != null)   
         {
             Item item;
-            CompareGear(gear, Weapon, out item);
+            CompareGear(gear, equippedItem, out item);
             
-            Inventory.inventory.Add(gear);
-            itemToChange = item;
-            EquippedGear[index] = itemToChange;
-            Inventory.inventory.Remove(itemToChange);
+            Inventory.inventory.Add(equippedItem);
+            EquippedGear[index] = item;
+            Inventory.inventory.Remove(item);
         }
     }
     public void EquipGear(Item gear)
     {
-
         if (gear is TWeapon)
         {
-            Blabla(gear, Weapon, 0);
+            Blabla(gear, EquippedGear[0], 0);
         }
         if (gear is TBreastPlate)
         {
-            Blabla(gear, BreastPlate, 2);
+            Blabla(gear, EquippedGear[2], 2);
         }
         if (gear is TLegs)
         {
-            Blabla(gear, Legs, 4);
+            Blabla(gear, EquippedGear[4], 4);
         }
         if (gear is TBoots)
         {
-            Blabla(gear, Boots, 5);
+            Blabla(gear, EquippedGear[5], 5);
         }
         if (gear is TGloves)
         {
-            Blabla(gear, Gloves, 3);
+            Blabla(gear, EquippedGear[3], 3);
         }
         if (gear is THelm)
         {
-            Blabla(gear, Helm, 1);
+            Blabla(gear, EquippedGear[3], 1);
         }
         CountStats();
         return;
