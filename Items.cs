@@ -12,12 +12,12 @@ public static class Items
     public static void ItemsToAdd()
     {
         Consumable consumable = new Consumable();   //HP Pot
-        Helm helm = new Helm("Plåthjälm", 5, 30, 20, 0);    //Plåthjälm
-        Weapon weapon = new Weapon("Gimlis Yxa", "Yxa", 40, 10, 0, 20);
-        Weapon weapon1 = new Weapon("Legolas Pilbåge", "Pilbåge", 30, 15, 5, 15);
-        Legs legs = new Legs("Läderbyxor", 0, 20, 15, 20);
-        Gloves gloves = new Gloves("Plåthandskar", 5, 30, 20, 5);
-        Boots boots = new Boots("Foppatofflor", 0, 0, 5, -5);
+        THelm helm = new THelm("Plåthjälm", 5, 30, 20, 0);    //Plåthjälm
+        TWeapon weapon = new TWeapon("Gimlis Yxa", "Yxa", 40, 10, 0, 20);
+        TWeapon weapon1 = new TWeapon("Legolas Pilbåge", "Pilbåge", 30, 15, 5, 15);
+        TLegs legs = new TLegs("Läderbyxor", 0, 20, 15, 20);
+        TGloves gloves = new TGloves("Plåthandskar", 5, 30, 20, 5);
+        TBoots boots = new TBoots("Foppatofflor", 0, 0, 5, -5);
 
         AddItem(boots);
         AddItem(helm);
@@ -60,7 +60,7 @@ public class Inventory
         {
             for (int i = 0; i < inventory.Count; i++)
             {
-                Console.WriteLine($"[{i}] - {inventory[i].ItemName}, {inventory[i].ItemType}");
+                Console.WriteLine($"[{i}] {inventory[i].ItemName}, {inventory[i].ItemType}");             
             }
         }
         else
@@ -76,7 +76,7 @@ public class Inventory
         {
             for (int i = 0; i < inventory.Count; i++)
             {
-                Console.Write($"[{i}] - {inventory[i].ItemName}, {inventory[i].ItemType} - ");
+                Console.Write($"[{i}] ");
                 inventory[i].ShowStats();
             }
         }
@@ -84,13 +84,13 @@ public class Inventory
         {
             Console.WriteLine("Din inventory är tom");
         }
+        Console.WriteLine();
     }
 
     public void InventoryMenu()
     {
         Console.Clear();
         ShowInventory();
-
 
         Console.WriteLine("Välj ett item för att interagera");
         int i = int.Parse(Console.ReadLine());
@@ -155,58 +155,58 @@ public class Gear : Item
 
     public override void ShowItem()
     {
-        Console.WriteLine($"{ItemName}, {ItemType}");
+        Console.WriteLine($"{ItemType}: {ItemName, 10}");
     }
 
     public override void ShowStats()
     {
-        Console.WriteLine($"{Damage} Damage, {Health} Health, {Resistance} Resistance, {Agility} Agility");
+        Console.WriteLine($"{ItemType}: ({ItemName})  -  {Damage} Damage, {Health} Health, {Resistance} Resistance, {Agility} Agility");
     }
 }
-public class Helm : Gear
+public class THelm : Gear
 {
-    public Helm(string name, double damage, double health, double resistance, double agility)
+    public THelm(string name, double damage, double health, double resistance, double agility)
     : base(name, damage, health, resistance, agility)
     {
         ItemType = "Helm";
     }
 }
-public class BreastPlate : Gear
+public class TBreastPlate : Gear
 {
-    public BreastPlate(string name, double damage, double health, double resistance, double agility)
+    public TBreastPlate(string name, double damage, double health, double resistance, double agility)
     : base(name, damage, health, resistance, agility)
     {
         ItemType = "Breastplate";
     }
 }
-public class Legs : Gear
+public class TLegs : Gear
 {
-    public Legs(string name, double damage, double health, double resistance, double agility)
+    public TLegs(string name, double damage, double health, double resistance, double agility)
     : base(name, damage, health, resistance, agility)
     {
         ItemType = "Legs";
     }
 }
-public class Boots : Gear
+public class TBoots : Gear
 {
-    public Boots(string name, double damage, double health, double resistance, double agility)
+    public TBoots(string name, double damage, double health, double resistance, double agility)
     : base(name, damage, health, resistance, agility)
     {
         ItemType = "Boots";
     }
 }
-public class Gloves : Gear
+public class TGloves : Gear
 {
-    public Gloves(string name, double damage, double health, double resistance, double agility)
+    public TGloves(string name, double damage, double health, double resistance, double agility)
     : base(name, damage, health, resistance, agility)
     {
         ItemType = "Gloves";
     }
 }
-public class Weapon : Gear
+public class TWeapon : Gear
 {
     public string WeaponType { get; set; }
-    public Weapon(string name, string weaponType, double damage, double health, double resistance, double agility)
+    public TWeapon(string name, string weaponType, double damage, double health, double resistance, double agility)
     : base(name, damage, health, resistance, agility)
     {
         WeaponType = weaponType;
