@@ -55,8 +55,9 @@ public static class GameLevel
         int posX = 0;
         int posY = 0;
         Chest chest = new Chest();
+        
 
-        var keyPressed = Console.ReadKey();
+        var keyPressed = Console.ReadKey(true);
 
         for (int i = 0; i < gameMap.GetLength(0); i++)
         {
@@ -69,7 +70,7 @@ public static class GameLevel
                 }
             }
         }
-
+        #region UP
         if (keyPressed.Key == ConsoleKey.W)
         {
             if (gameMap[posX - 1, posY] == Empty)
@@ -109,7 +110,7 @@ public static class GameLevel
                 {
                     player.Loot(item);
                 }
-                Console.ReadKey();
+                Console.ReadKey(true);
                 Console.WriteLine("Du gick på en kista");
                 // gameMap[posX - 1, posY]
                 // openChestCordinates.Add(posX - 1);
@@ -133,10 +134,9 @@ public static class GameLevel
                 Console.WriteLine("Du kan inte gå hit");
             }
 
-
-
-
         }
+        #endregion
+        #region LEFT
         if (keyPressed.Key == ConsoleKey.A)
         {
             if (gameMap[posX, posY - 1] == Empty)
@@ -177,7 +177,7 @@ public static class GameLevel
                 {
                     player.Loot(item);
                 }
-                Console.ReadKey();
+                Console.ReadKey(true);
                 Console.WriteLine("Du gick på en kista");
             }
             else if (gameMap[posX, posY - 1] == Door || gameMap[posX, posY - 1] == Door2)
@@ -197,6 +197,8 @@ public static class GameLevel
                 Console.WriteLine("Du kan inte gå hit");
             }
         }
+        #endregion
+        #region Down
         if (keyPressed.Key == ConsoleKey.S)
         {
             if (gameMap[posX + 1, posY] == Empty)
@@ -234,7 +236,7 @@ public static class GameLevel
                 {
                     player.Loot(item);
                 }
-                Console.ReadKey();
+                Console.ReadKey(true);
                 //Ta sedan bort kistan och gör platsen till Empty
                 Console.WriteLine("Du gick på en kista");
 
@@ -257,6 +259,8 @@ public static class GameLevel
                 Console.WriteLine("Du kan inte gå hit");
             }
         }
+        #endregion
+        #region Right
         if (keyPressed.Key == ConsoleKey.D)
         {
             if (gameMap[posX, posY + 1] == Empty)
@@ -294,7 +298,7 @@ public static class GameLevel
                 {
                     player.Loot(item);
                 }
-                Console.ReadKey();
+                Console.ReadKey(true);
                 //Ta sedan bort kistan och gör platsen till Empty
                 Console.WriteLine("Du gick på en kista");
                 gameMap[posX, posY + 1] = Empty;
@@ -316,13 +320,13 @@ public static class GameLevel
                 Console.WriteLine("Du kan inte gå hit");
             }
         }
+        #endregion
+        #region INVENTORY
         if (keyPressed.Key == ConsoleKey.C) //Visa playerStats
         {
-            Console.Clear();
-            player.UI(player);
-            player.InventoryInfo();
-            Console.ReadKey();
+            player.InventoryInfo(player);
         }
+        #endregion  
     }
     #endregion
 
@@ -428,18 +432,6 @@ public static class GameLevel
         }
 
         player.UI(player);
-        // Console.WriteLine();
-        // int curretLine = Console.CursorTop;
-        // HealthBar.PrintPlayerHealthBar(player);
-        // player.ShowHp();
-        // Console.SetCursorPosition(29, curretLine);
-        // Console.ForegroundColor = ConsoleColor.Yellow;
-        // Console.WriteLine($"Coins: {player.Gold}");
-        // Console.SetCursorPosition(50, curretLine);
-        // Console.ForegroundColor = ConsoleColor.Magenta;
-        // player.ShowXp();
-        // Console.ResetColor();
-
 
     }
     #endregion
