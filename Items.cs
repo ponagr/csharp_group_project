@@ -4,7 +4,7 @@ using System.Diagnostics.Contracts;
 public static class Items 
 {
     public static List<Item> itemList = new List<Item>();
-    public static void AddItem(Item item)
+    public static void AddItem(Item item) // Varför en metod för att lägga till och inte göra det direkt i ItemstoAdd?
     {
         itemList.Add(item);
     }

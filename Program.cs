@@ -4,7 +4,7 @@
     {
         bool gameOver = false;
         Player player = new Player("Player");
-        Enemy enemy = new Enemy();
+        Enemy enemy = new Enemy(player);
         Items.ItemsToAdd();
 
         while (!gameOver)
@@ -13,7 +13,7 @@
             GameLevel.MovePlayer(GameLevel.gameLevel1, player, enemy);
             if (player.CurrentHp <= 0)
             {
-                Console.WriteLine("Du dog");
+                Console.WriteLine("Du dog"); // LÄGG IN EN ANIMATION
                 gameOver = true;
             }
         }

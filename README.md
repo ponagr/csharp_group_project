@@ -10,13 +10,13 @@
 - [x] Utveckla nivå 1 och implementera movement-metod.
 - [x] Enklare interaktion mellan karaktärer (Player och Enemy).
 - [ ] SetCururposition på mappen FÖR ATT SLIPPA GLITCH
-- [ ] Hjärta för att få liv på banan
+- [x] Hjärta för att få liv på banan
 
 ### GameObject - Enemy - Player
 - [ ] Lägg till viktiga egenskaper och metoder för Player och Enemy.
 
 ### Combat
-- [ ] Skapa visuella representationer, t.ex. streckgubbar, för Player och Enemy under combat.
+- [x] Skapa visuella representationer, t.ex. streckgubbar, för Player och Enemy under combat.
 - [x] Formatera all text och gubbar så att det visas på ett snyggt sätt
 - [x] Skapa en grundläggande struktur för combat-systemet.
 
@@ -29,8 +29,8 @@
 - [x] Lägg till XP-drop hos Enemy.
 
 ### Fler Stats och Multipliers
-- [x] Utveckla fler stats och multipliers för både Player.
-- [ ] Utveckla fler stats och multipliers för både Enemy.
+- [x] Utveckla fler stats och multipliers för Player.
+- [ ] Utveckla fler stats och multipliers för Enemy.
 
 ---
 
