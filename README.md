@@ -37,20 +37,20 @@
 ## Ej Prioriterade Funktioner
 
 ### Items, Coins och Inventory
-- [ ] Skapa item-klass och olika items att lägga i flera listor och slumpa ifrån
+- [x] Skapa item-klass och olika items att lägga i flera listor och slumpa ifrån
 - [ ] Implementera en random drop-rate från dödade fiender och loot-system för kistor.
-- [ ] Skapa en inventory (array med typ 5 items) i player-klassen
-- [ ] Begränsningar beroende på itemtyp - hjälm, plate osv.
+- [x] Skapa en inventory (array med typ 5 items) i player-klassen
+- [x] Begränsningar beroende på itemtyp - hjälm, plate osv.
 - [ ] Lägg till en Merchant som man kan sälja/köpa ifrån - en char-ikon i stället för klass.
-- [ ] Potions
+- [x] Potions
 - [ ] T.ex nycklar i kistor för att kunna öppna gates på banan för att komma vidare 
 
 ### Chests
 - [ ] Få kistor att byta färg när de har öppnats (använda bool och koordinatjämförelse).
 
 ### ResourceBar/HealthBar/XPBar
-- [ ] Utveckla UI-element för resurser, hälsa och XP.
-- [ ] Lägg till Xp-bar under mappen
+- [x] Utveckla UI-element för resurser, hälsa och XP.
+- [x] Lägg till Xp-bar under mappen
 
 ### Fler GameLevels
 - [ ] Utveckla nivå 2, nivå 3 osv. m d unika funktioner, som kortare distanser och nya områden (t.ex. dörrar, trappor).
