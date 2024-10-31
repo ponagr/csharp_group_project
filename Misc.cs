@@ -39,6 +39,4 @@ public static class Clear   //Använder SetCursorPosition för att "Cleara" spec
         Console.Write(new string(' ', 14));
         Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
     }
-    
-
 }
