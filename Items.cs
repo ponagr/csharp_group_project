@@ -139,11 +139,6 @@ public class Consumable : Item
 
 public class Gear : Item
 {
-    // public double Damage { get; set; }
-    // public double Health { get; set; }
-    // public double Resistance { get; set; }
-    // public double Agility { get; set; }
-
     public Gear(string name, double damage, double health, double resistance, double agility)
     {
         ItemName = name;
@@ -160,7 +155,7 @@ public class Gear : Item
 
     public override void ShowStats()
     {
-        Console.WriteLine($"{ItemType}: ({ItemName})  -  {Damage} Damage, {Health} Health, {Resistance} Resistance, {Agility} Agility");
+        Console.WriteLine($"{ItemType}: ({ItemName})  -     {Health} Health, {Damage} Damage, {Resistance} Resistance, {Agility} Agility");
     }
 }
 public class THelm : Gear

@@ -31,7 +31,7 @@ public class Player : GameObject
     }
 
     public Inventory Inventory { get; set; }
-   
+
     public Item[] EquippedGear { get; set; } = new Item[6];
 
     public Player(string name)
@@ -52,7 +52,7 @@ public class Player : GameObject
     }
 
     public void CountStats()
-    {   
+    {
         double bonusDamage = 0;
         double bonusHp = 0;
         double bonusAgility = 0;
@@ -65,7 +65,7 @@ public class Player : GameObject
                 bonusHp += EquippedGear[i].Health;
                 bonusAgility += EquippedGear[i].Agility;
                 bonusResistance += EquippedGear[i].Resistance;
-            } 
+            }
         }
         BonusAgility = bonusAgility;
         BonusHp = bonusHp;
@@ -108,7 +108,7 @@ public class Player : GameObject
         ShowWornGear();
         Console.WriteLine();
         Inventory.ShowEquipmentInventory();
-        
+
         Console.WriteLine("Välj ett item för att interagera ([C] - tillbaka)");
         var input = Console.ReadKey(true);
         if (input.Key == ConsoleKey.C)
@@ -117,143 +117,96 @@ public class Player : GameObject
         }
         string strInput = input.KeyChar.ToString();
         int i = int.Parse(strInput);
-        if (Inventory.inventory[i] is Gear)
-        {
-            EquipGear(Inventory.inventory[i]);
-        }
-        else
-        {
-            Console.WriteLine("Du kan inte sätta på dig en healingpotion");
-        }
-         
+        CheckGearType(Inventory.inventory[i]);
+
     }
     #endregion
     #region GEAR
-    public void CompareGear(Item itemToEquip, Item equippedItem, out Item item)
+    public void CheckGearType(Item itemToEquip)
+    {
+        if (itemToEquip is TWeapon)
+        {
+            EquipGear(itemToEquip, EquippedGear[0], 0);
+        }
+        if (itemToEquip is TBreastPlate)
+        {
+            EquipGear(itemToEquip, EquippedGear[2], 2);
+        }
+        if (itemToEquip is TLegs)
+        {
+            EquipGear(itemToEquip, EquippedGear[4], 4);
+        }
+        if (itemToEquip is TBoots)
+        {
+            EquipGear(itemToEquip, EquippedGear[5], 5);
+        }
+        if (itemToEquip is TGloves)
+        {
+            EquipGear(itemToEquip, EquippedGear[3], 3);
+        }
+        if (itemToEquip is THelm)
+        {
+            EquipGear(itemToEquip, EquippedGear[3], 1);
+        }
+        CountStats();
+        return;
+    }
+    public void EquipGear(Item itemToEquip, Item equippedItem, int equippedGearIndex)  //Anropas från EquipGear-Metoden
+    {
+        if (equippedItem == null)
+        {
+            EquippedGear[equippedGearIndex] = itemToEquip; // Om itemToEquip är TWeapon, så är equippedGearIndex = 0, lägg in itemToEquip i EquippedGear[0], osv
+            Inventory.inventory.Remove(itemToEquip);    //Om vi equippar, ta bort från inventory så vi inte får dublett
+            Console.WriteLine($"Du tog på dig {itemToEquip.ItemName}, {itemToEquip.ItemType}");
+        }
+        else if (equippedItem != null)
+        {
+            Item item; // Skapar en tom referens
+            GearChoice(itemToEquip, equippedItem, out item); // item är en av de 2 första
+
+            Inventory.inventory.Add(equippedItem);
+            EquippedGear[equippedGearIndex] = item;
+            Inventory.inventory.Remove(item);
+        }
+    }
+    public void GearChoice(Item itemToEquip, Item equippedItem, out Item item)
     {
         item = equippedItem;
-        if (itemToEquip.Damage > equippedItem.Damage)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            double diff = itemToEquip.Damage - equippedItem.Damage;
-            Console.WriteLine($"+{diff} Damage");
-            Console.ResetColor();
-        }
-        else if (itemToEquip.Damage < equippedItem.Damage)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            double diff = equippedItem.Damage - itemToEquip.Damage;
-            Console.WriteLine($"-{diff} Damage");
-            Console.ResetColor();
-        }
-        
-        if (itemToEquip.Resistance > equippedItem.Resistance)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            double diff = itemToEquip.Resistance - equippedItem.Resistance;
-            Console.WriteLine($"+{diff} Resistance");
-            Console.ResetColor();
-        }
-        else if (itemToEquip.Resistance < equippedItem.Resistance)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            double diff = equippedItem.Resistance - itemToEquip.Resistance;
-            Console.WriteLine($"-{diff} Resistance");
-            Console.ResetColor();
-        }
+        CompareGearStats(itemToEquip.Health, equippedItem.Health, "Health");    //Skickar in en specifik stat att jämföra och skriva ut
+        CompareGearStats(itemToEquip.Damage, equippedItem.Damage, "Damage");
+        CompareGearStats(itemToEquip.Resistance, equippedItem.Resistance, "Resistance");
+        CompareGearStats(itemToEquip.Agility, equippedItem.Agility, "Agility");
 
-        if (itemToEquip.Health > equippedItem.Health)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            double diff = itemToEquip.Health - equippedItem.Health;
-            Console.WriteLine($"+{diff} Health");
-            Console.ResetColor();
-        }
-        else if (itemToEquip.Health < equippedItem.Health)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            double diff = equippedItem.Health - itemToEquip.Health;
-            Console.WriteLine($"-{diff} Health");
-            Console.ResetColor();
-        }
-
-        if (itemToEquip.Agility > equippedItem.Agility)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            double diff = itemToEquip.Agility - equippedItem.Agility;
-            Console.WriteLine($"+{diff} Agility");
-            Console.ResetColor();
-        }
-        else if (itemToEquip.Agility < equippedItem.Agility)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            double diff = equippedItem.Agility - itemToEquip.Agility;
-            Console.WriteLine($"-{diff} Agility");
-            Console.ResetColor();
-        }
-
-        
         Console.WriteLine("Vill du byta? J/N");
         var input = Console.ReadKey(true);
-        if ( input.Key == ConsoleKey.J)
+        if (input.Key == ConsoleKey.J)
         {
-            item = itemToEquip;
+            item = itemToEquip;     //Om "J", så byter vi item från equippedItem till itemToEquip
             return;
         }
         else if (input.Key == ConsoleKey.N)
         {
             return;
         }
-        
-    }
-    public void Blabla(Item gear, Item equippedItem, int index)
-    {
-        if (equippedItem == null)
-        {
-            EquippedGear[index] = gear;
-            Inventory.inventory.Remove(gear);
-            Console.WriteLine($"Du tog på dig {gear.ItemName}, {gear.ItemType}");
-        }
-        else if (equippedItem != null)   
-        {
-            Item item;
-            CompareGear(gear, equippedItem, out item);
-            
-            Inventory.inventory.Add(equippedItem);
-            EquippedGear[index] = item;
-            Inventory.inventory.Remove(item);
-        }
-    }
-    public void EquipGear(Item gear)
-    {
-        if (gear is TWeapon)
-        {
-            Blabla(gear, EquippedGear[0], 0);
-        }
-        if (gear is TBreastPlate)
-        {
-            Blabla(gear, EquippedGear[2], 2);
-        }
-        if (gear is TLegs)
-        {
-            Blabla(gear, EquippedGear[4], 4);
-        }
-        if (gear is TBoots)
-        {
-            Blabla(gear, EquippedGear[5], 5);
-        }
-        if (gear is TGloves)
-        {
-            Blabla(gear, EquippedGear[3], 3);
-        }
-        if (gear is THelm)
-        {
-            Blabla(gear, EquippedGear[3], 1);
-        }
-        CountStats();
-        return;
-    }
 
+    }
+    public void CompareGearStats(double itemToEquipStats, double equippedItemStats, string stat) // Räknar ut differensen och skriver ut text i grön eller rött beroende på + eller -
+    {
+        if (itemToEquipStats > equippedItemStats)
+        {
+            double diff = itemToEquipStats - equippedItemStats;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"+{diff} {stat}");
+            Console.ResetColor();
+        }
+        else if (itemToEquipStats < equippedItemStats)
+        {
+            double diff = equippedItemStats - itemToEquipStats;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"-{diff} {stat}");
+            Console.ResetColor();
+        }
+    }
     public void ShowWornGear()
     {
         Console.WriteLine("Worn Equipment:");
@@ -305,7 +258,7 @@ public class Player : GameObject
         {
             Console.WriteLine("Legs: (Empty)");
         }
-        
+
     }
     #endregion
     #region LOOT
@@ -330,7 +283,7 @@ public class Player : GameObject
             {
                 Inventory.inventory.Add(item);
             }
-            
+
         }
         else
         {
@@ -371,7 +324,7 @@ public class Player : GameObject
         double damage;
         bool attackCrit = false;
 
-        if (crit <= critChange) 
+        if (crit <= critChange)
         {
             damage = TotalDamage * 1.8;
             attackCrit = true;
@@ -410,7 +363,7 @@ public class Player : GameObject
     public void EnemyKilled(Enemy enemy)
     {
 
-        
+
 
         CurrentXp += enemy.XpDrop;
         Console.SetCursorPosition(0, 8);
@@ -462,7 +415,7 @@ public class Player : GameObject
     }
 
     public void ShowStats()     //Visa spelarens stats
-    {   
+    {
         Console.WriteLine("\n\n");
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine($"Health: {TotalHp}");
