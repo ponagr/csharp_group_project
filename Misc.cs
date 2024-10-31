@@ -11,13 +11,13 @@ public static class Clear   //Använder SetCursorPosition för att "Cleara" spec
 
     public static void PlayerDamage()   //Rensar raden där playerDamage skrivs ut
     {
-        Console.SetCursorPosition(15, 3);   // Flytta till den rad som ska rensas
+        Console.SetCursorPosition(25, 3);   // Flytta till den rad som ska rensas
         Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där damage skrivs ut
         Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
     }
     public static void EnemyDamage()    //Rensar raden där enemyDamage skrivs ut
     {
-        Console.SetCursorPosition(15, 4);   // Flytta till den rad som ska rensas
+        Console.SetCursorPosition(25, 4);   // Flytta till den rad som ska rensas
         Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där damage skrivs ut
         Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
     }

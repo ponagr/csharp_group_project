@@ -51,15 +51,15 @@ public static void PrintEnemyCharacter()
     {
 
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.SetCursorPosition(39, 2);
+        Console.SetCursorPosition(40, 2);
         Console.WriteLine(".        ");
-        Console.SetCursorPosition(39, 3);
+        Console.SetCursorPosition(40, 3);
         Console.WriteLine("|  0    ");
-        Console.SetCursorPosition(39, 4);
+        Console.SetCursorPosition(40, 4);
         Console.WriteLine("T--||-[E]  ");
-        Console.SetCursorPosition(39, 5);
+        Console.SetCursorPosition(40, 5);
         Console.WriteLine("   /\\  	");
-        Console.SetCursorPosition(39, 6);
+        Console.SetCursorPosition(40, 6);
         Console.WriteLine("  |  \\");
         Console.ResetColor();
         Console.WriteLine();
@@ -68,27 +68,27 @@ public static void PrintEnemyCharacter()
     public static void AttackEnemyAnimation()
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.SetCursorPosition(39, 2);
+        Console.SetCursorPosition(40, 2);
         Console.WriteLine("        ");
-        Console.SetCursorPosition(39, 3);
+        Console.SetCursorPosition(40, 3);
         Console.WriteLine(" \\~  0  ");
-        Console.SetCursorPosition(39, 4);
+        Console.SetCursorPosition(40, 4);
         Console.WriteLine("  T--||\\[]  ");
-        Console.SetCursorPosition(39, 5);
+        Console.SetCursorPosition(40, 5);
         Console.WriteLine("     /\\  ");
-        Console.SetCursorPosition(39, 6);
+        Console.SetCursorPosition(40, 6);
         Console.WriteLine("    |  \\ ");
         Console.WriteLine();
 
         Thread.Sleep(300);
 
-        Console.SetCursorPosition(39, 3);
+        Console.SetCursorPosition(40, 3);
         Console.WriteLine("      0  ");
-        Console.SetCursorPosition(39, 4);
+        Console.SetCursorPosition(40, 4);
         Console.WriteLine("*--+--||\\    ");
-        Console.SetCursorPosition(39, 5);
+        Console.SetCursorPosition(40, 5);
         Console.WriteLine("      /\\[]  ");
-        Console.SetCursorPosition(39, 6);
+        Console.SetCursorPosition(40, 6);
         Console.WriteLine("     |  \\ ");
         Console.WriteLine();
         Console.ResetColor();
@@ -97,46 +97,46 @@ public static void PrintEnemyCharacter()
     public static void PrintDeadText() // Likadan fast grön eller liknande till vår gubbe?
     {
         Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.SetCursorPosition(30, 2);
+        Console.SetCursorPosition(35, 2);
         Console.WriteLine("____  ____   _   ____  ");
-        Console.SetCursorPosition(30, 3);
+        Console.SetCursorPosition(35, 3);
         Console.WriteLine("|| \\\\ ||    /\\\\  || \\\\ ");
-        Console.SetCursorPosition(30, 4);
+        Console.SetCursorPosition(35, 4);
         Console.WriteLine("||  ||||-- //_\\\\ ||  ||");
-        Console.SetCursorPosition(30, 5);
+        Console.SetCursorPosition(35, 5);
         Console.WriteLine("||_// ||__//   \\\\||_// ");
 
-        Console.SetCursorPosition(30, 6);
+        Console.SetCursorPosition(35, 6);
         Console.WriteLine("                         "); // För att ta bort gammal text
-        Console.SetCursorPosition(30, 7);
+        Console.SetCursorPosition(35, 7);
         Console.WriteLine("                         "); // --"--
 
         Thread.Sleep(300);
-        Console.SetCursorPosition(30, 6);
+        Console.SetCursorPosition(35, 6);
         Console.WriteLine("        |          | ");
 
         Thread.Sleep(400);
-        Console.SetCursorPosition(30, 6);
+        Console.SetCursorPosition(35, 6);
         Console.WriteLine("  |     |          | ");
 
         Thread.Sleep(500);
-        Console.SetCursorPosition(30, 6);
+        Console.SetCursorPosition(35, 6);
         Console.WriteLine("  | |   | |        | ");
 
         Thread.Sleep(400);
-        Console.SetCursorPosition(30, 7);
+        Console.SetCursorPosition(35, 7);
         Console.WriteLine("        |            ");
 
         Thread.Sleep(450);
-        Console.SetCursorPosition(30, 7);
+        Console.SetCursorPosition(35, 7);
         Console.WriteLine("  |     |            ");
 
         Thread.Sleep(550);
-        Console.SetCursorPosition(30, 7);
+        Console.SetCursorPosition(35, 7);
         Console.WriteLine("  |     |      |     ");
 
         Thread.Sleep(700);
-        Console.SetCursorPosition(30, 8);
+        Console.SetCursorPosition(35, 8);
         Console.WriteLine("        |            ");
         Console.ResetColor();
     }

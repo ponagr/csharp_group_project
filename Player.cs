@@ -410,7 +410,7 @@ public class Player : GameObject
     public void EnemyKilled(Enemy enemy)
     {
 
-        Textures.PrintDeadText();
+        
 
         CurrentXp += enemy.XpDrop;
         Console.SetCursorPosition(0, 8);
@@ -419,8 +419,10 @@ public class Player : GameObject
         Console.WriteLine($"+{enemy.XpDrop} XP        ");
 
         Console.SetCursorPosition(0, 9);
+        Clear.Row(9);
         Console.WriteLine("             \n            \n              \n          "); // För att input-text ska försvinna
         Console.ResetColor();
+        Textures.PrintDeadText();
 
         if (CurrentXp >= MaxXp)
         {

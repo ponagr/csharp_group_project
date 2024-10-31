@@ -25,9 +25,9 @@ public static class Combat
             Console.SetCursorPosition(0, 1);
             player.ShowHp();    //Ska uppdateras
 
-            Console.SetCursorPosition(30, 0);
+            Console.SetCursorPosition(40, 0);
             HealthBar.PrintEnemyHealthBar(enemy);
-            Console.SetCursorPosition(30, 1);
+            Console.SetCursorPosition(40, 1);
             enemy.ShowHp();     //Ska uppdateras
 
             Console.WriteLine();
@@ -82,9 +82,9 @@ public static class Combat
             if (enemy.CurrentHp <= 0)   //Fixa så att enemy.CurrentHp inte kan bli lägre än 0
             {
                 Clear.EnemyHp();
-                Console.SetCursorPosition(30, 0); // VISAR HEALTHBAREN FÖR ATT KUNNA SE NÄR HAN E DÖD
+                Console.SetCursorPosition(40, 0); // VISAR HEALTHBAREN FÖR ATT KUNNA SE NÄR HAN E DÖD
                 HealthBar.PrintEnemyHealthBar(enemy);
-                Console.SetCursorPosition(30, 1);
+                Console.SetCursorPosition(40, 1);
                 enemy.ShowHp();
                 Console.SetCursorPosition(0, 8);
                 player.EnemyKilled(enemy);  //Skriver ut skadan
@@ -104,7 +104,7 @@ public static class Combat
                 Console.SetCursorPosition(0, 1);
                 player.ShowHp();
 
-                Console.SetCursorPosition(16, 3);
+                Console.SetCursorPosition(20, 3);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(playerHealing);
                 Console.ResetColor();
@@ -118,15 +118,15 @@ public static class Combat
                 Clear.PlayerDamage();   //Rensa damagetext, och enemys hp
                 Clear.EnemyHp();
 
-                Console.SetCursorPosition(30, 0);   //Uppdatera sedan
+                Console.SetCursorPosition(40, 0);   //Uppdatera sedan
                 HealthBar.PrintEnemyHealthBar(enemy);
-                Console.SetCursorPosition(30, 1);
+                Console.SetCursorPosition(40, 1);
                 enemy.ShowHp();
 
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.SetCursorPosition(16, 3);
+                Console.SetCursorPosition(20, 3);
                 Console.WriteLine(criticalPlayer);
-                Console.SetCursorPosition(16, 4);
+                Console.SetCursorPosition(20, 4);
                 Console.WriteLine(playerDamage);
                 Console.ResetColor();
             }
@@ -145,13 +145,13 @@ public static class Combat
 
             Clear.PlayerDamage();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(16, 3);
+            Console.SetCursorPosition(20, 3);
             Console.WriteLine(criticalEnemy);
-            Console.SetCursorPosition(16, 4);
+            Console.SetCursorPosition(20, 4);
             Console.WriteLine(enemyDamage);
             Console.ResetColor();
 
-            Thread.Sleep(1000);
+            Thread.Sleep(700);
         }
     }
 }
