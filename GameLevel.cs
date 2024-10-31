@@ -339,22 +339,14 @@ public static class GameLevel
         Console.WriteLine();
 
         // INFO OM KARTAN 
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"Player: {Player}  ");
-        Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.Write($"Enemy: {Enemy}  ");
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.Write($"Chest: {Chest}  ");
-        Console.ForegroundColor = ConsoleColor.DarkYellow;
-        Console.Write($"Coin: {Coin}  ");
-        Console.ForegroundColor = ConsoleColor.DarkGray;
-        Console.Write($"Trap: {Trap}  ");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.Write($"Boss: {Boss}  ");
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"Door: {Door}  ");
+        PrintColor.Green($" Player: {Player}  ", "Write");
+        PrintColor.Red($"Enemy: {Enemy}  ", "Write");
+        PrintColor.DarkYellow($"Chest: {Chest}  ", "Write");
+        PrintColor.Yellow($"Coin: {Coin}  ", "Write");
+        PrintColor.Gray($"Trap: {Trap}  ", "Write");
+        PrintColor.Red($"Boss: {Boss}  ", "Write");
+        PrintColor.Yellow($"Door: {Door}  ", "Write");
         Console.ResetColor();
-
         Console.WriteLine();
 
         // // SKRIVER UT MAP

@@ -40,3 +40,125 @@ public static class Clear   //Använder SetCursorPosition för att "Cleara" spec
         Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
     }
 }
+
+public static class PrintColor
+{
+    public static void Red(string stringToPrint, string Write)
+    {
+        if (Write == "WriteLine")
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void Green(string stringToPrint, string Write)
+    {
+        if (Write == "WriteLine")
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void Yellow(string stringToPrint, string Write)
+    {
+             if (Write == "WriteLine")
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void Blue(string stringToPrint, string Write)
+    {
+             if (Write == "WriteLine")
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void Gray(string stringToPrint, string Write)
+    {
+             if (Write == "WriteLine")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void DarkYellow(string stringToPrint, string Write)
+    {
+             if (Write == "WriteLine")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void BackgroundRed(string stringToPrint)
+    {
+        Console.BackgroundColor = ConsoleColor.Red;
+        Console.WriteLine(stringToPrint);
+        Console.ResetColor();
+    }
+    public static void BackgroundGreen(string stringToPrint)
+    {
+        Console.BackgroundColor = ConsoleColor.Green;
+        Console.WriteLine(stringToPrint);
+        Console.ResetColor();
+    }
+
+}
+
+public static class Misc
+{
+    public static string FirstToUpper(string input)
+    {
+        input = char.ToUpper(input[0]) + input.Substring(1).ToLower();
+        return input;
+    }
+}
