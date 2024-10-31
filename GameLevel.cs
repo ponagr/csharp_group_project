@@ -340,23 +340,17 @@ public static class GameLevel
 
         // INFO OM KARTAN 
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($" Player: {Player}  ");
-        Console.ResetColor();
+        Console.Write($"Player: {Player}  ");
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.Write($"Enemy: {Enemy}  ");
-        Console.ResetColor();
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.Write($"Chest: {Chest}  ");
-        Console.ResetColor();
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.Write($"Coin: {Coin}  ");
-        Console.ResetColor();
         Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.Write($"Trap: {Trap}  ");
-        Console.ResetColor();
         Console.ForegroundColor = ConsoleColor.Red;
         Console.Write($"Boss: {Boss}  ");
-        Console.ResetColor();
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Write($"Door: {Door}  ");
         Console.ResetColor();

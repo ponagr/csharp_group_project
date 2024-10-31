@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Formats.Asn1;
 using System.Runtime.InteropServices;
 
@@ -209,56 +210,20 @@ public class Player : GameObject
     }
     public void ShowWornGear()
     {
-        Console.WriteLine("Worn Equipment:");
-        if (EquippedGear[0] != null)
+        List<string> itemType = new List<string>() // Skapar en lista för att kunna loopa och få ut info om rätt index
+        { "Weapon", "Helm", "Chest", "Gloves", "Legs", "Boots" };
+        Console.WriteLine("Worn Equipment:\n------------------------");
+        for (int i = 0; i < itemType.Count; i++)
         {
-            EquippedGear[0].ShowStats();
+            if (EquippedGear[i] != null)
+            {
+                EquippedGear[i].ShowStats();
+            }
+            else
+            {
+                Console.WriteLine($"{itemType[i]}: (Empty)");
+            }
         }
-        else
-        {
-            Console.WriteLine("Weapon: (Empty)");
-        }
-        if (EquippedGear[2] != null)
-        {
-            EquippedGear[2].ShowStats();
-        }
-        else
-        {
-            Console.WriteLine("Chest: (Empty)");
-        }
-        if (EquippedGear[1] != null)
-        {
-            EquippedGear[1].ShowStats();
-        }
-        else
-        {
-            Console.WriteLine("Helm: (Empty)");
-        }
-        if (EquippedGear[5] != null)
-        {
-            EquippedGear[5].ShowStats();
-        }
-        else
-        {
-            Console.WriteLine("Boots: (Empty)");
-        }
-        if (EquippedGear[3] != null)
-        {
-            EquippedGear[3].ShowStats();
-        }
-        else
-        {
-            Console.WriteLine("Gloves: (Empty)");
-        }
-        if (EquippedGear[4] != null)
-        {
-            EquippedGear[4].ShowStats();
-        }
-        else
-        {
-            Console.WriteLine("Legs: (Empty)");
-        }
-
     }
     #endregion
     #region LOOT

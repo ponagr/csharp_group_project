@@ -55,7 +55,7 @@ public class Inventory
 
     public void ShowInventory()
     {
-        Console.WriteLine($"Inventory - Space: {inventory.Count}/15");
+        Console.WriteLine($"Inventory - Space: {inventory.Count}/15\n------------------------");
         if (inventory.Count > 0)
         {
             for (int i = 0; i < inventory.Count; i++)
