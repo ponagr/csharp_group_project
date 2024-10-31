@@ -8,7 +8,7 @@ public class Player : GameObject
     public int MaxXp { get; set; }
     public int Level { get; set; }
     public int Gold { get; set; }
-    public Consumable HealingPot { get; set; }
+    public Consumable HealingPot { get; set; } // Vårat objekt för healingspotions
 
     public double BonusAgility { get; set; }
     public double BonusHp { get; set; }
@@ -81,14 +81,19 @@ public class Player : GameObject
         {
             Console.Clear();
             UI(player);
+            Console.WriteLine();
             ShowStats();
             Console.WriteLine();
-            HealingPot.ShowItem();
-            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Inventory.ShowInventory();
+            Console.ResetColor();
             Console.WriteLine();
             ShowWornGear();
-            Console.WriteLine("\nTryck 'E' för att hantera equipments");
+            Console.ResetColor();
+            Console.SetCursorPosition(38, 13);
+            Console.WriteLine("Tryck 'E' för att hantera equipments");
+            Console.SetCursorPosition(38, 14);
             Console.WriteLine("Tryck 'C' för att gå tillbaka");
             var keyInput = Console.ReadKey(true);
             if (keyInput.Key == ConsoleKey.E)
@@ -208,17 +213,28 @@ public class Player : GameObject
     {
         List<string> itemType = new List<string>() // Skapar en lista för att kunna loopa och få ut info om rätt index
         { "Weapon", "Helm", "Chest", "Gloves", "Legs", "Boots" };
-        Console.WriteLine("Worn Equipment:\n------------------------");
+
+        int row = 6;
+        Console.SetCursorPosition(38, 4);
+        Console.WriteLine("Worn Equipment:");
+        Console.SetCursorPosition(38, 5);
+        Console.WriteLine("------------------------");
         for (int i = 0; i < itemType.Count; i++)
         {
+            Console.SetCursorPosition(38, row);
             if (EquippedGear[i] != null)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 EquippedGear[i].ShowStats();
+                Console.ResetColor();
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine($"{itemType[i]}: (Empty)");
+                Console.ResetColor();
             }
+            row++;
         }
     }
     #endregion
@@ -369,10 +385,10 @@ public class Player : GameObject
 
     public void ShowStats()     //Visa spelarens stats
     {
-        Console.WriteLine("\n\n");
+        Console.WriteLine("\n");
         PrintColor.Blue($"Health: {TotalHp}", "WriteLine");
         PrintColor.Blue($"Damage: {TotalDamage}", "WriteLine");
-        PrintColor.Blue($"Resistance: {TotalResistance}", "WriteLine"); 
+        PrintColor.Blue($"Resistance: {TotalResistance}", "WriteLine");
         PrintColor.Blue($"Agility: {TotalAgility}", "WriteLine");
         Console.WriteLine();
     }
@@ -385,14 +401,17 @@ public class Player : GameObject
     public void UI(Player player)   //Skriv ut spelarens Hp, Guld och Xp
     {
         Console.WriteLine();
-        int curretLine = Console.CursorTop;
+        int currentLine = Console.CursorTop;
         HealthBar.PrintPlayerHealthBar(player);
         ShowHp();
-        Console.SetCursorPosition(29, curretLine);
 
+        Console.SetCursorPosition(15, currentLine);
+        HealingPot.ShowItem();
+
+        Console.SetCursorPosition(38, currentLine);
         PrintColor.Yellow($"Coins: {Gold}", "WriteLine");
 
-        Console.SetCursorPosition(50, curretLine);
+        Console.SetCursorPosition(50, currentLine);
         Console.ForegroundColor = ConsoleColor.Magenta;
         ShowXp();
         Console.ResetColor();

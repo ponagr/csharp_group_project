@@ -1,7 +1,7 @@
 
 using System.Diagnostics.Contracts;
 
-public static class Items 
+public static class Items
 {
     public static List<Item> itemList = new List<Item>();
     public static void AddItem(Item item) // Varför en metod för att lägga till och inte göra det direkt i ItemstoAdd?
@@ -31,7 +31,7 @@ public static class Items
 
     public static void ShowAllItems()
     {
-        foreach(Item item in itemList)
+        foreach (Item item in itemList)
         {
             Console.WriteLine(item.ItemName);
         }
@@ -55,23 +55,23 @@ public class Inventory
 
     public void ShowInventory()
     {
-        Console.WriteLine($"Inventory - Space: {inventory.Count}/15\n------------------------");
+        Console.WriteLine($"Inventory - Space: {inventory.Count}/10");
+        Console.WriteLine("---------------------");
         if (inventory.Count > 0)
         {
             for (int i = 0; i < inventory.Count; i++)
             {
-                Console.WriteLine($"[{i}] {inventory[i].ItemName}, {inventory[i].ItemType}");             
+                Console.WriteLine($"[{i}] {inventory[i].ItemName}, {inventory[i].ItemType}");
             }
         }
         else
         {
             Console.WriteLine("Din inventory är tom");
         }
-        
     }
     public void ShowEquipmentInventory() // Fär att visas inventory MED stats
     {
-        Console.WriteLine($"Inventory - Space: {inventory.Count}/15");
+        Console.WriteLine($"Inventory - Space: {inventory.Count}/10");
         if (inventory.Count > 0)
         {
             for (int i = 0; i < inventory.Count; i++)
@@ -94,7 +94,7 @@ public class Inventory
 
         Console.WriteLine("Välj ett item för att interagera");
         int i = int.Parse(Console.ReadLine());
-        
+
     }
 }
 
@@ -124,12 +124,12 @@ public class Consumable : Item
         ItemType = "Consumable";
         Healing = 50;
         Ammount = 3;
-        MaxAmmount = 5;   
+        MaxAmmount = 5;
     }
 
     public override void ShowItem()
     {
-        Console.WriteLine($"Health Potions: {Ammount}/{MaxAmmount}");
+        PrintColor.Red($"Health Potions: {Ammount}/{MaxAmmount}", "WriteLine");
     }
     public override void ShowStats()
     {
@@ -150,12 +150,12 @@ public class Gear : Item
 
     public override void ShowItem()
     {
-        Console.WriteLine($"{ItemType}: {ItemName, 10}");
+        PrintColor.Green($"{ItemType}: {ItemName,10}", "WriteLine");
     }
 
     public override void ShowStats()
     {
-        Console.WriteLine($"{ItemType}: ({ItemName})  -     {Health} Health, {Damage} Damage, {Resistance} Resistance, {Agility} Agility");
+        PrintColor.Green($"{ItemType}: ({ItemName})  -    {Health} Hp, {Damage} Dmg, {Resistance} Res, {Agility} Agi", "WriteLine");
     }
 }
 public class THelm : Gear
@@ -226,7 +226,7 @@ public class Chest
             items.Add(Items.itemList[itemIndex]);
         }
         ChestLoot = items;
-        
+
     }
 
     public void PrintChest()
