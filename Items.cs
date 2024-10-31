@@ -215,7 +215,6 @@ public class Chest
 
     public Chest()
     {
-        // ChestLoot = new List<Item>();
         Random rnd = new Random();
         int itemsInChest = 2; //rnd.Next(1, 3);
         Random random = new Random();

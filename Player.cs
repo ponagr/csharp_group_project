@@ -196,16 +196,12 @@ public class Player : GameObject
         if (itemToEquipStats > equippedItemStats)
         {
             double diff = itemToEquipStats - equippedItemStats;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"+{diff} {stat}");
-            Console.ResetColor();
+            PrintColor.Green($"+{diff} {stat}", "WriteLine");
         }
         else if (itemToEquipStats < equippedItemStats)
         {
             double diff = equippedItemStats - itemToEquipStats;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"-{diff} {stat}");
-            Console.ResetColor();
+            PrintColor.Red($"-{diff} {stat}", "WriteLine");
         }
     }
     public void ShowWornGear()
@@ -263,7 +259,6 @@ public class Player : GameObject
         if (HealingPot.Ammount > 0)
         {
             double missingHealth = TotalHp - CurrentHp;     //Räkna ut hur mycket hp spelaren saknar
-            // Random random = new Random();
             healAmmount = HealingPot.Healing; //50 + random.Next(0, 20);
             if (healAmmount > missingHealth)    //Om Heal är mer än spelarens saknade hp, heala till fullt, så att currentHealth inte kan bli mer än TotalHp
             {
@@ -327,14 +322,9 @@ public class Player : GameObject
     #region XP OCH LEVELUP
     public void EnemyKilled(Enemy enemy)
     {
-
-
-
         CurrentXp += enemy.XpDrop;
         Console.SetCursorPosition(0, 8);
-        // Console.WriteLine($"{enemy.Name} dog");
-        Console.ForegroundColor = ConsoleColor.DarkYellow;
-        Console.WriteLine($"+{enemy.XpDrop} XP        ");
+        PrintColor.DarkYellow($"+{enemy.XpDrop} XP        ", "WriteLine");
 
         Console.SetCursorPosition(0, 9);
         Clear.Row(9);
@@ -354,7 +344,7 @@ public class Player : GameObject
     {
         Level++;
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"{Name} reached level: {Level}");
+        Console.WriteLine($"{Name} reached level: {Level}", "WriteLine");
         double BaseHpAdded = BaseHp * 0.2;
         double BaseDamageAdded = BaseDamage * 0.2;
         double BaseResistanceAdded = BaseResistance * 0.2;
@@ -374,20 +364,16 @@ public class Player : GameObject
     #region UI OCH STATS
     public void ShowHp()
     {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine($"{CurrentHp:F0}/{TotalHp:F0}({PercentHp:F0}%)");
-        Console.ResetColor();
+        PrintColor.Green($"{CurrentHp:F0}/{TotalHp:F0}({PercentHp:F0}%)", "WriteLine");
     }
 
     public void ShowStats()     //Visa spelarens stats
     {
         Console.WriteLine("\n\n");
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine($"Health: {TotalHp}");
-        Console.WriteLine($"Damage: {TotalDamage}");
-        Console.WriteLine($"Resistance: {TotalResistance}");
-        Console.WriteLine($"Agility: {TotalAgility}");
-        Console.ResetColor();
+        PrintColor.Blue($"Health: {TotalHp}", "WriteLine");
+        PrintColor.Blue($"Damage: {TotalDamage}", "WriteLine");
+        PrintColor.Blue($"Resistance: {TotalResistance}", "WriteLine"); 
+        PrintColor.Blue($"Agility: {TotalAgility}", "WriteLine");
         Console.WriteLine();
     }
 
@@ -403,15 +389,13 @@ public class Player : GameObject
         HealthBar.PrintPlayerHealthBar(player);
         ShowHp();
         Console.SetCursorPosition(29, curretLine);
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"Coins: {Gold}");
+
+        PrintColor.Yellow($"Coins: {Gold}", "WriteLine");
+
         Console.SetCursorPosition(50, curretLine);
         Console.ForegroundColor = ConsoleColor.Magenta;
         ShowXp();
         Console.ResetColor();
     }
     #endregion
-
-
-
 }

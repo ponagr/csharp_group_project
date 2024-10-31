@@ -39,10 +39,6 @@ public class HealthBar
         }
         Console.Write("]");
         Console.WriteLine();
-        // Console.ResetColor();
-        // Console.ForegroundColor = ConsoleColor.Green;
-        // Console.WriteLine($"HP: {player.CurrentHp}/{player.TotalHp}({player.PercentHp:F0}%)");
-        // Console.ResetColor();
     }
 
     public static void PrintEnemyHealthBar(Enemy enemy)
@@ -66,10 +62,6 @@ public class HealthBar
         }
         Console.Write("]");
         Console.WriteLine();
-        // Console.ResetColor();
-        // Console.ForegroundColor = ConsoleColor.Red;
-        // Console.WriteLine($"HP: {enemy.CurrentHp}/{enemy.TotalHp}({enemy.PercentHp:F0}%)");
-        // Console.ResetColor();
 
     }
 

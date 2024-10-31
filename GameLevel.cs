@@ -47,6 +47,33 @@ public static class GameLevel
         { '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '$', '|', ' ', ' ', ' ', ' ', ' ', '$', ' ', ' ', ' ', ' ', '|' },
         { '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|' },//23
     };
+
+       public static char[,] gameLevel2 = new char[,] // GÖRA VAR SIN MAP FÖR ATT DET E KUL :)
+    {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23 // DISARMA MINOR?!
+        { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' },
+        { '|', '@', ' ', ' ', ' ', ' ', ' ', '|', '#', ' ', ' ', '|', '$', '|', '#', ' ', ' ', '|', ' ', ' ', ' ', ' ', '|' },
+        { '|', '_', '_', '_', '_', '_', ' ', '|', ' ', ' ', ' ', '|', ' ', '|', '$', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
+        { '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', '|', ' ', '|', '_', '_', '_', '|', ' ', ' ', '|', ' ', '|' },
+        { '|', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', '_', '|', ' ', '|' },
+        { '|', ' ', '|', '#', '|', ' ', '|', ' ', ' ', ' ', '¤', '\\', ' ', '£', ' ', ' ', ' ', '|', ' ', '|', ' ', ' ', '|' },
+        { '|', ' ', '|', ' ', '|', ' ', '|', ' ', ' ', ' ', '¤','/', '$', ' ', '£', ' ', ' ', '|', ' ', '|', ' ', ' ', '|' },
+        { '|', ' ', '|', ' ', '|', ' ', '|', '_', '_', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|', ' ', ' ', '|' },
+        { '|', ' ', ' ', ' ', '|', ' ', '\\', ' ', ' ', ' ', ' ', '|', '£', '|', '_', '_', ' ', '|', ' ', '_', '_', ' ', '|' },
+        { '|', ' ', ' ', ' ', '|', '£', '/', ' ', '£', ' ', ' ', '|', ' ', '|', ' ', ' ', ' ', '|', '#', ' ', '£', ' ', '|' },
+        { '|', '£', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', '|', '$', '|', '$', ' ', ' ', '|', ' ', ' ', '£', ' ', '|' },
+        { '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|', '_', '_', '_', '_', '_', '_', '_', '_', ' ', '_', '|' },
+        { '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '$', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+        { '|', ' ', ' ', '#', '|', '_', '|', '$', ' ', ' ', '£', '|', ' ', ' ', ' ', ' ', ' ', ' ', '$', '|', ' ', ' ', '|' },
+        { '|', ' ', ' ', ' ', '|', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '_', ' ', '|' },
+        { '|', ' ', '_', '_', '|', ' ', '|', '_', '_', '_', '_', '_', ' ', ' ', '£', ' ', ' ', ' ', '$', '|', ' ', ' ', '|' },
+        { '|', '£', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '_', '_', '_', '_', '_', '_', '|', ' ', '_', '|' },
+        { '|', ' ', ' ', ' ', '|', ' ', ' ', '£', '£', '£', '#', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+        { '|', ' ', ' ', ' ', '|', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', ' ', ' ', ' ', '£', ' ', '|', ' ', '£', '|' },
+        { '\\', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '_', '_', '_', '_', '_', ' ', '|', '_', ' ', '|' },
+        { '/', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+        { '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', '$', '|', ' ', ' ', ' ', ' ', '$', '|', ' ', ' ', ' ', ' ', '|' },
+        { '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|' },//23
+    };
     #endregion
 
     #region MOVEMENT
@@ -151,8 +178,6 @@ public static class GameLevel
                 {
                     gameMap[posX, posY - 1] = Empty;
                 }
-                //Om enemy dör(CurrentHealth == 0), ta bort Enemy från map
-                //Lägg till Empty där Enemy fanns
             }
             else if (gameMap[posX, posY - 1] == Coin)
             {
@@ -171,14 +196,13 @@ public static class GameLevel
             }
             else if (gameMap[posX, posY - 1] == Chest)
             {
-                // Slumpa items/guld, 1-3 typ
-                //Ta sedan bort kistan och gör platsen till Empty
                 foreach (Item item in chest.ChestLoot)
                 {
                     player.Loot(item);
                 }
                 Console.ReadKey(true);
                 Console.WriteLine("Du gick på en kista");
+                gameMap[posX, posY -1] = Empty;
             }
             else if (gameMap[posX, posY - 1] == Door || gameMap[posX, posY - 1] == Door2)
             {
@@ -345,57 +369,42 @@ public static class GameLevel
         PrintColor.Yellow($"Coin: {Coin}  ", "Write");
         PrintColor.Gray($"Trap: {Trap}  ", "Write");
         PrintColor.Red($"Boss: {Boss}  ", "Write");
-        PrintColor.Yellow($"Door: {Door}  ", "Write");
+        PrintColor.Green($"Door: {Door}  ", "Write");
         Console.ResetColor();
         Console.WriteLine();
 
         // // SKRIVER UT MAP
         for (int i = 0; i < gameMap.GetLength(0); i++)
         {
-
             for (int j = 0; j < gameMap.GetLength(1); j++)
             {
                 if (gameMap[i, j] == Player)
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write(gameMap[i, j] + "  ");
-                    Console.ResetColor();
+                    PrintColor.Green($"{gameMap[i, j]}  ", "Write");
                 }
                 else if (gameMap[i, j] == Enemy)
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.Write(gameMap[i, j] + "  ");
-                    Console.ResetColor();
+                    PrintColor.Red($"{gameMap[i, j]}  ", "Write");
                 }
                 else if (gameMap[i, j] == Chest && !isOpen)
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(gameMap[i, j] + "  ");
-                    Console.ResetColor();
+                    PrintColor.Yellow($"{gameMap[i, j]}  ", "Write");
                 }
-                else if (gameMap[i, j] == Chest && isOpen)
+                else if (gameMap[i, j] == Chest && isOpen) // ANVÄNDS INTE ÄN
                 {
-                    Console.ForegroundColor = ConsoleColor.Gray;
-                    Console.Write(gameMap[i, j] + "  ");
-                    Console.ResetColor();
+                    PrintColor.Gray($"{gameMap[i, j]}  ", "Write");
                 }
                 else if (gameMap[i, j] == Trap)
                 {
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.Write(gameMap[i, j] + "  ");
-                    Console.ResetColor();
+                    PrintColor.Gray($"{gameMap[i, j]}  ", "Write");
                 }
                 else if (gameMap[i, j] == Boss)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(gameMap[i, j] + "  ");
-                    Console.ResetColor();
+                    PrintColor.Red($"{gameMap[i, j]}  ", "Write");
                 }
                 else if (gameMap[i, j] == Coin)
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.Write(gameMap[i, j] + "  ");
-                    Console.ResetColor();
+                    PrintColor.DarkYellow($"{gameMap[i, j]}  ", "Write");
                 }
                 else if (gameMap[i, j] == Wall || gameMap[i, j] == Terrain)
                 {

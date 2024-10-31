@@ -62,8 +62,6 @@ public class Enemy : GameObject
 
     public void ShowHp()
     {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"{CurrentHp:F0}/{TotalHp:F0}({PercentHp:F0}%)");
-        Console.ResetColor();
+        PrintColor.Red($"{CurrentHp:F0}/{TotalHp:F0}({PercentHp:F0}%)", "Write");
     }
 }

@@ -47,10 +47,8 @@ public static class Combat
             Console.WriteLine("1. Attack");
             if (player.HealingPot.Ammount == 0)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
                 Console.SetCursorPosition(0, 9);
-                Console.Write($"2. Heal - "); player.HealingPot.ShowItem();
-                Console.ResetColor();
+                PrintColor.Red($"2. Heal - ", "Write");
             }
             else
             {
@@ -105,12 +103,10 @@ public static class Combat
                 player.ShowHp();
 
                 Console.SetCursorPosition(20, 3);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(playerHealing);
-                Console.ResetColor();
+
+                PrintColor.Green($"{playerHealing}", "WriteLine");
             }
             enemyDamage = enemy.Attack(player, out criticalEnemy);
-
 
             if (input == "1")    //Vid attack
             {
@@ -123,15 +119,11 @@ public static class Combat
                 Console.SetCursorPosition(40, 1);
                 enemy.ShowHp();
 
-                Console.ForegroundColor = ConsoleColor.Green;
                 Console.SetCursorPosition(20, 3);
-                Console.WriteLine(criticalPlayer);
+                PrintColor.Green($"{criticalPlayer}", "WriteLine");
                 Console.SetCursorPosition(20, 4);
-                Console.WriteLine(playerDamage);
-                Console.ResetColor();
+                PrintColor.Green($"{playerDamage}", "WriteLine");
             }
-
-            //Vänta 1 sekund, och uppdatera sedan players hp och hpbar, samt enemys damage till player
 
             Thread.Sleep(500);
             Textures.AttackEnemyAnimation();
@@ -144,12 +136,11 @@ public static class Combat
             player.ShowHp();
 
             Clear.PlayerDamage();
-            Console.ForegroundColor = ConsoleColor.Red;
+
             Console.SetCursorPosition(20, 3);
-            Console.WriteLine(criticalEnemy);
+            PrintColor.Red($"{criticalEnemy}", "WriteLine");
             Console.SetCursorPosition(20, 4);
             Console.WriteLine(enemyDamage);
-            Console.ResetColor();
 
             Thread.Sleep(700);
         }
