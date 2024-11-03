@@ -42,6 +42,7 @@ public class Enemy : GameObject
         Random rndDodge = new Random();
         int dodgeChange = Convert.ToInt32(BaseAgility);
         int dodge = rndDodge.Next(0, 101);
+        double damageNegation = player.TotalResistance * 0.2;
         if (dodge <= dodgeChange)
         {
             critical = "";
@@ -50,14 +51,14 @@ public class Enemy : GameObject
         else if (attackCrit)
         {
             critical = "CRITICAL";
-            damageDone = damage + rndDamage.Next(0, 10) - player.TotalResistance;
+            damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
             player.CurrentHp -= damageDone;
             return $"<-- {damageDone:F0} DMG";
         }
         else
         {
             critical = "";
-            damageDone = damage + rndDamage.Next(0, 10) - player.TotalResistance;
+            damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
             player.CurrentHp -= damageDone;
             return $"<-- {damageDone:F0} DMG";
         }

@@ -122,7 +122,7 @@ public class Player : GameObject
             }
             CurrentHp += healAmmount;
             HealingPot.Ammount--;
-            return $"+{healAmmount}HP";
+            return $"+{healAmmount:F0}HP";
         }
         else
         {
@@ -154,6 +154,7 @@ public class Player : GameObject
         Random rndDodge = new Random();
         int dodgeChange = Convert.ToInt32(BaseAgility);
         int dodge = rndDodge.Next(0, 101);
+        double damageNegation = enemy.TotalResistance * 0.2;
         if (dodge <= dodgeChange)
         {
             critical = "";
@@ -161,14 +162,14 @@ public class Player : GameObject
         }
         else if (attackCrit)
         {
-            damageDone = damage + rndDamage.Next(0, 10) - enemy.TotalResistance;
+            damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
             enemy.CurrentHp -= damageDone;
             critical = "CRITICAL";
             return $"{damageDone:F0} DMG -->";
         }
         else
         {
-            damageDone = damage + rndDamage.Next(0, 10) - enemy.TotalResistance;
+            damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
             enemy.CurrentHp -= damageDone;
             critical = "";
             return $"{damageDone:F0} DMG -->";

@@ -26,7 +26,7 @@ public static class PlayerEquipment
         {
             EquipGear(player, itemToEquip, player.EquippedGear[5], 5);
         }
-        CountStats(player);
+        CountStats(player); //Uppdaterar BonusStats varje gång vi byter gear
         return;
     }
 
