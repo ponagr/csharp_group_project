@@ -18,6 +18,10 @@ public class GameObject
             {
                 currentHp = 0;
             }  
+            else if (value > TotalHp)
+            {
+                currentHp = TotalHp;
+            }
             else
             {
                 currentHp = value;
