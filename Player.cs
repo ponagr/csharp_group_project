@@ -4,11 +4,13 @@ using System.Runtime.InteropServices;
 
 public class Player : GameObject
 {
+    public bool isPlayer = true;
     public int CurrentXp { get; set; }
     public int MaxXp { get; set; }
     public int Level { get; set; }
     public int Gold { get; set; }
     public Consumable HealingPot { get; set; } // Vårat objekt för healingspotions
+    private HealthBar healthBar;
 
     public double BonusAgility { get; set; }
     public double BonusHp { get; set; }
@@ -16,7 +18,7 @@ public class Player : GameObject
     public double BonusResistance { get; set; }
     public override double TotalHp
     {
-        get { return BaseHp + BonusHp; }
+        get { return BaseHp + BonusHp; }        //Något fel med CurrentHP efter vi har satt på oss gear, den visar rätt, men på nått sätt innehåller den mer hp än vad som skrivs
     }
     public override double TotalDamage
     {
@@ -50,217 +52,54 @@ public class Player : GameObject
 
         HealingPot = new Consumable();
         Inventory = new Inventory();
+        healthBar = new HealthBar();
     }
 
-    public void CountStats()
+    #region HP
+    public void ShowHp()    //Skriver ut en HealthBar och hp i text under
     {
-        double bonusDamage = 0;
-        double bonusHp = 0;
-        double bonusAgility = 0;
-        double bonusResistance = 0;
-        for (int i = 0; i < EquippedGear.Length; i++)
-        {
-            if (EquippedGear[i] != null)
-            {
-                bonusDamage += EquippedGear[i].Damage;
-                bonusHp += EquippedGear[i].Health;
-                bonusAgility += EquippedGear[i].Agility;
-                bonusResistance += EquippedGear[i].Resistance;
-            }
-        }
-        BonusAgility = bonusAgility;
-        BonusHp = bonusHp;
-        BonusDamage = bonusDamage;
-        BonusResistance = bonusResistance;
-        CurrentHp = TotalHp; // För att man ska få maxhp när man uppgraderar armor
+        healthBar.PrintHealthBar(PercentHp, isPlayer);
+        PrintColor.Green($"{CurrentHp:F0}/{TotalHp:F0}({PercentHp:F0}%)", "WriteLine");
     }
+    #endregion
+
     #region INVENTORY
-    public void InventoryInfo(Player player) // NÄR VI TRYCKER C
+    public void OpenInventory(Player player)    //Anropar Inventory-klassens metoder
     {
-        while (true)
-        {
-            Console.Clear();
-            UI(player);
-            Console.WriteLine();
-            ShowStats();
-            Console.WriteLine();
-
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Inventory.ShowInventory();
-            Console.ResetColor();
-            Console.WriteLine();
-            ShowWornGear();
-            Console.ResetColor();
-            Console.SetCursorPosition(38, 13);
-            Console.WriteLine("Tryck 'E' för att hantera equipments");
-            Console.SetCursorPosition(38, 14);
-            Console.WriteLine("Tryck 'C' för att gå tillbaka");
-            var keyInput = Console.ReadKey(true);
-            if (keyInput.Key == ConsoleKey.E)
-            {
-                InventoryMenu();
-            }
-            else if (keyInput.Key == ConsoleKey.C)
-            {
-                return;
-            }
-            Console.WriteLine();
-        }
-
-    }
-    public void InventoryMenu()
-    {
-        Console.Clear();
-        ShowWornGear();
-        Console.WriteLine();
-        Inventory.ShowEquipmentInventory();
-
-        Console.WriteLine("Välj ett item för att interagera ([C] - tillbaka)");
-        var input = Console.ReadKey(true);
-        if (input.Key == ConsoleKey.C)
-        {
-            return;
-        }
-        string strInput = input.KeyChar.ToString();
-        int i = int.Parse(strInput);
-        CheckGearType(Inventory.inventory[i]);
-
+        Inventory.InventoryUI(player);
     }
     #endregion
-    #region GEAR
-    public void CheckGearType(Item itemToEquip)
-    {
-        if (itemToEquip is TWeapon)
-        {
-            EquipGear(itemToEquip, EquippedGear[0], 0);
-        }
-        if (itemToEquip is TBreastPlate)
-        {
-            EquipGear(itemToEquip, EquippedGear[2], 2);
-        }
-        if (itemToEquip is TLegs)
-        {
-            EquipGear(itemToEquip, EquippedGear[4], 4);
-        }
-        if (itemToEquip is TBoots)
-        {
-            EquipGear(itemToEquip, EquippedGear[5], 5);
-        }
-        if (itemToEquip is TGloves)
-        {
-            EquipGear(itemToEquip, EquippedGear[3], 3);
-        }
-        if (itemToEquip is THelm)
-        {
-            EquipGear(itemToEquip, EquippedGear[3], 1);
-        }
-        CountStats();
-        return;
-    }
-    public void EquipGear(Item itemToEquip, Item equippedItem, int equippedGearIndex)  //Anropas från EquipGear-Metoden
-    {
-        if (equippedItem == null)
-        {
-            EquippedGear[equippedGearIndex] = itemToEquip; // Om itemToEquip är TWeapon, så är equippedGearIndex = 0, lägg in itemToEquip i EquippedGear[0], osv
-            Inventory.inventory.Remove(itemToEquip);    //Om vi equippar, ta bort från inventory så vi inte får dublett
-            Console.WriteLine($"Du tog på dig {itemToEquip.ItemName}, {itemToEquip.ItemType}");
-        }
-        else if (equippedItem != null)
-        {
-            Item item; // Skapar en tom referens
-            GearChoice(itemToEquip, equippedItem, out item); // item är en av de 2 första
 
-            Inventory.inventory.Add(equippedItem);
-            EquippedGear[equippedGearIndex] = item;
-            Inventory.inventory.Remove(item);
-        }
-    }
-    public void GearChoice(Item itemToEquip, Item equippedItem, out Item item)
-    {
-        item = equippedItem;
-        CompareGearStats(itemToEquip.Health, equippedItem.Health, "Health");    //Skickar in en specifik stat att jämföra och skriva ut
-        CompareGearStats(itemToEquip.Damage, equippedItem.Damage, "Damage");
-        CompareGearStats(itemToEquip.Resistance, equippedItem.Resistance, "Resistance");
-        CompareGearStats(itemToEquip.Agility, equippedItem.Agility, "Agility");
-
-        Console.WriteLine("Vill du byta? J/N");
-        var input = Console.ReadKey(true);
-        if (input.Key == ConsoleKey.J)
-        {
-            item = itemToEquip;     //Om "J", så byter vi item från equippedItem till itemToEquip
-            return;
-        }
-        else if (input.Key == ConsoleKey.N)
-        {
-            return;
-        }
-
-    }
-    public void CompareGearStats(double itemToEquipStats, double equippedItemStats, string stat) // Räknar ut differensen och skriver ut text i grön eller rött beroende på + eller -
-    {
-        if (itemToEquipStats > equippedItemStats)
-        {
-            double diff = itemToEquipStats - equippedItemStats;
-            PrintColor.Green($"+{diff} {stat}", "WriteLine");
-        }
-        else if (itemToEquipStats < equippedItemStats)
-        {
-            double diff = equippedItemStats - itemToEquipStats;
-            PrintColor.Red($"-{diff} {stat}", "WriteLine");
-        }
-    }
-    public void ShowWornGear()
-    {
-        List<string> itemType = new List<string>() // Skapar en lista för att kunna loopa och få ut info om rätt index
-        { "Weapon", "Helm", "Chest", "Gloves", "Legs", "Boots" };
-
-        int row = 6;
-        Console.SetCursorPosition(38, 4);
-        Console.WriteLine("Worn Equipment:");
-        Console.SetCursorPosition(38, 5);
-        Console.WriteLine("------------------------");
-        for (int i = 0; i < itemType.Count; i++)
-        {
-            Console.SetCursorPosition(38, row);
-            if (EquippedGear[i] != null)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                EquippedGear[i].ShowStats();
-                Console.ResetColor();
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine($"{itemType[i]}: (Empty)");
-                Console.ResetColor();
-            }
-            row++;
-        }
-    }
-    #endregion
     #region LOOT
-    public void Loot(Item item)     //Lägg till Item till inventory
+    public void Loot(Chest chest)     //Lägg till Item till inventory
     {
+        Item item;
         Console.WriteLine();
         if (Inventory.inventory.Count < 15)
         {
-            Console.WriteLine($"{Name} har lootat {item.ItemName},{item.ItemType}");
-            if (item is Consumable)
+            Console.WriteLine();
+            Console.WriteLine($"{Name} har lootat:");
+            chest.PrintChest();
+            for (int i = 0; i < chest.ChestLoot.Count; i++)
             {
-                if (HealingPot.Ammount < HealingPot.MaxAmmount)
+                item = chest.ChestLoot[i];
+                if (item is Consumable)
                 {
-                    HealingPot.Ammount += 1;
+                    if (HealingPot.Ammount < HealingPot.MaxAmmount)
+                    {
+                        HealingPot.Ammount += 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Du har det maximala antalet Healing Potions redan");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Du har det maximala antalet Healing Potions redan");
+                    Inventory.inventory.Add(item);
                 }
             }
-            else
-            {
-                Inventory.inventory.Add(item);
-            }
-
+            Gold += chest.Gold;
         }
         else
         {
@@ -268,6 +107,7 @@ public class Player : GameObject
         }
     }
     #endregion
+
     #region HEAL
     public string Heal()
     {
@@ -356,7 +196,7 @@ public class Player : GameObject
             LevelUp();
         }
     }
-    public void LevelUp()
+    private void LevelUp()
     {
         Level++;
         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -377,44 +217,5 @@ public class Player : GameObject
         Console.ResetColor();
     }
     #endregion
-    #region UI OCH STATS
-    public void ShowHp()
-    {
-        PrintColor.Green($"{CurrentHp:F0}/{TotalHp:F0}({PercentHp:F0}%)", "WriteLine");
-    }
-
-    public void ShowStats()     //Visa spelarens stats
-    {
-        Console.WriteLine("\n");
-        PrintColor.Blue($"Health: {TotalHp}", "WriteLine");
-        PrintColor.Blue($"Damage: {TotalDamage}", "WriteLine");
-        PrintColor.Blue($"Resistance: {TotalResistance}", "WriteLine");
-        PrintColor.Blue($"Agility: {TotalAgility}", "WriteLine");
-        Console.WriteLine();
-    }
-
-    public void ShowXp()
-    {
-        Console.Write($"Level: {Level} ({CurrentXp}/{MaxXp})XP");
-    }
-
-    public void UI(Player player)   //Skriv ut spelarens Hp, Guld och Xp
-    {
-        Console.WriteLine();
-        int currentLine = Console.CursorTop;
-        HealthBar.PrintPlayerHealthBar(player);
-        ShowHp();
-
-        Console.SetCursorPosition(15, currentLine);
-        HealingPot.ShowItem();
-
-        Console.SetCursorPosition(38, currentLine);
-        PrintColor.Yellow($"Coins: {Gold}", "WriteLine");
-
-        Console.SetCursorPosition(50, currentLine);
-        Console.ForegroundColor = ConsoleColor.Magenta;
-        ShowXp();
-        Console.ResetColor();
-    }
-    #endregion
 }
+    

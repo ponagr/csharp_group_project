@@ -1,5 +1,6 @@
 public class GameObject
 {
+    public bool isPlayer;
     public string Name { get; set; }
     public string Description { get; set; } //Assassin eller Mage osv
     public double BaseHp { get; set; }

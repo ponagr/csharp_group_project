@@ -1,6 +1,8 @@
 public class Enemy : GameObject
 {
+    public bool isPlayer = false;
     public int XpDrop = 33;
+    public HealthBar healthBar;
     //Lägg till en AggroRange senare
 
     public Enemy(Player player)
@@ -14,6 +16,8 @@ public class Enemy : GameObject
         BaseDamage = 10 + random.Next(0, 10) * multiplier;
         BaseResistance = 0 + random.Next(0, 5) * multiplier;
         BaseAgility = 5 * multiplier;
+
+        healthBar = new HealthBar();
     }
 
     public string Attack(Player player, out string critical)
@@ -62,6 +66,9 @@ public class Enemy : GameObject
 
     public void ShowHp()
     {
+        Console.SetCursorPosition(40, 0);
+        healthBar.PrintHealthBar(PercentHp, isPlayer);
+        Console.SetCursorPosition(40, 1);
         PrintColor.Red($"{CurrentHp:F0}/{TotalHp:F0}({PercentHp:F0}%)", "Write");
     }
 }
