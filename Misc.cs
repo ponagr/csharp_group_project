@@ -9,16 +9,25 @@ public static class Clear   //Använder SetCursorPosition för att "Cleara" spec
         Console.SetCursorPosition(0, currentLine);   // Flytta tillbaka markören till ursprunglig position
     }
 
-    public static void PlayerDamage()   //Rensar raden där playerDamage skrivs ut
+    // public static void PlayerDamage()   //Rensar raden där playerDamage skrivs ut
+    // {
+    //     Console.SetCursorPosition(25, 3);   // Flytta till den rad som ska rensas
+    //     Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där damage skrivs ut
+    //     Console.SetCursorPosition(25, 4);   // Flytta till den rad som ska rensas
+    //     Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där damage skrivs ut
+    //     Console.SetCursorPosition(25, 5);   // Flytta till den rad som ska rensas
+    //     Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där damage skrivs ut
+    //     Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
+    // }
+    public static void Damage()    //Rensar raden där enemyDamage skrivs ut
     {
-        Console.SetCursorPosition(25, 3);   // Flytta till den rad som ska rensas
-        Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där damage skrivs ut
-        Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
-    }
-    public static void EnemyDamage()    //Rensar raden där enemyDamage skrivs ut
-    {
-        Console.SetCursorPosition(25, 4);   // Flytta till den rad som ska rensas
-        Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där damage skrivs ut
+        Console.SetCursorPosition(18, 3);   // Flytta till den rad som ska rensas
+        Console.Write(new string(' ', 20)); // Skriv tomma mellanslag där damage skrivs ut
+        Console.SetCursorPosition(18, 4);   // Flytta till den rad som ska rensas
+        Console.Write(new string(' ', 20)); // Skriv tomma mellanslag där damage skrivs ut
+        Console.SetCursorPosition(18, 5);   // Flytta till den rad som ska rensas
+        Console.Write(new string(' ', 20)); // Skriv tomma mellanslag där damage skrivs ut
+        
         Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
     }
 
@@ -38,6 +47,20 @@ public static class Clear   //Använder SetCursorPosition för att "Cleara" spec
         Console.SetCursorPosition(30, 1);
         Console.Write(new string(' ', 14));
         Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
+    }
+}
+
+public static class Write
+{
+    public static void MultipleLines(List<string> textToWrite, int startLine, int linePosition)
+    {
+        for (int i = 0; i < textToWrite.Count; i++)
+        {
+            Console.SetCursorPosition(linePosition, startLine);
+            Console.WriteLine(textToWrite[i]);
+            startLine++;
+        }
+        Console.SetCursorPosition(0, startLine);
     }
 }
 
@@ -125,7 +148,7 @@ public static class PrintColor
     }
     public static void DarkYellow(string stringToPrint, string Write)
     {
-             if (Write == "WriteLine")
+        if (Write == "WriteLine")
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine(stringToPrint);
@@ -139,17 +162,83 @@ public static class PrintColor
             Console.ResetColor();
         }
     }
-    public static void BackgroundRed(string stringToPrint)
+    public static void DarkGreen(string stringToPrint, string Write)
     {
-        Console.BackgroundColor = ConsoleColor.Red;
-        Console.WriteLine(stringToPrint);
-        Console.ResetColor();
+        if (Write == "WriteLine")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
     }
-    public static void BackgroundGreen(string stringToPrint)
+    public static void Magenta(string stringToPrint, string Write)
     {
-        Console.BackgroundColor = ConsoleColor.Green;
-        Console.WriteLine(stringToPrint);
-        Console.ResetColor();
+        if (Write == "WriteLine")
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void BackgroundDarkCyan(string stringToPrint, string Write)
+    {
+        if (Write == "WriteLine")
+        {
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void BackgroundRed(string stringToPrint, string Write)
+    {
+        if (Write == "WriteLine")
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+        else if (Write == "Write")
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void BackgroundGreen(string stringToPrint, string Write)
+    {  
+        if (Write == "WriteLine")
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+        else if (Write == "Write")
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
     }
 
 }
