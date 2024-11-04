@@ -9,16 +9,6 @@ public static class Clear   //Använder SetCursorPosition för att "Cleara" spec
         Console.SetCursorPosition(0, currentLine);   // Flytta tillbaka markören till ursprunglig position
     }
 
-    // public static void PlayerDamage()   //Rensar raden där playerDamage skrivs ut
-    // {
-    //     Console.SetCursorPosition(25, 3);   // Flytta till den rad som ska rensas
-    //     Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där damage skrivs ut
-    //     Console.SetCursorPosition(25, 4);   // Flytta till den rad som ska rensas
-    //     Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där damage skrivs ut
-    //     Console.SetCursorPosition(25, 5);   // Flytta till den rad som ska rensas
-    //     Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där damage skrivs ut
-    //     Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
-    // }
     public static void Damage()    //Rensar raden där enemyDamage skrivs ut
     {
         Console.SetCursorPosition(18, 3);   // Flytta till den rad som ska rensas
@@ -52,6 +42,7 @@ public static class Clear   //Använder SetCursorPosition för att "Cleara" spec
 
 public static class Write
 {
+    //Metod för att skriva ut text på en specifik rad och position via SetCursorPosition
     public static void MultipleLines(List<string> textToWrite, int startLine, int linePosition)
     {
         for (int i = 0; i < textToWrite.Count; i++)
@@ -64,6 +55,7 @@ public static class Write
     }
 }
 
+//Klass med metoder för att skriva ut olika färger på texten
 public static class PrintColor
 {
     public static void Red(string stringToPrint, string Write)
