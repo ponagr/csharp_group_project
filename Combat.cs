@@ -116,7 +116,7 @@ public static class Combat
             //Gubben
             Textures.PrintPlayerCharacter(2,0);
             Console.SetCursorPosition(25, 2);
-            Textures.PrintEnemyCharacter();
+            Textures.PrintEnemyCharacter(enemy);
 
             CombatMenu(player, enemy);
 

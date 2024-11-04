@@ -20,7 +20,7 @@ public class Enemy : GameObject
         healthBar = new HealthBar();
     }
 
-    public string Attack(Player player, out string critical)
+    public virtual string Attack(Player player, out string critical)
     {
         Random rndCrit = new Random();
         double damageDone;

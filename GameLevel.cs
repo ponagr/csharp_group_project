@@ -78,11 +78,12 @@ public static class GameLevel
     //Metoder för alla olika utfall som kan ske på mappen, anropas via MovePlayer-metod
     //tar in nya positioner för att flytta spelaren och utför specifika händelser baserat på vilken metod som anropas från MovePlayer
     #region ENEMY
-    private static void HandleEnemy(Player player, Enemy enemy, char[,] gameMap, int newX, int newY)
+    private static void HandleEnemy(Player player, List<Enemy> enemies, char[,] gameMap, int newX, int newY)
     {
-        Combat.FightMode(player, enemy);
-        if (enemy.CurrentHp <= 0)
+        Combat.FightMode(player, enemies[0]);
+        if (enemies[0].CurrentHp <= 0)
         {
+            enemies.RemoveAt(0);
             gameMap[newX, newY] = Empty;
         }
     }
@@ -131,7 +132,7 @@ public static class GameLevel
     #endregion
 
     #region MOVEMENT
-    public static void MovePlayer(char[,] gameMap, Player player, Enemy enemy)
+    public static void MovePlayer(char[,] gameMap, Player player, List<Enemy> enemies)
     {
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
@@ -197,7 +198,7 @@ public static class GameLevel
         }
         else if (gameMap[newX, newY] == Enemy)
         {
-            HandleEnemy(player, enemy, gameMap, newX, newY);
+            HandleEnemy(player, enemies, gameMap, newX, newY);
         }
         else if (gameMap[newX, newY] == Coin)
         {

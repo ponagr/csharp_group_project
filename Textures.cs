@@ -1,7 +1,7 @@
 
 public static class Textures
 {
-// PLAYER ANIMATIONS
+    // PLAYER ANIMATIONS
     public static void AttackPlayerAnimation()
     {
         Console.ForegroundColor = ConsoleColor.Green;
@@ -49,22 +49,60 @@ public static class Textures
 
 
     // ENEMY ANIMATIONS
-    public static void PrintEnemyCharacter()
+    public static void PrintEnemyCharacter(Enemy enemy)
     {
-
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.SetCursorPosition(40, 2);
-        Console.WriteLine(".        ");
-        Console.SetCursorPosition(40, 3);
-        Console.WriteLine("|  0    ");
-        Console.SetCursorPosition(40, 4);
-        Console.WriteLine("T--||-[E]  ");
-        Console.SetCursorPosition(40, 5);
-        Console.WriteLine("   /\\  	");
-        Console.SetCursorPosition(40, 6);
-        Console.WriteLine("  |  \\");
-        Console.ResetColor();
-        Console.WriteLine();
+        if (enemy is Assassin)
+        {
+            Assassin assassin = enemy as Assassin;
+            if (assassin.isVisable == false)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.SetCursorPosition(40, 2);
+                Console.WriteLine(".        ");
+                Console.SetCursorPosition(40, 3);
+                Console.WriteLine("|  0    ");
+                Console.SetCursorPosition(40, 4);
+                Console.WriteLine("T--||-[E]  ");
+                Console.SetCursorPosition(40, 5);
+                Console.WriteLine("   /\\  	");
+                Console.SetCursorPosition(40, 6);
+                Console.WriteLine("  |  \\");
+                Console.ResetColor();
+                Console.WriteLine();
+            }
+            else // FIXA SENARE!
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.SetCursorPosition(40, 2);
+                Console.WriteLine(".        ");
+                Console.SetCursorPosition(40, 3);
+                Console.WriteLine("|  0    ");
+                Console.SetCursorPosition(40, 4);
+                Console.WriteLine("T--||-[E]  ");
+                Console.SetCursorPosition(40, 5);
+                Console.WriteLine("   /\\  	");
+                Console.SetCursorPosition(40, 6);
+                Console.WriteLine("  |  \\");
+                Console.ResetColor();
+                Console.WriteLine();
+            }
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(40, 2);
+            Console.WriteLine(".        ");
+            Console.SetCursorPosition(40, 3);
+            Console.WriteLine("|  0    ");
+            Console.SetCursorPosition(40, 4);
+            Console.WriteLine("T--||-[E]  ");
+            Console.SetCursorPosition(40, 5);
+            Console.WriteLine("   /\\  	");
+            Console.SetCursorPosition(40, 6);
+            Console.WriteLine("  |  \\");
+            Console.ResetColor();
+            Console.WriteLine();
+        }
     }
 
     public static void AttackEnemyAnimation()
