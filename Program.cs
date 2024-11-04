@@ -17,9 +17,11 @@
         {
             GameLevel.PrintGameBoard(GameLevel.gameLevel1, player);     //Skriver ut mappen
             GameLevel.MovePlayer(GameLevel.gameLevel1, player, enemies);  //Inväntar sedan input från användaren, flyttar sedan player baserat på input, 
-            if (player.CurrentHp <= 0)                                  //börjar sedan om loop och skriver ut mapp igen, om inte player.CurrentHp är 0, isåfall avslutas loop(GameOver)
+            if (player.CurrentHp < 1)                                  //börjar sedan om loop och skriver ut mapp igen, om inte player.CurrentHp är 0, isåfall avslutas loop(GameOver)
             {
+                Console.Clear();
                 Console.WriteLine("Du dog"); // LÄGG IN EN ANIMATION
+                Textures.PrintDeadText();
                 gameOver = true;
             }
         }

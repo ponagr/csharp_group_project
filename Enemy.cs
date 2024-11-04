@@ -20,6 +20,13 @@ public class Enemy : GameObject
         healthBar = new HealthBar();
     }
 
+    public virtual string TakeDamage(double damage, out bool hitable)
+    {
+        hitable = true;
+        CurrentHp -= damage;
+        return $"DMG {damage:F0} -->";
+    }
+
     public virtual string Attack(Player player, out string critical)
     {
         Random rndCrit = new Random();

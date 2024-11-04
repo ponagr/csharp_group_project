@@ -152,11 +152,16 @@ public static class Combat
                 PlayerAttack(enemy);
             }
 
-            Thread.Sleep(400);
+            Thread.Sleep(500);
 
             EnemyAttack(player);
 
-            Thread.Sleep(550);
+            Thread.Sleep(700);
+
+            if (player.CurrentHp < 1)
+            {
+                return;
+            }
         }
     }
 }

@@ -24,9 +24,6 @@ public class Assassin : Enemy
         isVisable = false;
     }
 
-
-
-
     public double StealthAttack()
     {
         double damage;
@@ -35,17 +32,37 @@ public class Assassin : Enemy
         return damage;
     }
 
-
-    public override string Attack(Player player, out string critical)
+    public override string TakeDamage(double damage, out bool hitable)
     {
         if (isVisable)
         {
-            isVisable = false;
+            return base.TakeDamage(damage, out hitable);
+        }
+        else
+        {
+            hitable = false;
+            return $"Miss!";
+        }
+    }
+
+
+    public override string Attack(Player player, out string critical)
+    {
+        Random rndVisable = new Random();
+
+        if (isVisable)
+        {
+            int magicNumber = rndVisable.Next(1, 3);
+
+            if (magicNumber == 1)
+            {
+                isVisable = false;
+            }
             return base.Attack(player, out critical);
         }
         else // När fienden är osynlig
         {
-            
+
             isVisable = true;
             critical = "Kniv i ryggen";
             double damage = StealthAttack();

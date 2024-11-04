@@ -154,25 +154,42 @@ public class Player : GameObject
         Random rndDodge = new Random();           // DODGE
         int dodgeChance = Convert.ToInt32(BaseAgility);
         int dodge = rndDodge.Next(0, 101);
+        string printDamage;
         double damageNegation = enemy.TotalResistance * 0.2;
         if (dodge <= dodgeChance)
         {
             critical = "";
-            return $"{enemy.Name} DODGED";
+            printDamage = enemy.TakeDamage(damageNegation ,out bool hitable);
+            if(hitable)
+            {
+                return $"{enemy.Name} DODGED";
+            }
+            else
+            {
+                return printDamage;
+            }
+            
         }
         else if (attackCrit)
         {
             damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
-            enemy.CurrentHp -= damageDone;
-            critical = "CRITICAL";
-            return $"{damageDone:F0} DMG -->";
+            printDamage = enemy.TakeDamage(damageDone, out bool hitable);
+            if (!hitable)
+            {
+                critical = " ";
+            }
+            else
+            {
+                critical = "CRITICAL";
+            }
+            return printDamage;
         }
-        else
+        else // VANLIG ATTACK
         {
             damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
-            enemy.CurrentHp -= damageDone;
+            printDamage = enemy.TakeDamage(damageDone, out bool hitable);
             critical = "";
-            return $"{damageDone:F0} DMG -->";
+            return printDamage;
         }
     }
     #endregion
@@ -219,4 +236,3 @@ public class Player : GameObject
     }
     #endregion
 }
-    
