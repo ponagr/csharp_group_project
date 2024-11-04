@@ -135,12 +135,12 @@ public class Player : GameObject
     {
         Random rndCrit = new Random();
         double damageDone;
-        int critChange = Convert.ToInt32(BaseAgility); // Om Agility är 10
+        int critChance = Convert.ToInt32(BaseAgility); // Om Agility är 10
         int crit = rndCrit.Next(0, 101); // 0 - 10
         double damage;
         bool attackCrit = false;
 
-        if (crit <= critChange)
+        if (crit <= critChance)
         {
             damage = TotalDamage * 1.8;
             attackCrit = true;
@@ -152,10 +152,10 @@ public class Player : GameObject
 
         Random rndDamage = new Random();
         Random rndDodge = new Random();
-        int dodgeChange = Convert.ToInt32(BaseAgility);
+        int dodgeChance = Convert.ToInt32(BaseAgility);
         int dodge = rndDodge.Next(0, 101);
         double damageNegation = enemy.TotalResistance * 0.2;
-        if (dodge <= dodgeChange)
+        if (dodge <= dodgeChance)
         {
             critical = "";
             return $"{enemy.Name} DODGED";
