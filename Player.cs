@@ -131,14 +131,15 @@ public class Player : GameObject
     }
     #endregion
     #region ATTACK
-    public string Attack(Enemy enemy, out string critical)
+    public string Attack(Enemy enemy, out string attackMessage)
     {
         Random rndCrit = new Random();
-        double damageDone;
+        double totalDamageDone;
         int critChance = Convert.ToInt32(BaseAgility); // Om Agility är 10 // CRITICAL HITS
         int crit = rndCrit.Next(0, 101); // 0 - 10
         double damage;
         bool attackCrit = false;
+        string printDamage;
 
         if (crit <= critChance)
         {
@@ -151,57 +152,64 @@ public class Player : GameObject
         }
 
         Random rndDamage = new Random();
-        Random rndDodge = new Random();           // DODGE
-        int dodgeChance = Convert.ToInt32(BaseAgility);
-        int dodge = rndDodge.Next(0, 101);
-        string printDamage;
         double damageNegation = enemy.TotalResistance * 0.2;
-        if (dodge <= dodgeChance)
-        {
-            critical = "";
-            printDamage = enemy.TakeDamage(damageNegation ,out bool hitable);
-            if(hitable)
-            {
-                return $"{enemy.Name} DODGED";
-            }
-            else
-            {
-                return printDamage;
-            }
+        totalDamageDone = damage + rndDamage.Next(0, 10) - damageNegation;
+
+        printDamage = enemy.TakeDamage(totalDamageDone, attackCrit, out attackMessage);
+
+        return printDamage;
+
+        // Random rndDodge = new Random();           // DODGE
+        // int dodgeChance = Convert.ToInt32(BaseAgility);
+        // int dodge = rndDodge.Next(0, 101);
+        
+        // //double damageNegation = enemy.TotalResistance * 0.2;
+        // if (dodge <= dodgeChance)
+        // {
+        //     attackMessage = "";
+        //     printDamage = enemy.TakeDamage(damageNegation ,out bool hitable);
+        //     if(hitable)
+        //     {
+        //         return $"{enemy.Name} DODGED";
+        //     }
+        //     else
+        //     {
+        //         return printDamage;
+        //     }
             
-        }
-        else if (attackCrit)
-        {
-            damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
-            printDamage = enemy.TakeDamage(damageDone, out bool hitable);
-            if (!hitable)
-            {
-                critical = " ";
-            }
-            else
-            {
-                critical = "CRITICAL";
-            }
-            return printDamage;
-        }
-        else // VANLIG ATTACK
-        {
-            damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
-            printDamage = enemy.TakeDamage(damageDone, out bool hitable);
-            critical = "";
-            return printDamage;
-        }
+        // }
+        // else if (attackCrit)
+        // {
+        //     damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
+        //     printDamage = enemy.TakeDamage(damageDone, out bool hitable);
+        //     if (!hitable)
+        //     {
+        //         attackMessage = " ";
+        //     }
+        //     else
+        //     {
+        //         attackMessage = "CRITICAL";
+        //     }
+        //     return printDamage;
+        // }
+        // else // VANLIG ATTACK
+        // {
+        //     damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
+        //     printDamage = enemy.TakeDamage(damageDone, out bool hitable);
+        //     attackMessage = "";
+        //     return printDamage;
+        // }
     }
     #endregion
     #region XP OCH LEVELUP
     public void EnemyKilled(Enemy enemy)
     {
         CurrentXp += enemy.XpDrop;
-        Console.SetCursorPosition(0, 8);
+        Console.SetCursorPosition(0, 11);
         PrintColor.DarkYellow($"+{enemy.XpDrop} XP        ", "WriteLine");
 
-        Console.SetCursorPosition(0, 9);
-        Clear.Row(9);
+        Console.SetCursorPosition(0, 12);
+        Clear.Row(12);
         Console.WriteLine("             \n            \n              \n          "); // För att input-text ska försvinna
         Console.ResetColor();
         Textures.PrintDeadText();

@@ -20,14 +20,32 @@ public class Enemy : GameObject
         healthBar = new HealthBar();
     }
 
-    public virtual string TakeDamage(double damage, out bool hitable) // Tar emot printDamage från Players Attack(), kallas här för damage
+    public virtual string TakeDamage(double damage, bool crit, out string attackMessage) // Tar emot printDamage från Players Attack(), kallas här för damage
     {
-        hitable = true;
+        Random rndDodge = new Random();           // DODGE
+        int dodgeChance = Convert.ToInt32(BaseAgility);
+        int dodge = rndDodge.Next(0, 101);
+        
+        if (dodge <= dodgeChance)
+        {
+            attackMessage = "DODGED";
+            damage = 0;
+            CurrentHp -= damage;
+            return "";          
+        }
+        else if (crit)
+        {
+            attackMessage = "CRITICAL";
+        }
+        else // VANLIG ATTACK
+        {
+            attackMessage = "";
+        }
         CurrentHp -= damage;
         return $"DMG {damage:F0} -->";
     }
 
-    public virtual string Attack(Player player, out string critical)
+    public virtual string Attack(Player player, out string attackMessage)
     {
         Random rndCrit = new Random();
         double damageDone;
@@ -52,19 +70,19 @@ public class Enemy : GameObject
         double damageNegation = player.TotalResistance * 0.2;
         if (dodge <= dodgeChange)
         {
-            critical = "";
+            attackMessage = "";
             return $"{player.Name} DODGED";
         }
         else if (attackCrit)
         {
-            critical = "CRITICAL";
+            attackMessage = "attackMessage";
             damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
             player.CurrentHp -= damageDone;
             return $"<-- {damageDone:F0} DMG";
         }
         else
         {
-            critical = "";
+            attackMessage = "";
             damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
             player.CurrentHp -= damageDone;
             return $"<-- {damageDone:F0} DMG";
@@ -74,9 +92,11 @@ public class Enemy : GameObject
 
     public void ShowHp()
     {
-        Console.SetCursorPosition(40, 0);
+        // Console.SetCursorPosition(40, 0);
+        // Console.WriteLine($"{Name}({Description})");
+        Console.SetCursorPosition(40, 2);
         healthBar.PrintHealthBar(PercentHp, isPlayer);
-        Console.SetCursorPosition(40, 1);
+        Console.SetCursorPosition(40, 3);
         PrintColor.Red($"{CurrentHp:F0}/{TotalHp:F0}({PercentHp:F0}%)", "Write");
     }
 }

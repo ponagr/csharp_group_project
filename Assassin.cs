@@ -32,21 +32,21 @@ public class Assassin : Enemy
         return damage;
     }
 
-    public override string TakeDamage(double damage, out bool hitable)
+    public override string TakeDamage(double damage, bool crit, out string attackMessage)
     {
         if (isVisable)
         {
-            return base.TakeDamage(damage, out hitable);
+            return base.TakeDamage(damage, crit, out attackMessage);
         }
         else
         {
-            hitable = false;
-            return $"Miss!";
+            attackMessage = $"Unhittable!";
+            return "";
         }
     }
 
 
-    public override string Attack(Player player, out string critical) // Borde critical heta typ fightmessage eller attackinfo?
+    public override string Attack(Player player, out string attackMessage) // Borde attackMessage heta typ fightmessage eller attackinfo?
     {
         Random rndVisable = new Random();
 
@@ -58,13 +58,12 @@ public class Assassin : Enemy
             {
                 isVisable = false;
             }
-            return base.Attack(player, out critical);
+            return base.Attack(player, out attackMessage);
         }
         else // När fienden är synlig
         {
-
             isVisable = true;
-            critical = "Kniv i ryggen";
+            attackMessage = "Kniv i ryggen";
             double damage = StealthAttack();
             player.CurrentHp -= damage;
             string message = $"<-- {damage:F0}";

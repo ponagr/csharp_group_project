@@ -12,11 +12,11 @@ public static class Combat
     private static void CombatMenu(Player player, Enemy enemy)
     {
         //Menyn
-        Console.SetCursorPosition(0, 8);
+        Console.SetCursorPosition(0, 11);
         Console.WriteLine("1. Attack");
         if (player.HealingPot.Ammount == 0)
         {
-            Console.SetCursorPosition(0, 9);
+            Console.SetCursorPosition(0, 12);
             Console.Write($"2. Heal - ");
             Console.ForegroundColor = ConsoleColor.Red;
             player.HealingPot.ShowItem();
@@ -24,16 +24,16 @@ public static class Combat
         }
         else
         {
-            Console.SetCursorPosition(0, 9);
+            Console.SetCursorPosition(0, 12);
             Console.Write($"2. Heal - ");
             Console.ForegroundColor = ConsoleColor.Green;
             player.HealingPot.ShowItem();
             Console.ResetColor();
             
         }
-        Console.SetCursorPosition(0, 10);
+        Console.SetCursorPosition(0, 13);
         Console.WriteLine("3. Fly");
-        Console.SetCursorPosition(0, 12);
+        Console.SetCursorPosition(0, 14);
     }
 
     private static void EnemyKilled(Player player, Enemy enemy)
@@ -42,11 +42,11 @@ public static class Combat
         Clear.Damage();
         Clear.EnemyHp();
         enemy.ShowHp();
-        Console.SetCursorPosition(20, 3);
+        Console.SetCursorPosition(20, 6);
         PrintColor.Green($"{criticalPlayer}", "WriteLine");
-        Console.SetCursorPosition(20, 4);
+        Console.SetCursorPosition(20, 7);
         PrintColor.Green($"{playerDamage}", "WriteLine");
-        Console.SetCursorPosition(0, 8);
+        Console.SetCursorPosition(0, 11);
         player.EnemyKilled(enemy);  //Skriver ut skadan
         Console.WriteLine("            ");
         Console.WriteLine("            "); // FÖR ATT DÖLJA TIDIGARE TEXT
@@ -61,9 +61,9 @@ public static class Combat
         Clear.EnemyHp();
         enemy.ShowHp();
 
-        Console.SetCursorPosition(20, 3);
+        Console.SetCursorPosition(20, 6);
         PrintColor.Green($"{criticalPlayer}", "WriteLine");
-        Console.SetCursorPosition(20, 4);
+        Console.SetCursorPosition(20, 7);
         PrintColor.Green($"{playerDamage}", "WriteLine");
     }
 
@@ -73,26 +73,44 @@ public static class Combat
         Clear.Damage();    //Rensa sedan damagetext och players hp
         Clear.PlayerHp();
 
-        Console.SetCursorPosition(0, 0);       //Och uppdatera detta
+        Console.SetCursorPosition(0, 2);       //Och uppdatera detta
         player.ShowHp();
 
         Clear.Damage();
 
-        Console.SetCursorPosition(20, 3);
+        Console.SetCursorPosition(20, 6);
         PrintColor.Red($"{criticalEnemy}", "WriteLine");
-        Console.SetCursorPosition(20, 4);
+        Console.SetCursorPosition(20, 7);
         PrintColor.Red(enemyDamage, "WriteLine");
     }
 
     private static void PlayerHeal(Player player)
     {
         Clear.PlayerHp();
-        Console.SetCursorPosition(0, 0);  //Rad, Kolumn
+        Console.SetCursorPosition(0, 2);  //Rad, Kolumn
         player.ShowHp();
 
-        Console.SetCursorPosition(20, 3);
+        Console.SetCursorPosition(20, 7);
 
         PrintColor.Green($"{playerHealing}", "WriteLine");
+    }
+
+    private static void StartPosition(Player player, Enemy enemy)
+    {
+        Console.SetCursorPosition(0, 0);
+            PrintColor.Green($"{player.Name}                   ", "Write");
+            Console.Write("VS");
+            PrintColor.Red($"             {enemy.Name}({enemy.Description})", "Write");
+            //HP        Skriv ut Hp och "gubbar" i början av loopen
+            Console.SetCursorPosition(0, 2);
+            player.ShowHp();    //Ska uppdateras
+            enemy.ShowHp();     //Ska uppdateras
+            Console.WriteLine();
+
+            //Gubben
+            Textures.PrintPlayerCharacter(5,0);
+            Console.SetCursorPosition(25, 5);
+            Textures.PrintEnemyCharacter(enemy);
     }
 
     public static void FightMode(Player player, Enemy enemy)
@@ -108,15 +126,21 @@ public static class Combat
             Console.CursorVisible = false;
             Console.Clear();
 
-            //HP        Skriv ut Hp och "gubbar" i början av loopen
-            player.ShowHp();    //Ska uppdateras
-            enemy.ShowHp();     //Ska uppdateras
-            Console.WriteLine();
+            StartPosition(player, enemy);
+            // Console.SetCursorPosition(0, 0);
+            // PrintColor.Green($"{player.Name}                   ", "Write");
+            // Console.Write("VS");
+            // PrintColor.Red($"             {enemy.Name}({enemy.Description})", "Write");
+            // //HP        Skriv ut Hp och "gubbar" i början av loopen
+            // Console.SetCursorPosition(0, 2);
+            // player.ShowHp();    //Ska uppdateras
+            // enemy.ShowHp();     //Ska uppdateras
+            // Console.WriteLine();
 
-            //Gubben
-            Textures.PrintPlayerCharacter(2,0);
-            Console.SetCursorPosition(25, 2);
-            Textures.PrintEnemyCharacter(enemy);
+            // //Gubben
+            // Textures.PrintPlayerCharacter(5,0);
+            // Console.SetCursorPosition(25, 5);
+            // Textures.PrintEnemyCharacter(enemy);
 
             CombatMenu(player, enemy);
 

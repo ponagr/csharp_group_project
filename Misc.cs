@@ -11,11 +11,11 @@ public static class Clear   //Använder SetCursorPosition för att "Cleara" spec
 
     public static void Damage()    //Rensar raden där enemyDamage skrivs ut
     {
-        Console.SetCursorPosition(18, 3);   // Flytta till den rad som ska rensas
-        Console.Write(new string(' ', 20)); // Skriv tomma mellanslag där damage skrivs ut
-        Console.SetCursorPosition(18, 4);   // Flytta till den rad som ska rensas
-        Console.Write(new string(' ', 20)); // Skriv tomma mellanslag där damage skrivs ut
         Console.SetCursorPosition(18, 5);   // Flytta till den rad som ska rensas
+        Console.Write(new string(' ', 20)); // Skriv tomma mellanslag där damage skrivs ut
+        Console.SetCursorPosition(18, 6);   // Flytta till den rad som ska rensas
+        Console.Write(new string(' ', 20)); // Skriv tomma mellanslag där damage skrivs ut
+        Console.SetCursorPosition(18, 7);   // Flytta till den rad som ska rensas
         Console.Write(new string(' ', 20)); // Skriv tomma mellanslag där damage skrivs ut
         
         Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
@@ -23,8 +23,8 @@ public static class Clear   //Använder SetCursorPosition för att "Cleara" spec
 
     public static void PlayerHp()   //Rensar raden där playerHp skrivs ut
     {
-        Console.SetCursorPosition(0, 0);    // Flytta till den rad som ska rensas
-        Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där playerHp skrivs ut
+        //Console.SetCursorPosition(0, 0);    // Flytta till den rad som ska rensas
+        //Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där playerHp skrivs ut
         Console.SetCursorPosition(0, 1);
         Console.Write(new string(' ', 14));
         Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
@@ -32,8 +32,8 @@ public static class Clear   //Använder SetCursorPosition för att "Cleara" spec
 
     public static void EnemyHp()    //Rensar raden där enemyHp skrivs ut
     {
-        Console.SetCursorPosition(30, 0);   // Flytta till den rad som ska rensas
-        Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där enemyHp skrivs ut
+        //Console.SetCursorPosition(30, 0);   // Flytta till den rad som ska rensas
+        //Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där enemyHp skrivs ut
         Console.SetCursorPosition(30, 1);
         Console.Write(new string(' ', 14));
         Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
@@ -53,6 +53,8 @@ public static class Write
         }
         Console.SetCursorPosition(0, startLine);
     }
+
+    
 }
 
 //Klass med metoder för att skriva ut olika färger på texten
