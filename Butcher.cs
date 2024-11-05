@@ -26,6 +26,14 @@ public class Butcher : Enemy
 
         hasShield = false;
     }
+    public override void PrintCharacter(Enemy enemy)
+    {
+        Textures.PrintButcher();
+    }
+    public override void CharacterAttackAnimation(Enemy enemy)
+    {
+        Textures.ButcherAttackAnimation();
+    }
 
     public override string Attack(Player player, out string attackMessage)
     {

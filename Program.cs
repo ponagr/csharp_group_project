@@ -7,16 +7,9 @@
         Enemy enemy = new Enemy(player);
         Assassin assassin = new Assassin(player);
         Butcher butcher = new Butcher(player);
-
-        List<Enemy> enemies = new List<Enemy>();  
-        enemies.Add(butcher);
-        enemies.Add(assassin);
-        enemies.Add(enemy);
-        enemies.Add(enemy);
-        enemies.Add(enemy);
-        enemies.Add(enemy);
-        enemies.Add(enemy);
-        enemies.Add(enemy);
+        Archer archer = new Archer(player);
+        AssassinBoss assassinBoss = new AssassinBoss(player);
+        List<Enemy> enemies = new List<Enemy> {assassinBoss, archer, butcher, assassin, enemy, enemy, enemy, enemy, enemy, enemy }; 
 
         Items.ItemsToAdd();     //Lägger till items så att dessa existerar i spelet och kan lootas via kistor
         
