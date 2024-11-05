@@ -127,20 +127,6 @@ public static class Combat
             Console.Clear();
 
             StartPosition(player, enemy);
-            // Console.SetCursorPosition(0, 0);
-            // PrintColor.Green($"{player.Name}                   ", "Write");
-            // Console.Write("VS");
-            // PrintColor.Red($"             {enemy.Name}({enemy.Description})", "Write");
-            // //HP        Skriv ut Hp och "gubbar" i början av loopen
-            // Console.SetCursorPosition(0, 2);
-            // player.ShowHp();    //Ska uppdateras
-            // enemy.ShowHp();     //Ska uppdateras
-            // Console.WriteLine();
-
-            // //Gubben
-            // Textures.PrintPlayerCharacter(5,0);
-            // Console.SetCursorPosition(25, 5);
-            // Textures.PrintEnemyCharacter(enemy);
 
             CombatMenu(player, enemy);
 

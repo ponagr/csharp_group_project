@@ -92,8 +92,6 @@ public class Enemy : GameObject
 
     public void ShowHp()
     {
-        // Console.SetCursorPosition(40, 0);
-        // Console.WriteLine($"{Name}({Description})");
         Console.SetCursorPosition(40, 2);
         healthBar.PrintHealthBar(PercentHp, isPlayer);
         Console.SetCursorPosition(40, 3);
