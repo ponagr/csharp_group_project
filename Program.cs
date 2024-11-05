@@ -7,8 +7,10 @@
         Enemy enemy = new Enemy(player);
         Assassin assassin = new Assassin(player);
         Butcher butcher = new Butcher(player);
+        Archer archer = new Archer(player);
 
         List<Enemy> enemies = new List<Enemy>();  
+        enemies.Add(archer);
         enemies.Add(butcher);
         enemies.Add(assassin);
         enemies.Add(enemy);

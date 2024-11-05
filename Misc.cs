@@ -23,19 +23,19 @@ public static class Clear   //Använder SetCursorPosition för att "Cleara" spec
 
     public static void PlayerHp()   //Rensar raden där playerHp skrivs ut
     {
-        //Console.SetCursorPosition(0, 0);    // Flytta till den rad som ska rensas
-        //Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där playerHp skrivs ut
-        Console.SetCursorPosition(0, 1);
-        Console.Write(new string(' ', 14));
+        Console.SetCursorPosition(0, 2);    // Flytta till den rad som ska rensas
+        Console.Write(new string(' ', 18)); // Skriv tomma mellanslag där playerHp skrivs ut
+        Console.SetCursorPosition(0, 3);
+        Console.Write(new string(' ', 18));
         Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
     }
 
     public static void EnemyHp()    //Rensar raden där enemyHp skrivs ut
     {
-        //Console.SetCursorPosition(30, 0);   // Flytta till den rad som ska rensas
-        //Console.Write(new string(' ', 14)); // Skriv tomma mellanslag där enemyHp skrivs ut
-        Console.SetCursorPosition(30, 1);
-        Console.Write(new string(' ', 14));
+        Console.SetCursorPosition(38, 2);   // Flytta till den rad som ska rensas
+        Console.Write(new string(' ', 18)); // Skriv tomma mellanslag där enemyHp skrivs ut
+        Console.SetCursorPosition(38, 3);
+        Console.Write(new string(' ', 18));
         Console.SetCursorPosition(7, 12);   // Flytta tillbaka markören till positionen där "Input: " skrivs ut
     }
 }

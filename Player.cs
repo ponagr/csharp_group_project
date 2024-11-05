@@ -158,47 +158,6 @@ public class Player : GameObject
         printDamage = enemy.TakeDamage(totalDamageDone, attackCrit, out attackMessage);
 
         return printDamage;
-
-        // Random rndDodge = new Random();           // DODGE
-        // int dodgeChance = Convert.ToInt32(BaseAgility);
-        // int dodge = rndDodge.Next(0, 101);
-        
-        // //double damageNegation = enemy.TotalResistance * 0.2;
-        // if (dodge <= dodgeChance)
-        // {
-        //     attackMessage = "";
-        //     printDamage = enemy.TakeDamage(damageNegation ,out bool hitable);
-        //     if(hitable)
-        //     {
-        //         return $"{enemy.Name} DODGED";
-        //     }
-        //     else
-        //     {
-        //         return printDamage;
-        //     }
-            
-        // }
-        // else if (attackCrit)
-        // {
-        //     damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
-        //     printDamage = enemy.TakeDamage(damageDone, out bool hitable);
-        //     if (!hitable)
-        //     {
-        //         attackMessage = " ";
-        //     }
-        //     else
-        //     {
-        //         attackMessage = "CRITICAL";
-        //     }
-        //     return printDamage;
-        // }
-        // else // VANLIG ATTACK
-        // {
-        //     damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
-        //     printDamage = enemy.TakeDamage(damageDone, out bool hitable);
-        //     attackMessage = "";
-        //     return printDamage;
-        // }
     }
     #endregion
     #region XP OCH LEVELUP

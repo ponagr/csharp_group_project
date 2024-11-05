@@ -45,6 +45,15 @@ public class Assassin : Enemy
         }
     }
 
+    public override void PrintCharacter(Enemy enemy)
+    {
+        Assassin assassin = enemy as Assassin;
+        Textures.PrintAssassin(assassin);
+    }
+    public override void CharacterAttackAnimation(Enemy enemy)
+    {
+        Textures.AssassinAttackAnimation();
+    }
 
     public override string Attack(Player player, out string attackMessage) // Borde attackMessage heta typ fightmessage eller attackinfo?
     {
