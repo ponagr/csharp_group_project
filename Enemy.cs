@@ -27,7 +27,8 @@ public class Enemy : GameObject
         int dodge = rndDodge.Next(0, 101);
         
         if (dodge <= dodgeChance)
-        {
+        {   
+            //Texture.DodgeAnimaton();
             attackMessage = "DODGED";
             damage = 0;
             CurrentHp -= damage;
@@ -61,6 +62,7 @@ public class Enemy : GameObject
         {
             damage = TotalDamage * 1.8;
             attackCrit = true;
+            //Textures.CriticalHit();
         }
         else
         {
@@ -79,7 +81,7 @@ public class Enemy : GameObject
         }
         else if (attackCrit)
         {
-            attackMessage = "attackMessage";
+            attackMessage = "CRITICAL";
             damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
             player.CurrentHp -= damageDone;
             return $"<-- {damageDone:F0} DMG";
