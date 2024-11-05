@@ -10,6 +10,11 @@
         List<Enemy> enemies = new List<Enemy>();  
         enemies.Add(assassin);
         enemies.Add(enemy);
+        enemies.Add(enemy);
+        enemies.Add(enemy);
+        enemies.Add(enemy);
+        enemies.Add(enemy);
+        enemies.Add(enemy);
 
         Items.ItemsToAdd();     //Lägger till items så att dessa existerar i spelet och kan lootas via kistor
         

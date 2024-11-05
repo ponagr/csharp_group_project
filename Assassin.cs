@@ -46,7 +46,7 @@ public class Assassin : Enemy
     }
 
 
-    public override string Attack(Player player, out string critical)
+    public override string Attack(Player player, out string critical) // Borde critical heta typ fightmessage eller attackinfo?
     {
         Random rndVisable = new Random();
 
@@ -60,7 +60,7 @@ public class Assassin : Enemy
             }
             return base.Attack(player, out critical);
         }
-        else // När fienden är osynlig
+        else // När fienden är synlig
         {
 
             isVisable = true;

@@ -20,7 +20,7 @@ public class Enemy : GameObject
         healthBar = new HealthBar();
     }
 
-    public virtual string TakeDamage(double damage, out bool hitable)
+    public virtual string TakeDamage(double damage, out bool hitable) // Tar emot printDamage från Players Attack(), kallas här för damage
     {
         hitable = true;
         CurrentHp -= damage;

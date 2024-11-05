@@ -52,24 +52,39 @@ public class Inventory
             Console.WriteLine("Din inventory är tom");
         }
     }
-    private void EquipmentMenu(Player player)
-    {
-        Console.Clear();
-        PlayerEquipment.ShowWornGear(player);   //Skriver ut gear som player har equippat
-        Console.WriteLine();
-        player.Inventory.ShowEquipmentInventory();  //skriver ut gear som player har i inventory tillsammas med gearens stats
 
-        Console.WriteLine("Välj ett item för att interagera ([C] - tillbaka)");
-        var input = Console.ReadKey(true);
-        if (input.Key == ConsoleKey.C)      //om användaren trycker 'C', gå tillbaka till InventoryUI
+    private void EquipmentMenu(Player player)
+{
+    Console.Clear();
+    PlayerEquipment.ShowWornGear(player);   // Skriv ut gear som player har equippat
+    Console.WriteLine();
+    player.Inventory.ShowEquipmentInventory();  // Skriv ut gear som player har i inventory tillsammans med gearens stats
+
+    Console.WriteLine("Välj ett item för att interagera ([C] - tillbaka):");
+
+    while (true)
+    {
+        var input = Console.ReadKey(true);  // Läs användarens inmatning utan att visa den på skärmen
+        if (input.Key == ConsoleKey.C)  // Om användaren trycker 'C', gå tillbaka till InventoryUI
         {
             return;
         }
-        string strInput = input.KeyChar.ToString();     //Annars skriver användaren in sitt val och vi anropar CheckGearType 
-        int i = int.Parse(strInput);                    //för att kontrollera av vilken typ det item som vi valt är
-        PlayerEquipment.CheckGearType(player, player.Inventory.inventory[i-1]);     //Och jämför sedan det valda itemets stats med players equipped item stats
 
+        string strInput = input.KeyChar.ToString();  // Om inmatningen inte är 'C', hantera den som ett val
+        int index;
+
+        if (int.TryParse(strInput, out index) && index >= 1 && index <= player.Inventory.inventory.Count) // Försök att parsa inmatningen till ett heltal
+        {
+            PlayerEquipment.CheckGearType(player, player.Inventory.inventory[index - 1]); // Om det är ett giltigt index, kolla itemets typ och jämför stats
+            break;  // Avsluta loop
+        }
+        else
+        { 
+            Console.WriteLine("Ogiltigt val, välj ett giltigt index eller tryck [C] för att gå tillbaka.");
+        }
     }
+}
+
     private void ShowEquipmentInventory() // För att visa inventory MED stats
     {
         Console.WriteLine($"Inventory - Space: {inventory.Count}/10");
