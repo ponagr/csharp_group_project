@@ -6,10 +6,11 @@
         Player player = new Player("Player");
         Enemy enemy = new Enemy(player);
 
-        AddMaps.AddMap(player);
-        List<Map> maps = AddMaps.maps;
-        Items.ItemsToAdd();     //Lägger till items så att dessa existerar i spelet och kan lootas via kistor
-        
+        List<Map> maps = new List<Map>();
+        maps.Add(AddMaps.Level1(player)); 
+        maps.Add(AddMaps.Level2(player));
+        //Items.ItemsToAdd();     //Lägger till items så att dessa existerar i spelet och kan lootas via kistor
+        GameLevel.level = 0;
         while (!gameOver)
         {
             GameLevel.PrintGameBoard(maps, player);     //Skriver ut mappen
