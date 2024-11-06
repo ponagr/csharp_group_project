@@ -7,8 +7,8 @@ public class Consumable : Item
     {
         ItemName = "Healing Potion";
         ItemType = "Consumable";
-        Healing = 50;
-        Ammount = 3;
+        Healing = 60;
+        Ammount = 5;
         MaxAmmount = 5;
     }
 

@@ -24,10 +24,9 @@ public class Assassin : Enemy
         isVisable = false;
     }
 
-    public double StealthAttack()
+    public double StealthAttack(double damage)
     {
-        double damage;
-        damage = TotalDamage * 1.5;
+        damage = damage * 1.5;
 
         return damage;
     }
@@ -47,8 +46,14 @@ public class Assassin : Enemy
 
     public override void PrintCharacter(Enemy enemy)
     {
-        Assassin assassin = enemy as Assassin;
-        Textures.PrintAssassin(assassin);
+        if (isVisable)
+        {
+            Textures.PrintAssassin();
+        }
+        else
+        {
+            Textures.PrintInvisibleAssassin();
+        }
     }
     public override void CharacterAttackAnimation(Enemy enemy)
     {
@@ -58,7 +63,7 @@ public class Assassin : Enemy
     public override string Attack(Player player, out string attackMessage) // Borde attackMessage heta typ fightmessage eller attackinfo?
     {
         Random rndVisable = new Random();
-
+        double damage = CalculateDamage(player, out bool attackCrit);
         if (isVisable)
         {
             int magicNumber = rndVisable.Next(1, 3);
@@ -73,7 +78,7 @@ public class Assassin : Enemy
         {
             isVisable = true;
             attackMessage = "Kniv i ryggen";
-            double damage = StealthAttack();
+            damage = StealthAttack(damage);
             player.CurrentHp -= damage;
             string message = $"<-- {damage:F0}";
             return message;

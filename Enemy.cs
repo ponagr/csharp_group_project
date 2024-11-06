@@ -50,30 +50,36 @@ public class Enemy : GameObject
     
     public virtual void CharacterAttackAnimation(Enemy enemy){}
 
-    public virtual string Attack(Player player, out string attackMessage)
-    {
+    public double CalculateDamage(Player player, out bool attackCrit)       //Separat metod för att räkna ut skada?
+    {                                                                       //För att kunna räkna ut damageNegation osv utan att använda base.Attack()
         Random rndCrit = new Random();
         double damageDone;
         int critChange = Convert.ToInt32(BaseAgility);
         int crit = rndCrit.Next(0, 101);
         double damage;
-        bool attackCrit = false;
+        attackCrit = false;
         if (crit <= critChange)
         {
             damage = TotalDamage * 1.8;
             attackCrit = true;
-            //Textures.CriticalHit();
         }
         else
         {
             damage = TotalDamage;
         }
-
+        double damageNegation = player.TotalResistance * 0.2;
         Random rndDamage = new Random();
+        damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
+        return damageDone;
+    }
+
+    public virtual string Attack(Player player, out string attackMessage)
+    {
+        double damageDone = CalculateDamage(player, out bool attackCrit);
+
         Random rndDodge = new Random();
         int dodgeChange = Convert.ToInt32(BaseAgility);
         int dodge = rndDodge.Next(0, 101);
-        double damageNegation = player.TotalResistance * 0.2;
         if (dodge <= dodgeChange)
         {
             attackMessage = "";
@@ -81,15 +87,14 @@ public class Enemy : GameObject
         }
         else if (attackCrit)
         {
+            //Textures.CriticalHit();
             attackMessage = "CRITICAL";
-            damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
             player.CurrentHp -= damageDone;
             return $"<-- {damageDone:F0} DMG";
         }
         else
         {
             attackMessage = "";
-            damageDone = damage + rndDamage.Next(0, 10) - damageNegation;
             player.CurrentHp -= damageDone;
             return $"<-- {damageDone:F0} DMG";
         }

@@ -161,14 +161,14 @@ public static class Combat
                 PlayerHeal(player);
             }
 
-            enemyDamage = enemy.Attack(player, out criticalEnemy);
+            
 
             if (input == "1")    //Vid attack
             {
                 PlayerAttack(enemy);
             }
-
-            Thread.Sleep(500);
+            enemyDamage = enemy.Attack(player, out criticalEnemy);
+            Thread.Sleep(700);
 
             EnemyAttack(player, enemy);
 

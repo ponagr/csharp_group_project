@@ -49,43 +49,39 @@ public static class Textures
     #endregion
     #region Assassin
     // ENEMY ANIMATIONS
-    public static void PrintAssassin(Assassin assassin)
+    public static void PrintAssassin()
     {
-        // if (enemy is Assassin)
-        // {
-        // Assassin assassin = enemy as Assassin;
-        if (assassin.isVisable == false)
-        {
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.SetCursorPosition(40, 5);
-            Console.WriteLine(".        ");
-            Console.SetCursorPosition(40, 6);
-            Console.WriteLine("|  0    ");
-            Console.SetCursorPosition(40, 7);
-            Console.WriteLine("T--||-[E]  ");
-            Console.SetCursorPosition(40, 8);
-            Console.WriteLine("   /\\  	");
-            Console.SetCursorPosition(40, 9);
-            Console.WriteLine("  |  \\");
-            Console.ResetColor();
-            Console.WriteLine();
-        }
-        else // FIXA SENARE!
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(40, 5);
-            Console.WriteLine(".        ");
-            Console.SetCursorPosition(40, 6);
-            Console.WriteLine("|  0    ");
-            Console.SetCursorPosition(40, 7);
-            Console.WriteLine("T--||-[E]  ");
-            Console.SetCursorPosition(40, 8);
-            Console.WriteLine("   /\\  	");
-            Console.SetCursorPosition(40, 9);
-            Console.WriteLine("  |  \\");
-            Console.ResetColor();
-            Console.WriteLine();
-        }
+
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.SetCursorPosition(40, 5);
+        Console.WriteLine(".        ");
+        Console.SetCursorPosition(40, 6);
+        Console.WriteLine("|  0    ");
+        Console.SetCursorPosition(40, 7);
+        Console.WriteLine("T--||-[E]  ");
+        Console.SetCursorPosition(40, 8);
+        Console.WriteLine("   /\\  	");
+        Console.SetCursorPosition(40, 9);
+        Console.WriteLine("  |  \\");
+        Console.ResetColor();
+        Console.WriteLine();
+
+    }
+    public static void PrintInvisibleAssassin()
+    {
+        Console.ForegroundColor = ConsoleColor.DarkGray;
+        Console.SetCursorPosition(40, 5);
+        Console.WriteLine(".        ");
+        Console.SetCursorPosition(40, 6);
+        Console.WriteLine("|  0    ");
+        Console.SetCursorPosition(40, 7);
+        Console.WriteLine("T--||-[E]  ");
+        Console.SetCursorPosition(40, 8);
+        Console.WriteLine("   /\\  	");
+        Console.SetCursorPosition(40, 9);
+        Console.WriteLine("  |  \\");
+        Console.ResetColor();
+        Console.WriteLine();
     }
 
     public static void AssassinAttackAnimation()
@@ -134,7 +130,7 @@ public static class Textures
         Console.SetCursorPosition(40, 8);
         Console.WriteLine("          /\\  ");
         Console.SetCursorPosition(40, 9);
-        Console.WriteLine("        /  | ");
+        Console.WriteLine("         /  | ");
         Console.WriteLine();
         Console.ResetColor();
     }
@@ -147,11 +143,11 @@ public static class Textures
         Console.SetCursorPosition(40, 6);
         Console.WriteLine("          O  ");
         Console.SetCursorPosition(40, 7);
-        Console.WriteLine("   <--  {-||  ");
+        Console.WriteLine("   <--  {-||~  ");
         Console.SetCursorPosition(40, 8);
         Console.WriteLine("          /\\  ");
         Console.SetCursorPosition(40, 9);
-        Console.WriteLine("        /  | ");
+        Console.WriteLine("         /  | ");
         Console.WriteLine();
 
         Thread.Sleep(200);
@@ -166,7 +162,7 @@ public static class Textures
         Console.SetCursorPosition(40, 8);
         Console.WriteLine("          /\\  ");
         Console.SetCursorPosition(40, 9);
-        Console.WriteLine("        /  | ");
+        Console.WriteLine("         /  | ");
         Console.WriteLine();
 
         Thread.Sleep(200);
@@ -181,9 +177,112 @@ public static class Textures
         Console.SetCursorPosition(40, 8);
         Console.WriteLine("          /\\  ");
         Console.SetCursorPosition(40, 9);
-        Console.WriteLine("        /  | ");
+        Console.WriteLine("         /  | ");
         Console.WriteLine();
         Console.ResetColor();
+
+        Thread.Sleep(300);
+
+        Console.ForegroundColor = ConsoleColor.Red;     //Skjuta iväg pil till andra sidan?
+        Console.SetCursorPosition(40, 5);
+        Console.WriteLine("        ");
+        Console.SetCursorPosition(40, 6);
+        Console.WriteLine("          O  ");
+        Console.SetCursorPosition(40, 7);
+        Console.WriteLine("        {-||  ");
+        Console.SetCursorPosition(40, 8);
+        Console.WriteLine("          /\\  ");
+        Console.SetCursorPosition(40, 9);
+        Console.WriteLine("         /  | ");
+        Console.WriteLine();
+        Console.ResetColor();
+        Console.SetCursorPosition(9, 7);
+        PrintColor.Red("<--", "WriteLine");
+
+        Thread.Sleep(300);
+        Console.SetCursorPosition(9, 7);
+        Console.WriteLine("    ");
+        Thread.Sleep(200);
+
+    }
+
+    public static void ArcherSpecialAttackAnimation()
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.SetCursorPosition(40, 5);
+        Console.WriteLine("        ");
+        Console.SetCursorPosition(40, 6);
+        Console.WriteLine("   <--    O  ");
+        Console.SetCursorPosition(40, 7);
+        Console.WriteLine("   <--  {-||~  ");
+        Console.SetCursorPosition(40, 8);
+        Console.WriteLine("   <--    /\\  ");
+        Console.SetCursorPosition(40, 9);
+        Console.WriteLine("         /  | ");
+        Console.WriteLine();
+
+        Thread.Sleep(200);
+
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.SetCursorPosition(40, 5);
+        Console.WriteLine("        ");
+        Console.SetCursorPosition(40, 6);
+        Console.WriteLine("  <--     O  ");
+        Console.SetCursorPosition(40, 7);
+        Console.WriteLine("  <--   {-||  ");
+        Console.SetCursorPosition(40, 8);
+        Console.WriteLine("  <--     /\\  ");
+        Console.SetCursorPosition(40, 9);
+        Console.WriteLine("         /  | ");
+        Console.WriteLine();
+
+        Thread.Sleep(200);
+
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.SetCursorPosition(40, 5);
+        Console.WriteLine("        ");
+        Console.SetCursorPosition(40, 6);
+        Console.WriteLine("<--       O  ");
+        Console.SetCursorPosition(40, 7);
+        Console.WriteLine("<--     {-||  ");
+        Console.SetCursorPosition(40, 8);
+        Console.WriteLine("<--       /\\  ");
+        Console.SetCursorPosition(40, 9);
+        Console.WriteLine("         /  | ");
+        Console.WriteLine();
+        Console.ResetColor();
+
+        Thread.Sleep(300);
+
+        Console.ForegroundColor = ConsoleColor.Red;     //Skjuta iväg pil till andra sidan?
+        Console.SetCursorPosition(40, 5);
+        Console.WriteLine("        ");
+        Console.SetCursorPosition(40, 6);
+        Console.WriteLine("          O  ");
+        Console.SetCursorPosition(40, 7);
+        Console.WriteLine("        {-||  ");
+        Console.SetCursorPosition(40, 8);
+        Console.WriteLine("          /\\  ");
+        Console.SetCursorPosition(40, 9);
+        Console.WriteLine("         /  | ");
+        Console.WriteLine();
+        Console.ResetColor();
+        Console.SetCursorPosition(9, 6);
+        PrintColor.Red("<--", "WriteLine");
+        Console.SetCursorPosition(9, 7);
+        PrintColor.Red("<--", "WriteLine");
+        Console.SetCursorPosition(9, 8);
+        PrintColor.Red("<--", "WriteLine");
+
+        Thread.Sleep(300);
+        Console.SetCursorPosition(9, 6);
+        Console.WriteLine("    ");
+        Console.SetCursorPosition(9, 7);
+        Console.WriteLine("    ");
+        Console.SetCursorPosition(9, 8);
+        Console.WriteLine("    ");
+        Thread.Sleep(200);
+
     }
     #endregion
     #region DEAD
@@ -247,7 +346,23 @@ public static class Textures
         Console.SetCursorPosition(40, 8);
         Console.WriteLine("       /\\    	");
         Console.SetCursorPosition(40, 9);
-        Console.WriteLine("      |  \\");
+        Console.WriteLine("      |  \\     ");
+        Console.ResetColor();
+        Console.WriteLine();
+    }
+
+    public static void ButcherBigHitAnimation()
+    {
+        Console.SetCursorPosition(40, 5);
+        Console.WriteLine("   / \\    / \\     ");
+        Console.SetCursorPosition(40, 6);
+        Console.WriteLine("   | |  0 | |     ");
+        Console.SetCursorPosition(40, 7);
+        Console.WriteLine("    T--||--T     ");
+        Console.SetCursorPosition(40, 8);
+        Console.WriteLine("       /\\    	");
+        Console.SetCursorPosition(40, 9);
+        Console.WriteLine("      |  \\     ");
         Console.ResetColor();
         Console.WriteLine();
     }
@@ -259,13 +374,81 @@ public static class Textures
         Console.SetCursorPosition(40, 6);
         Console.WriteLine("   / \\  0  _   ");
         Console.SetCursorPosition(40, 7);
-        Console.WriteLine("   | |--||-[_]  ");
+        Console.WriteLine("   | |--||-[B]  ");
         Console.SetCursorPosition(40, 8);
-        Console.WriteLine("    T  /\\    	");
+        Console.WriteLine("    T   /\\    	");
         Console.SetCursorPosition(40, 9);
-        Console.WriteLine("      |  \\");
+        Console.WriteLine("       |  \\    ");
         Console.ResetColor();
         Console.WriteLine();
+    }
+
+    public static void PrintButcherShield()
+    {
+        Console.SetCursorPosition(40, 5);
+        Console.WriteLine("               ");
+        Console.SetCursorPosition(40, 6);
+        Console.WriteLine("   /x\\   0     ");
+        Console.SetCursorPosition(40, 7);
+        Console.WriteLine("  |xxx|--||      ");
+        Console.SetCursorPosition(40, 8);
+        Console.WriteLine("   \\x/  /\\    	");
+        Console.SetCursorPosition(40, 9);
+        Console.WriteLine("        | \\     ");
+        Console.ResetColor();
+        Console.WriteLine();
+    }
+
+    public static void PrintButcherNeedsRest()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            Console.SetCursorPosition(40, 5);
+            Console.WriteLine("                 ");
+            Console.SetCursorPosition(40, 6);
+            Console.WriteLine("      0           ");
+            Console.SetCursorPosition(40, 7);
+            Console.WriteLine("      \\\\        ");
+            Console.SetCursorPosition(40, 8);
+            Console.WriteLine("       /\\ [B] 	");
+            Console.SetCursorPosition(40, 9);
+            Console.WriteLine("      /  \\      ");
+            Console.ResetColor();
+            Console.WriteLine();
+
+            Thread.Sleep(300);
+
+            Console.SetCursorPosition(40, 5);
+            Console.WriteLine("                ");
+            Console.SetCursorPosition(40, 6);
+            Console.WriteLine("       0        ");
+            Console.SetCursorPosition(40, 7);
+            Console.WriteLine("       ||       ");
+            Console.SetCursorPosition(40, 8);
+            Console.WriteLine("       /\\ [B]  ");
+            Console.SetCursorPosition(40, 9);
+            Console.WriteLine("      |  \\     ");
+            Console.ResetColor();
+            Console.WriteLine();
+
+            Thread.Sleep(300);
+
+            Console.SetCursorPosition(40, 5);
+            Console.WriteLine("                  ");
+            Console.SetCursorPosition(40, 6);
+            Console.WriteLine("        0         ");
+            Console.SetCursorPosition(40, 7);
+            Console.WriteLine("       //         ");
+            Console.SetCursorPosition(40, 8);
+            Console.WriteLine("       /\\ [B] 	 ");
+            Console.SetCursorPosition(40, 9);
+            Console.WriteLine("      |  \\       ");
+            Console.ResetColor();
+            Console.WriteLine();
+
+            Thread.Sleep(300);
+        }
+
     }
     #endregion
 
@@ -289,7 +472,7 @@ public static class Textures
 
     public static void BossAssassinStealthAnimation()
     {
-        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.SetCursorPosition(40, 5);
         Console.WriteLine("        ");
         Console.SetCursorPosition(40, 6);

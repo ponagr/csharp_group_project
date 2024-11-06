@@ -26,14 +26,22 @@ public class Archer : Enemy
     }
     public override void CharacterAttackAnimation(Enemy enemy)
     {
-        Textures.ArcherAttackAnimation();
+        if (isCharging)
+        {
+            Textures.ArcherAttackAnimation();
+        }
+        else
+        {
+            Textures.ArcherSpecialAttackAnimation();
+        }    
     }
 
     public override string Attack(Player player, out string attackMessage)
     {
+        double damageDone = CalculateDamage(player, out bool attackCrit);
         if (chargeCounter == 3)
         {
-            double damageDone = MultipleArrows();
+            damageDone = MultipleArrows(damageDone);
             chargeCounter = 0;
             isCharging = false;
             player.CurrentHp -= damageDone;
@@ -42,15 +50,16 @@ public class Archer : Enemy
         }
         else // Vanlig attack
         {
+            isCharging = true;
             chargeCounter++;
             return base.Attack(player, out attackMessage);
         }
         
     }
 
-    private double MultipleArrows()
+    private double MultipleArrows(double damage)
     {
-        double damage = TotalDamage * 3; 
+        damage = damage * 3; 
         return damage;
     }
 

@@ -1,31 +1,37 @@
 public class AssassinBoss : Assassin
 {
-
+    bool specialAttack;
     public AssassinBoss(Player player) : base(player)
     { 
-        double multiplier = player.Level * 0.5;
-        Random random = new Random();
         Name = "Smygehuk";
         Description = "Assassin BOSS";
-        BaseHp = base.BaseHp * 1.5; //75 + random.Next(0, 25) * multiplier;
+        BaseHp = base.BaseHp * 1.5; 
         CurrentHp = TotalHp;
-        BaseDamage = base.BaseDamage * 1.5;//15 + random.Next(0, 10) * multiplier;
-        BaseResistance = base.BaseResistance * 1.5;//0 + random.Next(0, 5) * multiplier;
-        BaseAgility = base.BaseAgility * 1.5;//15 * multiplier;
+        BaseDamage = base.BaseDamage * 1.5;
+        BaseResistance = base.BaseResistance * 1.5;
+        BaseAgility = base.BaseAgility * 1.5;
 
         healthBar = new HealthBar();
 
         isVisable = false;
 
-        // base.BaseHp = base.BaseHp * 1.5;
-        // base.BaseDamage = base.BaseDamage * 1.5;
-        // base.BaseResistance = base.BaseResistance * 1.5;
-        // base.BaseAgility = base.BaseAgility * 1.5;
     }
 
-    public double ThrowingKnives(out string attackMessage) 
+    public override void CharacterAttackAnimation(Enemy enemy)
     {
-        double damage = TotalDamage * 2.5;
+        if (specialAttack)
+        {
+            Textures.BossAssassinStealthAnimation();
+        }
+        else
+        {
+            base.CharacterAttackAnimation(enemy);
+        }
+    }
+
+    public double ThrowingKnives(double damage, out string attackMessage) 
+    {
+        damage = damage * 1.2;
         attackMessage = "Triple attack!";
         return damage;
     }
@@ -36,16 +42,17 @@ public class AssassinBoss : Assassin
     public override string Attack(Player player, out string attackMessage)
     {
         double damage;
-        base.Attack(player, out attackMessage);
-        if (attackMessage == "CRITICAL")
+        damage = CalculateDamage(player, out bool attackCrit);
+        if (attackCrit)     //Special attack
         {
-            Textures.BossAssassinStealthAnimation();
-            damage = ThrowingKnives(out attackMessage);
+            specialAttack = true;
+            damage = ThrowingKnives(damage, out attackMessage);
             player.CurrentHp -= damage;
-            return $"<-- {damage} DMG";
+            return $"<-- {damage:F0} DMG";
         }
         else
-        {
+        {  
+            specialAttack = false;
             return base.Attack(player, out attackMessage);
         }    
     }

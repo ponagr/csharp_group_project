@@ -8,6 +8,8 @@ public class Butcher : Enemy
     public bool hasShield;
     private int bigHit;
     private bool needsRest;
+    private bool specialAttack;
+    private bool justBlocked;
 
     public Butcher(Player player) : base(player)
     {
@@ -20,7 +22,8 @@ public class Butcher : Enemy
         BaseDamage = 20 + random.Next(0, 10) * multiplier;
         BaseResistance = 10 + random.Next(0, 5) * multiplier;
         BaseAgility = 5 * multiplier;
-        bigHit = 2;
+        bigHit = 1;
+        specialAttack = false;
         needsRest = false;
         healthBar = new HealthBar();
 
@@ -28,47 +31,76 @@ public class Butcher : Enemy
     }
     public override void PrintCharacter(Enemy enemy)
     {
-        Textures.PrintButcher();
+        // if (hasShield)
+        // {
+        //     Textures.PrintButcherShield();
+        //     Thread.Sleep(400);
+        //     Textures.PrintButcher();
+        //     hasShield = false;
+        // }
+        // else
+        // {
+            Textures.PrintButcher();
+        //}
+
     }
     public override void CharacterAttackAnimation(Enemy enemy)
     {
-        Textures.ButcherAttackAnimation();
+        if (bigHit == 1)
+        {
+            Textures.PrintButcherNeedsRest();
+        }
+        else if (specialAttack)
+        {
+            Textures.ButcherBigHitAnimation();
+        }
+        else
+        {
+            Textures.ButcherAttackAnimation();
+        }
+        
     }
 
     public override string Attack(Player player, out string attackMessage)
     {
         bigHit++;
+        double damageDone = CalculateDamage(player, out bool attackCrit);
         if (bigHit == 3) // BIGHIT
         {
-            double damageDone = BigHit();
+            damageDone = BigHit(damageDone);
             bigHit = 0;
             needsRest = true;
+            specialAttack = true;
             player.CurrentHp -= damageDone;
             attackMessage = "MASSIVE HIT!";
             return $"<-- {damageDone:F0} DMG";
         }
         else if (needsRest) // Behöver vila
         {
+            specialAttack = false;
             needsRest = false;
             attackMessage = "Butcher needs";
             return "to rest!";
-        }   
+        }
         else // Vanlig attack
         {
+            specialAttack = false;
             return base.Attack(player, out attackMessage);
-        }    
+        }
     }
 
-    public double BigHit()
+    public double BigHit(double damage)
     {
-        double damage;
-        damage = TotalDamage * 2;
+        damage = damage * 2;
 
         return damage;
     }
 
     public double BlockedAttack()
     {
+        Textures.PrintButcherShield();
+        Thread.Sleep(400);
+        Textures.PrintButcher();
         double damage;
         damage = TotalDamage * 0.5;
 
@@ -82,15 +114,22 @@ public class Butcher : Enemy
         Random rndShield = new Random();
         int magicNumber = rndShield.Next(1, 3);
 
-        bool hasShield = (magicNumber == 1) ? hasShield = true : hasShield = false;
+        if (needsRest)
+        {
+            //justBlocked = false;
+            return base.TakeDamage(damage, crit, out attackMessage);
+        }
 
-        if (!hasShield || needsRest)
+        hasShield = (magicNumber == 1) ? hasShield = true : hasShield = false;
+        
+        if (!hasShield)
         {
             return base.TakeDamage(damage, crit, out attackMessage);
         }
         else
         {
             damage = BlockedAttack();
+            //justBlocked = true;
             CurrentHp -= damage;
             attackMessage = "Blocked!";
             return $"DMG {damage:F0} -->";
