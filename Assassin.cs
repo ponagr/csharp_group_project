@@ -7,11 +7,11 @@ public class Assassin : Enemy
 
     public bool isVisable;
 
-    public Assassin(Player player) : base(player)
+    public Assassin(Player player, string name) : base(player) // Vi ber om ett nammn
     {
         double multiplier = player.Level * 0.5;
         Random random = new Random();
-        Name = "Lönnmördaren";
+        Name = name; // Tilldelar det här
         Description = "Assassin";
         BaseHp = 75 + random.Next(0, 25) * multiplier;
         CurrentHp = TotalHp;

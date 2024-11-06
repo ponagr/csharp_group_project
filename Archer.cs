@@ -4,11 +4,11 @@ public class Archer : Enemy
     private bool isCharging;
     private int chargeCounter;
 
-    public Archer(Player player) : base(player)
+    public Archer(Player player, string name) : base(player)
     {
         double multiplier = player.Level * 0.5;
         Random random = new Random();
-        Name = "Lena-Långbåge";
+        Name = name;
         Description = "Archer";
         BaseHp = 50 + random.Next(0, 15) * multiplier; // Låg HP
         CurrentHp = TotalHp;

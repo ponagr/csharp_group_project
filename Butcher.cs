@@ -11,11 +11,11 @@ public class Butcher : Enemy
     private bool specialAttack;
     private bool justBlocked;
 
-    public Butcher(Player player) : base(player)
+    public Butcher(Player player, string name) : base(player)
     {
         double multiplier = player.Level * 0.5;
         Random random = new Random();
-        Name = "Slaktar-Sluggo";
+        Name = name;
         Description = "Butcher";
         BaseHp = 100 + random.Next(0, 25) * multiplier;
         CurrentHp = TotalHp;

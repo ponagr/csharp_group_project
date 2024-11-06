@@ -19,6 +19,9 @@ public static class GameLevel
     private static char Door2 = '/';
     private static char Heart = '\u2665';
 
+    private static int level = 0;
+    static List<Map> mapLevels;
+
 
     public static char[,] gameLevel1 = new char[,]
     {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23
@@ -141,13 +144,16 @@ public static class GameLevel
     #endregion
 
     #region MOVEMENT
-    public static void MovePlayer(char[,] gameMap, Player player, List<Enemy> enemies, Enemy boss)
+    public static void MovePlayer(List<Map> map, Player player)
     {
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
         int newX;       //newX,newY är den nya positionen som vi vill förflytta våran player till
         int newY;
         Chest chest = new Chest();
+        char[,] gameMap = map[level].Maplevel;
+        List<Enemy> enemies = map[level].Enemies;
+        Enemy boss = map[level].Boss;
 
         var keyPressed = Console.ReadKey(true);
 
@@ -272,11 +278,12 @@ public static class GameLevel
     }
 
     #region PRINTGAMEBOARD
-    public static void PrintGameBoard(char[,] gameMap, Player player)  //Tar in och skriver ut den leveln som skickas in till metoden
+    public static void PrintGameBoard(List<Map> map, Player player)  //Tar in och skriver ut den leveln som skickas in till metoden
     {
         Console.Clear();
         // INFO OM KARTAN
         MapInfo();
+        char[,] gameMap = map[level].Maplevel;
 
         // SKRIVER UT MAP, med olika textfärger baserat på char
         for (int i = 0; i < gameMap.GetLength(0); i++)
