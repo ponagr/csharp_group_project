@@ -9,14 +9,14 @@
         Butcher butcher = new Butcher(player);
         Archer archer = new Archer(player);
         AssassinBoss assassinBoss = new AssassinBoss(player);
-        List<Enemy> enemies = new List<Enemy> {assassinBoss, archer, butcher, assassin, enemy, enemy, enemy, enemy, enemy, enemy }; 
+        List<Enemy> enemies = new List<Enemy> {butcher, archer, butcher, assassin, enemy, enemy, enemy, enemy, enemy, enemy }; 
 
         Items.ItemsToAdd();     //Lägger till items så att dessa existerar i spelet och kan lootas via kistor
         
         while (!gameOver)
         {
             GameLevel.PrintGameBoard(GameLevel.gameLevel1, player);     //Skriver ut mappen
-            GameLevel.MovePlayer(GameLevel.gameLevel1, player, enemies);  //Inväntar sedan input från användaren, flyttar sedan player baserat på input, 
+            GameLevel.MovePlayer(GameLevel.gameLevel1, player, enemies, assassinBoss);  //Inväntar sedan input från användaren, flyttar sedan player baserat på input, 
             if (player.CurrentHp < 1)                                  //börjar sedan om loop och skriver ut mapp igen, om inte player.CurrentHp är 0, isåfall avslutas loop(GameOver)
             {
                 Console.Clear();

@@ -20,16 +20,16 @@ public static class GameLevel
     private static char Heart = '\u2665';
 
 
-    public static char[,] gameLevel1 = new char[,] 
+    public static char[,] gameLevel1 = new char[,]
     {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23
         { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' },
         { '|', '@', '£', ' ', ' ', ' ', ' ', ' ', '¤', ' ', ' ', '|', '#', '|', ' ', ' ', ' ', ' ', ' ', ' ', 'B', ' ', '|' },
         { '|', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
-        { '|', 'B', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '£', '|', '_', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
+        { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '£', '|', '_', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
         { '|', ' ', '#', ' ', ' ', '\u2665', ' ', ' ', '|', ' ', ' ', '|', '£', ' ', ' ', ' ', ' ', ' ', ' ', '_', '|', ' ', '|' },
         { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '£', ' ', '|', ' ', ' ', '|' },
         { '|', '#', ' ', ' ', ' ', ' ', ' ', '¤', '|', ' ', ' ', '|', '$', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '\\' },
-        { '|', ' ', '_', '_', '|', ' ', '|', '_', '_', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '/' },
+        { '|', ' ', '_', '_', '|', ' ', '|', '_', '_', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '/' },
         { '|', ' ', ' ', '#', '|', '£', '|', '$', ' ', ' ', ' ', '|', '£', '|', '_', '_', ' ', ' ', ' ', '_', '_', '_', '|' },
         { '|', ' ', ' ', ' ', '|', ' ', '|', ' ', '£', ' ', '¤', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
         { '|', ' ', ' ', ' ', '|', ' ', '|', '$', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', '£', ' ', '|' },
@@ -47,8 +47,8 @@ public static class GameLevel
         { '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|' },//23
     };
 
-       public static char[,] gameLevel2 = new char[,] 
-    {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23      // DISARMA MINOR?!
+    public static char[,] gameLevel2 = new char[,]
+ {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23      // DISARMA MINOR?!
         { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' },
         { '|', '@', ' ', ' ', ' ', ' ', ' ', '|', '#', ' ', ' ', '|', '$', '|', '#', ' ', ' ', '|', ' ', ' ', ' ', ' ', '|' },
         { '|', '_', '_', '_', '_', '_', ' ', '|', ' ', ' ', ' ', '|', ' ', '|', '$', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
@@ -72,7 +72,7 @@ public static class GameLevel
         { '/', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
         { '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', '$', '|', ' ', ' ', ' ', ' ', '$', '|', ' ', ' ', ' ', ' ', '|' },
         { '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|' },//23
-    };
+ };
     #endregion
 
     //Metoder för alla olika utfall som kan ske på mappen, anropas via MovePlayer-metod
@@ -88,7 +88,16 @@ public static class GameLevel
         }
     }
     #endregion
-
+    #region BOSS
+    private static void HandleBoss(Player player, Enemy boss, char[,] gameMap, int newX, int newY)
+    {
+        Combat.FightMode(player, boss);
+        if (boss.CurrentHp <= 0)
+        {
+            gameMap[newX, newY] = Empty;
+        }
+    }
+    #endregion
     #region GOLD
     private static void HandleGold(Player player, char[,] gameMap, int posX, int posY, int newX, int newY)
     {
@@ -101,10 +110,10 @@ public static class GameLevel
     #endregion
 
     #region CHEST
-    private static void HandleChest(Chest chest,Player player, char[,] gameMap, int newX, int newY)
+    private static void HandleChest(Chest chest, Player player, char[,] gameMap, int newX, int newY)
     {
         player.Loot(chest);
-        
+
         Console.ReadKey(true);
         Console.WriteLine("Du gick på en kista");
         gameMap[newX, newY] = Empty;
@@ -132,14 +141,14 @@ public static class GameLevel
     #endregion
 
     #region MOVEMENT
-    public static void MovePlayer(char[,] gameMap, Player player, List<Enemy> enemies)
+    public static void MovePlayer(char[,] gameMap, Player player, List<Enemy> enemies, Enemy boss)
     {
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
         int newX;       //newX,newY är den nya positionen som vi vill förflytta våran player till
         int newY;
         Chest chest = new Chest();
-        
+
         var keyPressed = Console.ReadKey(true);
 
         for (int i = 0; i < gameMap.GetLength(0); i++)      //hitta positionen för player och ge dessa värden till posX och posY
@@ -210,7 +219,7 @@ public static class GameLevel
         }
         else if (gameMap[newX, newY] == Chest)
         {
-            HandleChest(chest,player, gameMap, newX, newY);
+            HandleChest(chest, player, gameMap, newX, newY);
         }
         else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
         {
@@ -220,6 +229,10 @@ public static class GameLevel
         else if (gameMap[newX, newY] == Heart)
         {
             HandleHeart(player, gameMap, posX, posY, newX, newY);
+        }
+        else if (gameMap[newX, newY] == Boss)
+        {
+            HandleBoss(player, boss, gameMap, newX, newY);
         }
         else
         {
@@ -272,31 +285,31 @@ public static class GameLevel
             {
                 if (gameMap[i, j] == Player)
                     PrintColor.Green($"{gameMap[i, j]}  ", "Write");
-                
+
                 else if (gameMap[i, j] == Enemy)
                     PrintColor.Red($"{gameMap[i, j]}  ", "Write");
-                
+
                 else if (gameMap[i, j] == Chest && !isOpen)
                     PrintColor.Yellow($"{gameMap[i, j]}  ", "Write");
-                
+
                 else if (gameMap[i, j] == Chest && isOpen) // ANVÄNDS INTE ÄN
                     PrintColor.Gray($"{gameMap[i, j]}  ", "Write");
-                
+
                 else if (gameMap[i, j] == Trap)
                     PrintColor.Gray($"{gameMap[i, j]}  ", "Write");
-                
+
                 else if (gameMap[i, j] == Boss)
                     PrintColor.Red($"{gameMap[i, j]}  ", "Write");
-                
+
                 else if (gameMap[i, j] == Coin)
                     PrintColor.DarkYellow($"{gameMap[i, j]}  ", "Write");
-                
+
                 else if (gameMap[i, j] == Wall || gameMap[i, j] == Terrain)
                     PrintColor.BackgroundDarkCyan("   ", "Write");
-                
+
                 else if (gameMap[i, j] == Door || gameMap[i, j] == Door2)
                     PrintColor.DarkGreen($"{gameMap[i, j]}  ", "Write");
-                
+
                 else
                     Console.Write(gameMap[i, j] + "  ");
             }
