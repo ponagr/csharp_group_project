@@ -13,7 +13,7 @@
 - [x] Hjärta för att få liv på banan
 
 ### GameObject - Enemy - Player
-- [ ] Lägg till viktiga egenskaper och metoder för Player och Enemy.
+- [x] Lägg till viktiga egenskaper och metoder för Player och Enemy.
 
 ### Combat
 - [x] Skapa visuella representationer, t.ex. streckgubbar, för Player och Enemy under combat.
@@ -21,8 +21,8 @@
 - [x] Skapa en grundläggande struktur för combat-systemet.
 
 ### Skapa Arv för Olika Typer av Enemy
-- [ ] Implementera specifika metoder och unika egenskaper för olika Enemy-typer.
-- [ ] Göra en boss / level med specifika egenskaper utifrån enemyklasser
+- [x] Implementera specifika metoder och unika egenskaper för olika Enemy-typer.
+- [x] Göra en boss / level med specifika egenskaper utifrån enemyklasser
   
 ### Lägg till XP och Levels
 - [x] Implementera XP-system och nivåer för Player.
@@ -30,7 +30,7 @@
 
 ### Fler Stats och Multipliers
 - [x] Utveckla fler stats och multipliers för Player.
-- [ ] Utveckla fler stats och multipliers för Enemy.
+- [x] Utveckla fler stats och multipliers för Enemy.
 
 ---
 
