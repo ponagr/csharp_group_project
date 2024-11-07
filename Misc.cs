@@ -204,6 +204,70 @@ public static class PrintColor
             Console.ResetColor();
         }
     }
+    public static void BackgroundDarkGray(string stringToPrint, string Write)
+    {
+        if (Write == "WriteLine")
+        {
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void BackgroundDarkRed(string stringToPrint, string Write)
+    {
+        if (Write == "WriteLine")
+        {
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void BackgroundDarkYellow(string stringToPrint, string Write)
+    {
+        if (Write == "WriteLine")
+        {
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
+    public static void BackgroundDarkBlue(string stringToPrint, string Write)
+    {
+        if (Write == "WriteLine")
+        {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
     public static void BackgroundRed(string stringToPrint, string Write)
     {
         if (Write == "WriteLine")

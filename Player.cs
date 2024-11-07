@@ -171,7 +171,8 @@ public class Player : GameObject
         Clear.Row(12);
         Console.WriteLine("             \n            \n              \n          "); // För att input-text ska försvinna
         Console.ResetColor();
-        Textures.PrintDeadText();
+        // Textures.PrintDeadText();
+        Textures.PrintGrave();
 
         if (CurrentXp >= MaxXp)
         {
