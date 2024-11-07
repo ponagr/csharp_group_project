@@ -573,6 +573,7 @@ public static class Textures
         Console.WriteLine("<  ");
         Console.SetCursorPosition(5, 5);
         Console.WriteLine(" > ");
+        Console.ResetColor();
 
         Thread.Sleep(400);
     }
@@ -697,6 +698,48 @@ public static class Textures
 
 
         Console.ResetColor();
+    }
+    #endregion
+
+    #region LOADING
+    public static void PrintLoading()
+    {
+        string[] loadingBar = new string[10] { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  " };
+        
+        int percentLoaded = 0;
+        
+        
+        for (int i = 0; i < loadingBar.Length; i++) // Loopa 10 gånger
+        {
+            loadingBar[i] = " |";
+            percentLoaded += 10;
+            Console.SetCursorPosition(18, 3);
+            Console.Write($"Loading...  {percentLoaded}/100%");
+
+            Console.SetCursorPosition(17, 4);
+            Console.Write("[");
+
+            for(int j = 0; j < loadingBar.Length; j++)
+            {
+                if (loadingBar[j] == " |")
+                {
+                    Console.BackgroundColor = ConsoleColor.Magenta;
+                    Console.Write(loadingBar[j]);      //Om det är en player, skriv ut i grönt
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.Write(loadingBar[j]); // Skrivs ut tomma för samma längd
+                }
+                
+            }
+
+            Console.Write("]");
+
+            Thread.Sleep(500);
+        }
+        
+        Console.WriteLine();
     }
     #endregion
 }

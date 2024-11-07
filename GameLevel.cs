@@ -176,8 +176,10 @@ public static class GameLevel
         else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
         {
             level++;
+            Console.Clear();
             // Loada nästa level
             Console.WriteLine("Du klarade nivån");
+            Textures.PrintLoading();
             //Texture för att visa att vi klarade leveln?
             Thread.Sleep(2000);
         }
