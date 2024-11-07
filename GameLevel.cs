@@ -18,6 +18,8 @@ public static class GameLevel
     private static char Door = '\\';
     private static char Door2 = '/';
     private static char Heart = '\u2665';
+    private static char GoBack = '=';
+    private static char Cellar = '*';
 
     public static int level;
 
@@ -87,6 +89,41 @@ public static class GameLevel
         gameMap[posX, posY] = Empty;
     }
     #endregion
+
+    #region NEXTLEVEL
+    private static void NextLevel()
+    {
+        level++;
+        Console.Clear();
+        // Loada nästa level
+        Console.WriteLine("Du klarade nivån");
+        Textures.PrintLoading();
+        //Texture för att visa att vi klarade leveln?
+    }
+    #endregion
+
+    #region GOBACK
+    private static void PreviousLevel()
+    {
+        level--;
+        Console.Clear();
+        // Loada nästa level
+        Console.WriteLine("Du gick tillbaka en nivå");
+        Textures.PrintLoading();
+        //Texture för att visa att vi klarade leveln?
+    }
+    #endregion
+
+    #region CELLAR
+    private static void GoToCellar(char[,] gameMap, Player player)
+    {
+        bool inCellar = true;
+        while (inCellar)
+        {
+            PrintGameBoard(gameMap, player);
+            MovePlayer(gameMap, player, out inCellar);
+        }
+    }
 
     #region MOVEMENT
     public static void MovePlayer(List<Map> map, Player player)
@@ -173,16 +210,6 @@ public static class GameLevel
         {
             HandleChest(chests, player, gameMap, newX, newY);
         }
-        else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
-        {
-            level++;
-            Console.Clear();
-            // Loada nästa level
-            Console.WriteLine("Du klarade nivån");
-            Textures.PrintLoading();
-            //Texture för att visa att vi klarade leveln?
-            Thread.Sleep(2000);
-        }
         else if (gameMap[newX, newY] == Heart)
         {
             HandleHeart(player, gameMap, posX, posY, newX, newY);
@@ -190,6 +217,22 @@ public static class GameLevel
         else if (gameMap[newX, newY] == Boss)
         {
             HandleBoss(player, boss, gameMap, newX, newY);
+        }
+        else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
+        {
+            NextLevel();
+        }
+        else if (gameMap[newX, newY] == GoBack)
+        {
+            PreviousLevel();
+        }
+        else if (gameMap[newX, newY] == Cellar)
+        {
+            GoToCellar(map[level].CellarLevel, player);
+        }
+        else if (gameMap[newX, newY] == Wall || gameMap[newX, newY] == Terrain)
+        {
+            Console.WriteLine("Du kan inte gå här");
         }
         else
         {
@@ -267,7 +310,15 @@ public static class GameLevel
 
                 else if (gameMap[i, j] == Door || gameMap[i, j] == Door2)
                     PrintColor.DarkGreen($"{gameMap[i, j]}  ", "Write");
-                
+
+                else if (gameMap[i, j] == GoBack)
+                    PrintColor.BackgroundGreen($"{gameMap[i, j]}  ", "Write");
+                else if (gameMap[i, j] == Cellar)
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                    Console.Write($"{gameMap[i, j]}  ");
+                    Console.ResetColor();
+                }
                 else
                     Console.Write(gameMap[i, j] + "  ");
             }
@@ -276,4 +327,218 @@ public static class GameLevel
         PlayerUI.UI(player);    //visa UI under mappen
     }
     #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #region CELLARLEVEL
+    public static void PrintGameBoard(char[,] gameMap, Player player)  //Tar in och skriver ut den leveln som skickas in till metoden
+    {
+        Console.Clear();
+        // INFO OM KARTAN
+        MapInfo();
+        
+
+        // SKRIVER UT MAP, med olika textfärger baserat på char
+        for (int i = 0; i < gameMap.GetLength(0); i++)
+        {
+            for (int j = 0; j < gameMap.GetLength(1); j++)
+            {
+                if (gameMap[i, j] == Player)
+                    PrintColor.Green($"{gameMap[i, j]}  ", "Write");
+
+                else if (gameMap[i, j] == Enemy)
+                    PrintColor.Red($"{gameMap[i, j]}  ", "Write");
+
+                else if (gameMap[i, j] == Chest && !isOpen)
+                    PrintColor.Yellow($"{gameMap[i, j]}  ", "Write");
+
+                else if (gameMap[i, j] == Chest && isOpen) // ANVÄNDS INTE ÄN
+                    PrintColor.Gray($"{gameMap[i, j]}  ", "Write");
+
+                else if (gameMap[i, j] == Trap)
+                    PrintColor.Gray($"{gameMap[i, j]}  ", "Write");
+
+                else if (gameMap[i, j] == Boss)
+                    PrintColor.Red($"{gameMap[i, j]}  ", "Write");
+
+                else if (gameMap[i, j] == Coin)
+                    PrintColor.DarkYellow($"{gameMap[i, j]}  ", "Write");
+
+                else if (gameMap[i, j] == Wall || gameMap[i, j] == Terrain)
+                    PrintColor.BackgroundDarkCyan("   ", "Write");
+
+                else if (gameMap[i, j] == Door || gameMap[i, j] == Door2)
+                    PrintColor.DarkGreen($"{gameMap[i, j]}  ", "Write");
+
+                else if (gameMap[i, j] == GoBack)
+                    PrintColor.BackgroundGreen($"{gameMap[i, j]}  ", "Write");
+                else if (gameMap[i, j] == Cellar)
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                    Console.Write($"{gameMap[i, j]}  ");
+                    Console.ResetColor();
+                }
+                else
+                    Console.Write(gameMap[i, j] + "  ");
+            }
+            Console.WriteLine();
+        }
+        PlayerUI.UI(player);    //visa UI under mappen
+    }
+
+    public static void MovePlayer(char[,] gameMap, Player player, out bool inCellar)
+    {
+        int posX = 0;   //posX,posY är positionen som player har för tillfället
+        int posY = 0;
+        int newX;       //newX,newY är den nya positionen som vi vill förflytta våran player till
+        int newY;
+        inCellar = true;
+        // char[,] gameMap = map[level].Maplevel;
+        // List<Enemy> enemies = map[level].Enemies;
+        // Enemy boss = map[level].Boss;
+        // List<Chest> chests = map[level].Chests;
+
+        var keyPressed = Console.ReadKey(true);
+
+        for (int i = 0; i < gameMap.GetLength(0); i++)      //hitta positionen för player och ge dessa värden till posX och posY
+        {
+            for (int j = 0; j < gameMap.GetLength(1); j++)
+            {
+                if (gameMap[i, j] == Player)
+                {
+                    posX = i;
+                    posY = j;
+                }
+            }
+        }
+        newX = posX;
+        newY = posY;
+
+        //Ger värde till newX och newY baserat på åt vilket håll vi väljer att gå, via WASD
+        #region UP
+        if (keyPressed.Key == ConsoleKey.W)
+        {
+            newX = posX - 1;
+            newY = posY;
+        }
+        #endregion
+
+        #region LEFT
+        if (keyPressed.Key == ConsoleKey.A)
+        {
+            newX = posX;
+            newY = posY - 1;
+        }
+        #endregion
+
+        #region Down
+        if (keyPressed.Key == ConsoleKey.S)
+        {
+            newX = posX + 1;
+            newY = posY;
+        }
+        #endregion
+
+        #region Right
+        if (keyPressed.Key == ConsoleKey.D)
+        {
+            newX = posX;
+            newY = posY + 1;
+        }
+        #endregion
+
+        //Anropar metoder baserat på newX och newY positionerna
+        #region MOVEMENTACTIONS
+        if (gameMap[newX, newY] == Empty)
+        {
+            gameMap[newX, newY] = Player; // Byter plats
+            gameMap[posX, posY] = Empty; // Där vi stod blir tom
+        }
+        // else if (gameMap[newX, newY] == Enemy)
+        // {
+        //     HandleEnemy(player, enemies, gameMap, newX, newY);
+        // }
+        else if (gameMap[newX, newY] == Coin)
+        {
+            HandleGold(player, gameMap, posX, posY, newX, newY);
+        }
+        else if (gameMap[newX, newY] == Trap)
+        {
+            HandleTrap(player, gameMap, posX, posY, newX, newY);
+        }
+        // else if (gameMap[newX, newY] == Chest)
+        // {
+        //     HandleChest(chests, player, gameMap, newX, newY);
+        // }
+        // else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
+        // {
+        //     level++;
+        //     Console.Clear();
+        //     // Loada nästa level
+        //     Console.WriteLine("Du klarade nivån");
+        //     Textures.PrintLoading();
+        //     //Texture för att visa att vi klarade leveln?
+        //     Thread.Sleep(2000);
+        // }
+        else if (gameMap[newX, newY] == Heart)
+        {
+            HandleHeart(player, gameMap, posX, posY, newX, newY);
+        }
+        // else if (gameMap[newX, newY] == Boss)
+        // {
+        //     HandleBoss(player, boss, gameMap, newX, newY);
+        // }
+        // else if (gameMap[newX, newY] == GoBack)
+        // {
+        //     level--;
+        //     Console.Clear();
+        //     // Loada nästa level
+        //     Console.WriteLine("Du gick tillbaka en nivå");
+        //     Textures.PrintLoading();
+        //     //Texture för att visa att vi klarade leveln?
+        //     Thread.Sleep(2000);
+        // }
+        else if (gameMap[newX, newY] == Cellar)
+        {
+            inCellar = false;
+            return;
+        }
+        else if (gameMap[newX, newY] == Wall || gameMap[newX, newY] == Terrain)
+        {
+            Console.WriteLine("Du kan inte gå här");
+        }
+        else
+        {
+            Console.WriteLine("Du kan inte gå hit");
+        }
+        #endregion
+
+        #region INVENTORY
+        if (keyPressed.Key == ConsoleKey.C) //Visa playerStats
+        {
+            player.OpenInventory(player);
+        }
+        #endregion  
+
+        #region HEAL
+        if (keyPressed.Key == ConsoleKey.Q)
+        {
+            player.Heal();  //Använder en Health-Potion
+        }
+        #endregion
+    }
+    #endregion
 }
+#endregion
