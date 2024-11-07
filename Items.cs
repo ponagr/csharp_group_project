@@ -8,6 +8,7 @@ public abstract class Item
     public double Health { get; set; }
     public double Resistance { get; set; }
     public double Agility { get; set; }
+    public int Price { get; set; }
 
     public abstract void ShowItem();
     public abstract void ShowStats();
@@ -21,16 +22,29 @@ public class Gear : Item
         Health = health;
         Resistance = resistance;
         Agility = agility;
+        Price = CalculatePrice(this);
     }
 
     public override void ShowItem()
     {
-        PrintColor.Green($"{ItemType}: {ItemName,10}", "WriteLine");
+        PrintColor.Green($"{ItemType}: {ItemName,10}, {Price/2}g", "WriteLine");
     }
 
     public override void ShowStats()
     {
-        PrintColor.Green($"{ItemType}: ({ItemName})  -    {Health} Hp, {Damage} Dmg, {Resistance} Res, {Agility} Agi", "WriteLine");
+        Console.WriteLine($"{ItemType, -8} {ItemName,-16}   {Health,3} Hp {Damage,3} Dmg {Resistance,3} Res {Agility,3} Agi");
+    }
+    public static int CalculatePrice(Item item)
+    {
+        int price;
+
+        double pricePerStat = 2;
+        double totalPrice = 0;
+        
+        totalPrice += (item.Damage + item.Health + item.Resistance + item.Agility) * pricePerStat;
+        price = Convert.ToInt32(totalPrice);
+
+        return price;
     }
 }
 public class THelm : Gear

@@ -10,6 +10,7 @@ public class Consumable : Item
         Healing = 60;
         Ammount = 5;
         MaxAmmount = 5;
+        Price = 20;
     }
 
     public override void ShowItem()
