@@ -19,7 +19,8 @@ public static class GameLevel
     private static char Door2 = '/';
     private static char Heart = '\u2665';
     private static char GoBack = '=';
-    private static char Cellar = '*';
+    private static char Cellar = ')';
+    private static char Merchant = 'M';
 
     public static int level;
 
@@ -70,6 +71,13 @@ public static class GameLevel
     }
     #endregion
 
+    #region MERCHANT
+    private static void HandleMerchant(List<Chest> chest, Player player, char[,] gameMap, int newX, int newY)
+    {
+        
+    }
+    #endregion
+
     #region HEART
     private static void HandleHeart(Player player, char[,] gameMap, int posX, int posY, int newX, int newY)
     {
@@ -115,13 +123,16 @@ public static class GameLevel
     #endregion
 
     #region CELLAR
-    private static void GoToCellar(char[,] gameMap, Player player)
+    private static void GoToCellar(Map map, Player player)
     {
+        char[,] gameMap = map.CellarLevel;
+        List<Enemy> enemies = map.Enemies;
+        List<Chest> chests = map.Chests;
         bool inCellar = true;
         while (inCellar)
         {
             PrintGameBoard(gameMap, player);
-            MovePlayer(gameMap, player, out inCellar);
+            MovePlayer(gameMap, enemies, chests, player, out inCellar);
         }
     }
 
@@ -228,7 +239,7 @@ public static class GameLevel
         }
         else if (gameMap[newX, newY] == Cellar)
         {
-            GoToCellar(map[level].CellarLevel, player);
+            GoToCellar(map[level], player);
         }
         else if (gameMap[newX, newY] == Wall || gameMap[newX, newY] == Terrain)
         {
@@ -348,7 +359,7 @@ public static class GameLevel
         Console.Clear();
         // INFO OM KARTAN
         MapInfo();
-        
+
 
         // SKRIVER UT MAP, med olika textfärger baserat på char
         for (int i = 0; i < gameMap.GetLength(0); i++)
@@ -398,7 +409,7 @@ public static class GameLevel
         PlayerUI.UI(player);    //visa UI under mappen
     }
 
-    public static void MovePlayer(char[,] gameMap, Player player, out bool inCellar)
+    public static void MovePlayer(char[,] gameMap, List<Enemy> enemies, List<Chest> chests, Player player, out bool inCellar)
     {
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
@@ -466,10 +477,10 @@ public static class GameLevel
             gameMap[newX, newY] = Player; // Byter plats
             gameMap[posX, posY] = Empty; // Där vi stod blir tom
         }
-        // else if (gameMap[newX, newY] == Enemy)
-        // {
-        //     HandleEnemy(player, enemies, gameMap, newX, newY);
-        // }
+        else if (gameMap[newX, newY] == Enemy)
+        {
+            HandleEnemy(player, enemies, gameMap, newX, newY);
+        }
         else if (gameMap[newX, newY] == Coin)
         {
             HandleGold(player, gameMap, posX, posY, newX, newY);
@@ -478,10 +489,10 @@ public static class GameLevel
         {
             HandleTrap(player, gameMap, posX, posY, newX, newY);
         }
-        // else if (gameMap[newX, newY] == Chest)
-        // {
-        //     HandleChest(chests, player, gameMap, newX, newY);
-        // }
+        else if (gameMap[newX, newY] == Chest)
+        {
+            HandleChest(chests, player, gameMap, newX, newY);
+        }
         // else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
         // {
         //     level++;
@@ -538,6 +549,97 @@ public static class GameLevel
             player.Heal();  //Använder en Health-Potion
         }
         #endregion
+    }
+    #endregion
+
+
+
+
+
+
+
+
+
+    #region DARKLEVEL
+    public static void PrintDarkLevel(List<Map> map, Player player)  //Tar in och skriver ut den leveln som skickas in till metoden
+    {
+        Console.Clear();
+        char[,] gameMap = map[level].Maplevel;
+        // INFO OM KARTAN
+        MapInfo();
+        // SKRIVER UT MAP, med olika textfärger baserat på char
+
+        int posX = 0;   //posX,posY är positionen som player har för tillfället
+        int posY = 0;
+        // int newX;       //newX,newY är den nya positionen som vi vill förflytta våran player till
+        // int newY;
+
+        for (int i = 0; i < gameMap.GetLength(0); i++)      //hitta positionen för player och ge dessa värden till posX och posY
+        {
+            for (int j = 0; j < gameMap.GetLength(1); j++)
+            {
+                if (gameMap[i, j] == Player)
+                {
+                    posX = i;
+                    posY = j;
+                }
+            }
+        }
+        // newX = posX;
+        // newY = posY;
+        for (int i = posX -4; i < posX +4; i++)
+        {
+            if (i >= 0 && i < gameMap.GetLength(0))
+            {
+                for (int j = posY -4; j < posY +4; j++)
+                {
+                    if (j >= 0 && j < gameMap.GetLength(1))
+                    {
+                        if (gameMap[i, j] == Player)
+                            PrintColor.Green($"{gameMap[i, j]}  ", "Write");
+
+                        else if (gameMap[i, j] == Enemy)
+                            PrintColor.Red($"{gameMap[i, j]}  ", "Write");
+
+                        else if (gameMap[i, j] == Chest && !isOpen)
+                            PrintColor.Yellow($"{gameMap[i, j]}  ", "Write");
+
+                        else if (gameMap[i, j] == Chest && isOpen) // ANVÄNDS INTE ÄN
+                            PrintColor.Gray($"{gameMap[i, j]}  ", "Write");
+
+                        else if (gameMap[i, j] == Trap)
+                            PrintColor.Gray($"{gameMap[i, j]}  ", "Write");
+
+                        else if (gameMap[i, j] == Boss)
+                            PrintColor.Red($"{gameMap[i, j]}  ", "Write");
+
+                        else if (gameMap[i, j] == Coin)
+                            PrintColor.DarkYellow($"{gameMap[i, j]}  ", "Write");
+
+                        else if (gameMap[i, j] == Wall || gameMap[i, j] == Terrain)
+                            PrintColor.BackgroundDarkGray("   ", "Write");
+
+                        else if (gameMap[i, j] == Door || gameMap[i, j] == Door2)
+                            PrintColor.DarkGreen($"{gameMap[i, j]}  ", "Write");
+
+                        else if (gameMap[i, j] == GoBack)
+                            PrintColor.BackgroundGreen($"{gameMap[i, j]}  ", "Write");
+                        else if (gameMap[i, j] == Cellar)
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkGray;
+                            Console.Write($"{gameMap[i, j]}  ");
+                            Console.ResetColor();
+                        }
+                        else
+                            Console.Write(gameMap[i, j] + "  ");
+                    }
+                
+                }
+                Console.WriteLine();
+            }
+            
+        }
+
     }
     #endregion
 }
