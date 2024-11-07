@@ -13,10 +13,10 @@ public class Inventory
             PlayerUI.ShowStats(player);             //Skriver ut players totala stats
             Console.WriteLine();
 
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            //Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine();
             ShowInventory();        //Skriver ut items som vi har lootat, om den inte är tom
-            Console.ResetColor();
+            //Console.ResetColor();
             Console.WriteLine();
             PlayerEquipment.ShowWornGear(player);       //Skriver ut items som vi har equippat
             Console.ResetColor();
@@ -38,13 +38,13 @@ public class Inventory
     }
     private void ShowInventory()        //Skriver ut alla items i inventoryn
     {
-        Console.WriteLine($"Inventory - Space: {inventory.Count}/10");
+        PrintColor.DarkGreen($"Inventory - Space: {inventory.Count}/10", "WriteLine");
         Console.WriteLine("---------------------");
         if (inventory.Count > 0)
         {
             for (int i = 0; i < inventory.Count; i++)
             {
-                Console.WriteLine($"[{i+1}] {inventory[i].ItemName}, {inventory[i].ItemType}");
+                Console.Write($"[{i + 1}] {inventory[i].ItemType, -8} {inventory[i].ItemName, -15}"); PrintColor.Yellow($"{inventory[i].Price/2, 7}g", "WriteLine");
             }
         }
         else
@@ -87,7 +87,7 @@ public class Inventory
 
     private void ShowEquipmentInventory() // För att visa inventory MED stats
     {
-        Console.WriteLine($"Inventory - Space: {inventory.Count}/10");
+        PrintColor.DarkGreen($"Inventory - Space: {inventory.Count}/10", "WriteLine");
         if (inventory.Count > 0)
         {
             for (int i = 0; i < inventory.Count; i++)

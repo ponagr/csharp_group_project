@@ -113,13 +113,13 @@ public static class PlayerEquipment
         { "Weapon", "Helm", "Chest", "Gloves", "Legs", "Boots" };
 
         int row = 6;
-        Console.SetCursorPosition(39, 4);
+        Console.SetCursorPosition(45, 4);
         Console.WriteLine("Worn Equipment:");
-        Console.SetCursorPosition(39, 5);
+        Console.SetCursorPosition(45, 5);
         Console.WriteLine("------------------------");
         for (int i = 0; i < itemType.Count; i++)
         {
-            Console.SetCursorPosition(39, row);
+            Console.SetCursorPosition(45, row);
             if (player.EquippedGear[i] != null)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -134,5 +134,6 @@ public static class PlayerEquipment
             }
             row++;
         }
+        Console.SetCursorPosition(0, 25);
     }
 }
