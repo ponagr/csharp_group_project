@@ -11,7 +11,7 @@ public static class AddMaps
         {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23
             { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' },
             { '|', '@', '£', ' ', ' ', ' ', ' ', ' ', '¤', ' ', ' ', '|', '#', '|', '\u2665', ' ', ' ', ' ', ' ', ' ', 'B', ' ', '|' },
-            { '|', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
+            { '|', ' ', ' ', '#', ' ', 'B', ' ', ' ', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '£', '|', '_', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
             { '|', '/', '#', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|', '£', ' ', ' ', ' ', ' ', ' ', ' ', '_', '|', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '£', ' ', '|', ' ', ' ', '|' },
@@ -51,7 +51,10 @@ public static class AddMaps
         Butcher butcher2 = new Butcher(1, "Butchie");
         Assassin assassin3 = new Assassin(1, "Asian");
 
-        AssassinBoss assassinBoss = new AssassinBoss(1, "Smygehuk");
+        ButcherBoss boss = new ButcherBoss(1, "The Butcher");
+        //AssassinBoss assassinBoss = new AssassinBoss(1, "Smygehuk");
+
+
         List<Enemy> enemiesLevel1 = new List<Enemy> {mage, butcher, archer, assassin, assassin1, archer1, archer2, butcher3,
         assassin3, butcher2, assassin4, mage2, mage3, archer3, butcher1, mage1};
         List<Item> items = new List<Item>() {new Consumable(), new THelm("Plåthjälm", 5, 30, 20, 0),
@@ -60,7 +63,7 @@ public static class AddMaps
         List<Chest> chestsLevel1 = new List<Chest>() { new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items) };
 
 
-        RegularMap level1 = new RegularMap(gameLevel1, enemiesLevel1, chestsLevel1, assassinBoss, null);
+        RegularMap level1 = new RegularMap(gameLevel1, enemiesLevel1, chestsLevel1, boss, null);
         return level1;
     }
     #endregion

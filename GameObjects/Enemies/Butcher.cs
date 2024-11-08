@@ -6,8 +6,8 @@ public class Butcher : Enemy
     // PILBÅGSSKYTT - Attackerar från avstånd, lite hp & resistance
 
     public bool hasShield;
-    private int bigHit;
-    private bool needsRest;
+    public int bigHit;
+    public bool needsRest;
     private bool specialAttack;
     private bool justBlocked;
 
@@ -31,18 +31,7 @@ public class Butcher : Enemy
     }
     public override void PrintCharacter(Enemy enemy)
     {
-        // if (hasShield)
-        // {
-        //     Textures.PrintButcherShield();
-        //     Thread.Sleep(400);
-        //     Textures.PrintButcher();
-        //     hasShield = false;
-        // }
-        // else
-        // {
-            Textures.PrintButcher();
-        //}
-
+        Textures.PrintButcher();
     }
     public override void CharacterAttackAnimation(Enemy enemy)
     {
@@ -65,7 +54,7 @@ public class Butcher : Enemy
     {
         bigHit++;
         double damageDone = CalculateDamage(player, out bool attackCrit);
-        if (bigHit == 3) // BIGHIT
+        if (bigHit == 4) // BIGHIT
         {
             damageDone = BigHit(damageDone);
             bigHit = 0;
@@ -112,11 +101,10 @@ public class Butcher : Enemy
     public override string TakeDamage(double damage, bool crit, out string attackMessage)
     {
         Random rndShield = new Random();
-        int magicNumber = rndShield.Next(1, 3);
+        int magicNumber = rndShield.Next(1, 4);
 
         if (needsRest)
         {
-            //justBlocked = false;
             return base.TakeDamage(damage, crit, out attackMessage);
         }
 
@@ -129,7 +117,6 @@ public class Butcher : Enemy
         else
         {
             damage = BlockedAttack();
-            //justBlocked = true;
             CurrentHp -= damage;
             attackMessage = "Blocked!";
             return $"DMG {damage:F0} -->";

@@ -59,23 +59,91 @@ public class AssassinBoss : Assassin
 }
 public class ButcherBoss : Butcher
 {
+    bool specialAttack;
+
+
     public ButcherBoss(int level, string name) : base(level, name)
     { 
         base.BaseHp = base.BaseHp * 1.5;
         base.BaseDamage = base.BaseDamage * 1.5;
+        CurrentHp = TotalHp;
         base.BaseResistance = base.BaseResistance * 1.5;
         base.BaseAgility = base.BaseAgility * 1.5;
+        specialAttack = false;
     }   
+
+    public override void CharacterAttackAnimation(Enemy enemy)
+    {
+        if (specialAttack)
+        {
+            Textures.ButcherBossAttackAnimation();
+        }
+        else
+        {
+            base.CharacterAttackAnimation(enemy); // Lägg till animationer för detta
+        }
+    }
+
+    double SpecialAttack(double damage, out string attackMessage)
+    {
+        damage = damage * 1.75;
+        attackMessage = "MEAT CLEAVER!";
+        return damage;
+    }
 
     public override string Attack(Player player, out string attackMessage)
     {
-        return base.Attack(player, out attackMessage);
+        double damage;
+        damage = CalculateDamage(player, out bool attackCrit);
+        Random random = new Random();
+        if (random.Next(0,10) == 3 && !needsRest)
+        {
+            damage = SpecialAttack(damage, out attackMessage);
+            if (attackCrit)
+            {
+                attackMessage = "CRIT " + attackMessage; 
+            }
+            player.CurrentHp -= damage;
+            specialAttack = true;
+            return $"{damage:F0}";
+        }
+        else if (random.Next(0,6) == 2 && !needsRest)
+        {
+            specialAttack = false;
+            attackMessage = "STUNNED";
+            player.CurrentHp -= damage;
+            return $"{damage:F0}";
+        }
+        else
+        {
+            specialAttack = false;
+            return base.Attack(player, out attackMessage);
+        }
+        
         
     } 
 }
 public class ArcherBoss : Archer
 {
     public ArcherBoss(int level, string name) : base(level, name)
+    { 
+        base.BaseHp = (base.BaseHp) * 1.5;
+        CurrentHp = TotalHp;
+        base.BaseDamage = (base.BaseDamage) * 1.5;
+        base.BaseResistance = (base.BaseResistance) * 1.5;
+        base.BaseAgility = (base.BaseAgility) * 1.5;
+    }
+
+    public override string Attack(Player player, out string attackMessage)
+    {
+        return base.Attack(player, out attackMessage);
+        
+    }
+}
+
+public class MageBoss : Mage
+{
+    public MageBoss(int level, string name) : base(level, name)
     { 
         base.BaseHp = base.BaseHp * 1.5;
         base.BaseDamage = base.BaseDamage * 1.5;

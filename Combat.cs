@@ -3,8 +3,8 @@ using System.Security.Cryptography.X509Certificates;
 
 public static class Combat
 {
-    private static string criticalPlayer;
-    private static string criticalEnemy;
+    private static string attackMessagePlayer;
+    private static string attackMessageEnemy;
     private static string enemyDamage;
     private static string playerDamage;
     private static string playerHealing;
@@ -43,7 +43,7 @@ public static class Combat
         Clear.EnemyHp();
         enemy.ShowHp();
         Console.SetCursorPosition(20, 6);
-        PrintColor.Green($"{criticalPlayer}", "WriteLine");
+        PrintColor.Green($"{attackMessagePlayer}", "WriteLine");
         Console.SetCursorPosition(20, 7);
         PrintColor.Green($"{playerDamage}", "WriteLine");
         Console.SetCursorPosition(0, 11);
@@ -62,7 +62,7 @@ public static class Combat
         enemy.ShowHp();
 
         Console.SetCursorPosition(20, 6);
-        PrintColor.Green($"{criticalPlayer}", "WriteLine");
+        PrintColor.Green($"{attackMessagePlayer}", "WriteLine");
         Console.SetCursorPosition(20, 7);
         PrintColor.Green($"{playerDamage}", "WriteLine");
     }
@@ -80,7 +80,7 @@ public static class Combat
         Clear.Damage();
 
         Console.SetCursorPosition(20, 6);
-        PrintColor.Red($"{criticalEnemy}", "WriteLine");
+        PrintColor.Red($"{attackMessageEnemy}", "WriteLine");
         Console.SetCursorPosition(20, 7);
         PrintColor.Red(enemyDamage, "WriteLine");
     }
@@ -121,8 +121,8 @@ public static class Combat
 
     public static void FightMode(Player player, Enemy enemy)
     {
-        criticalPlayer = "";
-        criticalEnemy = "";
+        attackMessagePlayer = "";
+        attackMessageEnemy = "";
         enemyDamage = "";
         playerDamage = "";
         playerHealing = "";
@@ -134,40 +134,47 @@ public static class Combat
 
             StartPosition(player, enemy);
 
-            CombatMenu(player, enemy);
-
-            string input = Console.ReadLine();
-            switch (input)
+            if (attackMessageEnemy != "STUNNED")
             {
-                case "1":
-                    playerDamage = player.Attack(enemy, out criticalPlayer);   //Skriver ut skadan // SPARAR den returnerade stringen i playerDamage
-                    break;
-                case "2":
-                    playerHealing = player.Heal();
-                    break;
-                case "3":
+                CombatMenu(player, enemy);
+                
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "1":
+                        playerDamage = player.Attack(enemy, out attackMessagePlayer);   //Skriver ut skadan // SPARAR den returnerade stringen i playerDamage
+                        break;
+                    case "2":
+                        playerHealing = player.Heal();
+                        break;
+                    case "3":
+                        return;
+                    default:
+                        break;
+                }
+
+                if (enemy.CurrentHp < 1)   //Fixa så att enemy.CurrentHp inte kan bli lägre än 0
+                {
+                    EnemyKilled(player, enemy);
                     return;
-                default:
-                    break;
-            }
-            if (enemy.CurrentHp < 1)   //Fixa så att enemy.CurrentHp inte kan bli lägre än 0
-            {
-                EnemyKilled(player, enemy);
-                return;
-            }
+                }
 
-            if (input == "2")   //Om vi healar, uppdatera player.CurrentHp innan enemy attackerar
-            {
-                PlayerHeal(player);
-            }
+                if (input == "2")   //Om vi healar, uppdatera player.CurrentHp innan enemy attackerar
+                {
+                    PlayerHeal(player);
+                }
 
-            
-
-            if (input == "1")    //Vid attack
-            {
-                PlayerAttack(enemy);
+                if (input == "1")    //Vid attack
+                {
+                    PlayerAttack(enemy);
+                }
             }
-            enemyDamage = enemy.Attack(player, out criticalEnemy);
+            else
+            {
+                Console.WriteLine("You are stunned and cant attack this round");
+            }
+            enemyDamage = enemy.Attack(player, out attackMessageEnemy);
+
             Thread.Sleep(700);
 
             EnemyAttack(player, enemy);
