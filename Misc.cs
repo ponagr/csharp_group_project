@@ -53,6 +53,11 @@ public static class Write
         }
         Console.SetCursorPosition(0, startLine);
     }
+    public static string FirstToUpper(string input)
+    {
+        input = char.ToUpper(input[0]) + input.Substring(1).ToLower();
+        return input;
+    }
 
     
 }
@@ -76,6 +81,7 @@ public static class PrintColor
             Console.ResetColor();
         }
     }
+    
     public static void Green(string stringToPrint, string Write)
     {
         if (Write == "WriteLine")
@@ -94,7 +100,7 @@ public static class PrintColor
     }
     public static void Yellow(string stringToPrint, string Write)
     {
-             if (Write == "WriteLine")
+        if (Write == "WriteLine")
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(stringToPrint);
@@ -110,7 +116,7 @@ public static class PrintColor
     }
     public static void Blue(string stringToPrint, string Write)
     {
-             if (Write == "WriteLine")
+        if (Write == "WriteLine")
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(stringToPrint);
@@ -126,7 +132,7 @@ public static class PrintColor
     }
     public static void Gray(string stringToPrint, string Write)
     {
-             if (Write == "WriteLine")
+        if (Write == "WriteLine")
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine(stringToPrint);
@@ -299,13 +305,78 @@ public static class PrintColor
         }
     }
 
-}
 
-public static class Misc
-{
-    public static string FirstToUpper(string input)
-    {
-        input = char.ToUpper(input[0]) + input.Substring(1).ToLower();
-        return input;
-    }
+    //Elviras och Daniels color-metoder
+    // public static void DisplayWithColor(int value, string attributeType)
+    // {
+    //     // Set color based on the type of attribute
+    //     switch (attributeType.ToLower())
+    //     {
+    //         case "health":
+    //             Console.ForegroundColor = ConsoleColor.Green;
+    //             break;
+    //         case "mana":
+    //             Console.ForegroundColor = ConsoleColor.Blue;
+    //             break;
+    //         case "dmg":
+    //             Console.ForegroundColor = ConsoleColor.Red;
+    //             break;
+    //         case "magic":
+    //             Console.ForegroundColor = ConsoleColor.Magenta;
+    //             break;
+    //         case "coin":
+    //             Console.ForegroundColor = ConsoleColor.Yellow;
+    //             break;
+    //         default:
+    //             Console.ForegroundColor = ConsoleColor.White;
+    //             break;
+    //     }
+
+    //     Console.Write(value);
+    //     Console.ResetColor(); // Reset to default color after printing
+    // }
+    // public static void DisplayDialogueInColor(NPC npc)
+    // {
+    //     string npcCategory;
+
+    //     // Bestäm kategori med if-satser
+    //     if (NpcDatabase.storyCharacters.ContainsValue(npc))
+    //     {
+    //         npcCategory = "storyCharacter";
+    //     }
+    //     else if (NpcDatabase.merchants.ContainsValue(npc))
+    //     {
+    //         npcCategory = "merchant";
+    //     }
+    //     else if (NpcDatabase.enemies.ContainsValue(npc))
+    //     {
+    //         npcCategory = "enemy";
+    //     }
+    //     else
+    //     {
+    //         npcCategory = "default";
+    //     }
+
+    //     // Sätt färgen baserat på kategorin
+    //     switch (npcCategory)
+    //     {
+    //         case "storyCharacter":
+    //             Console.ForegroundColor = ConsoleColor.Magenta;
+    //             break;
+    //         case "merchant":
+    //             Console.ForegroundColor = ConsoleColor.Cyan;
+    //             break;
+    //         case "enemy":
+    //             Console.ForegroundColor = ConsoleColor.DarkRed;
+    //             break;
+    //         default:
+    //             Console.ForegroundColor = ConsoleColor.White;
+    //             break;
+    //     }
+
+    //     // Skriv ut NPC:ns namn i den valda färgen
+    //     Console.Write(npc.Name);
+    //     Console.ResetColor();
+    // }
+
 }

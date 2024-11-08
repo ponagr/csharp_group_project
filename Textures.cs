@@ -432,7 +432,7 @@ public static class Textures
 
     public static void PrintButcherNeedsRest()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             Console.SetCursorPosition(40, 5);
             Console.WriteLine("                 ");
@@ -447,7 +447,7 @@ public static class Textures
             Console.ResetColor();
             Console.WriteLine();
 
-            Thread.Sleep(300);
+            Thread.Sleep(200);
 
             Console.SetCursorPosition(40, 5);
             Console.WriteLine("                ");
@@ -462,7 +462,7 @@ public static class Textures
             Console.ResetColor();
             Console.WriteLine();
 
-            Thread.Sleep(300);
+            Thread.Sleep(200);
 
             Console.SetCursorPosition(40, 5);
             Console.WriteLine("                  ");
@@ -477,7 +477,7 @@ public static class Textures
             Console.ResetColor();
             Console.WriteLine();
 
-            Thread.Sleep(300);
+            Thread.Sleep(200);
         }
 
     }
