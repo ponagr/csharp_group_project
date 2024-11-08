@@ -134,6 +134,5 @@ public static class PlayerEquipment
             }
             row++;
         }
-        Console.SetCursorPosition(0, 25);
     }
 }

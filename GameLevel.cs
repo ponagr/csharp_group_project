@@ -24,6 +24,9 @@ public static class GameLevel
 
     public static int level;
 
+    //public static List<Map> AllMaps = new List<Map>();
+
+
 
     //Metoder för alla olika utfall som kan ske på mappen, anropas via MovePlayer-metod
     //tar in nya positioner för att flytta spelaren och utför specifika händelser baserat på vilken metod som anropas från MovePlayer
@@ -72,9 +75,9 @@ public static class GameLevel
     #endregion
 
     #region MERCHANT
-    private static void HandleMerchant(List<Chest> chest, Player player, char[,] gameMap, int newX, int newY)
+    private static void HandleMerchant(Merchant merchant, Player player)
     {
-        
+        merchant.Interact(player);
     }
     #endregion
 
@@ -99,9 +102,10 @@ public static class GameLevel
     #endregion
 
     #region NEXTLEVEL
-    private static void NextLevel()
+    private static void NextLevel() //List<Map> maps
     {
         level++;
+        //maps.Add(AllMaps[level]);
         Console.Clear();
         // Loada nästa level
         Console.WriteLine("Du klarade nivån");
@@ -128,22 +132,25 @@ public static class GameLevel
         char[,] gameMap = map.CellarLevel;
         List<Enemy> enemies = map.Enemies;
         List<Chest> chests = map.Chests;
+        Merchant? merchant = map.Merchant;
         bool inCellar = true;
         while (inCellar)
         {
             PrintGameBoard(gameMap, player);
-            MovePlayer(gameMap, enemies, chests, player, out inCellar);
+            MovePlayer(gameMap, merchant, enemies, chests, player, out inCellar);
         }
     }
 
     #region MOVEMENT
-    public static void MovePlayer(List<Map> map, Player player)
+    public static void MovePlayer(List<Map> map, Player player)  //Merchant ska läggas till i Map istället för att skickas in separat
     {
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
         int newX;       //newX,newY är den nya positionen som vi vill förflytta våran player till
         int newY;
+        Console.CursorVisible = false;
 
+        Merchant? merchant = map[level].Merchant;    //Hämtar merchant, enemylista, chestlista, gameMap och boss via Map-objektet
         char[,] gameMap = map[level].Maplevel;
         List<Enemy> enemies = map[level].Enemies;
         Enemy boss = map[level].Boss;
@@ -229,6 +236,10 @@ public static class GameLevel
         {
             HandleBoss(player, boss, gameMap, newX, newY);
         }
+        else if (gameMap[newX, newY] == Merchant)
+        {
+            HandleMerchant(merchant, player);
+        }
         else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
         {
             NextLevel();
@@ -274,7 +285,7 @@ public static class GameLevel
         PrintColor.Green($" Player: {Player}  ", "Write");
         PrintColor.Red($"Enemy: {Enemy}  ", "Write");
         PrintColor.DarkYellow($"Chest: {Chest}  ", "Write");
-        PrintColor.Yellow($"Coin: {Coin}  ", "Write");
+        PrintColor.Yellow($"Coin: {'\u00A9'}  ", "Write");
         PrintColor.Gray($"Trap: {Trap}  ", "Write");
         PrintColor.Red($"Boss: {Boss}  ", "Write");
         PrintColor.Green($"Door: {Door}  ", "Write");
@@ -288,6 +299,7 @@ public static class GameLevel
         Console.Clear();
         // INFO OM KARTAN
         MapInfo();
+        Console.CursorVisible = false;
         char[,] gameMap = map[level].Maplevel;
 
         // SKRIVER UT MAP, med olika textfärger baserat på char
@@ -296,70 +308,55 @@ public static class GameLevel
             for (int j = 0; j < gameMap.GetLength(1); j++)
             {
                 if (gameMap[i, j] == Player)
-                    PrintColor.Green($"{gameMap[i, j]}  ", "Write");
+                    PrintColor.Green($" {gameMap[i, j]} ", "Write");
 
                 else if (gameMap[i, j] == Enemy)
-                    PrintColor.Red($"{gameMap[i, j]}  ", "Write");
+                    PrintColor.Red($" {gameMap[i, j]} ", "Write");
 
                 else if (gameMap[i, j] == Chest && !isOpen)
-                    PrintColor.Yellow($"{gameMap[i, j]}  ", "Write");
+                    PrintColor.Yellow($" {gameMap[i, j]} ", "Write");
 
                 else if (gameMap[i, j] == Chest && isOpen) // ANVÄNDS INTE ÄN
-                    PrintColor.Gray($"{gameMap[i, j]}  ", "Write");
+                    PrintColor.Gray($" {gameMap[i, j]} ", "Write");
 
                 else if (gameMap[i, j] == Trap)
-                    PrintColor.Gray($"{gameMap[i, j]}  ", "Write");
+                    PrintColor.Gray($" {gameMap[i, j]} ", "Write");
 
                 else if (gameMap[i, j] == Boss)
-                    PrintColor.Red($"{gameMap[i, j]}  ", "Write");
+                    PrintColor.Red($" {gameMap[i, j]} ", "Write");
 
                 else if (gameMap[i, j] == Coin)
-                    PrintColor.DarkYellow($"{gameMap[i, j]}  ", "Write");
+                    PrintColor.DarkYellow($" {'\u00A9'} ", "Write");
 
                 else if (gameMap[i, j] == Wall || gameMap[i, j] == Terrain)
                     PrintColor.BackgroundDarkCyan("   ", "Write");
 
                 else if (gameMap[i, j] == Door || gameMap[i, j] == Door2)
-                    PrintColor.DarkGreen($"{gameMap[i, j]}  ", "Write");
+                    PrintColor.DarkGreen($" {gameMap[i, j]} ", "Write");
 
                 else if (gameMap[i, j] == GoBack)
-                    PrintColor.BackgroundGreen($"{gameMap[i, j]}  ", "Write");
+                    PrintColor.BackgroundGreen($" {gameMap[i, j]} ", "Write");
                 else if (gameMap[i, j] == Cellar)
                 {
                     Console.BackgroundColor = ConsoleColor.DarkGray;
-                    Console.Write($"{gameMap[i, j]}  ");
+                    Console.Write($" {gameMap[i, j]} ");
                     Console.ResetColor();
                 }
                 else
-                    Console.Write(gameMap[i, j] + "  ");
+                    Console.Write($" {gameMap[i, j]} ");
             }
             Console.WriteLine();
         }
         PlayerUI.UI(player);    //visa UI under mappen
     }
     #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     #region CELLARLEVEL
     public static void PrintGameBoard(char[,] gameMap, Player player)  //Tar in och skriver ut den leveln som skickas in till metoden
     {
         Console.Clear();
         // INFO OM KARTAN
         MapInfo();
-
+        Console.CursorVisible = false;
 
         // SKRIVER UT MAP, med olika textfärger baserat på char
         for (int i = 0; i < gameMap.GetLength(0); i++)
@@ -409,13 +406,15 @@ public static class GameLevel
         PlayerUI.UI(player);    //visa UI under mappen
     }
 
-    public static void MovePlayer(char[,] gameMap, List<Enemy> enemies, List<Chest> chests, Player player, out bool inCellar)
+    #region CELLARMOVEMENT
+    public static void MovePlayer(char[,] gameMap, Merchant merchant, List<Enemy> enemies, List<Chest> chests, Player player, out bool inCellar)
     {
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
         int newX;       //newX,newY är den nya positionen som vi vill förflytta våran player till
         int newY;
         inCellar = true;
+        Console.CursorVisible = false;
         // char[,] gameMap = map[level].Maplevel;
         // List<Enemy> enemies = map[level].Enemies;
         // Enemy boss = map[level].Boss;
@@ -436,6 +435,7 @@ public static class GameLevel
         }
         newX = posX;
         newY = posY;
+        #endregion
 
         //Ger värde till newX och newY baserat på åt vilket håll vi väljer att gå, via WASD
         #region UP
@@ -492,6 +492,10 @@ public static class GameLevel
         else if (gameMap[newX, newY] == Chest)
         {
             HandleChest(chests, player, gameMap, newX, newY);
+        }
+        else if (gameMap[newX, newY] == Merchant)
+        {
+            HandleMerchant(merchant, player);
         }
         // else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
         // {
@@ -567,13 +571,14 @@ public static class GameLevel
         char[,] gameMap = map[level].Maplevel;
         // INFO OM KARTAN
         MapInfo();
+        Console.CursorVisible = false;
         // SKRIVER UT MAP, med olika textfärger baserat på char
 
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
         // int newX;       //newX,newY är den nya positionen som vi vill förflytta våran player till
         // int newY;
-
+        Console.WriteLine();
         for (int i = 0; i < gameMap.GetLength(0); i++)      //hitta positionen för player och ge dessa värden till posX och posY
         {
             for (int j = 0; j < gameMap.GetLength(1); j++)

@@ -37,7 +37,7 @@ public class Chest
         }
         if (Gold > 0)
         {
-            PrintColor.Yellow($"+{Gold} Coins", "WriteLine");
+            PrintColor.Yellow($"+{Gold} {'\u00A9'}", "WriteLine");
         }
     }
 }

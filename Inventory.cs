@@ -13,16 +13,14 @@ public class Inventory
             PlayerUI.ShowStats(player);             //Skriver ut players totala stats
             Console.WriteLine();
 
-            //Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine();
             ShowInventory();        //Skriver ut items som vi har lootat, om den inte är tom
-            //Console.ResetColor();
             Console.WriteLine();
             PlayerEquipment.ShowWornGear(player);       //Skriver ut items som vi har equippat
             Console.ResetColor();
-            Console.SetCursorPosition(39, 13);
+            Console.SetCursorPosition(45, 14);
             Console.WriteLine("Tryck 'E' för att hantera equipments");
-            Console.SetCursorPosition(39, 14);
+            Console.SetCursorPosition(45, 15);
             Console.WriteLine("Tryck 'C' för att gå tillbaka");
             var keyInput = Console.ReadKey(true);
             if (keyInput.Key == ConsoleKey.E)
@@ -44,7 +42,7 @@ public class Inventory
         {
             for (int i = 0; i < inventory.Count; i++)
             {
-                Console.Write($"[{i + 1}] {inventory[i].ItemType, -8} {inventory[i].ItemName, -15}"); PrintColor.Yellow($"{inventory[i].Price/2, 7}g", "WriteLine");
+                Console.Write($"[{i + 1}] {inventory[i].ItemType, -8} {inventory[i].ItemName, -15}"); PrintColor.Yellow($"{inventory[i].Price/2, 7} {'\u00A9', 1}", "WriteLine");
             }
         }
         else

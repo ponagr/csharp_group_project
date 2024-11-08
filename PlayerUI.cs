@@ -11,8 +11,8 @@ public static class PlayerUI
         player.HealingPot.ShowItem();
         Console.ResetColor();
 
-        Console.SetCursorPosition(38, currentLine);
-        PrintColor.Yellow($"Coins: {player.Gold}", "WriteLine");
+        Console.SetCursorPosition(40, currentLine);
+        PrintColor.Yellow($"{player.Gold} {'\u00A9'}", "WriteLine");
 
         Console.SetCursorPosition(50, currentLine);
         ShowXp(player);
