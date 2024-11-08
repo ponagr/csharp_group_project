@@ -5,16 +5,16 @@ public class Enemy : GameObject
     public HealthBar healthBar;
     //Lägg till en AggroRange senare
 
-    public Enemy(Player player)
+    public Enemy(double level)
     {
-        double multiplier = player.Level * 0.5;
+        double multiplier = level * 0.75;
         Random random = new Random();
         Name = "Enemy";
         Description = "Enemy";
-        BaseHp = 75 + random.Next(0, 25) * multiplier;
+        BaseHp = (75 + random.Next(0, 25)) * multiplier;
         CurrentHp = TotalHp;
-        BaseDamage = 10 + random.Next(0, 10) * multiplier;
-        BaseResistance = 0 + random.Next(0, 5) * multiplier;
+        BaseDamage = (10 + random.Next(0, 10)) * multiplier;
+        BaseResistance = (0 + random.Next(0, 5)) * multiplier;
         BaseAgility = 5 * multiplier;
 
         healthBar = new HealthBar();

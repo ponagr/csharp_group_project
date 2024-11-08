@@ -4,16 +4,16 @@ public class Mage : Enemy
     private bool isReadyForThunder;
     private int chargeCounter;
 
-    public Mage(Player player, string name) : base(player)
+    public Mage(int level, string name) : base(level)
     {
-        double multiplier = player.Level * 0.5;
+        double multiplier = level * 0.75;
         Random random = new Random();
         Name = name;
         Description = "Mage";
-        BaseHp = 50 + random.Next(0, 15) * multiplier;
+        BaseHp = (50 + random.Next(0, 15)) * multiplier;
         CurrentHp = TotalHp;
-        BaseDamage = 15 + random.Next(0, 10) * multiplier;
-        BaseResistance = 5 + random.Next(0, 5) * multiplier;
+        BaseDamage = (15 + random.Next(0, 10)) * multiplier;
+        BaseResistance = (5 + random.Next(0, 5)) * multiplier;
         BaseAgility = 10 * multiplier;
         chargeCounter = 0;
         isReadyForThunder = false;

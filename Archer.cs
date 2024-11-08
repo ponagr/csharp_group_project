@@ -4,16 +4,16 @@ public class Archer : Enemy
     private bool isCharging;
     private int chargeCounter;
 
-    public Archer(Player player, string name) : base(player)
+    public Archer(int level, string name) : base(level)
     {
-        double multiplier = player.Level * 0.5;
+        double multiplier = level * 0.75;
         Random random = new Random();
         Name = name;
         Description = "Archer";
-        BaseHp = 50 + random.Next(0, 15) * multiplier; // Låg HP
+        BaseHp = (50 + random.Next(0, 15)) * multiplier; // Låg HP
         CurrentHp = TotalHp;
-        BaseDamage = 15 + random.Next(0, 10) * multiplier; // Standard attackskada
-        BaseResistance = 5 + random.Next(0, 5) * multiplier; // Låg motståndskraft
+        BaseDamage = (15 + random.Next(0, 10)) * multiplier; // Standard attackskada
+        BaseResistance = (5 + random.Next(0, 5)) * multiplier; // Låg motståndskraft
         BaseAgility = 10 * multiplier; // Hög rörlighet
         chargeCounter = 0;
         isCharging = true;

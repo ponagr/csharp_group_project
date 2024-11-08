@@ -1,7 +1,7 @@
 public class AssassinBoss : Assassin
 {
     bool specialAttack;
-    public AssassinBoss(Player player, string name) : base(player, name)
+    public AssassinBoss(int level, string name) : base(level, name)
     { 
         Name = "Smygehuk";
         Description = "Assassin BOSS";
@@ -59,7 +59,7 @@ public class AssassinBoss : Assassin
 }
 public class ButcherBoss : Butcher
 {
-    public ButcherBoss(Player player, string name) : base(player, name)
+    public ButcherBoss(int level, string name) : base(level, name)
     { 
         base.BaseHp = base.BaseHp * 1.5;
         base.BaseDamage = base.BaseDamage * 1.5;
@@ -75,7 +75,7 @@ public class ButcherBoss : Butcher
 }
 public class ArcherBoss : Archer
 {
-    public ArcherBoss(Player player, string name) : base(player, name)
+    public ArcherBoss(int level, string name) : base(level, name)
     { 
         base.BaseHp = base.BaseHp * 1.5;
         base.BaseDamage = base.BaseDamage * 1.5;

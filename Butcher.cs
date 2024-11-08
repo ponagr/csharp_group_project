@@ -11,16 +11,16 @@ public class Butcher : Enemy
     private bool specialAttack;
     private bool justBlocked;
 
-    public Butcher(Player player, string name) : base(player)
+    public Butcher(int level, string name) : base(level)
     {
-        double multiplier = player.Level * 0.5;
+        double multiplier = level * 0.75;
         Random random = new Random();
         Name = name;
         Description = "Butcher";
-        BaseHp = 100 + random.Next(0, 25) * multiplier;
+        BaseHp = (100 + random.Next(0, 25)) * multiplier;
         CurrentHp = TotalHp;
-        BaseDamage = 20 + random.Next(0, 10) * multiplier;
-        BaseResistance = 10 + random.Next(0, 5) * multiplier;
+        BaseDamage = (20 + random.Next(0, 10)) * multiplier;
+        BaseResistance = (10 + random.Next(0, 5)) * multiplier;
         BaseAgility = 5 * multiplier;
         bigHit = 1;
         specialAttack = false;
