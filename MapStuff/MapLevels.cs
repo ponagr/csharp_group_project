@@ -50,12 +50,13 @@ public static class AddMaps
         Mage mage3 = new Mage(1, "Magic-Mike");
         Butcher butcher2 = new Butcher(1, "Butchie");
         Assassin assassin3 = new Assassin(1, "Asian");
+        Sceletons sceletons = new Sceletons(1, "Ben-jamin");
 
         ButcherBoss boss = new ButcherBoss(1, "The Butcher");
         //AssassinBoss assassinBoss = new AssassinBoss(1, "Smygehuk");
 
 
-        List<Enemy> enemiesLevel1 = new List<Enemy> {mage, butcher, archer, assassin, assassin1, archer1, archer2, butcher3,
+        List<Enemy> enemiesLevel1 = new List<Enemy> {sceletons, mage, butcher, archer, assassin, assassin1, archer1, archer2, butcher3,
         assassin3, butcher2, assassin4, mage2, mage3, archer3, butcher1, mage1};
         List<Item> items = new List<Item>() {new Consumable(), new THelm("Plåthjälm", 5, 30, 20, 0),
         new TWeapon("Gimlis Yxa", "Yxa", 40, 10, 0, 20), new TWeapon("Legolas Pilbåge", "Pilbåge", 30, 15, 5, 15),

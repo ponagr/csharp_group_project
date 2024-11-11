@@ -35,7 +35,7 @@ public class CellarMap : Map
     }
 }
 
-public class DarkMap : Map
+public class DarkMap : Map // INGEN SKILLNAD MOT REGULARMAP?!
 { 
     public DarkMap(char[,] map, List<Enemy> enemies, List<Chest> chests, Enemy boss, Merchant merchant)
     {

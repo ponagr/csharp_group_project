@@ -8,7 +8,7 @@ public class GameObject
     {   
         get { return BaseHp; }
     }
-    private double currentHp;
+    private double currentHp; // Varför detta?!
     public double CurrentHp //if CurrentHp < 0, CurrentHp = 0;
     { 
         get { return currentHp; }
