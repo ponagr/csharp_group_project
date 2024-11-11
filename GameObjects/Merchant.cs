@@ -221,13 +221,8 @@ public class Merchant
         Console.WriteLine();
         Console.WriteLine($"To sell:");
         Console.WriteLine();
-        for (int i = 0; i < player.Inventory.inventory.Count; i++)
-        {
-            Console.Write($"[{i + 1}] {player.Inventory.inventory[i].ItemType, -13} {player.Inventory.inventory[i].ItemName,-16}");  
-            PrintColor.Yellow($"{player.Inventory.inventory[i].Price/2, 5} {'\u00A9'}", "WriteLine"); 
-            PrintColor.Blue($"{player.Inventory.inventory[i].Health, 6} Hp {player.Inventory.inventory[i].Damage,3} Dmg {player.Inventory.inventory[i].Resistance,3} Res {player.Inventory.inventory[i].Agility,3} Agi", "WriteLine"); 
-            Console.WriteLine();
-        }
+        player.Inventory.ShowInventorySortedByPrice();
+    
         Console.WriteLine();
 
         Console.SetCursorPosition(45, 0);

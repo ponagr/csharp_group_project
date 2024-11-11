@@ -177,23 +177,6 @@ public static partial class Textures
         // Console.WriteLine(" ---by---pontrik---");
         Console.WriteLine("by == p0ntr1k                               ==");
 
-
-
-        // for (int i=0; i<10; i++)
-        // {
-        // Console.ForegroundColor = ConsoleColor.Cyan;
-        // Console.SetCursorPosition(49, 14);
-        // Console.WriteLine("  PRESS START	");
-
-        // Thread.Sleep(300);
-
-        // Console.ForegroundColor = ConsoleColor.Red;
-        // Console.SetCursorPosition(49, 14);
-        // Console.WriteLine("  PRESS START	");
-
-        // Thread.Sleep(300);
-        // }
-
         while (!Console.KeyAvailable)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -212,33 +195,6 @@ public static partial class Textures
 
 
 }
-
-
-
-//    ____ __  __ ____
-//     ||  ||  || || 
-//     ||  ||__|| ||_
-//     ||  ||  || ||__
-//    __   __    __  ____			
-//   //|| //||  //\\ \\  \\		
-//  // |//  || ||__|| \\__\\			
-// //  |/   || ||  ||  \\	
-
-
-
-
-//       /\  10 RADER
-//    /  \
-//       |  |
-//       |  |
-//       |  |
-//       |  |
-//       <  >
-// {}==|  |=={}
-//      []
-//     []
-//     ==
-
 
 
 /*
