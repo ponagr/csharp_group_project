@@ -21,6 +21,7 @@ public static class GameLevel // Chars som alla maps består av
     private static char GoBack = '=';
     private static char Cellar = ')';
     private static char Merchant = 'M';
+    private static char OpenChest = '4';
 
     public static int level;
 
@@ -39,6 +40,7 @@ public static class GameLevel // Chars som alla maps består av
             enemies.RemoveAt(0);
             gameMap[newX, newY] = Empty;
         }
+        PrintGameBoard(gameMap, player);
     }
     #endregion
     #region BOSS
@@ -49,16 +51,26 @@ public static class GameLevel // Chars som alla maps består av
         {
             gameMap[newX, newY] = Empty;
         }
+        PrintGameBoard(gameMap, player);
     }
     #endregion
     #region GOLD
     private static void HandleGold(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på guld
     {
         Random random = new Random();
-        player.Gold += random.Next(1, 6);
-        Console.WriteLine($"+{random} guld");
+        int goldDrop = random.Next(1, 6);
+        player.Gold += goldDrop;
+        Console.SetCursorPosition(0, 29);
+        PrintColor.Yellow($"+{goldDrop} {'\u00A9'}", "WriteLine");
+
         gameMap[newX, newY] = Player;
         gameMap[posX, posY] = Empty;
+        
+        Console.SetCursorPosition(posY * 3, posX +2); // Töm den gamla positionen
+        Console.Write("  "); // Antag att symbolerna är enkla, annars justera bredden
+        Console.SetCursorPosition(newY * 3, newX +2); // Skriv ut den nya positionen
+        PrintColor.Green("@", "Write");
+
     }
     #endregion
 
@@ -69,8 +81,11 @@ public static class GameLevel // Chars som alla maps består av
         chest.RemoveAt(0);
 
         Console.ReadKey(true);
-        Console.WriteLine("Du gick på en kista");
-        gameMap[newX, newY] = Empty;
+        //Console.WriteLine("Du gick på en kista");
+        gameMap[newX, newY] = OpenChest;
+
+        Console.SetCursorPosition(newY * 3, newX +2); // Skriv ut den nya positionen
+        PrintColor.Gray("#", "Write");
     }
     #endregion
 
@@ -88,6 +103,11 @@ public static class GameLevel // Chars som alla maps består av
         player.CurrentHp = player.TotalHp;
         gameMap[newX, newY] = Player;
         gameMap[posX, posY] = Empty;
+        Console.SetCursorPosition(posY * 3, posX +2); // Töm den gamla positionen
+        Console.Write("  "); // Antag att symbolerna är enkla, annars justera bredden
+
+        Console.SetCursorPosition(newY * 3, newX +2); // Skriv ut den nya positionen
+        PrintColor.Green("@", "Write");
     }
     #endregion
 
@@ -95,9 +115,14 @@ public static class GameLevel // Chars som alla maps består av
     private static void HandleTrap(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på mina
     {
         player.CurrentHp -= 20;
-        Console.WriteLine("Du trampade på en mina");
+        //Console.WriteLine("Du trampade på en mina");
         gameMap[newX, newY] = Player;
         gameMap[posX, posY] = Empty;
+        Console.SetCursorPosition(posY * 3, posX + 2); // Töm den gamla positionen
+        Console.Write("  "); // Antag att symbolerna är enkla, annars justera bredden
+
+        Console.SetCursorPosition(newY * 3, newX + 2); // Skriv ut den nya positionen
+        PrintColor.Green("@", "Write");
     }
     #endregion
 
@@ -144,10 +169,12 @@ public static class GameLevel // Chars som alla maps består av
     #region MOVEMENT
     public static void MovePlayer(List<Map> map, Player player)  //Merchant ska läggas till i Map istället för att skickas in separat
     {
+
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
         int newX;       //newX,newY är den nya positionen som vi vill förflytta våran player till
         int newY;
+
         Console.CursorVisible = false;
 
         Merchant? merchant = map[level].Merchant;    //Hämtar merchant, enemylista, chestlista, gameMap och boss via Map-objektet
@@ -155,126 +182,149 @@ public static class GameLevel // Chars som alla maps består av
         List<Enemy> enemies = map[level].Enemies;
         Enemy boss = map[level].Boss;
         List<Chest> chests = map[level].Chests;
-
-        var keyPressed = Console.ReadKey(true);
-
-        for (int i = 0; i < gameMap.GetLength(0); i++)      //hitta positionen för player och ge dessa värden till posX och posY
+        PrintGameBoard(gameMap, player);
+        
+        while (true)
         {
-            for (int j = 0; j < gameMap.GetLength(1); j++)
+
+            Console.SetCursorPosition(0, 28);
+            Console.WriteLine();
+            Console.SetCursorPosition(0, 29);
+            Console.SetCursorPosition(0, 30);
+            Console.SetCursorPosition(0, 31);
+            // Console.SetCursorPosition(0, 32);
+            Console.CursorVisible = false;
+            var keyPressed = Console.ReadKey(true);
+
+            for (int i = 0; i < gameMap.GetLength(0); i++)      //hitta positionen för player och ge dessa värden till posX och posY
             {
-                if (gameMap[i, j] == Player)
+                for (int j = 0; j < gameMap.GetLength(1); j++)
                 {
-                    posX = i;
-                    posY = j;
+                    if (gameMap[i, j] == Player)
+                    {
+                        posX = i;
+                        posY = j;
+                    }
                 }
             }
-        }
-        newX = posX;
-        newY = posY;
-
-        //Ger värde till newX och newY baserat på åt vilket håll vi väljer att gå, via WASD
-        #region UP
-        if (keyPressed.Key == ConsoleKey.W)
-        {
-            newX = posX - 1;
-            newY = posY;
-        }
-        #endregion
-
-        #region LEFT
-        if (keyPressed.Key == ConsoleKey.A)
-        {
             newX = posX;
-            newY = posY - 1;
-        }
-        #endregion
-
-        #region Down
-        if (keyPressed.Key == ConsoleKey.S)
-        {
-            newX = posX + 1;
             newY = posY;
-        }
-        #endregion
 
-        #region Right
-        if (keyPressed.Key == ConsoleKey.D)
-        {
-            newX = posX;
-            newY = posY + 1;
-        }
-        #endregion
+            //Ger värde till newX och newY baserat på åt vilket håll vi väljer att gå, via WASD
+            #region UP
+            if (keyPressed.Key == ConsoleKey.W)
+            {
+                newX = posX - 1;
+                newY = posY;
+            }
+            #endregion
 
-        //Anropar metoder baserat på newX och newY positionerna
-        #region MOVEMENTACTIONS
-        if (gameMap[newX, newY] == Empty)
-        {
-            gameMap[newX, newY] = Player; // Byter plats
-            gameMap[posX, posY] = Empty; // Där vi stod blir tom
-        }
-        else if (gameMap[newX, newY] == Enemy)
-        {
-            HandleEnemy(player, enemies, gameMap, newX, newY);
-        }
-        else if (gameMap[newX, newY] == Coin)
-        {
-            HandleGold(player, gameMap, posX, posY, newX, newY);
-        }
-        else if (gameMap[newX, newY] == Trap)
-        {
-            HandleTrap(player, gameMap, posX, posY, newX, newY);
-        }
-        else if (gameMap[newX, newY] == Chest)
-        {
-            HandleChest(chests, player, gameMap, newX, newY);
-        }
-        else if (gameMap[newX, newY] == Heart)
-        {
-            HandleHeart(player, gameMap, posX, posY, newX, newY);
-        }
-        else if (gameMap[newX, newY] == Boss)
-        {
-            HandleBoss(player, boss, gameMap, newX, newY);
-        }
-        else if (gameMap[newX, newY] == Merchant)
-        {
-            HandleMerchant(merchant, player);
-        }
-        else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
-        {
-            NextLevel();
-        }
-        else if (gameMap[newX, newY] == GoBack)
-        {
-            PreviousLevel();
-        }
-        else if (gameMap[newX, newY] == Cellar)
-        {
-            GoToCellar(map[level], player);
-        }
-        else if (gameMap[newX, newY] == Wall || gameMap[newX, newY] == Terrain)
-        {
-            Console.WriteLine("Du kan inte gå här");
-        }
-        else
-        {
-            Console.WriteLine("Du kan inte gå hit");
-        }
-        #endregion
+            #region LEFT
+            if (keyPressed.Key == ConsoleKey.A)
+            {
+                newX = posX;
+                newY = posY - 1;
+            }
+            #endregion
 
-        #region INVENTORY
-        if (keyPressed.Key == ConsoleKey.C) //Visa playerStats
-        {
-            player.OpenInventory(player);
-        }
-        #endregion  
+            #region Down
+            if (keyPressed.Key == ConsoleKey.S)
+            {
+                newX = posX + 1;
+                newY = posY;
+            }
+            #endregion
 
-        #region HEAL
-        if (keyPressed.Key == ConsoleKey.Q)
-        {
-            player.Heal();  //Använder en Health-Potion
+            #region Right
+            if (keyPressed.Key == ConsoleKey.D)
+            {
+                newX = posX;                //gamla = 1,1, nya = 1,2
+                newY = posY + 1;            //gamla cursor = 3,5, nya cursor = 
+            }
+            #endregion
+
+            
+            //Anropar metoder baserat på newX och newY positionerna
+            #region MOVEMENTACTIONS
+            if (gameMap[newX, newY] == Empty)
+            {
+                gameMap[newX, newY] = Player; // Byter plats
+                gameMap[posX, posY] = Empty; // Där vi stod blir tom
+
+                Console.SetCursorPosition(posY * 3, posX +2); // Töm den gamla positionen
+                Console.Write("  "); // Antag att symbolerna är enkla, annars justera bredden
+
+                Console.SetCursorPosition(newY * 3, newX +2); // Skriv ut den nya positionen
+                PrintColor.Green("@", "Write");
+
+            }
+            else if (gameMap[newX, newY] == Enemy)
+            {
+                HandleEnemy(player, enemies, gameMap, newX, newY);
+            }
+            else if (gameMap[newX, newY] == Coin)
+            {
+                HandleGold(player, gameMap, posX, posY, newX, newY);
+            }
+            else if (gameMap[newX, newY] == Trap)
+            {
+                HandleTrap(player, gameMap, posX, posY, newX, newY);
+            }
+            else if (gameMap[newX, newY] == Chest)
+            {
+                HandleChest(chests, player, gameMap, newX, newY);
+            }
+            else if (gameMap[newX, newY] == Heart)
+            {
+                HandleHeart(player, gameMap, posX, posY, newX, newY);
+            }
+            else if (gameMap[newX, newY] == Boss)
+            {
+                HandleBoss(player, boss, gameMap, newX, newY);
+            }
+            else if (gameMap[newX, newY] == Merchant)
+            {
+                HandleMerchant(merchant, player);
+            }
+            else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
+            {
+                NextLevel();
+                break;
+            }
+            else if (gameMap[newX, newY] == GoBack)
+            {
+                PreviousLevel();
+                break;
+            }
+            else if (gameMap[newX, newY] == Cellar)
+            {
+                GoToCellar(map[level], player);
+            }
+            else if (gameMap[newX, newY] == Wall || gameMap[newX, newY] == Terrain)
+            {
+                //Console.WriteLine("Du kan inte gå här");
+            }
+            else
+            {
+                //Console.WriteLine("Du kan inte gå hit");
+            }
+            #endregion
+
+            #region INVENTORY
+            if (keyPressed.Key == ConsoleKey.C) //Visa playerStats
+            {
+                player.OpenInventory(player);
+            }
+            #endregion
+
+            #region HEAL
+            if (keyPressed.Key == ConsoleKey.Q)
+            {
+                player.Heal();  //Använder en Health-Potion
+            }
+            #endregion
+            Console.SetCursorPosition(0, 28);
         }
-        #endregion
     }
     #endregion
 
@@ -340,6 +390,10 @@ public static class GameLevel // Chars som alla maps består av
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                     Console.Write($" {gameMap[i, j]} ");
                     Console.ResetColor();
+                }
+                else if (gameMap[i, j] == OpenChest)
+                {
+                    PrintColor.Gray(" # ", "Write");
                 }
                 else
                     Console.Write($" {gameMap[i, j]} ");

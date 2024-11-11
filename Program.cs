@@ -27,7 +27,7 @@
             }
             else
             {
-                GameLevel.PrintGameBoard(maps, player);     //Skriver ut mappen
+                //GameLevel.PrintGameBoard(maps, player);     //Skriver ut mappen
                 GameLevel.MovePlayer(maps, player);  //Inväntar sedan input från användaren, flyttar sedan player baserat på input, 
             }
             
