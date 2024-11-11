@@ -2,14 +2,23 @@
 {
     static void Main(string[] args)
     {
+        
         bool gameOver = false;
         Player player = new Player("Player");
 
         List<Map> maps = [AddMaps.Level1(player), AddMaps.Level2(player), AddMaps.Level3(player)];
 
         GameLevel.level = 0;
+
+        Console.Clear();
+        Textures.PrintFirstScreen();
+        
+        Console.ReadLine();
+
         while (!gameOver)
         {
+
+            
             Console.CursorVisible = false;
             if (maps[GameLevel.level] is DarkMap)
             {

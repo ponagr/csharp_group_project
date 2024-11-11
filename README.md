@@ -47,6 +47,7 @@
 
 ### Chests
 - [ ] Få kistor att byta färg när de har öppnats (använda bool och koordinatjämförelse).
+- [ ] Sortera listan över våra items efter pengar i Merchant-mode
 
 ### ResourceBar/HealthBar/XPBar
 - [x] Utveckla UI-element för resurser, hälsa och XP.

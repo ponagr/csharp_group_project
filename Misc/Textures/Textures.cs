@@ -78,8 +78,8 @@ public static partial class Textures
         Console.ResetColor();
     }
     #endregion
-  
-    
+
+
 
     #region LOADING
     public static void PrintLoading()
@@ -122,7 +122,122 @@ public static partial class Textures
         Console.WriteLine();
     }
     #endregion
+
+    public static void PrintFirstScreen()
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.SetCursorPosition(30, 4);
+        Console.WriteLine("     /\\                                       /\\     ");
+        Console.SetCursorPosition(30, 5);
+        Console.WriteLine("    /  \\                                     /  \\    ");
+        Console.ForegroundColor = ConsoleColor.DarkGray;
+        Console.SetCursorPosition(30, 6);
+        Console.WriteLine("    |  |                                     |  |      ");
+        Console.SetCursorPosition(30, 7);
+        Console.WriteLine("    |  |                                     |  |      ");
+        Console.SetCursorPosition(30, 8);
+        Console.WriteLine("    |  |                                     |  |      ");
+        Console.SetCursorPosition(30, 9);
+        Console.WriteLine("    |  |                                     |  |      ");
+        Console.SetCursorPosition(30, 10);
+        Console.WriteLine("    <  >                                     <  >      ");
+        Console.SetCursorPosition(30, 11);
+        Console.WriteLine("{}==|  |=={}                             {}==|  |=={}  ");
+        Console.SetCursorPosition(30, 12);
+        Console.WriteLine("     []                                       []       ");
+        Console.SetCursorPosition(30, 13);
+        Console.WriteLine("     []                                       []       ");
+        Console.SetCursorPosition(30, 14);
+        Console.WriteLine("     ==                                               ");
+
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.SetCursorPosition(44, 5);
+        Console.WriteLine("    ____ __  __ ____  ");
+        Console.SetCursorPosition(44, 6);
+        Console.WriteLine("     ||  ||  || ||    ");
+        Console.SetCursorPosition(44, 7);
+        Console.WriteLine("     ||  ||__|| ||_   ");
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.SetCursorPosition(44, 8);
+        Console.WriteLine("     ||  ||  || ||__  ");
+        Console.SetCursorPosition(44, 9);
+        Console.WriteLine("   __   __    __  ____ ");
+        Console.SetCursorPosition(44, 10);
+        Console.WriteLine("  //|| //||  //\\\\ \\\\  \\\\ ");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.SetCursorPosition(44, 11);
+        Console.WriteLine(" // |//  || ||__|| \\\\__\\\\  ");
+        Console.SetCursorPosition(44, 12);
+        Console.WriteLine("//  |/   || ||  ||  \\\\	");
+        Console.SetCursorPosition(44, 13);
+        Console.WriteLine("  ´´´´´´´´´´´´´´´´´´	");
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.SetCursorPosition(32, 14);
+        // Console.WriteLine(" ---by---pontrik---");
+        Console.WriteLine("by == p0ntr1k                               ==");
+
+
+
+        // for (int i=0; i<10; i++)
+        // {
+        // Console.ForegroundColor = ConsoleColor.Cyan;
+        // Console.SetCursorPosition(49, 14);
+        // Console.WriteLine("  PRESS START	");
+
+        // Thread.Sleep(300);
+
+        // Console.ForegroundColor = ConsoleColor.Red;
+        // Console.SetCursorPosition(49, 14);
+        // Console.WriteLine("  PRESS START	");
+
+        // Thread.Sleep(300);
+        // }
+
+        while (!Console.KeyAvailable)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.SetCursorPosition(49, 14);
+            Console.WriteLine("  PRESS START	");
+
+            Thread.Sleep(300);
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(49, 14);
+            Console.WriteLine("  PRESS START	");
+
+            Thread.Sleep(300);
+        }
+    }
+
+
 }
+
+
+
+//    ____ __  __ ____
+//     ||  ||  || || 
+//     ||  ||__|| ||_
+//     ||  ||  || ||__
+//    __   __    __  ____			
+//   //|| //||  //\\ \\  \\		
+//  // |//  || ||__|| \\__\\			
+// //  |/   || ||  ||  \\	
+
+
+
+
+//       /\  10 RADER
+//    /  \
+//       |  |
+//       |  |
+//       |  |
+//       |  |
+//       <  >
+// {}==|  |=={}
+//      []
+//     []
+//     ==
 
 
 
