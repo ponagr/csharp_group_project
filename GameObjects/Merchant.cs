@@ -80,52 +80,6 @@ public class Merchant
         
     }
 
-    // public void ShowInventory(Player player)
-    // {
-    //     Console.Clear();
-    //     Console.Write($"{Name}: ");
-    //     PrintColor.Yellow($"{Gold}g", "WriteLine");
-    //     Console.WriteLine();
-    //     Console.WriteLine($"To buy:");
-    //     Console.WriteLine();
-    //     for (int i = 0; i < MerchantInventory.inventory.Count; i++)
-    //     {
-    //         if (MerchantInventory.inventory[i] is Consumable)
-    //         {
-    //             Console.Write($"[{i + 1}] {MerchantInventory.inventory[i].ItemType, -13} {MerchantInventory.inventory[i].ItemName,-16}");  
-    //             PrintColor.Yellow($"{MerchantInventory.inventory[i].Price, 5}g", "WriteLine"); 
-    //             Console.WriteLine();
-    //         }
-    //         else
-    //         {
-    //             Console.Write($"[{i + 1}] {MerchantInventory.inventory[i].ItemType, -13} {MerchantInventory.inventory[i].ItemName,-16}");  
-    //             PrintColor.Yellow($"{MerchantInventory.inventory[i].Price, 5}g", "WriteLine"); 
-    //             PrintColor.Blue($"{MerchantInventory.inventory[i].Health, 6} Hp {MerchantInventory.inventory[i].Damage,3} Dmg {MerchantInventory.inventory[i].Resistance,3} Res {MerchantInventory.inventory[i].Agility,3} Agi", "WriteLine"); 
-    //             Console.WriteLine();
-    //         }  
-    //     }
-    //     Console.WriteLine();
-        
-    //     Console.SetCursorPosition(45, 0);
-    //     Console.Write($"{player.Name}: ");
-    //     PrintColor.Yellow($"{player.Gold}g", "WriteLine");
-    //     PlayerEquipment.ShowWornGear(player);
-
-    //     Console.WriteLine("Vill du köpa eller sälja? Q/E");
-    //     var input = Console.ReadKey(true);
-    //     if (input.Key == ConsoleKey.Q)
-    //     {
-    //         //Be om input för att köpa
-    //         //Buy(player);    //om vi köper nånting, player.Gold -= item.Price && Merchant.Gold += item.Price && ta bort från Merchant.inventory och lägg till i player.inventory
-    //     }
-    //     else if (input.Key == ConsoleKey.E)
-    //     {
-    //         //Hoppa till players inventory och be om input för att sälja
-    //         //Sell(player); //om vi säljer nånting, player.Gold += item.Price/2 && Merchant.Gold -= item.Price/2 && ta bort från player.inventory och lägg till i Merchant.inventory
-    //     }
-
-    // }
-
     public void Buy(Player player) //Låter player köpa, flyttar pengar från player till merch, visar stats om det är gear, 
     {
         Console.Clear();
