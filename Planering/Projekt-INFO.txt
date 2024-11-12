@@ -1,0 +1,183 @@
+Program.cs
+
+bool gameOver = false, gameLevel.level sätts till 0
+Skapar ett playerobjekt,  skapar en lista av alla maps,
+Printar första skärmbilden - visar en huvudmeny med alternativ
+När vi väljer att spela – in i whileloop(while!gameOver)
+Om darkmap – visa i darkmode, Annars – vanliga banor, anropar MovePlayer och 
+
+Om playerHp når 0 – vi dör och spelet avslutas
+
+
+
+Enemy - huvudklass
+
+Alla har en healthbar, en bool isPlayer (false) och en bestämd XP-drop.
+
+En virtual metod för att ta skada (indata double damage, bool crit, string message)
+Där kontrolleras dodge, crit och skriver sedan ut skadan i programmet.
+
+Två virtual metoder för att skriva ut textures.
+
+En metod för att räkna ut vilken damage den ger spelaren, räknar ut crit, och skickar tillbaka boolen till attackmetoden för att där skriva ut meddelande. Returnerar DAMAGE
+
+En metod för ShopHp – Anropar en metod som visar healthbaren och därefter skriver ut hp/maxhp, hp i %
+
+Subklasser – Enemy
+
+Har egna bools för att avgöra beteenden. Indata level och name vilka sätts när man skapar objekt av klasserna. 
+
+Metoder för specialattacker så som StealthAttack();, SpecialAttack();, BigHit(); BlocketAttack(); osv.
+
+Overridemetoder för att ta skada, string TakeDamage – för att returnera en string med skadan i.
+
+Overridemetoder för att visa textures.
+Overridemetod fär Attack();, för att t.ex. Avgöra om en assassin är visable eller inte, specialattacker osv.
+
+Bossklasser som ärver av resp. Fiende
+
+Sätts som starkare i konstruktorn, samma indata som enemies. Andra specialmetoder
+CalcylateDamage returnerar ett värde till attackmetoden som skriver ut det och substraherar från player.
+
+GameObject klass
+
+Innehåller fält som alla gameobject ska ha, namn, desc, hp, currenthp ( get, set ), %hp, basedamage,baseresistance,baseagility.
+
+Player
+
+bool isPlayer (true), Xp & MaxXp, Gold, Potions, egen healthbar, bonus ag,hp,dam och res. 
+
+Ovorride double TotalHp, totaldamage, totalagility och totalresistance ( adderar base och bonus).
+En inventory från Inventoryklassen. 
+En itemarray bestående av 6 för EquippedGear.
+
+En konstruktor (indata namn) med förbestämda stats
+
+ShowHp-metod, OpenInventory-metod, Loot-metod kollar så att player inte redan ha full inventory, adderar potions/item/gold.
+
+Heal() - kollar om vi har potions, räknar ut vad som saknas, adderar och säkerställer att det inte blir mer än MaxHp – skriver ut healAmmount.
+
+Attack-metod – väldigt lik enemies (Går att använda en metod med olika inparametrar?)
+
+EnemyKilled-metod – adderar xp-drop och skriver ut, Anropar LevelUp-metoden som räknar ut hur mycket basehp osv ska multipliceras, skriver också ut detta.
+
+PlayerEquipment-klass
+
+Metod CheckGearType(indata player och itemToEquip). Anropar CountStats som visar skillnaden mellan det vi har på oss och det vi ev vill equippa. 
+CountStats(); loopar igenom vår lista med equippedGear och skriver ut skillnanden. 
+
+EquipGeat-metod (indata player, itemToEquip, equippeditem och equippedGearIndex)
+Kontrollerar om vi har något på oss, om inte sätter på direkt och ta bort från inventory, annars anropar GearChoice med indata (itemToEquip, equippedItem, out item), GearChoice anropar i sin tur CompareGearStats och frågar om vi vill byta.
+
+CompareGearStats(); skriver ut skillnaden i grönt om det vi vill ta på oss har bättre stats, och rött om det har sämre. Anropar denna 4 gånger för se skilladen på hp, dmg,res och agi. 
+
+ShowWornGeat(); Skriver ut det vi har på oss, grönt om vi har något equippat, grått om platsen är tom.
+
+PlayerUi – klass
+
+Ui-metod (indata player) – Anropar ShowHp, ShowItem för potions, Skriver ut guld, anropar ShowXp.
+
+ShowStats-metod skriver ut alla stats i blå text – för inventory-vyn.
+
+Inventory-klass
+
+En lista inventory.
+InventoryUI – metod (tar in player)
+Anropar playerUi för att visa våra stats osv. Ger val att trycka e för att equippa, q för att gå tillbaka.
+
+ShowInventory  metod som loopar igenom vår inventory-lista och skriver ut vad det är och pris.
+
+EquipmentMenu-metod ( player) – Anropar ShowWornGear och ShowEquipmentInventroy – ger valet att trycka C om man vill ta på sig något från inventoryn. 
+
+ShowEquipmentInventory – metod – Visar inventory MED STATS.
+
+Merchantklass
+
+Ärver inte från GameObject för den ska inte ha nåt HP osv.
+Interact – metod (indata player) – bool isShopping, whileloop medan shoppande – Visar merchants namn och guld, loopar igenom merchants inventory och skriver ut potions och gear med stats. Skriver också ut vårt namn och guld. Frågar om vi vill handla – sälja eller lämna. Valen anropar i sin tur Buy eller Sell-metoder.
+
+Buy-metod – Skriver ut merchants inventory och flyttar över item från merch till player, substraherar pengar från playe ro lägger till merchant. Sälj går motsatsen.
+
+Items-klass
+
+Fält – Type, Name, Dmg, hp, res, agi, price
+abstracta metoder för ShowItem och ShowStats
+
+Gear : Item
+
+Samma fält som ovan men price anropar CalculatePrice(this).
+
+Override metoder för ShowItem och ShowStats
+
+CalculatePrice (tar in Item item) – sätter pricePerStat till 2 och räknar ut price. 
+
+Thelm,TBrastPlate,TLegs,TBoots : GEAR med samma fält som basen förrutom ItemType som är olika beroende på vad det är. Detta för att kunna sortera, visa och jämför gear utifrån typ. 
+
+Items-klass
+
+lista över items
+AddItem-metod (indata item) – innehåller bara – itemList.Add(item).
+
+ItemsToadd-metod – lägger till potions och ger direkt i en metod som anropas via main.
+ShowAllItems – metod – loopar igenom listan av items och skriver ut dess namn.
+
+Consumable-klass
+
+Fält Healing, Ammount, MaxAmmount, en konstruktor där dessa ställs in, även price. 
+Overridemetoder för ShowItem och ShowStats (tomma rader skrivs ut).
+
+Chest-klass
+
+Random hur många items per kista, loopar igenom föremålen i kistan och lägger in i playerinventory. Randomguld som läggs till players guld. 
+
+PrintChest-metod – loopar igenom alla items i kistan och skriver ut dessa i oliak färger beroende på om de är potions,gear eller guld.
+
+Map-klass
+
+fält: Maplevel, CellarLevel, merchant, enemies, chests och boss
+
+RegularMap, CellarMap, DarkMap : MAP – i program ser vi om det är en darkmap – visa endast 4 närmsta rutorna.
+
+
+
+
+
+Gamelevel-klass
+
+Alla chars betydelse – T.ex. Coin = '$'
+
+Mettoder för att hantera Enemy, Boss, Gold, Chest, Merchant, Hear, Trap, anropar metoder för att möta fienden/bossar osv – kontrollerar om fiendens hp är 0 och ta bort den från kartan. 
+
+NextLevel- metod, level++ då vi går igenom dör till nästa nivå. PreviousLevel för att gå tillbaka. 
+
+GoToCellar-metod (indata Map map, Player player) – laddar map.CellarLevel, skapar listor för enemies och chest, merchant. Bool inCellar = true;. While inCellar anropar PrintGameBoard (gameMap, player) och MovePlayer (gameMap, merchant, enemies,chest,player, out inCellar)
+
+MoviePlayer-metod – Använder vår position, kommande position beroende på knapptryckning (wasd),  anropar Handle-metoderna beroende på vad vi vill interagera med för något. Kollar keyPressed.Key om det är wasd , c för inventory och q för heal.
+
+MapInfo-metod – Skriver ut vad alla tecken på mapen består av i olika färger.
+
+PrintGameBoard-metod – maps, anropar MapInfo() och UI.
+
+Ytterliggare en PrintGameBoard-metod för cellars
+Ytterliggare en MovePlayer-metod för cellarmovement
+
+PrintDarkLevel-metod som skriver ut gamemap och visar endast 4 rutor ifrån player.
+
+AddMaps-klass
+
+En lista av maps
+
+Metoder för varje bana där char-array skrivs ut, fienden skapas, boss skapas, lista med enemies, lista med items, lista med chests
+
+skapar ett objekt av banan "RegularMap level1 = new......"
+
+Filen misc 
+
+Innehåller små metoder, t.ex: Clear för att cleara ett specifikt område, PrintColor för att skriva saker i specifika färger för att minska redundans, 
+
+Textures
+
+Flera filer med textures för resp. Fiende och player. Både animationer och vanliga "bilder"
+
+
+

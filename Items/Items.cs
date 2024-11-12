@@ -34,9 +34,9 @@ public class Gear : Item
     {
         Console.WriteLine($"{ItemType, -8} {ItemName,-16}   {Health,3} Hp {Damage,3} Dmg {Resistance,3} Res {Agility,3} Agi");
     }
-    public static int CalculatePrice(Item item)
+    public static int CalculatePrice(Item item)     //Räknar ut värdet på ett item baserat på statsen
     {
-        int price;
+        int price;      
 
         double pricePerStat = 2;
         double totalPrice = 0;
@@ -47,6 +47,8 @@ public class Gear : Item
         return price;
     }
 }
+
+//Olika typer av Gear/Equipment
 public class THelm : Gear
 {
     public THelm(string name, double damage, double health, double resistance, double agility)
@@ -98,44 +100,6 @@ public class TWeapon : Gear
     }
 }
 
-public static class Items
-{
-    public static List<Item> itemList = new List<Item>();
-    public static void AddItem(Item item) // Varför en metod för att lägga till och inte göra det direkt i ItemstoAdd?
-    {
-        itemList.Add(item);
-    }
-
-    public static void ItemsToAdd()
-    {
-        Consumable consumable = new Consumable();   //HP Pot
-        THelm helm = new THelm("Plåthjälm", 5, 30, 20, 0);    //Plåthjälm
-        TBreastPlate breastPlate = new TBreastPlate("Rostig rustning", 5, 40, 20, 0);    //Plåthjälm
-        TWeapon weapon = new TWeapon("Gimlis Yxa", "Yxa", 40, 10, 0, 20);
-        TWeapon weapon1 = new TWeapon("Legolas Pilbåge", "Pilbåge", 30, 15, 5, 15);
-        TLegs legs = new TLegs("Läderbyxor", 0, 20, 15, 20);
-        TGloves gloves = new TGloves("Plåthandskar", 5, 30, 20, 5);
-        TBoots boots = new TBoots("Foppatofflor", 0, 0, 5, -5);
-
-        AddItem(breastPlate);
-        AddItem(boots);
-        AddItem(helm);
-        AddItem(weapon1);
-        AddItem(weapon);
-        AddItem(legs);
-        AddItem(gloves);
-        AddItem(consumable);
-
-    }
-
-    public static void ShowAllItems()
-    {
-        foreach (Item item in itemList)
-        {
-            Console.WriteLine(item.ItemName);
-        }
-    }
-}
 
 
 

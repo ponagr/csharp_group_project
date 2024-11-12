@@ -1,5 +1,5 @@
 #region ADD MAPS
-public static class AddMaps
+public static class AddMaps     //Innehåller alla färdiga maplevels
 {
     public static List<Map> maps = new List<Map>();
     static char C = '\u00A9';

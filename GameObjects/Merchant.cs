@@ -17,7 +17,6 @@ public class Merchant
         bool isShopping = true;
         while (isShopping)
         {
-
             Console.Clear();
             Console.CursorVisible = false;
             Console.Write($"{Name}: ");
@@ -52,7 +51,6 @@ public class Merchant
             Console.ResetColor();
             PlayerEquipment.ShowWornGear(player);
 
-            //PlayerTexture?
             Console.SetCursorPosition(45, 16);
             Console.WriteLine("Vad vill du göra?");
             Console.WriteLine();
@@ -77,7 +75,6 @@ public class Merchant
                 isShopping = false;
             }
         }
-        
     }
 
     public void Buy(Player player) //Låter player köpa, flyttar pengar från player till merch, visar stats om det är gear, 

@@ -1,6 +1,6 @@
 public abstract class Map
 {
-    //EN MAP
+    //EN MAP, innehåller massa olika fiender och items osv specifikt för mappen
     public char[,] Maplevel { get; set; }
     public char[,] CellarLevel { get; set; }
     public Merchant? Merchant { get; set; }
@@ -38,6 +38,7 @@ public class CellarMap : Map
     }
 }
 
+//Används för att skriva ut mappen med dålig sikt
 public class DarkMap : Map 
 { 
     public DarkMap(char[,] map, List<Enemy> enemies, Assassin assassin, List<Chest> chests, Enemy boss, Merchant merchant)

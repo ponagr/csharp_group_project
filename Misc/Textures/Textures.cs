@@ -34,46 +34,46 @@ public static partial class Textures
     public static void PrintDeadText() // Likadan fast grön eller liknande till vår gubbe?
     {
         Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.SetCursorPosition(40, 5);
+        Console.SetCursorPosition(18, 5);
         Console.WriteLine("____  ____   _   ____  ");
-        Console.SetCursorPosition(40, 6);
+        Console.SetCursorPosition(18, 6);
         Console.WriteLine("|| \\\\ ||    /\\\\  || \\\\ ");
-        Console.SetCursorPosition(40, 7);
+        Console.SetCursorPosition(18, 7);
         Console.WriteLine("||  ||||-- //_\\\\ ||  ||");
-        Console.SetCursorPosition(40, 8);
+        Console.SetCursorPosition(18, 8);
         Console.WriteLine("||_// ||__//   \\\\||_// ");
 
-        Console.SetCursorPosition(40, 9);
+        Console.SetCursorPosition(18, 9);
         Console.WriteLine("                         "); // För att ta bort gammal text
-        Console.SetCursorPosition(40, 10);
+        Console.SetCursorPosition(18, 10);
         Console.WriteLine("                         "); // --"--
 
         Thread.Sleep(100);
-        Console.SetCursorPosition(40, 9);
+        Console.SetCursorPosition(18, 9);
         Console.WriteLine("        |          | ");
 
         Thread.Sleep(200);
-        Console.SetCursorPosition(40, 9);
+        Console.SetCursorPosition(18, 9);
         Console.WriteLine("  |     |          | ");
 
         Thread.Sleep(250);
-        Console.SetCursorPosition(40, 9);
+        Console.SetCursorPosition(18, 9);
         Console.WriteLine("  | |   | |        | ");
 
         Thread.Sleep(200);
-        Console.SetCursorPosition(40, 10);
+        Console.SetCursorPosition(18, 10);
         Console.WriteLine("        |            ");
 
         Thread.Sleep(250);
-        Console.SetCursorPosition(40, 10);
+        Console.SetCursorPosition(18, 10);
         Console.WriteLine("  |     |            ");
 
         Thread.Sleep(300);
-        Console.SetCursorPosition(40, 10);
+        Console.SetCursorPosition(18, 10);
         Console.WriteLine("  |     |      |     ");
 
         Thread.Sleep(300);
-        Console.SetCursorPosition(40, 11);
+        Console.SetCursorPosition(18, 11);
         Console.WriteLine("        |            ");
         Console.ResetColor();
     }
@@ -82,7 +82,7 @@ public static partial class Textures
 
 
     #region LOADING
-    public static void PrintLoading()
+    public static void PrintLoading()   //Skriver ut en Loading Screen vid ny mapp
     {
         string[] loadingBar = new string[10] { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  " };
 
@@ -126,67 +126,67 @@ public static partial class Textures
     public static void PrintFirstScreen()
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.SetCursorPosition(30, 4);
+        Console.SetCursorPosition(25, 4);
         Console.WriteLine("     /\\                                       /\\     ");
-        Console.SetCursorPosition(30, 5);
+        Console.SetCursorPosition(25, 5);
         Console.WriteLine("    /  \\                                     /  \\    ");
         Console.ForegroundColor = ConsoleColor.DarkGray;
-        Console.SetCursorPosition(30, 6);
+        Console.SetCursorPosition(25, 6);
         Console.WriteLine("    |  |                                     |  |      ");
-        Console.SetCursorPosition(30, 7);
+        Console.SetCursorPosition(25, 7);
         Console.WriteLine("    |  |                                     |  |      ");
-        Console.SetCursorPosition(30, 8);
+        Console.SetCursorPosition(25, 8);
         Console.WriteLine("    |  |                                     |  |      ");
-        Console.SetCursorPosition(30, 9);
+        Console.SetCursorPosition(25, 9);
         Console.WriteLine("    |  |                                     |  |      ");
-        Console.SetCursorPosition(30, 10);
+        Console.SetCursorPosition(25, 10);
         Console.WriteLine("    <  >                                     <  >      ");
-        Console.SetCursorPosition(30, 11);
+        Console.SetCursorPosition(25, 11);
         Console.WriteLine("{}==|  |=={}                             {}==|  |=={}  ");
-        Console.SetCursorPosition(30, 12);
+        Console.SetCursorPosition(25, 12);
         Console.WriteLine("     []                                       []       ");
-        Console.SetCursorPosition(30, 13);
+        Console.SetCursorPosition(25, 13);
         Console.WriteLine("     []                                       []       ");
-        Console.SetCursorPosition(30, 14);
+        Console.SetCursorPosition(25, 14);
         Console.WriteLine("                                                      ");
 
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.SetCursorPosition(44, 5);
+        Console.SetCursorPosition(39, 5);
         Console.WriteLine("    ____ __  __ ____  ");
-        Console.SetCursorPosition(44, 6);
+        Console.SetCursorPosition(39, 6);
         Console.WriteLine("     ||  ||  || ||    ");
-        Console.SetCursorPosition(44, 7);
+        Console.SetCursorPosition(39, 7);
         Console.WriteLine("     ||  ||__|| ||_   ");
         Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.SetCursorPosition(44, 8);
+        Console.SetCursorPosition(39, 8);
         Console.WriteLine("     ||  ||  || ||__  ");
-        Console.SetCursorPosition(44, 9);
+        Console.SetCursorPosition(39, 9);
         Console.WriteLine("   __   __    __  ____ ");
-        Console.SetCursorPosition(44, 10);
+        Console.SetCursorPosition(39, 10);
         Console.WriteLine("  //|| //||  //\\\\ \\\\  \\\\ ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.SetCursorPosition(44, 11);
+        Console.SetCursorPosition(39, 11);
         Console.WriteLine(" // |//  || ||__|| \\\\__\\\\  ");
-        Console.SetCursorPosition(44, 12);
+        Console.SetCursorPosition(39, 12);
         Console.WriteLine("//  |/   || ||  ||  \\\\	");
-        Console.SetCursorPosition(44, 13);
+        Console.SetCursorPosition(39, 13);
         Console.WriteLine("  ´´´´´´´´´´´´´´´´´´	");
 
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.SetCursorPosition(32, 14);
+        Console.SetCursorPosition(27, 14);
         // Console.WriteLine(" ---by---pontrik---");
         Console.WriteLine("by == p0ntr1k                               ==");
 
         while (!Console.KeyAvailable)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.SetCursorPosition(49, 14);
+            Console.SetCursorPosition(44, 14);
             Console.WriteLine("  PRESS START	");
 
             Thread.Sleep(300);
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(49, 14);
+            Console.SetCursorPosition(44, 14);
             Console.WriteLine("  PRESS START	");
 
             Thread.Sleep(300);

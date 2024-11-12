@@ -1,6 +1,5 @@
 public class Chest
 {
-    public bool IsOpen { get; set; }
     public int Gold { get; set; }
     public List<Item> ChestLoot { get; set; } = new List<Item>();
 

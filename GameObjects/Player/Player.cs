@@ -74,10 +74,8 @@ public class Player : GameObject
     public void Loot(Chest chest)     //Lägg till Item till inventory
     {
         Item item;
-        //Console.WriteLine();
         if (Inventory.inventory.Count < 15)
         {
-            //Console.WriteLine();
             Console.WriteLine($"{Name} har lootat:");
             chest.PrintChest();
             for (int i = 0; i < chest.ChestLoot.Count; i++)
@@ -171,7 +169,7 @@ public class Player : GameObject
         Clear.Row(12);
         Console.WriteLine("             \n            \n              \n          "); // För att input-text ska försvinna
         Console.ResetColor();
-        // Textures.PrintDeadText();
+
         Textures.PrintGrave();
 
         if (CurrentXp >= MaxXp)
