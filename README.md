@@ -60,7 +60,7 @@
 
 ### Random Enemy Movement
 - [ ] Implementera random rörelse för fiender på kartan.
-- [ ] Göra vissa fiender osynliga på kartan (t.ex. assassins).
+- [x] Göra vissa fiender osynliga på kartan (t.ex. assassins).
 - [ ] Definiera en specifik aggro-range för olika enemy-klasser.               
 
 ### Fler Player-funktioner

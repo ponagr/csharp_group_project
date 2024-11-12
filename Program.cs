@@ -12,9 +12,9 @@ class Program
         GameLevel.level = 0;
 
         Console.Clear();
-        Textures.PrintFirstScreen();
-        ShowMainMenu(player);
-        Console.ReadLine();
+        //Textures.PrintFirstScreen();
+       // ShowMainMenu(player);
+        //Console.ReadLine();
 
         while (!gameOver)
         {

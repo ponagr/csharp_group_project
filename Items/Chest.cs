@@ -19,7 +19,6 @@ public class Chest
         Random goldDrop = new Random();
         Gold = goldDrop.Next(0, 11);    //Random hur mycket guld en kista innehåller, om ens något guld alls
         ChestLoot = itemstoAdd;
-
     }
 
     public void PrintChest()    //Skriver ut alla items som finns i en kista, anropas via player.Loot-metod
