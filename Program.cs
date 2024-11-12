@@ -37,7 +37,7 @@ class Program
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("******************************");
             Console.ResetColor();
-
+            
             string choice = Console.ReadLine();
 
             switch (choice)
@@ -81,10 +81,11 @@ class Program
             if (maps[GameLevel.level] is DarkMap)
             {
                 GameLevel.PrintDarkLevel(maps, player);
-                GameLevel.MovePlayer(maps, player);
+                GameLevel.MovePlayerDarkMap(maps, player);
             }
             else
             {
+                GameLevel.PrintGameBoard(maps, player);
                 GameLevel.MovePlayer(maps, player);  //Inväntar sedan input från användaren, flyttar sedan player baserat på input, 
             }
 
