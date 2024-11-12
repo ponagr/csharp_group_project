@@ -44,9 +44,9 @@ public class Player : GameObject
         Gold = 0;
         CurrentXp = 0;
         MaxXp = 100;
-        BaseHp = 140;
+        BaseHp = 100;
         CurrentHp = BaseHp;
-        BaseDamage = 20;
+        BaseDamage = 15;
         BaseResistance = 5;
         BaseAgility = 10;
 

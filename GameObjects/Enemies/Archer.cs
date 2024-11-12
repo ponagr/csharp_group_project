@@ -10,9 +10,9 @@ public class Archer : Enemy
         Random random = new Random();
         Name = name;
         Description = "Archer";
-        BaseHp = (50 + random.Next(0, 15)) * multiplier; // Låg HP
+        BaseHp = (60 + random.Next(0, 15)) * multiplier; // Låg HP
         CurrentHp = TotalHp;
-        BaseDamage = (15 + random.Next(0, 10)) * multiplier; // Standard attackskada
+        BaseDamage = (20 + random.Next(0, 10)) * multiplier; // Standard attackskada
         BaseResistance = (5 + random.Next(0, 5)) * multiplier; // Låg motståndskraft
         BaseAgility = 10 * multiplier; // Hög rörlighet
         chargeCounter = 0;

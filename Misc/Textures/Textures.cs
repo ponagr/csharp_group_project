@@ -122,7 +122,7 @@ public static partial class Textures
         Console.WriteLine();
     }
     #endregion
-
+    #region FIRST SCREEN
     public static void PrintFirstScreen()
     {
         Console.ForegroundColor = ConsoleColor.Red;
@@ -148,7 +148,7 @@ public static partial class Textures
         Console.SetCursorPosition(30, 13);
         Console.WriteLine("     []                                       []       ");
         Console.SetCursorPosition(30, 14);
-        Console.WriteLine("     ==                                               ");
+        Console.WriteLine("                                                      ");
 
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.SetCursorPosition(44, 5);
@@ -190,9 +190,10 @@ public static partial class Textures
             Console.WriteLine("  PRESS START	");
 
             Thread.Sleep(300);
+            Console.ResetColor();
         }
     }
-
+#endregion
 
 }
 

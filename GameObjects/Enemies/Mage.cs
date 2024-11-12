@@ -10,7 +10,7 @@ public class Mage : Enemy
         Random random = new Random();
         Name = name;
         Description = "Mage";
-        BaseHp = (50 + random.Next(0, 15)) * multiplier;
+        BaseHp = (70 + random.Next(0, 15)) * multiplier;
         CurrentHp = TotalHp;
         BaseDamage = (15 + random.Next(0, 10)) * multiplier;
         BaseResistance = (5 + random.Next(0, 5)) * multiplier;

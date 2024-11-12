@@ -110,12 +110,14 @@ public static class Items
     {
         Consumable consumable = new Consumable();   //HP Pot
         THelm helm = new THelm("Plåthjälm", 5, 30, 20, 0);    //Plåthjälm
+        TBreastPlate breastPlate = new TBreastPlate("Rostig rustning", 5, 40, 20, 0);    //Plåthjälm
         TWeapon weapon = new TWeapon("Gimlis Yxa", "Yxa", 40, 10, 0, 20);
         TWeapon weapon1 = new TWeapon("Legolas Pilbåge", "Pilbåge", 30, 15, 5, 15);
         TLegs legs = new TLegs("Läderbyxor", 0, 20, 15, 20);
         TGloves gloves = new TGloves("Plåthandskar", 5, 30, 20, 5);
         TBoots boots = new TBoots("Foppatofflor", 0, 0, 5, -5);
 
+        AddItem(breastPlate);
         AddItem(boots);
         AddItem(helm);
         AddItem(weapon1);

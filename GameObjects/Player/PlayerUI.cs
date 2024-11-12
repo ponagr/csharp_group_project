@@ -26,10 +26,10 @@ public static class PlayerUI
     public static void ShowStats(Player player)     //Visa spelarens stats
     {
         Console.SetCursorPosition(0, 5);
-        PrintColor.Blue($"Health: {player.TotalHp}", "WriteLine");
-        PrintColor.Blue($"Damage: {player.TotalDamage}", "WriteLine");
-        PrintColor.Blue($"Resistance: {player.TotalResistance}", "WriteLine");
-        PrintColor.Blue($"Agility: {player.TotalAgility}", "WriteLine");
+        PrintColor.Blue($"Health: {player.TotalHp:F0}", "WriteLine");
+        PrintColor.Blue($"Damage: {player.TotalDamage:F0}", "WriteLine");
+        PrintColor.Blue($"Resistance: {player.TotalResistance:F0}", "WriteLine");
+        PrintColor.Blue($"Agility: {player.TotalAgility:F0}", "WriteLine");
         Console.WriteLine();
     }
 }
