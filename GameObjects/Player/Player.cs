@@ -109,7 +109,7 @@ public class Player : GameObject
     #endregion
 
     #region HEAL
-    public string Heal()
+    public string Heal() // Ökar player hp
     {
         double healAmmount;
         if (HealingPot.Ammount > 0)
@@ -131,7 +131,7 @@ public class Player : GameObject
     }
     #endregion
     #region ATTACK
-    public string Attack(Enemy enemy, out string attackMessage)
+    public string Attack(Enemy enemy, out string attackMessage) //Avgör critical hit, ger skadan beroende på 
     {
         Random rndCrit = new Random();
         double totalDamageDone;
@@ -161,7 +161,7 @@ public class Player : GameObject
     }
     #endregion
     #region XP OCH LEVELUP
-    public void EnemyKilled(Enemy enemy)
+    public void EnemyKilled(Enemy enemy) // Ger xp-drop, anropar textures, kontrollerar om player levlar upp
     {
         CurrentXp += enemy.XpDrop;
         Console.SetCursorPosition(0, 11);
@@ -182,7 +182,7 @@ public class Player : GameObject
             LevelUp();
         }
     }
-    private void LevelUp()
+    private void LevelUp() // Ökar players stats när level ökar
     {
         Level++;
         Console.ForegroundColor = ConsoleColor.Yellow;

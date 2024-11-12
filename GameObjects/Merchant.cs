@@ -12,7 +12,7 @@ public class Merchant
         MerchantInventory.inventory = items;
     }
 
-    public void Interact(Player player)         
+    public void Interact(Player player)     // Interaktion med merchant, loopar hans inventory, visar stats och pris och låter player köpa eller sälja    
     {
         bool isShopping = true;
         while (isShopping)
@@ -24,7 +24,6 @@ public class Merchant
             PrintColor.Yellow($"{Gold} {'\u00A9'}", "WriteLine");
             Console.WriteLine();
             
-            //MerchantTexture?
 
             for (int i = 0; i < MerchantInventory.inventory.Count; i++)
             {
@@ -127,7 +126,7 @@ public class Merchant
 
     // }
 
-    public void Buy(Player player)
+    public void Buy(Player player) //Låter player köpa, flyttar pengar från player till merch, visar stats om det är gear, 
     {
         Console.Clear();
         Console.CursorVisible = false;
@@ -172,7 +171,7 @@ public class Merchant
         }
         int itemIndex = Convert.ToInt32(input.KeyChar.ToString()) - 1;
         var itemToBuy = MerchantInventory.inventory[itemIndex];
-        if (player.Gold >= itemToBuy.Price)
+        if (player.Gold >= itemToBuy.Price) // Kontrollerar om player har maximalt antal healing potions, annars genomförs "köpet"
         {
             if (itemToBuy is Consumable)
             {
@@ -212,7 +211,7 @@ public class Merchant
         }
     }
 
-    public void Sell(Player player)
+    public void Sell(Player player) // Säljmetod som fungerar likt ovan med bakvänt
     {
         Console.Clear();
         Console.CursorVisible = false;

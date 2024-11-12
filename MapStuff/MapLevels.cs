@@ -5,7 +5,7 @@ public static class AddMaps
     static char C = '\u00A9';
 
     #region LEVEL 1
-    public static Map Level1(Player player)
+    public static Map Level1(Player player) // Första banan med chars som bygger upp väggar, fiender osv.
     {
         char[,] gameLevel1 = new char[,]
         {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23
@@ -34,7 +34,7 @@ public static class AddMaps
             { '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|' },//23
         };
 
-        Assassin assassin = new Assassin(1, "Fegkräk");
+        Assassin assassin = new Assassin(1, "Fegkräk"); 
         Butcher butcher = new Butcher(1, "Slaktarn");
         Archer archer = new Archer(1, "Lena-Långbåge");
         Mage mage = new Mage(1, "Magiska-Lars");
@@ -207,7 +207,7 @@ public static class AddMaps
     #endregion
 
     #region LEVEL 4
-    public static Map Level4(Player player)
+    public static Map Level4(Player player) // Tom bana
     {
         char[,] gameLevel = new char[,]
         {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23     

@@ -3,7 +3,7 @@ using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 
 
-public static class GameLevel
+public static class GameLevel // Chars som alla maps består av
 {
     private static char Player = '@';
     private static char Enemy = '£';
@@ -31,7 +31,7 @@ public static class GameLevel
     //Metoder för alla olika utfall som kan ske på mappen, anropas via MovePlayer-metod
     //tar in nya positioner för att flytta spelaren och utför specifika händelser baserat på vilken metod som anropas från MovePlayer
     #region ENEMY
-    private static void HandleEnemy(Player player, List<Enemy> enemies, char[,] gameMap, int newX, int newY)
+    private static void HandleEnemy(Player player, List<Enemy> enemies, char[,] gameMap, int newX, int newY) // När player går på enemy
     {
         Combat.FightMode(player, enemies[0]);
         if (enemies[0].CurrentHp <= 0)
@@ -42,7 +42,7 @@ public static class GameLevel
     }
     #endregion
     #region BOSS
-    private static void HandleBoss(Player player, Enemy boss, char[,] gameMap, int newX, int newY)
+    private static void HandleBoss(Player player, Enemy boss, char[,] gameMap, int newX, int newY) // När player går på boss
     {
         Combat.FightMode(player, boss);
         if (boss.CurrentHp <= 0)
@@ -52,7 +52,7 @@ public static class GameLevel
     }
     #endregion
     #region GOLD
-    private static void HandleGold(Player player, char[,] gameMap, int posX, int posY, int newX, int newY)
+    private static void HandleGold(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på guld
     {
         Random random = new Random();
         player.Gold += random.Next(1, 6);
@@ -63,7 +63,7 @@ public static class GameLevel
     #endregion
 
     #region CHEST
-    private static void HandleChest(List<Chest> chest, Player player, char[,] gameMap, int newX, int newY)
+    private static void HandleChest(List<Chest> chest, Player player, char[,] gameMap, int newX, int newY) // När player går på chest
     {
         player.Loot(chest[0]);
         chest.RemoveAt(0);
@@ -75,14 +75,14 @@ public static class GameLevel
     #endregion
 
     #region MERCHANT
-    private static void HandleMerchant(Merchant merchant, Player player)
+    private static void HandleMerchant(Merchant merchant, Player player) // När player går på  merchant
     {
         merchant.Interact(player);
     }
     #endregion
 
     #region HEART
-    private static void HandleHeart(Player player, char[,] gameMap, int posX, int posY, int newX, int newY)
+    private static void HandleHeart(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på hjärta
     {
         player.HealingPot.Ammount = 5;
         player.CurrentHp = player.TotalHp;
@@ -92,7 +92,7 @@ public static class GameLevel
     #endregion
 
     #region TRAP
-    private static void HandleTrap(Player player, char[,] gameMap, int posX, int posY, int newX, int newY)
+    private static void HandleTrap(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på mina
     {
         player.CurrentHp -= 20;
         Console.WriteLine("Du trampade på en mina");
@@ -102,7 +102,7 @@ public static class GameLevel
     #endregion
 
     #region NEXTLEVEL
-    private static void NextLevel() //List<Map> maps
+    private static void NextLevel() // Går till nästa map i listan av maps
     {
         level++;
         //maps.Add(AllMaps[level]);
@@ -115,7 +115,7 @@ public static class GameLevel
     #endregion
 
     #region GOBACK
-    private static void PreviousLevel()
+    private static void PreviousLevel() // Går till förgående map i listan av maps
     {
         level--;
         Console.Clear();
@@ -127,7 +127,7 @@ public static class GameLevel
     #endregion
 
     #region CELLAR
-    private static void GoToCellar(Map map, Player player)
+    private static void GoToCellar(Map map, Player player) // Går till källare och träffa merchant mm
     {
         char[,] gameMap = map.CellarLevel;
         List<Enemy> enemies = map.Enemies;
@@ -278,8 +278,7 @@ public static class GameLevel
     }
     #endregion
 
-    //Skriver ut info ovanför mappen
-    private static void MapInfo()
+    private static void MapInfo() //Skriver ut info ovanför mappen
     {
         Console.WriteLine();
         PrintColor.Green($" Player: {Player}  ", "Write");
@@ -407,7 +406,7 @@ public static class GameLevel
     }
 
     #region CELLARMOVEMENT
-    public static void MovePlayer(char[,] gameMap, Merchant merchant, List<Enemy> enemies, List<Chest> chests, Player player, out bool inCellar)
+    public static void MovePlayer(char[,] gameMap, Merchant merchant, List<Enemy> enemies, List<Chest> chests, Player player, out bool inCellar) // Players rörelse på banan, wasd osv.
     {
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
@@ -556,14 +555,6 @@ public static class GameLevel
     }
     #endregion
 
-
-
-
-
-
-
-
-
     #region DARKLEVEL
     public static void PrintDarkLevel(List<Map> map, Player player)  //Tar in och skriver ut den leveln som skickas in till metoden
     {
@@ -638,13 +629,10 @@ public static class GameLevel
                         else
                             Console.Write(gameMap[i, j] + "  ");
                     }
-                
                 }
                 Console.WriteLine();
             }
-            
         }
-
     }
     #endregion
 }

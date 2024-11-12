@@ -17,6 +17,7 @@ public class AssassinBoss : Assassin
 
     }
 
+    // Olika animationer beroende på attack
     public override void CharacterAttackAnimation(Enemy enemy)
     {
         if (specialAttack)
@@ -60,7 +61,6 @@ public class AssassinBoss : Assassin
 public class ButcherBoss : Butcher
 {
     bool specialAttack;
-
 
     public ButcherBoss(int level, string name) : base(level, name)
     { 

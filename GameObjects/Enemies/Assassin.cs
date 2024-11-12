@@ -31,6 +31,7 @@ public class Assassin : Enemy
         return damage;
     }
 
+    //Om assassin är synlig tar han skada, annars inte
     public override string TakeDamage(double damage, bool crit, out string attackMessage)
     {
         if (isVisable)
@@ -60,8 +61,9 @@ public class Assassin : Enemy
         Textures.AssassinAttackAnimation();
     }
 
-    public override string Attack(Player player, out string attackMessage) // Borde attackMessage heta typ fightmessage eller attackinfo?
+    public override string Attack(Player player, out string attackMessage)
     {
+        //Kontrollerar om assassin är synlig eller inte och ger specialattack om han är osynlig
         Random rndVisable = new Random();
         double damage = CalculateDamage(player, out bool attackCrit);
         if (isVisable)

@@ -38,6 +38,7 @@ public class Archer : Enemy
 
     public override string Attack(Player player, out string attackMessage)
     {
+        //Kontrollerar om specialattack ska göras annars vanlig attack
         double damageDone = CalculateDamage(player, out bool attackCrit);
         if (chargeCounter == 3)
         {
