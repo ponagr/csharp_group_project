@@ -72,21 +72,14 @@ class Program
     static void PlayGame(Player player, List<Map> maps)
     {
         bool gameOver = false;
-        GameLevel.level = 0;
+        int level = 0;
 
         while (!gameOver)
         {
+            
             Console.CursorVisible = false;
-            if (maps[GameLevel.level] is DarkMap)
-            {
-                GameLevel.PrintDarkLevel(maps, player);
-                GameLevel.MovePlayerDarkMap(maps, player);
-            }
-            else
-            {
-                GameLevel.PrintGameBoard(maps, player);
-                GameLevel.MovePlayer(maps, player);  //Inväntar sedan input från användaren, flyttar sedan player baserat på input, 
-            }
+            maps[level].PrintMap(player, maps[level]);
+            maps[level].MovePlayer(player, maps[level], level, out level);
 
             if (player.CurrentHp < 1)    //börjar sedan om loop och skriver ut mapp igen, om inte player.CurrentHp är 0, isåfall avslutas loop(GameOver)
             {
