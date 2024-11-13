@@ -86,35 +86,7 @@ public static class GameLevel // Chars som alla maps består av
     #region MERCHANT
     private static void HandleMerchant(Merchant merchant, Player player) // När player går på merchant
     {
-        // Lägg till textures där merchant säger tack för att vi räddat honom från fienden
-        Textures.PrintSavedMerchant();
-        string choice = Console.ReadLine();
-        choice = choice?.ToUpper(); 
-
-        if (choice == "Y")
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.SetCursorPosition(43, 10);
-            Console.WriteLine("Ok, please enter my shop!   ");
-            Console.SetCursorPosition(43, 11);
-            Console.WriteLine("                            ");
-            Console.SetCursorPosition(43, 12);
-            Console.WriteLine("                            ");
-            Console.ReadLine();
-            merchant.Interact(player);
-        }
-        else if (choice == "N")
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.SetCursorPosition(43, 10);
-            Console.WriteLine("Ok, thanks again for helping me!");
-            Console.SetCursorPosition(43, 11);
-            Console.WriteLine("                                ");
-            Console.SetCursorPosition(43, 12);
-            Console.WriteLine("                                ");
-            Console.ReadLine();
-            return;
-        }
+        merchant.Interact(player);
     }
     #endregion
 

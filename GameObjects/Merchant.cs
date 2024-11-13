@@ -14,6 +14,35 @@ public class Merchant
 
     public void Interact(Player player)     // Interaktion med merchant, loopar hans inventory, visar stats och pris och låter player köpa eller sälja    
     {
+          // Lägg till textures där merchant säger tack för att vi räddat honom från fienden
+        Textures.PrintSavedMerchant();
+        string choice = Console.ReadLine();
+        choice = choice?.ToUpper(); 
+
+        if (choice == "Y")
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.SetCursorPosition(43, 10);
+            Console.WriteLine("Ok, please enter my shop!    ");
+            Console.SetCursorPosition(43, 11);
+            Console.WriteLine("                                ");
+            Console.SetCursorPosition(43, 12);
+            Console.WriteLine("                                ");
+            Thread.Sleep(3000);
+        }
+        else if (choice == "N")
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.SetCursorPosition(43, 10);
+            Console.WriteLine("Ok, thanks again for helping me!");
+            Console.SetCursorPosition(43, 11);
+            Console.WriteLine("                                 ");
+            Console.SetCursorPosition(43, 12);
+            Console.WriteLine("                                 ");
+            Thread.Sleep(3000);
+            return;
+        }
+
         bool isShopping = true;
         while (isShopping)
         {
@@ -22,7 +51,6 @@ public class Merchant
             Console.Write($"{Name}: ");
             PrintColor.Yellow($"{Gold} {'\u00A9'}", "WriteLine");
             Console.WriteLine();
-            
 
             for (int i = 0; i < MerchantInventory.inventory.Count; i++)
             {
