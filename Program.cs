@@ -5,8 +5,6 @@ class Program
     static void Main(string[] args)
     {
         Console.Clear();
-        Textures.PrintSavedMerchant();
-        Console.ReadKey();
         Console.CursorVisible = false;
         Textures.PrintFirstScreen();
 
@@ -45,7 +43,7 @@ class Program
             {
                 case "1":
                     Player player = new Player("Player");
-                    List<Map> maps = [AddMaps.Level1(player), AddMaps.Level2(player), AddMaps.Level3(player)];
+                    List<Map> maps = [AddMaps.Level2(player), AddMaps.Level1(player), AddMaps.Level3(player)];
                     Console.SetCursorPosition(40, 11);
                     Console.WriteLine("Whats your name?");
                     Console.SetCursorPosition(60, 11);
