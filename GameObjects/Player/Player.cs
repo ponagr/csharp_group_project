@@ -185,10 +185,10 @@ public class Player : GameObject
         Level++;
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine($"{Name} reached level: {Level}", "WriteLine");
-        double BaseHpAdded = BaseHp * 0.2;
-        double BaseDamageAdded = BaseDamage * 0.2;
-        double BaseResistanceAdded = BaseResistance * 0.2;
-        double BaseAgilityAdded = BaseAgility * 0.2;
+        double BaseHpAdded = BaseHp * 0.15;
+        double BaseDamageAdded = BaseDamage * 0.15;
+        double BaseResistanceAdded = BaseResistance * 0.15;
+        double BaseAgilityAdded = BaseAgility * 0.15;
         BaseHp = BaseHp + BaseHpAdded;
         BaseDamage = BaseDamage + BaseDamageAdded;
         BaseResistance = BaseResistance + BaseResistanceAdded;

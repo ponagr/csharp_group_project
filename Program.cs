@@ -5,7 +5,8 @@ class Program
     static void Main(string[] args)
     {
         Console.Clear();
-
+        Textures.PrintSavedMerchant();
+        Console.ReadKey();
         Console.CursorVisible = false;
         Textures.PrintFirstScreen();
 

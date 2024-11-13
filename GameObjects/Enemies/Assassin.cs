@@ -68,7 +68,7 @@ public class Assassin : Enemy
         double damage = CalculateDamage(player, out bool attackCrit);
         if (isVisable)
         {
-            int magicNumber = rndVisable.Next(1, 3);
+            int magicNumber = rndVisable.Next(1, 4);
 
             if (magicNumber == 1)
             {

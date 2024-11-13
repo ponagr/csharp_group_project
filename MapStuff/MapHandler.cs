@@ -85,6 +85,8 @@ public static class GameLevel // Chars som alla maps består av
     #region MERCHANT
     private static void HandleMerchant(Merchant merchant, Player player) // När player går på merchant
     {
+        // Lägg till textures där merchant säger tack för att vi räddat honom från fienden
+        Textures.PrintSavedMerchant();
         merchant.Interact(player);
     }
     #endregion

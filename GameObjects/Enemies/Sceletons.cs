@@ -19,7 +19,7 @@ public class Sceletons : Enemy
         bigHit = 1;
     }
 
-    // public override string TakeDamage(double damage, bool crit, out string attackMessage)
+    // public override string TakeDdge(double damage, bool crit, out string attackMessage)
     // {
     //     if (isVisable)
     //     {
