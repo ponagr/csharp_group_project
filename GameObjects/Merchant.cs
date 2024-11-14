@@ -16,30 +16,32 @@ public class Merchant
     {
           // Lägg till textures där merchant säger tack för att vi räddat honom från fienden
         Textures.PrintSavedMerchant();
-        string choice = Console.ReadLine();
-        choice = choice?.ToUpper(); 
+        var choice = Console.ReadKey(true); // För att slippa trycka enter
+        Console.CursorVisible = false;
 
-        if (choice == "Y")
+        if (choice.Key == ConsoleKey.Y)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.SetCursorPosition(43, 10);
-            Console.WriteLine("Ok, please enter my shop!    ");
-            Console.SetCursorPosition(43, 11);
-            Console.WriteLine("                                ");
-            Console.SetCursorPosition(43, 12);
-            Console.WriteLine("                                ");
-            Thread.Sleep(3000);
+            Clear.Row(10, 33, 31);
+            Clear.Row(11, 33, 31);
+            Clear.Row(12, 33, 31);
+            Clear.Row(14, 23, 12);
+            Console.SetCursorPosition(33, 10);
+            Write.OneLetterAtATime("Ok, please enter my shop!    \n");
+
+            Thread.Sleep(2000);
         }
-        else if (choice == "N")
+        else if (choice.Key == ConsoleKey.N)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.SetCursorPosition(43, 10);
-            Console.WriteLine("Ok, thanks again for helping me!");
-            Console.SetCursorPosition(43, 11);
-            Console.WriteLine("                                 ");
-            Console.SetCursorPosition(43, 12);
-            Console.WriteLine("                                 ");
-            Thread.Sleep(3000);
+            Clear.Row(10, 33, 31);
+            Clear.Row(11, 33, 31);
+            Clear.Row(12, 33, 31);
+            Clear.Row(14, 23, 12);
+            Console.SetCursorPosition(33, 10);
+            Write.OneLetterAtATime("Ok, thanks again for helping me! \n");
+
+            Thread.Sleep(2000);
             return;
         }
 

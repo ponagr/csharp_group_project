@@ -116,7 +116,7 @@ public static partial class Textures
 
             Console.Write("]");
 
-            Thread.Sleep(500);
+            Thread.Sleep(300);
         }
 
         Console.WriteLine();

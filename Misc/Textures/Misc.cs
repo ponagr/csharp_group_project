@@ -1,12 +1,12 @@
 public static class Clear   //Använder SetCursorPosition för att "Cleara" specifika ställen i consolen
 {
     //Metod för att Cleara bara en rad istället för hela consolen.
-    public static void Row(int line)
+    public static void Row(int line, int startPosition, int length)
     {
         int currentLine = Console.CursorTop;         // Spara aktuell radposition
-        Console.SetCursorPosition(0, line);          // Flytta till den rad som ska rensas
-        Console.Write(new string(' ', Console.WindowWidth)); // Skriv tomma mellanslag över hela raden
-        Console.SetCursorPosition(0, currentLine);   // Flytta tillbaka markören till ursprunglig position
+        Console.SetCursorPosition(startPosition, line);          // Flytta till den rad som ska rensas
+        Console.Write(new string(' ', length)); // Skriv tomma mellanslag över hela raden
+        Console.SetCursorPosition(startPosition, currentLine);   // Flytta tillbaka markören till ursprunglig position
     }
 
     public static void Damage()    //Rensar raden där enemyDamage skrivs ut
@@ -58,6 +58,85 @@ public static class Write
         input = char.ToUpper(input[0]) + input.Substring(1).ToLower();
         return input;
     }
+
+    public static void PrintStringInColor(string textToPrint, string color)
+        {
+            switch (color.ToLower())
+            {
+                case "green":
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+                case "blue":
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    break;
+                case "red":
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+                case "magenta":
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    break;
+                case "yellow":
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
+            }
+
+            Console.WriteLine(textToPrint);
+            Console.ResetColor(); // Reset to default color after printing
+        }
+
+        public static void PressAnyKey()
+        {
+            OneLetterAtATime("Press any key to continue...");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        // Method for printing a string out, one letter at a time
+        public static void OneLetterAtATime(string stringToPrint)
+        {
+            foreach (char c in stringToPrint)
+            {
+                Thread.Sleep(25);
+                Console.Write(c);
+            }
+            Console.WriteLine();
+        }
+
+        // Overload-method for printing a string out, one letter at a time - in a specified color
+        public static void OneLetterAtATime(string stringToPrint, string color)
+        {
+            switch (color.ToLower())
+            {
+                case "green":
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+                case "blue":
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    break;
+                case "red":
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+                case "magenta":
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    break;
+                case "yellow":
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
+            }
+            foreach (char c in stringToPrint)
+            {
+                Thread.Sleep(10);
+                Console.Write(c);
+            }
+            Console.WriteLine();
+            Console.ResetColor(); // Reset to default color after printing
+        }
 
     
 }
