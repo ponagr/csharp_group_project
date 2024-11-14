@@ -100,7 +100,6 @@ public class Enemy : GameObject
         }
     }
 
-
     public void ShowHp()
     {
         Console.SetCursorPosition(40, 2);

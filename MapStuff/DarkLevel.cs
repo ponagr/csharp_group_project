@@ -9,7 +9,7 @@ public class DarkMap : Map
         MerchantObject = merchant;
         Assassin = assassin;
     }
-
+    #region PRINTMAP
     public override void PrintMap(Player player, Map map)
     {
         Console.Clear();
@@ -89,7 +89,7 @@ public class DarkMap : Map
             }
         }
     }
-
+    #endregion
     public override void MovePlayer(Player player, Map map, int currentLevel, out int level)
     {
         level = currentLevel;

@@ -66,7 +66,6 @@ class Program
                     break;
             }
         }
-        
     }
 
     static void PlayGame(Player player, List<Map> maps)

@@ -59,7 +59,7 @@ public class Mage : Enemy
     private double MakeThunder(double damage)
     {
         // Loada en texture med blixtar över hela skiten
-        damage = damage * 2.5;
+        damage = damage * 2;
         return damage;
     }
 

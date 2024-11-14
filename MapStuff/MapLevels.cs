@@ -57,7 +57,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         //AssassinBoss assassinBoss = new AssassinBoss(1, "Smygehuk");
 
 
-        List<Enemy> enemiesLevel1 = new List<Enemy> {mage, archer, butcher, assassin, assassin1, archer1, archer2, butcher3,
+        List<Enemy> enemiesLevel1 = new List<Enemy> {archer1, mage, archer, butcher, assassin, assassin1, archer1, archer2, butcher3,
         assassin3, butcher2, assassin4, mage2, mage3, archer3, butcher1, mage1};
         List<Item> items = new List<Item>() {new Consumable(), new THelm("Plåthjälm", 5, 30, 20, 0),
         new TWeapon("Gimlis Yxa", "Yxa", 40, 10, 0, 20), new TWeapon("Legolas Pilbåge", "Pilbåge", 30, 15, 5, 15),

@@ -54,7 +54,7 @@ public class Butcher : Enemy
     {
         bigHit++;
         double damageDone = CalculateDamage(player, out bool attackCrit);
-        if (bigHit == 3) // BIGHIT
+        if (bigHit == 2) // BIGHIT
         {
             damageDone = BigHit(damageDone);
             bigHit = 0;
