@@ -3,7 +3,7 @@
 ## Prioriterade Funktioner
 
 ### GameHandler (main)
-- [ ] Tydligt flöde för spelhantering.
+- [x] Tydligt flöde för spelhantering.
 
 ### GameLevel
 - [x] Skapa Player- och en Enemy-karaktär.
@@ -44,6 +44,7 @@
 - [x] Lägg till en Merchant som man kan sälja/köpa ifrån - en char-ikon i stället för klass.
 - [x] Potions
 - [ ] T.ex nycklar i kistor för att kunna öppna gates på banan för att komma vidare LÅTA BLI?
+- [ ] Lägg till fler items redan i level 1
 
 ### Chests
 - [x] Få kistor att byta färg när de har öppnats (använda bool och koordinatjämförelse).
@@ -68,9 +69,9 @@
 
 ### Meny
 - [x] Skapa en första bild när man startar spelet
-- [ ] Skapa en meny med alternativ för att spela, ladda, spara och avsluta.
+- [x] Skapa en meny med alternativ för att spela, ladda, spara och avsluta.
 - [ ] Använda JSON för att hantera spara/ladda.
-- [ ] Designa en rolig bild eller ikon för menyn.
+- [x] Designa en rolig bild eller ikon för menyn.
 
 ### Story
 - [ ] Utveckla en grundläggande berättelse för spelet. LÅTA BLI?

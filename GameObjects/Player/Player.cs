@@ -166,7 +166,7 @@ public class Player : GameObject
         PrintColor.DarkYellow($"+{enemy.XpDrop} XP        ", "WriteLine");
 
         Console.SetCursorPosition(0, 12);
-        Clear.Row(12);
+        Clear.Row(12, 0, 40);
         Console.WriteLine("             \n            \n              \n          "); // För att input-text ska försvinna
         Console.ResetColor();
 
