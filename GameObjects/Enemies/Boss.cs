@@ -49,7 +49,7 @@ public class AssassinBoss : Assassin
             specialAttack = true;
             damage = ThrowingKnives(damage, out attackMessage);
             player.CurrentHp -= damage;
-            return $"<-- {damage:F0} DMG";
+            return $"{damage:F0}";
         }
         else
         {  

@@ -9,6 +9,7 @@ public static class Combat
     private static string playerDamage;
     private static string playerHealing;
 
+#region COMBATMENU
     private static void CombatMenu(Player player, Enemy enemy)
     {
         //Menyn
@@ -32,9 +33,15 @@ public static class Combat
 
         }
         Console.SetCursorPosition(0, 13);
-        Console.WriteLine($"C. Fly");
+        Console.WriteLine($"D. Defend");
+
         Console.SetCursorPosition(0, 14);
+
+        Console.WriteLine($"C. Flee");
+        // Console.SetCursorPosition(0, 16);
     }
+    #endregion
+    #region ENEMYKILLED
 
     private static void EnemyKilled(Player player, Enemy enemy)
     {
@@ -45,7 +52,7 @@ public static class Combat
         Console.SetCursorPosition(20, 6);
         PrintColor.Green($"{attackMessagePlayer}", "WriteLine");
         Console.SetCursorPosition(20, 7);
-        PrintColor.Green($"{playerDamage}", "WriteLine");
+        PrintColor.Green($"DMG {playerDamage} -->", "WriteLine");
         Console.SetCursorPosition(0, 11);
         player.EnemyKilled(enemy);  //Skriver ut skadan
         Console.WriteLine("            ");
@@ -53,7 +60,8 @@ public static class Combat
         Console.WriteLine("            ");
         Console.ReadKey(true);
     }
-
+#endregion
+#region PLAYERATTACK
     private static void PlayerAttack(Enemy enemy)
     {
         Textures.AttackPlayerAnimation();
@@ -64,13 +72,14 @@ public static class Combat
         Console.SetCursorPosition(20, 6);
         PrintColor.Green($"{attackMessagePlayer}", "WriteLine");
         Console.SetCursorPosition(20, 7);
-        PrintColor.Green($"{playerDamage}", "WriteLine");
+        PrintColor.Green($"DMG {playerDamage} -->", "WriteLine");
     }
-
+#endregion
+#region ENEMYATTACK
     private static void EnemyAttack(Player player, Enemy enemy)
-    {        
+    {
         enemy.CharacterAttackAnimation(enemy);
-        
+
         Clear.Damage();    //Rensa sedan damagetext och players hp
         Clear.PlayerHp();
 
@@ -82,9 +91,10 @@ public static class Combat
         Console.SetCursorPosition(20, 6);
         PrintColor.Red($"{attackMessageEnemy}", "WriteLine");
         Console.SetCursorPosition(20, 7);
-        PrintColor.Red(enemyDamage, "WriteLine");
+        PrintColor.Red($"<-- {enemyDamage} DMG", "WriteLine");
     }
-
+#endregion
+#region PLAYERHEAL
     private static void PlayerHeal(Player player)
     {
         Clear.PlayerHp();
@@ -95,14 +105,15 @@ public static class Combat
 
         PrintColor.Green($"{playerHealing}", "WriteLine");
     }
-
+#endregion
+#region STARTPOSITION
     private static void StartPosition(Player player, Enemy enemy)
     {
         Console.SetCursorPosition(0, 0);
         PrintColor.Green($"{player.Name}                   ", "Write");
         Console.SetCursorPosition(25, 0);
         Console.Write("VS");
-        Console.SetCursorPosition(40,0);
+        Console.SetCursorPosition(40, 0);
         PrintColor.Red($"{enemy.Name}({enemy.Description})", "Write");
 
         //HP        Skriv ut Hp och "gubbar" i början av loopen
@@ -120,7 +131,7 @@ public static class Combat
         enemy.PrintCharacter(enemy);
 
     }
-
+#endregion
     public static void FightMode(Player player, Enemy enemy)
     {
         attackMessagePlayer = "";
@@ -138,7 +149,7 @@ public static class Combat
             if (attackMessageEnemy != "STUNNED")
             {
                 CombatMenu(player, enemy);
-                
+
                 var input = Console.ReadKey(true);
                 switch (input.Key)
                 {
@@ -148,9 +159,20 @@ public static class Combat
                     case ConsoleKey.Q:
                         playerHealing = player.Heal();
                         break;
+                    case ConsoleKey.D: // Denna tom för att inte komma till default case utan för att faktiskt defenda. Vi vill inte uppdatera förrän längre ner.
+                        Console.SetCursorPosition(18, 6);
+                        Console.WriteLine($"{player.Name}");
+                        Console.SetCursorPosition(18, 7);
+                        Console.WriteLine("is ready to defend");
+                        //Textures för defendposition för player
+                        break;
                     case ConsoleKey.C:
                         return;
                     default:
+                        Console.SetCursorPosition(18, 6);
+                        Console.WriteLine("You MISSED your turn");
+                        Console.SetCursorPosition(18, 7);
+                        Console.WriteLine("..unlucky!");
                         break;
                 }
 
@@ -169,12 +191,30 @@ public static class Combat
                 {
                     PlayerAttack(enemy);
                 }
+                
+                if (input.Key == ConsoleKey.D)
+                {
+                    enemyDamage = player.Defend(player, enemy, out attackMessageEnemy);
+                }
+                else
+                {
+                    enemyDamage = enemy.Attack(player, out attackMessageEnemy);
+                }
             }
             else
             {
                 Console.WriteLine("You are stunned and cant attack this round");
+                enemyDamage = enemy.Attack(player, out attackMessageEnemy);
             }
-            enemyDamage = enemy.Attack(player, out attackMessageEnemy);
+            // if (input.Key == ConsoleKey.D)
+            // {
+            //     enemyDamage = player.Defend(enemy, out attackMessageEnemy);
+            // }
+            // else
+            // {
+            //     enemyDamage = enemy.Attack(player, out attackMessageEnemy);
+            // }
+            // enemyDamage = enemy.Attack(player, out attackMessageEnemy);
 
             Thread.Sleep(700);
 

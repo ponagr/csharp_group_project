@@ -43,7 +43,7 @@ public class Enemy : GameObject
             attackMessage = "";
         }
         CurrentHp -= damage;
-        return $"DMG {damage:F0} -->";
+        return $"{damage:F0}";
     }
 
     public virtual void PrintCharacter(Enemy enemy){}
@@ -90,13 +90,13 @@ public class Enemy : GameObject
             //Textures.CriticalHit();
             attackMessage = "CRITICAL";
             player.CurrentHp -= damageDone;
-            return $"<-- {damageDone:F0} DMG";
+            return $"{damageDone:F0}";
         }
         else
         {
             attackMessage = "";
             player.CurrentHp -= damageDone;
-            return $"<-- {damageDone:F0} DMG";
+            return $"{damageDone:F0}";
         }
     }
 

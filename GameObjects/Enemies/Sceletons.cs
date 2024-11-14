@@ -62,7 +62,7 @@ public class Sceletons : Enemy
             bigHit = 0;
             player.CurrentHp -= damageDone;
             attackMessage = "MASSIVE HIT!";
-            return $"<-- {damageDone:F0} DMG"; 
+            return $"{damageDone:F0}"; 
         }
         else // Vanlig attack
         {

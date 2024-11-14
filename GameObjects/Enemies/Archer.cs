@@ -47,7 +47,7 @@ public class Archer : Enemy
             isCharging = false;
             player.CurrentHp -= damageDone;
             attackMessage = "3x ARROWS!";
-            return $"<-- {damageDone:F0} DMG";
+            return $"{damageDone:F0}";
         }
         else // Vanlig attack
         {

@@ -82,7 +82,7 @@ public class Assassin : Enemy
             attackMessage = "Kniv i ryggen";
             damage = StealthAttack(damage);
             player.CurrentHp -= damage;
-            string message = $"<-- {damage:F0}";
+            string message = $"{damage:F0}";
             return message;
         }
     }

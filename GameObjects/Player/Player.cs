@@ -201,4 +201,15 @@ public class Player : GameObject
         Console.ResetColor();
     }
     #endregion
+    #region DEFEND
+    public string Defend(Player player, Enemy enemy, out string attackMessage)
+    {
+        string damage = enemy.Attack(player, out string message);
+        double totalDamage = Convert.ToDouble(damage);
+        totalDamage = totalDamage * 0.5;
+        CurrentHp += totalDamage;
+        attackMessage = "DEFENDED";
+        return $"{totalDamage:F0}";
+    }
+    #endregion
 }

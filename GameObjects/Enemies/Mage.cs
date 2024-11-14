@@ -46,7 +46,7 @@ public class Mage : Enemy
             isReadyForThunder = true;
             player.CurrentHp -= damageDone;
             attackMessage = "THUNDERSTORM!!!";
-            return $"<-- {damageDone:F0} DMG";
+            return $"{damageDone:F0}";
         }
         else // Vanlig attack
         {

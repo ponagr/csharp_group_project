@@ -62,7 +62,7 @@ public class Butcher : Enemy
             specialAttack = true;
             player.CurrentHp -= damageDone;
             attackMessage = "MASSIVE HIT!";
-            return $"<-- {damageDone:F0} DMG";
+            return $"{damageDone:F0}";
         }
         else if (needsRest) // Behöver vila
         {
@@ -119,7 +119,7 @@ public class Butcher : Enemy
             damage = BlockedAttack();
             CurrentHp -= damage;
             attackMessage = "Blocked!";
-            return $"DMG {damage:F0} -->";
+            return $"{damage:F0}";
         }
     }
 }
