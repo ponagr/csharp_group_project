@@ -13,11 +13,11 @@ public static class Combat
     {
         //Menyn
         Console.SetCursorPosition(0, 11);
-        Console.WriteLine("1. Attack");
+        Console.WriteLine($"E. Attack");
         if (player.HealingPot.Ammount == 0)
         {
             Console.SetCursorPosition(0, 12);
-            Console.Write($"2. Heal - ");
+            Console.Write($"Q. Heal - ");
             Console.ForegroundColor = ConsoleColor.Red;
             player.HealingPot.ShowItem();
             Console.ResetColor();
@@ -25,14 +25,14 @@ public static class Combat
         else
         {
             Console.SetCursorPosition(0, 12);
-            Console.Write($"2. Heal - ");
+            Console.Write($"Q. Heal - ");
             Console.ForegroundColor = ConsoleColor.Green;
             player.HealingPot.ShowItem();
             Console.ResetColor();
 
         }
         Console.SetCursorPosition(0, 13);
-        Console.WriteLine("3. Fly");
+        Console.WriteLine($"C. Fly");
         Console.SetCursorPosition(0, 14);
     }
 
@@ -100,8 +100,10 @@ public static class Combat
     {
         Console.SetCursorPosition(0, 0);
         PrintColor.Green($"{player.Name}                   ", "Write");
+        Console.SetCursorPosition(25, 0);
         Console.Write("VS");
-        PrintColor.Red($"             {enemy.Name}({enemy.Description})", "Write");
+        Console.SetCursorPosition(40,0);
+        PrintColor.Red($"{enemy.Name}({enemy.Description})", "Write");
 
         //HP        Skriv ut Hp och "gubbar" i början av loopen
         Console.SetCursorPosition(0, 2);
@@ -131,23 +133,22 @@ public static class Combat
         {
             Console.CursorVisible = false;
             Console.Clear();
-
             StartPosition(player, enemy);
 
             if (attackMessageEnemy != "STUNNED")
             {
                 CombatMenu(player, enemy);
                 
-                string input = Console.ReadLine();
-                switch (input)
+                var input = Console.ReadKey(true);
+                switch (input.Key)
                 {
-                    case "1":
+                    case ConsoleKey.E:
                         playerDamage = player.Attack(enemy, out attackMessagePlayer);   //Skriver ut skadan // SPARAR den returnerade stringen i playerDamage
                         break;
-                    case "2":
+                    case ConsoleKey.Q:
                         playerHealing = player.Heal();
                         break;
-                    case "3":
+                    case ConsoleKey.C:
                         return;
                     default:
                         break;
@@ -159,12 +160,12 @@ public static class Combat
                     return;
                 }
 
-                if (input == "2")   //Om vi healar, uppdatera player.CurrentHp innan enemy attackerar
+                if (input.Key == ConsoleKey.Q)   //Om vi healar, uppdatera player.CurrentHp innan enemy attackerar
                 {
                     PlayerHeal(player);
                 }
 
-                if (input == "1")    //Vid attack
+                if (input.Key == ConsoleKey.E)    //Vid attack
                 {
                     PlayerAttack(enemy);
                 }
