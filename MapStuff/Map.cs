@@ -1,3 +1,5 @@
+using System.ComponentModel.Design;
+
 public abstract class Map
 {
     //EN MAP, innehåller massa olika fiender och items osv specifikt för mappen
@@ -9,6 +11,7 @@ public abstract class Map
     public List<Chest> Chests { get; set; }
     public Enemy BossEnemy { get; set; }
 
+    internal bool showHelp = false;
     internal static char Player = '@';
     internal static char Enemy = '£';
     internal static char Boss = 'B';
@@ -143,6 +146,33 @@ public abstract class Map
         Console.SetCursorPosition(newY * 3, newX + 2); // Skriv ut den nya positionen
         PrintColor.Green(" @", "Write");
     }
+
+    public static void Help()
+    {
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.SetCursorPosition(71, 2);
+        Console.WriteLine("H - BACK  ");
+        Console.SetCursorPosition(71, 4);
+        Console.WriteLine("W - UP");
+        Console.SetCursorPosition(71, 5);
+        Console.WriteLine("A - LEFT");
+        Console.SetCursorPosition(71, 6);
+        Console.WriteLine("S - DOWN");
+        Console.SetCursorPosition(71, 7);
+        Console.WriteLine("D - RIGHT");
+        Console.SetCursorPosition(71, 8);
+        Console.WriteLine("");
+        Console.SetCursorPosition(71, 9);
+        Console.WriteLine("C - INVENTORY");
+        Console.SetCursorPosition(71, 10);
+        Console.WriteLine("Q - HEAL");
+
+        Console.SetCursorPosition(71, 12);
+        Console.WriteLine("ESC - MENY");
+        Console.ResetColor();
+
+
+    }
     #endregion
 
     internal static void MapInfo() //Skriver ut info ovanför mappen
@@ -162,6 +192,7 @@ public abstract class Map
     public virtual void MovePlayer(Player player, Map map, int currentLevel, out int level)
     {
         level = currentLevel;
+        
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
         int newX;       //newX,newY är den nya positionen som vi vill förflytta våran player till
@@ -311,7 +342,7 @@ public abstract class Map
                 HandleInvisibleAssassin(player, assassin, gameMap, newX, newY);
                 return;
             }
-            
+
             else // Väggar och terräng
             {
                 //Gör ingenting
@@ -335,15 +366,30 @@ public abstract class Map
                 PlayerUI.UI(player);
             }
             #endregion
+
+            if (keyPressed.Key == ConsoleKey.H)
+            {
+                
+                if(showHelp == false)
+                {
+                    Help();
+                    showHelp = true;
+                }
+                else
+                {
+                    PlayerUI.HelpText();
+                    showHelp = false;
+                }
+            }
             Console.SetCursorPosition(0, 27);
         }
     }
-    
+
     #region PRINT MAP
     public virtual void PrintMap(Player player, Map map)
     {
         Console.Clear();
-        
+
         MapInfo(); // INFO OM KARTAN
         Console.CursorVisible = false;
         char[,] gameMap = Maplevel;
@@ -370,7 +416,7 @@ public abstract class Map
 
                 else if (gameMap[i, j] == Merchant)
                     PrintColor.Yellow(" M ", "Write");
-                
+
                 else if (gameMap[i, j] == Trap)
                     PrintColor.Gray($" {gameMap[i, j]} ", "Write");
 

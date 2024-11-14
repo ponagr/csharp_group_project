@@ -193,6 +193,21 @@ public class CellarMap : Map
                 PlayerUI.UI(player);
             }
             #endregion
+
+               if (keyPressed.Key == ConsoleKey.H)
+            {
+                
+                if(showHelp == false)
+                {
+                    Help();
+                    showHelp = true;
+                }
+                else
+                {
+                    PlayerUI.HelpText();
+                    showHelp = false;
+                }
+            }
             Console.SetCursorPosition(0, 27);
         }
         

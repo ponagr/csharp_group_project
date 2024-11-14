@@ -2,6 +2,14 @@
 
 ## Prioriterade Funktioner
 
+// Från NATAFANSUSSANNE
+HIGHSCORE!
+Lägg till alternativ 4 - Options Controls
+Visa att man kan ta upp inventory
+Highscore
+Autosave vid ny nivå
+Skydda sig
+
 ### GameHandler (main)
 - [x] Tydligt flöde för spelhantering.
 

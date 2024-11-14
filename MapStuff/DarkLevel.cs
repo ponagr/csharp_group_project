@@ -225,5 +225,19 @@ public class DarkMap : Map
             player.Heal();
         }
         #endregion
+        if (keyPressed.Key == ConsoleKey.H)
+        {
+            
+            if(showHelp == false)
+            {
+                Help();
+                showHelp = true;
+            }
+            else
+            {
+                PlayerUI.HelpText();
+                showHelp = false;
+            }
+        }
     }
 }

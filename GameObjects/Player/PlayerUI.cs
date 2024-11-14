@@ -16,6 +16,36 @@ public static class PlayerUI
 
         Console.SetCursorPosition(50, currentLine);
         ShowXp(player);
+
+        HelpText();
+
+
+    }
+
+    public static void HelpText()
+    {
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.SetCursorPosition(71, 2);
+        Console.WriteLine("H - HELP  ");
+
+        Console.SetCursorPosition(71, 4);
+        Console.WriteLine("      ");
+        Console.SetCursorPosition(71, 5);
+        Console.WriteLine("        ");
+        Console.SetCursorPosition(71, 6);
+        Console.WriteLine("        ");
+        Console.SetCursorPosition(71, 7);
+        Console.WriteLine("         ");
+        Console.SetCursorPosition(71, 8);
+        Console.WriteLine("");
+        Console.SetCursorPosition(71, 9);
+        Console.WriteLine("             ");
+        Console.SetCursorPosition(71, 10);
+        Console.WriteLine("        ");
+
+        Console.SetCursorPosition(71, 12);
+        Console.WriteLine("          ");
+        Console.ResetColor();
     }
 
     public static void ShowXp(Player player)    //Skriver ut spelarens nuvarande level och xp
