@@ -1,7 +1,7 @@
 public class Enemy : GameObject
 {
     public bool isPlayer = false;
-    public int XpDrop = 33;
+    public int XpDrop = 20;
     public HealthBar healthBar;
     //Lägg till en AggroRange senare
 

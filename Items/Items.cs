@@ -62,7 +62,7 @@ public class TBreastPlate : Gear
     public TBreastPlate(string name, double damage, double health, double resistance, double agility)
     : base(name, damage, health, resistance, agility)
     {
-        ItemType = "Breastplate";
+        ItemType = "Chest";
     }
 }
 public class TLegs : Gear

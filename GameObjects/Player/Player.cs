@@ -46,7 +46,7 @@ public class Player : GameObject
         MaxXp = 100;
         BaseHp = 100;
         CurrentHp = BaseHp;
-        BaseDamage = 15;
+        BaseDamage = 20;
         BaseResistance = 5;
         BaseAgility = 10;
 

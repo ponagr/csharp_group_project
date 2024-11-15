@@ -10,7 +10,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         char[,] gameLevel1 = new char[,]
         {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23
             { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' },
-            { '|', '@', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '¤', ' ', '|', '#', '|', '\u2665', ' ', ' ', ' ', ' ', ' ', 'B', ' ', '|' },
+            { '|', '@', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '¤', ' ', '|', '#', '|', ' ', ' ', ' ', ' ', ' ', ' ', 'B', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '£', '|', '_', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
             { '|', '/', ' ', ' ', ' ', ' ', ' ', ' ', '|', '¤', ' ', '|', '£', ' ', ' ', ' ', ' ', ' ', ' ', '_', '|', ' ', '|' },
@@ -21,16 +21,16 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
             { '|', ' ', ' ', ' ', '|', ' ', '|', ' ', '£', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
             { '|', ' ', ' ', ' ', '|', ' ', '|', '$', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', '£', ' ', '|' },
             { '|', '_', '_', '_', '_', '£', '_', '_', '_', '_', '_', '|', '_', '_', '_', '_', '_', '_', '_', '_', ' ', '_', '|' },
-            { '|', ' ', ' ', ' ', '|', ' ', '|', ' ', ' ', ' ', ' ', '|', ' ', ' ', '$', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+            { '|', ' ', ' ', ' ', '|', ' ', '|', ' ', ' ', ' ', ' ', '|', ' ', ' ', '$', ' ', ' ', ' ', ' ', '|', ' ', '\u2665', '|' },
             { '|', ' ', ' ', '#', '|', ' ', '|', '$', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
             { '|', ' ', ' ', ' ', '|', ' ', '|', '#', ' ', '£', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
             { '|', '£', '_', '_', '|', ' ', '|', '_', '_', '_', ' ', ' ', ' ', ' ', '£', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
             { '|', '£', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '_', '_', '_', '_', '_', '_', ' ', '|', ' ', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', '_', '_', ' ', '|', ' ', ' ', '|' },
-            { '|', ' ', ' ', ' ', '|', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', ' ', ' ', ' ', 'a', ' ', '|', ' ', ' ', '|' },
+            { '|', ' ', ' ', ' ', '|', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
             { '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', '£', ' ', '$', '|', ' ', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', '|' },
             { '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', '¤', ' ', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-            { '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', '£', ' ', '$', '|', ' ', ' ', ' ', ' ', ' ', '$', ' ', ' ', ' ', ' ', '|' },
+            { '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', '£', ' ', '$', '|', ' ', ' ', 'a', ' ', ' ', '$', ' ', ' ', ' ', ' ', '|' },
             { '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|' },//23
         };
 
@@ -46,26 +46,35 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         Archer archer3 = new Archer(1, "Hawkeye");
         Assassin assassin4 = new Assassin(1, "Ninja");
         Butcher butcher3 = new Butcher(1, "Berzerker");
-        Mage mage2 = new Mage(1, "Moon Queen");
-        Mage mage3 = new Mage(1, "Magic-Mike");
+        Mage mage2 = new Mage(2, "Moon Queen");
+        Mage mage3 = new Mage(2, "Magic-Mike");
         Butcher butcher2 = new Butcher(1, "Butchie");
         Assassin assassin3 = new Assassin(1, "Asian");
-        Sceletons sceletons = new Sceletons(1, "Ben-jamin");
-
-        ButcherBoss boss = new ButcherBoss(1, "Boss Butcher");
+        
         Assassin assassinInvisable = new Assassin(1, "Inge-visable");
-        //AssassinBoss assassinBoss = new AssassinBoss(1, "Smygehuk");
+        AssassinBoss assassinBoss = new AssassinBoss(1, "Smygehuk");
 
 
-        List<Enemy> enemiesLevel1 = new List<Enemy> {archer1, mage, archer, butcher, assassin, assassin1, archer1, archer2, butcher3,
-        assassin3, butcher2, assassin4, mage2, mage3, archer3, butcher1, mage1};
-        List<Item> items = new List<Item>() {new Consumable(), new THelm("Plåthjälm", 5, 30, 20, 0),
-        new TWeapon("Gimlis Yxa", "Yxa", 40, 10, 0, 20), new TWeapon("Legolas Pilbåge", "Pilbåge", 30, 15, 5, 15),
-        new TBoots("Foppatofflor", 5, 0, 5, -5), new TGloves("Plåthandskar", 5, 30, 20, 5), new TLegs("Läderbyxor", 0, 20, 15, 20), new TBreastPlate("Rostig rustning", 5, 40, 20, 0) };
+        List<Enemy> enemiesLevel1 = new List<Enemy> {archer, mage, butcher, assassin, assassin1, archer1, archer2, butcher3,
+        assassin3, butcher2, assassin4, mage2, mage3};
+        List<Item> items = new List<Item>() 
+        {new Consumable(), 
+        new THelm("Plåthjälm", 5, 10, 10, 0),
+        new THelm("Tomteluva", 0, 5, 5, 15),
+        new TWeapon("Gimlis Yxa", "Yxa", 10, 10, 0, 10),
+        new TWeapon("Legolas Pilbåge", "Pilbåge", 8, 5, 5, 10),
+        new TWeapon("Slunger", "Slangbella", 9, 0, 5,10),
+        new TBoots("Foppatofflor", 5, 0, 5, -5),
+        new TBoots("Träskor", 8, 5, 5, 0), 
+        new TGloves("Plåthandskar", 5, 10, 10, 5), 
+        new TGloves("Trädgårdshandskar", 2, 7, 5, 8), 
+        new TLegs("Läderbyxor", 0, 7, 5, 10), 
+        new TLegs("Manchesterbrallor", 0, 8, 9, 7), 
+        new TBreastPlate("Hoodie", 0, 8, 5, 10),
+        new TBreastPlate("Rostig rustning", 5, 10, 10, 0) };
         List<Chest> chestsLevel1 = new List<Chest>() { new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items) };
 
-
-        RegularMap level1 = new RegularMap(gameLevel1, enemiesLevel1, assassinInvisable, chestsLevel1, boss, null);
+        RegularMap level1 = new RegularMap(gameLevel1, enemiesLevel1, assassinInvisable, chestsLevel1, assassinBoss, null);
         return level1;
     }
     #endregion
@@ -81,28 +90,28 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', '|', ' ', '|', '_', '_', '_', '|', ' ', ' ', '|', ' ', '|' },
             { '|', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', '_', '|', ' ', '|' },
             { '|', ' ', '|', '#', '|', ' ', '|', ' ', ' ', ' ', '¤', ' ', ' ', '£', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
-            { '|', ' ', '|', ' ', '|', ' ', '|', ' ', ' ', ' ', '¤', ' ', '$', ' ', '£', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+            { '|', ' ', '|', ' ', '|', ' ', '|', ' ', ' ', ' ', 'a', '\u2665', '$', ' ', '£', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
             { '|', ' ', '|', ' ', '|', ' ', '|', '_', '_', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|', ' ', ' ', '|' },
-            { '|', ' ', '/', ' ', '|', '£', ' ', ' ', ' ', ' ', ' ', '|', '£', '|', '_', '_', ' ', '|', '_', '_', '_', ' ', '|' },
-            { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '£', ' ', '_', '|', ' ', '|', ' ', ' ', ' ', '|', '#', ' ', '£', ' ', '|' },
-            { '|', '£', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ')', '|', '$', '|', '$', ' ', ' ', '|', ' ', ' ', '£', ' ', '|' },
+            { '|', ' ', '/', ' ', '|', ' ', '£', ' ', ' ', ' ', ' ', '|', '£', '|', '_', '_', ' ', '|', '_', '_', '_', ' ', '|' },
+            { '|', ' ', '£', ' ', ' ', ' ', '|', ' ', ' ', ' ', '_', '|', ' ', '|', ' ', ' ', ' ', '|', '#', ' ', '£', ' ', '|' },
+            { '|', ' ', '|', ' ', ' ', ' ', '|', ' ', ' ', '£', ')', '|', '$', '|', '$', ' ', ' ', '|', ' ', ' ', '£', ' ', '|' },
             { '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|', '_', '_', '_', '_', '_', '_', '_', '_', ' ', '_', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '$', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
             { '|', ' ', ' ', '#', '|', '_', '|', '$', ' ', ' ', '£', '|', ' ', ' ', ' ', ' ', ' ', ' ', '$', '|', ' ', ' ', '|' },
-            { '|', ' ', ' ', ' ', '|', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '_', ' ', '|' },
+            { '|', ' ', ' ', '#', '|', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '_', ' ', '|' },
             { '|', ' ', '_', '_', '|', ' ', '|', '_', '_', '_', '_', '_', ' ', ' ', '£', ' ', ' ', ' ', '$', '|', ' ', ' ', '|' },
             { '|', '£', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '_', '_', '_', '_', '_', '_', '|', ' ', '_', '|' },
             { '|', ' ', ' ', ' ', '|', ' ', ' ', '£', '£', '£', '#', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
             { '|', ' ', ' ', ' ', '|', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '£', '|' },
             { '\\', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', '£', '_', '_', '_', '_', '_', ' ', '|', '_', ' ', '|' },
             { '/', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
-            { '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', '$', '|', ' ', '\u2665', ' ', ' ', '$', '|', ' ', ' ', ' ', ' ', '|' },
+            { '|', ' ', ' ', ' ', 'B', ' ', '|', ' ', ' ', ' ', '$', '|', ' ', ' ', ' ', ' ', '$', '|', ' ', ' ', ' ', ' ', '|' },
             { '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|' },//23
         };
         char[,] cellarLevel = new char[,]
         {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23      // DISARMA MINOR?!
             { '_', '_', '_', '_', '_', '_', '_' },
-            { ')', '@', ' ', ' ', ' ', 'M', '_' },
+            { ')', '@', ' ', ' ', '£', 'M', '_' },
             { '_', ' ', ' ', ' ', '_', '_', '_' },
             { '_', ' ', ' ', '¤', ' ', ' ', '_' },
             { '_', ' ', ' ', ' ', ' ', ' ', '_' },
@@ -110,46 +119,48 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
             { '_', '_', '_', '_', '_', '_', '_' },
         };
 
-        Assassin assassin = new Assassin(2, "Fegkräk");
-        Butcher butcher = new Butcher(2, "Slaktarn");
-        Archer archer = new Archer(2, "Lena-Långbåge");
-        Mage mage = new Mage(2, "Magiska-Lars");
-        Assassin assassin1 = new Assassin(2, "Assassinator");
-        Butcher butcher1 = new Butcher(2, "Gimli");
-        Mage mage1 = new Mage(2, "Gandalf");
-        Archer archer1 = new Archer(2, "Legolas");
-        Archer archer2 = new Archer(2, "Robin Hood");
-        Archer archer3 = new Archer(2, "Hawkeye");
-        Assassin assassin4 = new Assassin(2, "Ninja");
-        Butcher butcher3 = new Butcher(2, "Berzerker");
-        Mage mage2 = new Mage(2,  "Moon Queen");
-        Mage mage3 = new Mage(2,  "Magic-Mike");
-        Butcher butcher2 = new Butcher(2,  "Butchie");
-        Assassin assassin3 = new Assassin(2, "Asian");
+        Assassin assassin = new Assassin(2, "Brassassin");
+        Butcher butcher = new Butcher(2, "Stina Styckare");
+        Archer archer = new Archer(2, "Pilgrimm");
+        Mage mage = new Mage(2, "YoLaBero");
+        Assassin assassin1 = new Assassin(2, "Knasassin");
+        Butcher butcher1 = new Butcher(2, "Styck-Steffe");
+        Mage mage1 = new Mage(2, "TrippTrappTroll");
+        Archer archer1 = new Archer(2, "Fjäder-Fjodor");
+        Archer archer3 = new Archer(2, "Benny-Båge");
+        Assassin assassin4 = new Assassin(2, "Nino");
+        Butcher butcher3 = new Butcher(2, "Mike-Muscels");
+        Mage mage2 = new Mage(2,  "Maggie");
+        Mage mage3 = new Mage(2,  "LaserLasse");
+        Butcher butcher2 = new Butcher(2,  "SlaktarnFrånSkara");
+        Assassin assassin3 = new Assassin(2, "Portuguisian");
+        Sceletons sceletons = new Sceletons(1, "Ben-rangel");
 
         Assassin invisibleAssassin = new Assassin(2, "Syns int");
 
-        AssassinBoss assassinBoss = new AssassinBoss(2, "Smygehuk");
-        List<Enemy> enemies = new List<Enemy> {mage, butcher, archer, assassin, assassin1, archer1, archer2, butcher3,
+        ButcherBoss butcherBoss = new ButcherBoss(1, "Boss Butcher");
+        List<Enemy> enemies = new List<Enemy> {mage, butcher, archer, sceletons, assassin, assassin1, archer1, butcher3,
         assassin3, butcher2, assassin4, mage2, mage3, archer3, butcher1, mage1};
 
         List<Item> itemsLevel2 = new List<Item>() {
         new Consumable(),
-        new THelm("Greater Plåthjälm", 5, 45, 25, -5),
-        new TWeapon("SplitYouInTwo", "Machete", 45, 5, 0, 20),
-        new TWeapon("Stomper", "SledgeHammer", 60, 0, 0, -5),
-        new TBoots("Springskor", 0, 15, 5, 25),
-        new TGloves("GangsterGloves", 10, 35, 30, 0),
-        new TLegs("Kalasbyxor", 5, 30, 20, 20)};
+        new THelm("Greater Plåthjälm", 5, 20, 15, 0),
+        new THelm("Truckerkeps", 5, 10, 5, 20),
+        new TWeapon("SplitYouInTwo", "Machete", 18, 5, 0, 10),
+        new TWeapon("Stomper", "SledgeHammer", 20, 7, 0, 5),
+        new TBoots("Springskor", 0, 15, 5, 20),
+        new TBoots("AirMax", 0, 17, 10, 20),
+        new TGloves("GangsterGloves", 10, 20, 15, 0),
+        new TGloves("Tummisar", 8, 15, 12, 5),
+        new TBreastPlate("Chainmail", 5, 20, 20, 0),
+        new TBreastPlate("GoreTex-jacka", 5, 17, 10, 20),
+        new TLegs("Kalasbyxor", 5, 20, 10, 15),
+        new TLegs("Adidas", 7, 15, 12, 20)};
 
-        // List<Item> items = new List<Item>() {new Consumable(), new THelm("Plåthjälm", 5, 30, 20, 0),
-        // new TWeapon("Gimlis Yxa", "Yxa", 40, 10, 0, 20), new TWeapon("Legolas Pilbåge", "Pilbåge", 30, 15, 5, 15),
-        // new TBoots("Foppatofflor", 5, 0, 5, -5), new TGloves("Plåthandskar", 5, 30, 20, 5), new TLegs("Läderbyxor", 0, 20, 15, 20) };
-
-        List<Chest> chests = new List<Chest>() { new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2) };
+        List<Chest> chests = new List<Chest>() { new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2) };
         Merchant merchant = new Merchant("Merchant", 1000, itemsLevel2);
 
-        CellarMap level = new CellarMap(gameLevel, cellarLevel, invisibleAssassin, enemies, chests, assassinBoss, merchant);
+        CellarMap level = new CellarMap(gameLevel, cellarLevel, invisibleAssassin, enemies, chests, butcherBoss, merchant);
         return level;
 
     }
@@ -174,7 +185,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|', ' ', '|', ' ', ' ', ' ', '|', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|', '_', '_', '_', '_', '_', '|', ' ', '|' },
-            { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '£', ' ', ' ', ' ', ' ', ' ', ' ', '|', '$', ' ', ' ', ' ', ' ', ' ', '|' },
+            { '|', ' ', ' ', ' ', ' ', ' ', 'a', ' ', '£', ' ', ' ', ' ', ' ', ' ', ' ', '|', '$', ' ', ' ', ' ', ' ', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', '_', '_', '_', ' ', '_', '_', '_', '_', '|', ' ', ' ', '|', ' ', ' ', ' ', '|' },
@@ -207,11 +218,18 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         List<Enemy> enemies = new List<Enemy> {mage, butcher, archer, assassin, assassin1, archer1, archer2, butcher3,
         assassin3, butcher2, assassin4, mage2, mage3, archer3, butcher1, mage1};
 
-        List<Item> items = new List<Item>() {new Consumable(), new THelm("Plåthjälm", 5, 30, 20, 0),
-        new TWeapon("Gimlis Yxa", "Yxa", 40, 10, 0, 20), new TWeapon("Legolas Pilbåge", "Pilbåge", 30, 15, 5, 15),
-        new TBoots("Foppatofflor", 5, 0, 5, -5), new TGloves("Plåthandskar", 5, 30, 20, 5), new TLegs("Läderbyxor", 0, 20, 15, 20) };
+        List<Item> itemsLevel3 = new List<Item>() {
+        new Consumable(),
+        new THelm("Greatest Plåthjälm", 10, 25, 20, 0),
+        new THelm("Balaclava", 5, 12, 10, 30),
+        new TWeapon("Bra pinne", "Staff", 25, 5, 0, 10),
+        new TWeapon("Stock", "Staff", 30, 10, 5, 0),
+        new TBoots("Buffalos", 0, 24, 15, 10),
+        new TBoots("Bagheera", 0, 22, 10, 30),
+        new TGloves("Knogjärn", 20, 5, 5, 10),
+        new TBreastPlate("Canada Goose", 10, 25, 25, 0)};
 
-        List<Chest> chests = new List<Chest>() { new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items) };
+        List<Chest> chests = new List<Chest>() { new Chest(itemsLevel3), new Chest(itemsLevel3), new Chest(itemsLevel3), new Chest(itemsLevel3), new Chest(itemsLevel3), new Chest(itemsLevel3) };
 
         DarkMap level = new DarkMap(gameLevel, enemies, assassinInvisable, chests, assassinBoss, null);
         return level;

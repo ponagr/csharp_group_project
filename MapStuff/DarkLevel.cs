@@ -48,6 +48,9 @@ public class DarkMap : Map
 
                         else if (gameMap[i, j] == Enemy)
                             PrintColor.Red($" {gameMap[i, j]} ", "Write");
+                            
+                        else if (gameMap[i, j] == invisableAssassin)
+                            PrintColor.Red($"   ", "Write"); 
 
                         else if (gameMap[i, j] == Chest)
                             PrintColor.Yellow($" {gameMap[i, j]} ", "Write");
@@ -88,6 +91,7 @@ public class DarkMap : Map
                 Console.WriteLine();
             }
         }
+        PlayerUI.UI(player);
     }
     #endregion
     public override void MovePlayer(Player player, Map map, int currentLevel, out int level)
@@ -227,8 +231,8 @@ public class DarkMap : Map
         #endregion
         if (keyPressed.Key == ConsoleKey.H)
         {
-            
-            if(showHelp == false)
+
+            if (showHelp == false)
             {
                 Help();
                 showHelp = true;

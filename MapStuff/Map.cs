@@ -34,7 +34,7 @@ public abstract class Map
     internal static void HandleEnemy(Player player, List<Enemy> enemies, char[,] gameMap, int newX, int newY) // När player går på enemy
     {
         Combat.FightMode(player, enemies[0]);
-        if (enemies[0].CurrentHp <= 0)
+        if (enemies[0].CurrentHp < 1)
         {
             enemies.RemoveAt(0);
             gameMap[newX, newY] = Empty;
@@ -43,6 +43,10 @@ public abstract class Map
     #endregion
     internal static void HandleInvisibleAssassin(Player player, Assassin assassin, char[,] gameMap, int newX, int newY)
     {
+        Console.SetCursorPosition(0, 29);
+        Console.WriteLine("An invisable assassin shows up!");
+        Thread.Sleep(2000);
+        Console.ReadKey();
         Combat.FightMode(player, assassin);
         if (assassin.CurrentHp <= 0)
         {
