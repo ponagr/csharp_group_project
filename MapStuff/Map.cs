@@ -276,6 +276,8 @@ public abstract class Map
                 PrintColor.Gray(" #", "Write");
                 Console.SetCursorPosition(0, 29);
                 HandleChest(Chests, player, Maplevel, newX, newY);
+                Console.SetCursorPosition(0, 25);
+                PlayerUI.UI(player);
             }
             else if (Maplevel[newX, newY] == Heart)
             {
