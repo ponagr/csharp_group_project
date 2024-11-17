@@ -7,7 +7,7 @@ public class Assassin : Enemy
 
     public bool isVisable;
 
-    public Assassin(int level, string name) : base(level) // Vi ber om ett nammn
+    public Assassin(int level, string name) // Vi ber om ett nammn
     {
         double multiplier = level * 0.75;
         Random random = new Random();
@@ -68,7 +68,7 @@ public class Assassin : Enemy
         double damage = CalculateDamage(player, out bool attackCrit);
         if (isVisable)
         {
-            int magicNumber = rndVisable.Next(1, 4);
+            int magicNumber = rndVisable.Next(1, 5);
 
             if (magicNumber == 1)
             {

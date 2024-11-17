@@ -9,7 +9,7 @@ public static class Combat
     private static string playerDamage;
     private static string playerHealing;
 
-#region COMBATMENU
+    #region COMBATMENU
     private static void CombatMenu(Player player, Enemy enemy)
     {
         //Menyn
@@ -41,9 +41,9 @@ public static class Combat
         // Console.SetCursorPosition(0, 16);
     }
     #endregion
-    #region ENEMYKILLED
 
-    private static void EnemyKilled(Player player, Enemy enemy)
+    #region ENEMYKILLED
+    private static void EnemyKilled(Player player, Enemy enemy) // Två EnemyKilled-metoder
     {
         Textures.AttackPlayerAnimation();
         Clear.Damage();
@@ -60,8 +60,8 @@ public static class Combat
         Console.WriteLine("            ");
         Console.ReadKey(true);
     }
-#endregion
-#region PLAYERATTACK
+    #endregion
+    #region PLAYERATTACK
     private static void PlayerAttack(Enemy enemy)
     {
         Textures.AttackPlayerAnimation();
@@ -86,7 +86,7 @@ public static class Combat
         Console.SetCursorPosition(0, 2);       //Och uppdatera detta
         player.ShowHp();
 
-        Clear.Damage();
+        //Clear.Damage();
 
         Console.SetCursorPosition(20, 6);
         PrintColor.Red($"{attackMessageEnemy}", "WriteLine");
@@ -95,9 +95,9 @@ public static class Combat
     }
 #endregion
 #region PLAYERHEAL
-    private static void PlayerHeal(Player player)
+    private static void PlayerHeal(Player player) 
     {
-        Clear.PlayerHp();
+        Clear.PlayerHp(); // CLEARAR OCH LÄGGER TILL FÖR ATT UPPDATERA HPBar
         Console.SetCursorPosition(0, 2);  //Rad, Kolumn
         player.ShowHp();
 
@@ -129,9 +129,9 @@ public static class Combat
         Console.SetCursorPosition(25, 5);
 
         enemy.PrintCharacter(enemy);
-
     }
 #endregion
+
     public static void FightMode(Player player, Enemy enemy)
     {
         attackMessagePlayer = "";
@@ -154,10 +154,10 @@ public static class Combat
                 switch (input.Key)
                 {
                     case ConsoleKey.E:
-                        playerDamage = player.Attack(enemy, out attackMessagePlayer);   //Skriver ut skadan // SPARAR den returnerade stringen i playerDamage
+                        playerDamage = player.Attack(enemy, out attackMessagePlayer);   // SPARAR den returnerade stringen som sedan ska skrivas ut i metoden PlayerAttack
                         break;
                     case ConsoleKey.Q:
-                        playerHealing = player.Heal();
+                        playerHealing = player.Heal();  //Gör samma som player.Attack, fast healar istället
                         break;
                     case ConsoleKey.D: // Denna tom för att inte komma till default case utan för att faktiskt defenda. Vi vill inte uppdatera förrän längre ner.
                         Console.SetCursorPosition(18, 6);
@@ -181,17 +181,17 @@ public static class Combat
                     EnemyKilled(player, enemy);
                     return;
                 }
-
                 if (input.Key == ConsoleKey.Q)   //Om vi healar, uppdatera player.CurrentHp innan enemy attackerar
                 {
                     PlayerHeal(player);
                 }
-
                 if (input.Key == ConsoleKey.E)    //Vid attack
                 {
                     PlayerAttack(enemy);
                 }
                 
+
+                //om vi defendar, gör enemy halva skadan, annars full skada
                 if (input.Key == ConsoleKey.D)
                 {
                     enemyDamage = player.Defend(player, enemy, out attackMessageEnemy);
@@ -201,20 +201,11 @@ public static class Combat
                     enemyDamage = enemy.Attack(player, out attackMessageEnemy);
                 }
             }
-            else
+            else    //Om vi är stunnad, kan vi inte attackera
             {
                 Console.WriteLine("You are stunned and cant attack this round");
                 enemyDamage = enemy.Attack(player, out attackMessageEnemy);
             }
-            // if (input.Key == ConsoleKey.D)
-            // {
-            //     enemyDamage = player.Defend(enemy, out attackMessageEnemy);
-            // }
-            // else
-            // {
-            //     enemyDamage = enemy.Attack(player, out attackMessageEnemy);
-            // }
-            // enemyDamage = enemy.Attack(player, out attackMessageEnemy);
 
             Thread.Sleep(700);
 

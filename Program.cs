@@ -37,13 +37,13 @@ class Program
             Console.WriteLine("******************************");
             Console.ResetColor();
             
-            string choice = Console.ReadLine();
+            var choice = Console.ReadKey(true);
 
-            switch (choice)
+            switch (choice.Key)
             {
-                case "1":
+                case ConsoleKey.D1:
                     Player player = new Player("Player");
-                    List<Map> maps = [AddMaps.Level1(player), AddMaps.Level2(player), AddMaps.Level3(player)];
+                    List<Map> maps = [AddMaps.Level1(), AddMaps.Level2(), AddMaps.Level3()];
                     Console.SetCursorPosition(40, 11);
                     Console.WriteLine("Whats your name?");
                     Console.SetCursorPosition(60, 11);
@@ -51,11 +51,11 @@ class Program
                     PlayGame(player, maps);
                     break;
 
-                case "2": // GREJER FÖR ATT LADDA, JSON
+                case ConsoleKey.D2: // GREJER FÖR ATT LADDA, JSON
 
                     break;
 
-                case "3":
+                case ConsoleKey.D3:
                     Console.WriteLine("quitting...");
                     inMenu = false;
                     Environment.Exit(0);
@@ -71,14 +71,13 @@ class Program
     static void PlayGame(Player player, List<Map> maps)
     {
         bool gameOver = false;
-        int level = 0;
+        //int level = 0; // För att börja på första index i listan av maps
 
         while (!gameOver)
         {
-            
             Console.CursorVisible = false;
-            maps[level].PrintMap(player, maps[level]);
-            maps[level].MovePlayer(player, maps[level], level, out level);
+            maps[player.MapLevel].PrintMap(player, maps[player.MapLevel]);
+            maps[player.MapLevel].MovePlayer(player, maps[player.MapLevel]);
 
             if (player.CurrentHp < 1)    //börjar sedan om loop och skriver ut mapp igen, om inte player.CurrentHp är 0, isåfall avslutas loop(GameOver)
             {
@@ -90,5 +89,4 @@ class Program
             }
         }
     }
-
 }

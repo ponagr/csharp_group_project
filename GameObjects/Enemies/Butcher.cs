@@ -11,7 +11,7 @@ public class Butcher : Enemy
     private bool specialAttack;
     private bool justBlocked;
 
-    public Butcher(int level, string name) : base(level)
+    public Butcher(int level, string name)
     {
         double multiplier = level * 0.75;
         Random random = new Random();

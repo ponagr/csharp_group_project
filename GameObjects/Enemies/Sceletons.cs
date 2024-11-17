@@ -2,7 +2,7 @@ public class Sceletons : Enemy
 {
     public int bigHit;
     public bool specialAttack;
-    public Sceletons(int level, string name) : base(level) 
+    public Sceletons(int level, string name)
     {
         double multiplier = level * 0.75;
         Random random = new Random();

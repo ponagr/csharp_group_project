@@ -50,6 +50,7 @@ Skydda sig
 - [x] Potions
 - [ ] T.ex nycklar i kistor för att kunna öppna gates på banan för att komma vidare LÅTA BLI?
 - [ ] Lägg till fler items redan i level 1
+- [ ] Lägg till LevelCap för items?
 
 ### Chests
 - [x] Få kistor att byta färg när de har öppnats (använda bool och koordinatjämförelse).

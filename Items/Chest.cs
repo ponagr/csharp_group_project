@@ -1,18 +1,18 @@
 public class Chest
 {
     public int Gold { get; set; }
-    public List<Item> ChestLoot { get; set; } = new List<Item>();
+    public List<Item> ChestLoot { get; set; } = new List<Item>(); 
 
     public Chest(List<Item> items)
     {
         Random rnd = new Random();
-        int itemsInChest = rnd.Next(1, 3);
+        int itemsInChest = rnd.Next(1, 3);  //Random hur många items som ska finnas i en kista
         Random random = new Random();
         int itemIndex;
         List<Item> itemstoAdd = new List<Item>();
         for (int i = 0; i < itemsInChest; i++)
         {
-            itemIndex = random.Next(0, items.Count);
+            itemIndex = random.Next(0, items.Count);    //Random index för vilka items som ska finnas i en kista
             itemstoAdd.Add(items[itemIndex]);       //Lägger till random items från listan som innehåller alla items som finns i spelet
         }
         Random goldDrop = new Random();

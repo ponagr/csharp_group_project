@@ -11,22 +11,14 @@ public class CellarMap : Map
         Assassin = assassin;
     }
 
-    public override void MovePlayer(Player player, Map map, int currentLevel, out int level)
+    public override void MovePlayer(Player player, Map map)
     {
-        level = currentLevel;
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
         int newX;       //newX,newY är den nya positionen som vi vill förflytta våran player till
         int newY;
 
         Console.CursorVisible = false;
-
-        Merchant? merchant = MerchantObject;    //Hämtar merchant, enemylista, chestlista, gameMap och boss via Map-objektet
-        char[,] gameMap = Maplevel;
-        List<Enemy> enemies = Enemies;
-        Enemy boss = BossEnemy;
-        List<Chest> chests = Chests;
-        Assassin assassin = Assassin;
 
         while (player.CurrentHp > 0)
         {
@@ -47,11 +39,11 @@ public class CellarMap : Map
             Console.CursorVisible = false;
             var keyPressed = Console.ReadKey(true);
 
-            for (int i = 0; i < gameMap.GetLength(0); i++)      //hitta positionen för player och ge dessa värden till posX och posY
+            for (int i = 0; i < Maplevel.GetLength(0); i++)      //hitta positionen för player och ge dessa värden till posX och posY
             {
-                for (int j = 0; j < gameMap.GetLength(1); j++)
+                for (int j = 0; j < Maplevel.GetLength(1); j++)
                 {
-                    if (gameMap[i, j] == Player)
+                    if (Maplevel[i, j] == Player)
                     {
                         posX = i;
                         posY = j;
@@ -62,114 +54,88 @@ public class CellarMap : Map
             newY = posY;
 
             //Ger värde till newX och newY baserat på åt vilket håll vi väljer att gå, via WASD
-            #region UP
             if (keyPressed.Key == ConsoleKey.W)
-            {
-                newX = posX - 1;
-                newY = posY;
-            }
-            #endregion
-
-            #region LEFT
+                newX--;
             if (keyPressed.Key == ConsoleKey.A)
-            {
-                newX = posX;
-                newY = posY - 1;
-            }
-            #endregion
-
-            #region Down
+                newY--;
             if (keyPressed.Key == ConsoleKey.S)
-            {
-                newX = posX + 1;
-                newY = posY;
-            }
-            #endregion
-
-            #region Right
+                newX++;
             if (keyPressed.Key == ConsoleKey.D)
-            {
-                newX = posX;
-                newY = posY + 1;
-            }
-            #endregion
-
+                newY++;
 
             //Anropar metoder baserat på newX och newY positionerna
             #region MOVEMENTACTIONS
-            if (gameMap[newX, newY] == Empty)
+            if (Maplevel[newX, newY] == Empty)
             {
                 UpdatePlayerMovement(posX, posY, newX, newY);
-                HandleEmpty(gameMap, posX, posY, newX, newY);
+                HandleEmpty(Maplevel, posX, posY, newX, newY);
             }
-            else if (gameMap[newX, newY] == Enemy)
+            else if (Maplevel[newX, newY] == Enemy)
             {
-                HandleEnemy(player, enemies, gameMap, newX, newY);
+                HandleEnemy(player, Enemies, Maplevel, newX, newY);
                 return;
             }
-            else if (gameMap[newX, newY] == Coin)
+            else if (Maplevel[newX, newY] == Coin)
             {
                 UpdatePlayerMovement(posX, posY, newX, newY);
                 Console.SetCursorPosition(0, 29);
-                HandleGold(player, gameMap, posX, posY, newX, newY);
+                HandleGold(player, Maplevel, posX, posY, newX, newY);
                 Console.SetCursorPosition(0, 25);
                 PlayerUI.UI(player);
             }
-            else if (gameMap[newX, newY] == Trap)
+            else if (Maplevel[newX, newY] == Trap)
             {
                 UpdatePlayerMovement(posX, posY, newX, newY);
-                HandleTrap(player, gameMap, posX, posY, newX, newY);
+                HandleTrap(player, Maplevel, posX, posY, newX, newY);
                 Console.SetCursorPosition(0, 25);
                 PlayerUI.UI(player);
             }
-            else if (gameMap[newX, newY] == Chest)
+            else if (Maplevel[newX, newY] == Chest)
             {
                 Console.SetCursorPosition(newY * 3, newX + 2); // Skriv ut den nya positionen
                 PrintColor.Gray(" #", "Write");
                 Console.SetCursorPosition(0, 29);
-                HandleChest(chests, player, gameMap, newX, newY);
+                HandleChest(Chests, player, Maplevel, newX, newY);
             }
-            else if (gameMap[newX, newY] == Heart)
+            else if (Maplevel[newX, newY] == Heart)
             {
                 UpdatePlayerMovement(posX, posY, newX, newY);
-                HandleHeart(player, gameMap, posX, posY, newX, newY);
+                HandleHeart(player, Maplevel, posX, posY, newX, newY);
                 Console.SetCursorPosition(0, 25);
                 PlayerUI.UI(player);
             }
-            else if (gameMap[newX, newY] == Boss)
+            else if (Maplevel[newX, newY] == Boss)
             {
-                HandleBoss(player, boss, gameMap, newX, newY);
+                HandleBoss(player, BossEnemy, Maplevel, newX, newY);
                 return;
             }
-            else if (gameMap[newX, newY] == Merchant)
+            else if (Maplevel[newX, newY] == Merchant)
             {
-                HandleMerchant(merchant, player);
+                HandleMerchant(MerchantObject, player);
                 return;
             }
-            else if (gameMap[newX, newY] == Cellar)
+            else if (Maplevel[newX, newY] == Cellar)
             {
                 CellarMovement(map, player);
                 //GoToCellar(player, map);
                 break;
             }
-            else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
+            else if (Maplevel[newX, newY] == Door || Maplevel[newX, newY] == Door2)
             {
-                level++;
-                NextLevel();
+                NextLevel(player);
                 break;
             }
-            else if (gameMap[newX, newY] == GoBack)
+            else if (Maplevel[newX, newY] == GoBack)
             {
-                level--;
-                PreviousLevel();
+                PreviousLevel(player);
                 break;
             }
-            else if (gameMap[newX, newY] == invisableAssassin)
+            else if (Maplevel[newX, newY] == invisableAssassin)
             {
-                HandleInvisibleAssassin(player, assassin, gameMap, newX, newY);
+                HandleInvisibleAssassin(player, Assassin, Maplevel, newX, newY);
                 return;
             }
-            
+
             else // Väggar och terräng
             {
                 //Gör ingenting
@@ -194,10 +160,10 @@ public class CellarMap : Map
             }
             #endregion
 
-               if (keyPressed.Key == ConsoleKey.H)
+            if (keyPressed.Key == ConsoleKey.H)
             {
-                
-                if(showHelp == false)
+
+                if (showHelp == false)
                 {
                     Help();
                     showHelp = true;
@@ -210,12 +176,12 @@ public class CellarMap : Map
             }
             Console.SetCursorPosition(0, 27);
         }
-        
+
     }
     public static void PrintCellar(char[,] gameMap, Player player)
     {
         Console.Clear();
-        
+
         MapInfo(); // INFO OM KARTAN
         Console.CursorVisible = false;
 
@@ -241,7 +207,7 @@ public class CellarMap : Map
 
                 else if (gameMap[i, j] == Merchant)
                     PrintColor.Yellow(" M ", "Write");
-                
+
                 else if (gameMap[i, j] == Trap)
                     PrintColor.Gray($" {gameMap[i, j]} ", "Write");
 
@@ -280,16 +246,15 @@ public class CellarMap : Map
         int newY;
         bool inCellar = true;
         Console.CursorVisible = false;
-        char[,] gameMap = cellarMap.CellarLevel;
-        Merchant merchant = cellarMap.MerchantObject; 
+
+        char[,] gameMap = cellarMap.CellarLevel; // skapar en referens till Map-objektsts CellarLevel(2D char[]-array)
+        Merchant merchant = cellarMap.MerchantObject;
         List<Enemy> enemies = cellarMap.Enemies;
         List<Chest> chests = cellarMap.Chests;
 
         PrintCellar(gameMap, player);
         while (inCellar && player.CurrentHp > 0)
         {
-            var keyPressed = Console.ReadKey(true);
-
             for (int i = 0; i < gameMap.GetLength(0); i++)      //hitta positionen för player och ge dessa värden till posX och posY
             {
                 for (int j = 0; j < gameMap.GetLength(1); j++)
@@ -304,39 +269,17 @@ public class CellarMap : Map
             newX = posX;
             newY = posY;
 
+            var keyPressed = Console.ReadKey(true);
 
             //Ger värde till newX och newY baserat på åt vilket håll vi väljer att gå, via WASD
-            #region UP
             if (keyPressed.Key == ConsoleKey.W)
-            {
-                newX = posX - 1;
-                newY = posY;
-            }
-            #endregion
-
-            #region LEFT
+                newX--;
             if (keyPressed.Key == ConsoleKey.A)
-            {
-                newX = posX;
-                newY = posY - 1;
-            }
-            #endregion
-
-            #region Down
+                newY--;
             if (keyPressed.Key == ConsoleKey.S)
-            {
-                newX = posX + 1;
-                newY = posY;
-            }
-            #endregion
-
-            #region Right
+                newX++;
             if (keyPressed.Key == ConsoleKey.D)
-            {
-                newX = posX;
-                newY = posY + 1;
-            }
-            #endregion
+                newY++;
 
             //Anropar metoder baserat på newX och newY positionerna
             #region MOVEMENTACTIONS
@@ -367,7 +310,7 @@ public class CellarMap : Map
             }
             else if (gameMap[newX, newY] == Chest)
             {
-                Console.SetCursorPosition(newY * 3, newX +2); // Skriv ut den nya positionen
+                Console.SetCursorPosition(newY * 3, newX + 2); // Skriv ut den nya positionen
                 PrintColor.Gray(" #", "Write");
                 Console.SetCursorPosition(0, 13);
                 HandleChest(chests, player, gameMap, newX, newY);
@@ -387,11 +330,10 @@ public class CellarMap : Map
             else if (gameMap[newX, newY] == Cellar)
             {
                 inCellar = false;
-                return;
             }
-            else
+            else // Om vi går in i väggar
             {
-                
+
             }
             #endregion
 

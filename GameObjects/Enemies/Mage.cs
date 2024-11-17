@@ -4,7 +4,7 @@ public class Mage : Enemy
     private bool isReadyForThunder;
     private int chargeCounter;
 
-    public Mage(int level, string name) : base(level)
+    public Mage(int level, string name)
     {
         double multiplier = level * 0.75;
         Random random = new Random();

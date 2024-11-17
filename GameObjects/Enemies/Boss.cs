@@ -9,7 +9,7 @@ public class AssassinBoss : Assassin
         CurrentHp = TotalHp;
         BaseDamage = base.BaseDamage * 1.5;
         BaseResistance = base.BaseResistance * 1.5;
-        BaseAgility = base.BaseAgility * 1.5;
+        BaseAgility = base.BaseAgility * 2;
 
         healthBar = new HealthBar();
 
@@ -44,7 +44,7 @@ public class AssassinBoss : Assassin
     {
         double damage;
         damage = CalculateDamage(player, out bool attackCrit);
-        if (attackCrit)     //Special attack
+        if (attackCrit)     //Special attack i stället för CRIT
         {
             specialAttack = true;
             damage = ThrowingKnives(damage, out attackMessage);
@@ -96,7 +96,7 @@ public class ButcherBoss : Butcher
         double damage;
         damage = CalculateDamage(player, out bool attackCrit);
         Random random = new Random();
-        if (random.Next(0,10) == 3 && !needsRest)
+        if (random.Next(0,5) == 3 && !needsRest)
         {
             damage = SpecialAttack(damage, out attackMessage);
             if (attackCrit)
@@ -104,10 +104,10 @@ public class ButcherBoss : Butcher
                 attackMessage = "CRIT " + attackMessage; 
             }
             player.CurrentHp -= damage;
-            specialAttack = true;
+            specialAttack = true; // Sätts på true för textures, false nästa runda
             return $"{damage:F0}";
         }
-        else if (random.Next(0,6) == 2 && !needsRest)
+        else if (random.Next(0,3) == 1 && !needsRest)
         {
             specialAttack = false;
             attackMessage = "STUNNED";
@@ -119,10 +119,11 @@ public class ButcherBoss : Butcher
             specialAttack = false;
             return base.Attack(player, out attackMessage);
         }
-        
-        
     } 
 }
+
+
+
 public class ArcherBoss : Archer
 {
     public ArcherBoss(int level, string name) : base(level, name)

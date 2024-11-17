@@ -5,7 +5,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
     static char C = '\u00A9';
 
     #region LEVEL 1
-    public static Map Level1(Player player) // Första banan med chars som bygger upp väggar, fiender osv.
+    public static Map Level1() // Första banan med chars som bygger upp väggar, fiender osv.
     {
         char[,] gameLevel1 = new char[,]
         {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23
@@ -61,9 +61,9 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         {new Consumable(), 
         new THelm("Plåthjälm", 5, 10, 10, 0),
         new THelm("Tomteluva", 0, 5, 5, 15),
-        new TWeapon("Gimlis Yxa", "Yxa", 10, 10, 0, 10),
-        new TWeapon("Legolas Pilbåge", "Pilbåge", 8, 5, 5, 10),
-        new TWeapon("Slunger", "Slangbella", 9, 0, 5,10),
+        new TWeapon("Gimlis Yxa", 10, 10, 0, 10),
+        new TWeapon("Legolas Pilbåge", 8, 5, 5, 10),
+        new TWeapon("Slunger", 9, 0, 5,10),
         new TBoots("Foppatofflor", 5, 0, 5, -5),
         new TBoots("Träskor", 8, 5, 5, 0), 
         new TGloves("Plåthandskar", 5, 10, 10, 5), 
@@ -80,7 +80,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
     #endregion
 
     #region LEVEL 2
-    public static Map Level2(Player player)
+    public static Map Level2()
     {
         char[,] gameLevel = new char[,]
         {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23      
@@ -146,8 +146,8 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         new Consumable(),
         new THelm("Greater Plåthjälm", 5, 20, 15, 0),
         new THelm("Truckerkeps", 5, 10, 5, 20),
-        new TWeapon("SplitYouInTwo", "Machete", 18, 5, 0, 10),
-        new TWeapon("Stomper", "SledgeHammer", 20, 7, 0, 5),
+        new TWeapon("SplitYouInTwo", 18, 5, 0, 10),
+        new TWeapon("Stomper", 20, 7, 0, 5),
         new TBoots("Springskor", 0, 15, 5, 20),
         new TBoots("AirMax", 0, 17, 10, 20),
         new TGloves("GangsterGloves", 10, 20, 15, 0),
@@ -167,7 +167,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
     #endregion
 
     #region LEVEL 3
-    public static Map Level3(Player player)
+    public static Map Level3()
     {
         char[,] gameLevel = new char[,]
         {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23      
@@ -222,8 +222,8 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         new Consumable(),
         new THelm("Greatest Plåthjälm", 10, 25, 20, 0),
         new THelm("Balaclava", 5, 12, 10, 30),
-        new TWeapon("Bra pinne", "Staff", 25, 5, 0, 10),
-        new TWeapon("Stock", "Staff", 30, 10, 5, 0),
+        new TWeapon("Bra pinne", 25, 5, 0, 10),
+        new TWeapon("Stock", 30, 10, 5, 0),
         new TBoots("Buffalos", 0, 24, 15, 10),
         new TBoots("Bagheera", 0, 22, 10, 30),
         new TGloves("Knogjärn", 20, 5, 5, 10),

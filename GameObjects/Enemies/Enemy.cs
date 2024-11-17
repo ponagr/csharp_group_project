@@ -1,24 +1,9 @@
 public class Enemy : GameObject
 {
-    public bool isPlayer = false;
+    public bool isPlayer = false;   // För att kunna använda HealthBar och veta om den ska skrivas ut i rött eller grönt
     public int XpDrop = 20;
     public HealthBar healthBar;
     //Lägg till en AggroRange senare
-
-    public Enemy(double level)
-    {
-        double multiplier = level * 0.75;
-        Random random = new Random();
-        Name = "Enemy";
-        Description = "Enemy";
-        BaseHp = (75 + random.Next(0, 25)) * multiplier;
-        CurrentHp = TotalHp;
-        BaseDamage = (10 + random.Next(0, 10)) * multiplier;
-        BaseResistance = (0 + random.Next(0, 5)) * multiplier;
-        BaseAgility = 5 * multiplier;
-
-        healthBar = new HealthBar();
-    }
 
     public virtual string TakeDamage(double damage, bool crit, out string attackMessage) // Tar emot printDamage från Players Attack(), kallas här för damage
     {
@@ -50,8 +35,8 @@ public class Enemy : GameObject
     
     public virtual void CharacterAttackAnimation(Enemy enemy){}
 
-    public double CalculateDamage(Player player, out bool attackCrit)       //Separat metod för att räkna ut skada?
-    {                                                                       //För att kunna räkna ut damageNegation osv utan att använda base.Attack()
+    public double CalculateDamage(Player player, out bool attackCrit)       
+    {   //För att kunna räkna ut damageNegation osv utan att använda base.Attack()
         Random rndCrit = new Random();
         double damageDone;
         int critChange = Convert.ToInt32(BaseAgility);
@@ -78,9 +63,9 @@ public class Enemy : GameObject
         double damageDone = CalculateDamage(player, out bool attackCrit);
 
         Random rndDodge = new Random();
-        int dodgeChange = Convert.ToInt32(BaseAgility);
+        int dodgeChance = Convert.ToInt32(BaseAgility);
         int dodge = rndDodge.Next(0, 101);
-        if (dodge <= dodgeChange)
+        if (dodge <= dodgeChance) // Om vi har mer baseAgility än den randomizade dodgen
         {
             attackMessage = "";
             return $"{player.Name} DODGED";

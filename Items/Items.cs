@@ -17,7 +17,7 @@ public class Gear : Item
 {
     public Gear(string name, double damage, double health, double resistance, double agility)
     {
-        ItemName = name;
+        ItemName= name; 
         Damage = damage;
         Health = health;
         Resistance = resistance;
@@ -91,11 +91,9 @@ public class TGloves : Gear
 }
 public class TWeapon : Gear
 {
-    public string WeaponType { get; set; }
-    public TWeapon(string name, string weaponType, double damage, double health, double resistance, double agility)
+    public TWeapon(string name, double damage, double health, double resistance, double agility)
     : base(name, damage, health, resistance, agility)
     {
-        WeaponType = weaponType;
         ItemType = "Weapon";
     }
 }

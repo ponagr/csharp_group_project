@@ -104,21 +104,19 @@ public static partial class Textures
                 if (loadingBar[j] == " |")
                 {
                     Console.BackgroundColor = ConsoleColor.Magenta;
-                    Console.Write(loadingBar[j]);      //Om det är en player, skriv ut i grönt
+                    Console.Write(loadingBar[j]);      
                     Console.ResetColor();
                 }
                 else
                 {
                     Console.Write(loadingBar[j]); // Skrivs ut tomma för samma längd
                 }
-
             }
 
             Console.Write("]");
 
             Thread.Sleep(300);
         }
-
         Console.WriteLine();
     }
     #endregion

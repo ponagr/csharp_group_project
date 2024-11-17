@@ -50,10 +50,10 @@ public static class PlayerEquipment
         player.BonusHp = bonusHp;
         player.BonusDamage = bonusDamage;
         player.BonusResistance = bonusResistance;
-        player.CurrentHp = player.TotalHp; // För att man ska få maxhp när man uppgraderar armor
+        player.CurrentHp += bonusHp; // För att man ska få maxhp när man uppgraderar armor
     }
 
-    public static void EquipGear(Player player, Item itemToEquip, Item equippedItem, int equippedGearIndex)  //Anropas från EquipGear-Metoden
+    public static void EquipGear(Player player, Item itemToEquip, Item equippedItem, int equippedGearIndex)  //Anropas från EquipGear-Metoden        
     {
         if (equippedItem == null)
         {

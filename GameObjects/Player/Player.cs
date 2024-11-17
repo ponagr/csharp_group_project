@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 public class Player : GameObject
 {
     public bool isPlayer = true;
+    public int MapLevel { get; set; }
     public int CurrentXp { get; set; }
     public int MaxXp { get; set; }
     public int Level { get; set; }
@@ -33,7 +34,7 @@ public class Player : GameObject
         get { return BaseResistance + BonusResistance; }
     }
 
-    public Inventory Inventory { get; set; }
+    public Inventory Inventory { get; set; } // objektet som skapas innehåller en lista av items
 
     public Item[] EquippedGear { get; set; } = new Item[6];
 
@@ -49,6 +50,7 @@ public class Player : GameObject
         BaseDamage = 20;
         BaseResistance = 5;
         BaseAgility = 10;
+        MapLevel = 0;
 
         HealingPot = new Consumable();
         Inventory = new Inventory();
@@ -73,14 +75,14 @@ public class Player : GameObject
     #region LOOT
     public void Loot(Chest chest)     //Lägg till Item till inventory
     {
-        Item item;
+        Item item; // Skapar en referens till ett item
         if (Inventory.inventory.Count < 15)
         {
             Console.WriteLine($"{Name} har lootat:");
             chest.PrintChest();
             for (int i = 0; i < chest.ChestLoot.Count; i++)
             {
-                item = chest.ChestLoot[i];
+                item = chest.ChestLoot[i]; // Använder item som en referens till nuvarande objektet i kistan
                 if (item is Consumable)
                 {
                     if (HealingPot.Ammount < HealingPot.MaxAmmount)
@@ -150,10 +152,11 @@ public class Player : GameObject
         }
 
         Random rndDamage = new Random();
-        double damageNegation = enemy.TotalResistance * 0.2;
+        double damageNegation = enemy.TotalResistance * 0.2; // För att enemies resistance ska räknas med
         totalDamageDone = damage + rndDamage.Next(0, 10) - damageNegation;
-
-        printDamage = enemy.TakeDamage(totalDamageDone, attackCrit, out attackMessage);
+        
+        //Skickar in players skada, men avgör sedan i enemy.TakeDamage metoden OM attacken blir dodgad/blockad eller om fienden är "unhittable" osv
+        printDamage = enemy.TakeDamage(totalDamageDone, attackCrit, out attackMessage); 
 
         return printDamage;
     }
@@ -204,10 +207,10 @@ public class Player : GameObject
     #region DEFEND
     public string Defend(Player player, Enemy enemy, out string attackMessage)
     {
-        string damage = enemy.Attack(player, out string message);
+        string damage = enemy.Attack(player, out string message); // Här attackerar fienden och tar full skada
         double totalDamage = Convert.ToDouble(damage);
-        totalDamage = totalDamage * 0.5;
-        CurrentHp += totalDamage;
+        totalDamage = totalDamage * 0.5; // Räknar ut halva skadan
+        CurrentHp += totalDamage; // Ger sedan tillbaka halva skadan till players hp
         attackMessage = "DEFENDED";
         return $"{totalDamage:F0}";
     }

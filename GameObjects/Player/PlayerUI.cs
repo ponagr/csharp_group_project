@@ -18,8 +18,6 @@ public static class PlayerUI
         ShowXp(player);
 
         HelpText();
-
-
     }
 
     public static void HelpText()

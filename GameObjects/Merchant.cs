@@ -152,7 +152,7 @@ public class Merchant
         }
         int itemIndex = Convert.ToInt32(input.KeyChar.ToString()) - 1;
         var itemToBuy = MerchantInventory.inventory[itemIndex];
-        if (player.Gold >= itemToBuy.Price) // Kontrollerar om player har maximalt antal healing potions, annars genomförs "köpet"
+        if (player.Gold >= itemToBuy.Price) // Kontrollerar om player har råd
         {
             if (itemToBuy is Consumable)
             {
@@ -222,12 +222,6 @@ public class Merchant
             return;
         }
 
-        //  if (int.TryParse(strInput, out index) && index >= 1 && index <= player.Inventory.inventory.Count) // Försök att parsa inmatningen till ett heltal
-        // {
-        //     PlayerEquipment.CheckGearType(player, player.Inventory.inventory[index - 1]); // Om det är ett giltigt index, kolla itemets typ och jämför stats
-        //     break;  // Avsluta loop
-        // }
-
         else if (int.TryParse(input.KeyChar.ToString(), out int itemIndex))
         {
             itemIndex = itemIndex - 1;
@@ -246,9 +240,5 @@ public class Merchant
         {
             Console.WriteLine("Wrongk inmatning");
         }
-
-        //int itemIndex = Convert.ToInt32(input.KeyChar.ToString()) - 1;
-
-
     }
 }

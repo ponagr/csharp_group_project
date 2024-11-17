@@ -48,9 +48,9 @@ public class DarkMap : Map
 
                         else if (gameMap[i, j] == Enemy)
                             PrintColor.Red($" {gameMap[i, j]} ", "Write");
-                            
+
                         else if (gameMap[i, j] == invisableAssassin)
-                            PrintColor.Red($"   ", "Write"); 
+                            PrintColor.Red($"   ", "Write");
 
                         else if (gameMap[i, j] == Chest)
                             PrintColor.Yellow($" {gameMap[i, j]} ", "Write");
@@ -94,9 +94,8 @@ public class DarkMap : Map
         PlayerUI.UI(player);
     }
     #endregion
-    public override void MovePlayer(Player player, Map map, int currentLevel, out int level)
+    public override void MovePlayer(Player player, Map map)
     {
-        level = currentLevel;
         int posX = 0;   //posX,posY är positionen som player har för tillfället
         int posY = 0;
         int newX;       //newX,newY är den nya positionen som vi vill förflytta våran player till
@@ -104,21 +103,14 @@ public class DarkMap : Map
 
         Console.CursorVisible = false;
 
-        Merchant? merchant = MerchantObject;    //Hämtar merchant, enemylista, chestlista, gameMap och boss via Map-objektet
-        char[,] gameMap = Maplevel;
-        List<Enemy> enemies = Enemies;
-        Enemy boss = BossEnemy;
-        List<Chest> chests = Chests;
-        Assassin assassin = Assassin;
-
         Console.CursorVisible = false;
         var keyPressed = Console.ReadKey(true);
 
-        for (int i = 0; i < gameMap.GetLength(0); i++)      //hitta positionen för player och ge dessa värden till posX och posY
+        for (int i = 0; i < Maplevel.GetLength(0); i++)      //hitta positionen för player och ge dessa värden till posX och posY
         {
-            for (int j = 0; j < gameMap.GetLength(1); j++)
+            for (int j = 0; j < Maplevel.GetLength(1); j++)
             {
-                if (gameMap[i, j] == Player)
+                if (Maplevel[i, j] == Player)
                 {
                     posX = i;
                     posY = j;
@@ -129,86 +121,61 @@ public class DarkMap : Map
         newY = posY;
 
         //Ger värde till newX och newY baserat på åt vilket håll vi väljer att gå, via WASD
-        #region UP
         if (keyPressed.Key == ConsoleKey.W)
-        {
-            newX = posX - 1;
-            newY = posY;
-        }
-        #endregion
-
-        #region LEFT
+            newX--;
         if (keyPressed.Key == ConsoleKey.A)
-        {
-            newX = posX;
-            newY = posY - 1;
-        }
-        #endregion
-
-        #region Down
+            newY--;
         if (keyPressed.Key == ConsoleKey.S)
-        {
-            newX = posX + 1;
-            newY = posY;
-        }
-        #endregion
-
-        #region Right
+            newX++;
         if (keyPressed.Key == ConsoleKey.D)
-        {
-            newX = posX;
-            newY = posY + 1;
-        }
-        #endregion
+            newY++;
 
 
         //Anropar metoder baserat på newX och newY positionerna
         #region MOVEMENTACTIONS
-        if (gameMap[newX, newY] == Empty)
+        if (Maplevel[newX, newY] == Empty)
         {
-            HandleEmpty(gameMap, posX, posY, newX, newY);
+            HandleEmpty(Maplevel, posX, posY, newX, newY);
         }
-        else if (gameMap[newX, newY] == Enemy)
+        else if (Maplevel[newX, newY] == Enemy)
         {
-            HandleEnemy(player, enemies, gameMap, newX, newY);
+            HandleEnemy(player, Enemies, Maplevel, newX, newY);
         }
-        else if (gameMap[newX, newY] == Coin)
+        else if (Maplevel[newX, newY] == Coin)
         {
-            HandleGold(player, gameMap, posX, posY, newX, newY);
+            HandleGold(player, Maplevel, posX, posY, newX, newY);
         }
-        else if (gameMap[newX, newY] == Trap)
+        else if (Maplevel[newX, newY] == Trap)
         {
-            HandleTrap(player, gameMap, posX, posY, newX, newY);
+            HandleTrap(player, Maplevel, posX, posY, newX, newY);
         }
-        else if (gameMap[newX, newY] == Chest)
+        else if (Maplevel[newX, newY] == Chest)
         {
-            HandleChest(chests, player, gameMap, newX, newY);
+            HandleChest(Chests, player, Maplevel, newX, newY);
         }
-        else if (gameMap[newX, newY] == Heart)
+        else if (Maplevel[newX, newY] == Heart)
         {
-            HandleHeart(player, gameMap, posX, posY, newX, newY);
+            HandleHeart(player, Maplevel, posX, posY, newX, newY);
         }
-        else if (gameMap[newX, newY] == Boss)
+        else if (Maplevel[newX, newY] == Boss)
         {
-            HandleBoss(player, boss, gameMap, newX, newY);
+            HandleBoss(player, BossEnemy, Maplevel, newX, newY);
         }
-        else if (gameMap[newX, newY] == Merchant)
+        else if (Maplevel[newX, newY] == Merchant)
         {
-            HandleMerchant(merchant, player);
+            HandleMerchant(MerchantObject, player);
         }
-        else if (gameMap[newX, newY] == Door || gameMap[newX, newY] == Door2)
+        else if (Maplevel[newX, newY] == Door || Maplevel[newX, newY] == Door2)
         {
-            level++;
-            NextLevel();
+            NextLevel(player);
         }
-        else if (gameMap[newX, newY] == GoBack)
+        else if (Maplevel[newX, newY] == GoBack)
         {
-            level--;
-            PreviousLevel();
+            PreviousLevel(player);
         }
-        else if (gameMap[newX, newY] == invisableAssassin)
+        else if (Maplevel[newX, newY] == invisableAssassin)
         {
-            HandleInvisibleAssassin(player, assassin, gameMap, newX, newY);
+            HandleInvisibleAssassin(player, Assassin, Maplevel, newX, newY);
         }
         else // Väggar och terräng
         {
