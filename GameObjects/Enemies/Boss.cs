@@ -14,6 +14,7 @@ public class AssassinBoss : Assassin
         healthBar = new HealthBar();
 
         isVisable = false;
+        XpDrop = 50;
 
     }
 
@@ -70,6 +71,7 @@ public class ButcherBoss : Butcher
         base.BaseResistance = base.BaseResistance * 1.5;
         base.BaseAgility = base.BaseAgility * 1.5;
         specialAttack = false;
+        XpDrop = 75;
     }   
 
     public override void CharacterAttackAnimation(Enemy enemy)
@@ -133,6 +135,7 @@ public class ArcherBoss : Archer
         base.BaseDamage = (base.BaseDamage) * 1.5;
         base.BaseResistance = (base.BaseResistance) * 1.5;
         base.BaseAgility = (base.BaseAgility) * 1.5;
+        XpDrop = 100;
     }
 
     public override string Attack(Player player, out string attackMessage)
@@ -150,6 +153,7 @@ public class MageBoss : Mage
         base.BaseDamage = base.BaseDamage * 1.5;
         base.BaseResistance = base.BaseResistance * 1.5;
         base.BaseAgility = base.BaseAgility * 1.5;
+        XpDrop = 125;
     }
 
     public override string Attack(Player player, out string attackMessage)

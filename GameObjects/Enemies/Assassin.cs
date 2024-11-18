@@ -9,7 +9,7 @@ public class Assassin : Enemy
 
     public Assassin(int level, string name) // Vi ber om ett nammn
     {
-        double multiplier = level * 0.75;
+        double multiplier = level * 0.60;
         Random random = new Random();
         Name = name; // Tilldelar det här
         Description = "Assassin";

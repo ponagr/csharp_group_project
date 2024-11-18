@@ -6,7 +6,7 @@ public class Archer : Enemy
 
     public Archer(int level, string name)
     {
-        double multiplier = level * 0.75;
+        double multiplier = level * 0.60;
         Random random = new Random();
         Name = name;
         Description = "Archer";

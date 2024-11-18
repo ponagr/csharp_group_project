@@ -4,7 +4,7 @@ public class Sceletons : Enemy
     public bool specialAttack;
     public Sceletons(int level, string name)
     {
-        double multiplier = level * 0.75;
+        double multiplier = level * 0.60;
         Random random = new Random();
         Name = name; 
         Description = "Sceletons";
