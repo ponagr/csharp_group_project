@@ -59,19 +59,19 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         assassin3, butcher2, assassin4, mage2, mage3};
         List<Item> items = new List<Item>() 
         {new Consumable(), 
-        new THelm("Plåthjälm", 5, 10, 10, 0),
-        new THelm("Tomteluva", 0, 5, 5, 15),
-        new TWeapon("Gimlis Yxa", 10, 10, 0, 10),
-        new TWeapon("Legolas Pilbåge", 8, 5, 5, 10),
-        new TWeapon("Slunger", 9, 0, 5,10),
-        new TBoots("Foppatofflor", 5, 0, 5, -5),
-        new TBoots("Träskor", 8, 5, 5, 0), 
-        new TGloves("Plåthandskar", 5, 10, 10, 5), 
-        new TGloves("Trädgårdshandskar", 2, 7, 5, 8), 
-        new TLegs("Läderbyxor", 0, 7, 5, 10), 
-        new TLegs("Manchesterbrallor", 0, 8, 9, 7), 
-        new TBreastPlate("Hoodie", 0, 8, 5, 10),
-        new TBreastPlate("Rostig rustning", 5, 10, 10, 0) };
+        new THelm("Plåthjälm", 5, 10, 10, 0, 1),
+        new THelm("Tomteluva", 0, 5, 5, 15, 2),
+        new TWeapon("Gimlis Yxa", 10, 10, 0, 10, 2),
+        new TWeapon("Legolas Pilbåge", 8, 5, 5, 10, 1),
+        new TWeapon("Slunger", 9, 0, 5, 10, 2),
+        new TBoots("Foppatofflor", 5, 0, 5, -5, 1),
+        new TBoots("Träskor", 8, 5, 5, 0, 2), 
+        new TGloves("Plåthandskar", 5, 10, 10, 5, 2), 
+        new TGloves("Trädgårdshandskar", 2, 7, 5, 8, 1), 
+        new TLegs("Läderbyxor", 0, 7, 5, 10, 1), 
+        new TLegs("Manchesterbrallor", 0, 8, 9, 7, 2), 
+        new TBreastPlate("Hoodie", 0, 8, 5, 10, 1),
+        new TBreastPlate("Rostig rustning", 5, 10, 10, 0, 2) };
         List<Chest> chestsLevel1 = new List<Chest>() { new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items) };
 
         RegularMap level1 = new RegularMap(gameLevel1, enemiesLevel1, assassinInvisable, chestsLevel1, assassinBoss, null);
@@ -144,18 +144,18 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
 
         List<Item> itemsLevel2 = new List<Item>() {
         new Consumable(),
-        new THelm("Greater Plåthjälm", 5, 20, 15, 0),
-        new THelm("Truckerkeps", 5, 10, 5, 20),
-        new TWeapon("SplitYouInTwo", 18, 5, 0, 10),
-        new TWeapon("Stomper", 20, 7, 0, 5),
-        new TBoots("Springskor", 0, 15, 5, 20),
-        new TBoots("AirMax", 0, 17, 10, 20),
-        new TGloves("GangsterGloves", 10, 20, 15, 0),
-        new TGloves("Tummisar", 8, 15, 12, 5),
-        new TBreastPlate("Chainmail", 5, 20, 20, 0),
-        new TBreastPlate("GoreTex-jacka", 5, 17, 10, 20),
-        new TLegs("Kalasbyxor", 5, 20, 10, 15),
-        new TLegs("Adidas", 7, 15, 12, 20)};
+        new THelm("Greater Plåthjälm", 5, 20, 15, 0, 4),
+        new THelm("Truckerkeps", 5, 10, 5, 20, 3),
+        new TWeapon("SplitYouInTwo", 18, 5, 0, 10, 3),
+        new TWeapon("Stomper", 20, 7, 0, 5, 4),
+        new TBoots("Springskor", 0, 15, 5, 20, 3),
+        new TBoots("AirMax", 0, 17, 10, 20, 4),
+        new TGloves("GangsterGloves", 10, 20, 15, 0, 4),
+        new TGloves("Tummisar", 8, 15, 12, 5, 3),
+        new TBreastPlate("Chainmail", 5, 20, 20, 0, 4),
+        new TBreastPlate("GoreTex-jacka", 5, 17, 10, 20, 3),
+        new TLegs("Kalasbyxor", 5, 20, 10, 15, 3),
+        new TLegs("Adidas", 7, 15, 12, 20, 4)};
 
         List<Chest> chests = new List<Chest>() { new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2) };
         Merchant merchant = new Merchant("Merchant", 1000, itemsLevel2);
@@ -220,14 +220,14 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
 
         List<Item> itemsLevel3 = new List<Item>() {
         new Consumable(),
-        new THelm("Greatest Plåthjälm", 10, 25, 20, 0),
-        new THelm("Balaclava", 5, 12, 10, 30),
-        new TWeapon("Bra pinne", 25, 5, 0, 10),
-        new TWeapon("Stock", 30, 10, 5, 0),
-        new TBoots("Buffalos", 0, 24, 15, 10),
-        new TBoots("Bagheera", 0, 22, 10, 30),
-        new TGloves("Knogjärn", 20, 5, 5, 10),
-        new TBreastPlate("Canada Goose", 10, 25, 25, 0)};
+        new THelm("Greatest Plåthjälm", 10, 25, 20, 0, 5),
+        new THelm("Balaclava", 5, 12, 10, 30, 4),
+        new TWeapon("Bra pinne", 25, 5, 0, 10, 4),
+        new TWeapon("Stock", 30, 10, 5, 0, 5),
+        new TBoots("Buffalos", 0, 24, 15, 10, 4),
+        new TBoots("Bagheera", 0, 22, 10, 30, 4),
+        new TGloves("Knogjärn", 20, 5, 5, 10, 4),
+        new TBreastPlate("Canada Goose", 10, 25, 25, 0, 5)};
 
         List<Chest> chests = new List<Chest>() { new Chest(itemsLevel3), new Chest(itemsLevel3), new Chest(itemsLevel3), new Chest(itemsLevel3), new Chest(itemsLevel3), new Chest(itemsLevel3) };
 

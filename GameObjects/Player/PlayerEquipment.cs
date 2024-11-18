@@ -55,21 +55,27 @@ public static class PlayerEquipment
 
     public static void EquipGear(Player player, Item itemToEquip, Item equippedItem, int equippedGearIndex)  //Anropas från EquipGear-Metoden        
     {
-        if (equippedItem == null)
+        if (player.Level < itemToEquip.LevelCap) // Om player level är mindre än levercap, avbryt. Om level är för låg, skriv i röd text!
         {
-            player.EquippedGear[equippedGearIndex] = itemToEquip; // Om itemToEquip är TWeapon, så är equippedGearIndex = 0, lägg in itemToEquip i EquippedGear[0], osv
-            player.Inventory.inventory.Remove(itemToEquip);    //Om vi equippar, ta bort från inventory så vi inte får dublett
-            Console.WriteLine($"Du tog på dig {itemToEquip.ItemName}, {itemToEquip.ItemType}");
+            Console.WriteLine("Your level is too low!");
+            Thread.Sleep(500);
+            return;
         }
-        else if (equippedItem != null)
-        {
-            Item item; // Skapar en tom referens
-            GearChoice(itemToEquip, equippedItem, out item); // item är en av de 2 första
+            if (equippedItem == null)
+            {
+                player.EquippedGear[equippedGearIndex] = itemToEquip; // Om itemToEquip är TWeapon, så är equippedGearIndex = 0, lägg in itemToEquip i EquippedGear[0], osv
+                player.Inventory.inventory.Remove(itemToEquip);    //Om vi equippar, ta bort från inventory så vi inte får dublett
+                Console.WriteLine($"Du tog på dig {itemToEquip.ItemName}, {itemToEquip.ItemType}");
+            }
+            else if (equippedItem != null)
+            {
+                Item item; // Skapar en tom referens
+                GearChoice(itemToEquip, equippedItem, out item); // item är en av de 2 första
 
-            player.Inventory.inventory.Add(equippedItem);
-            player.EquippedGear[equippedGearIndex] = item;
-            player.Inventory.inventory.Remove(item);
-        }
+                player.Inventory.inventory.Add(equippedItem);
+                player.EquippedGear[equippedGearIndex] = item;
+                player.Inventory.inventory.Remove(item);
+            }
     }
 
     public static void GearChoice(Item itemToEquip, Item equippedItem, out Item item)

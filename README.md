@@ -5,7 +5,7 @@
 // Från NATAFANSUSSANNE
 HIGHSCORE!
 Autosave vid ny nivå
-Skydda sig
+Något fel när man trycker D mot butcherBoss.
 
 ### GameHandler (main)
 - [x] Tydligt flöde för spelhantering.
@@ -24,6 +24,7 @@ Skydda sig
 - [x] Skapa visuella representationer, t.ex. streckgubbar, för Player och Enemy under combat.
 - [x] Formatera all text och gubbar så att det visas på ett snyggt sätt
 - [x] Skapa en grundläggande struktur för combat-systemet.
+- [x] Möjlighet att försvara sig
 
 ### Skapa Arv för Olika Typer av Enemy
 - [x] Implementera specifika metoder och unika egenskaper för olika Enemy-typer.
@@ -49,7 +50,8 @@ Skydda sig
 - [x] Lägg till en Merchant som man kan sälja/köpa ifrån - en char-ikon i stället för klass.
 - [x] Potions
 - [ ] T.ex nycklar i kistor för att kunna öppna gates på banan för att komma vidare LÅTA BLI?
-- [ ] Lägg till fler items redan i level 1
+- [x] Lägg till fler items redan i level 1
+- [x] Lägg till fler items redan i level 2
 - [ ] Lägg till LevelCap för items?
 
 ### Chests

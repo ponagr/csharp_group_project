@@ -60,10 +60,10 @@ public class Inventory
 
             for (int i = 0; i < inventory.Count; i++)
             {
-                Console.Write($"[{i + 1}] {inventory[i].ItemType, -13} {inventory[i].ItemName,-16}");  
-                PrintColor.Yellow($"{inventory[i].Price/2, 5} {'\u00A9'}", "WriteLine"); 
-                PrintColor.Blue($"{inventory[i].Health, 6} Hp {inventory[i].Damage,3} Dmg {inventory[i].Resistance,3} Res {inventory[i].Agility,3} Agi", "WriteLine"); 
-                Console.WriteLine();    
+                Console.Write($"[{i + 1}] {inventory[i].ItemType,-13} {inventory[i].ItemName,-16}");
+                PrintColor.Yellow($"{inventory[i].Price / 2,5} {'\u00A9'}", "WriteLine");
+                PrintColor.Blue($"{inventory[i].Health,6} Hp {inventory[i].Damage,3} Dmg {inventory[i].Resistance,3} Res {inventory[i].Agility,3} Agi", "WriteLine");
+                Console.WriteLine();
             }
         }
         else
@@ -77,7 +77,7 @@ public class Inventory
         Console.Clear();
         PlayerEquipment.ShowWornGear(player);   // Skriv ut gear som player har equippat
         Console.WriteLine();
-        player.Inventory.ShowEquipmentInventory();  // Skriv ut gear som player har i inventory tillsammans med gearens stats
+        player.Inventory.ShowEquipmentInventory(player);  // Skriv ut gear som player har i inventory tillsammans med gearens stats
 
         Console.WriteLine("Välj ett item för att interagera ([C] - tillbaka):");
 
@@ -104,15 +104,28 @@ public class Inventory
         }
     }
 
-    private void ShowEquipmentInventory() // För att visa inventory MED stats
+    private void ShowEquipmentInventory(Player player) // För att visa inventory MED stats
     {
-        PrintColor.DarkGreen($"Inventory - Space: {inventory.Count}/10", "WriteLine");
+        Console.WriteLine($"Inventory - Space: {inventory.Count}/10");
         if (inventory.Count > 0)
         {
             for (int i = 0; i < inventory.Count; i++)
             {
-                Console.Write($"[{i + 1}] ");
-                inventory[i].ShowStats();
+                if (player.Level >= inventory[i].LevelCap)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write($"[{i + 1}] ");
+                    inventory[i].ShowStats();
+                    Console.ResetColor();
+                }
+
+                else 
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"[{i + 1}] ");
+                    inventory[i].ShowStats();
+                    Console.ResetColor();
+                }
             }
         }
         else

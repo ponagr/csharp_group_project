@@ -194,7 +194,7 @@ public static class Combat
                 //om vi defendar, gör enemy halva skadan, annars full skada
                 if (input.Key == ConsoleKey.D)
                 {
-                    enemyDamage = player.Defend(player, enemy, out attackMessageEnemy);
+                    enemyDamage = player.Defend(player, enemy, out attackMessageEnemy); // Måste vi lägga till boss i inparameter
                 }
                 else
                 {

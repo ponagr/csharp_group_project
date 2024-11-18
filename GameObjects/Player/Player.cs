@@ -201,6 +201,7 @@ public class Player : GameObject
         Console.WriteLine($"+{BaseDamageAdded:F0} Damage");
         Console.WriteLine($"+{BaseResistanceAdded:F0} Resistance");
         Console.WriteLine($"+{BaseAgilityAdded:F0} Agility");
+        Thread.Sleep(700);
         Console.ResetColor();
     }
     #endregion

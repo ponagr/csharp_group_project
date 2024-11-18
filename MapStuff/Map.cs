@@ -253,7 +253,7 @@ public abstract class Map
             else if (Maplevel[newX, newY] == Enemy)
             {
                 HandleEnemy(player, Enemies, Maplevel, newX, newY);
-                return;
+                return; // Tillbaka till while-loopen i program.cs
             }
             else if (Maplevel[newX, newY] == Coin)
             {
