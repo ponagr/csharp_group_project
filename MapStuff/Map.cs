@@ -289,6 +289,11 @@ public abstract class Map
             else if (Maplevel[newX, newY] == Boss)
             {
                 HandleBoss(player, BossEnemy, Maplevel, newX, newY);
+                if (BossEnemy.CurrentHp < 1)
+                {
+                    Maplevel[1, 15] = Empty;
+                    Maplevel[2, 15] = Empty;
+                }
                 return;
             }
             else if (Maplevel[newX, newY] == Merchant)

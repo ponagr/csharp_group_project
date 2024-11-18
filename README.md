@@ -7,6 +7,12 @@ HIGHSCORE!
 Autosave vid ny nivå
 Något fel när man trycker D mot butcherBoss.
 
+Lägg till sell all funktion hos merchant
+Lägg till så att vi kan handla alla items, antingen 0-9, eller via piltangenter för att välja
+Lägg till så att items skrivs ut i rött/grönt även hos merchant för att se om vi kan använda dom baserat på item.LevelCap vs player.Level
+Fixa så att xpdrop hos enemy baseras på players level/maxXp
+Fixa så att healing pots healar en viss % av players total hp istället för flat ammount
+
 ### GameHandler (main)
 - [x] Tydligt flöde för spelhantering.
 
