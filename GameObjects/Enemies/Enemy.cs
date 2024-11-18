@@ -67,8 +67,8 @@ public class Enemy : GameObject
         int dodge = rndDodge.Next(0, 101);
         if (dodge <= dodgeChance) // Om vi har mer baseAgility än den randomizade dodgen
         {
-            attackMessage = "";
-            return $"{player.Name} DODGED";
+            attackMessage = $"{player.Name} DODGED";
+            return $"0";
         }
         else if (attackCrit)
         {
