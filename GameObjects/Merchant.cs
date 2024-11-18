@@ -53,7 +53,7 @@ public class Merchant
         }
         else
         {
-            
+            Textures.PrintMerchantAgain();
         }
         bool isShopping = true;
         while (isShopping)
