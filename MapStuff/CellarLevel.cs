@@ -107,6 +107,10 @@ public class CellarMap : Map
             else if (Maplevel[newX, newY] == Boss)
             {
                 HandleBoss(player, BossEnemy, Maplevel, newX, newY);
+                if (BossEnemy.CurrentHp < 1)
+                {
+                    Maplevel[11, 9] = Empty;
+                }
                 return;
             }
             else if (Maplevel[newX, newY] == Merchant)

@@ -5,11 +5,11 @@ public class AssassinBoss : Assassin
     { 
         Name = "Smygehuk";
         Description = "Assassin BOSS";
-        BaseHp = base.BaseHp * 1.5; 
+        BaseHp = base.BaseHp * 1.75; 
         CurrentHp = TotalHp;
-        BaseDamage = base.BaseDamage * 1.5;
-        BaseResistance = base.BaseResistance * 1.5;
-        BaseAgility = base.BaseAgility * 2;
+        BaseDamage = base.BaseDamage * 1.75;
+        BaseResistance = base.BaseResistance * 1.75;
+        BaseAgility = base.BaseAgility * 1.75;
 
         healthBar = new HealthBar();
 

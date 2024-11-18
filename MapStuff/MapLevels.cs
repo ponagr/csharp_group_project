@@ -42,10 +42,10 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         Butcher butcher1 = new Butcher(1, "Gimli");
         Mage mage1 = new Mage(1, "Gandalf");
         Archer archer1 = new Archer(1, "Legolas");
-        Archer archer2 = new Archer(1, "Robin Hood");
+        Archer archer2 = new Archer(1, "RubenInTheHood");
         Archer archer3 = new Archer(1, "Hawkeye");
         Assassin assassin4 = new Assassin(1, "Ninja");
-        Butcher butcher3 = new Butcher(1, "Berzerker");
+        Butcher butcher3 = new Butcher(1, "BärzJerker");
         Mage mage2 = new Mage(2, "Moon Queen");
         Mage mage3 = new Mage(2, "Magic-Mike");
         Butcher butcher2 = new Butcher(1, "Butchie");
@@ -89,8 +89,8 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
             { '|', '_', '_', '_', '_', '_', ' ', '|', ' ', ' ', ' ', '|', ' ', '|', '$', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', '|', ' ', '|', '_', '_', '_', '|', ' ', ' ', '|', ' ', '|' },
             { '|', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', '_', '|', ' ', '|' },
-            { '|', ' ', '|', '#', '|', ' ', '|', ' ', ' ', ' ', '¤', ' ', ' ', '£', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
-            { '|', ' ', '|', ' ', '|', ' ', '|', ' ', ' ', ' ', 'a', '\u2665', '$', ' ', '£', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+            { '|', ' ', '|', '#', '|', '\u2665', '|', ' ', ' ', ' ', '¤', ' ', ' ', '£', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+            { '|', ' ', '|', ' ', '|', ' ', '|', ' ', ' ', ' ', 'a', ' ', '$', ' ', '£', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
             { '|', ' ', '|', ' ', '|', ' ', '|', '_', '_', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|', ' ', ' ', '|' },
             { '|', ' ', '/', ' ', '|', ' ', '£', ' ', ' ', ' ', ' ', '|', '£', '|', '_', '_', ' ', '|', '_', '_', '_', ' ', '|' },
             { '|', ' ', '£', ' ', ' ', ' ', '|', ' ', ' ', ' ', '_', '|', ' ', '|', ' ', ' ', ' ', '|', '#', ' ', '£', ' ', '|' },
@@ -101,7 +101,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
             { '|', ' ', ' ', '#', '|', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '_', ' ', '|' },
             { '|', ' ', '_', '_', '|', ' ', '|', '_', '_', '_', '_', '_', ' ', ' ', '£', ' ', ' ', ' ', '$', '|', ' ', ' ', '|' },
             { '|', '£', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '_', '_', '_', '_', '_', '_', '|', ' ', '_', '|' },
-            { '|', ' ', ' ', ' ', '|', ' ', ' ', '£', '£', '£', '#', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
+            { '|', ' ', ' ', ' ', '|', ' ', '£', '£', '£', '#', '#', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|' },
             { '|', ' ', ' ', ' ', '|', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '£', '|' },
             { '\\', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', '£', '_', '_', '_', '_', '_', ' ', '|', '_', ' ', '|' },
             { '/', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
@@ -206,6 +206,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         Archer archer1 = new Archer(3, "Legolas");
         Archer archer2 = new Archer(3, "Robin Hood");
         Archer archer3 = new Archer(3, "Hawkeye");
+        Archer archer4 = new Archer(3, "ArrowMax");
         Assassin assassin4 = new Assassin(3, "Ninja");
         Butcher butcher3 = new Butcher(3, "Berzerker");
         Mage mage2 = new Mage(3, "Moon Queen");
@@ -215,7 +216,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
 
         AssassinBoss assassinBoss = new AssassinBoss(3, "Smygehuk");
         Assassin assassinInvisable = new Assassin(1, "Inge-visable");
-        List<Enemy> enemies = new List<Enemy> {mage, butcher, archer, assassin, assassin1, archer1, archer2, butcher3,
+        List<Enemy> enemies = new List<Enemy> {archer4, butcher, archer, assassin, assassin1, archer1, archer2, butcher3,
         assassin3, butcher2, assassin4, mage2, mage3, archer3, butcher1, mage1};
 
         List<Item> itemsLevel3 = new List<Item>() {
