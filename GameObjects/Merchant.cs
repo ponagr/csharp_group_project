@@ -2,6 +2,7 @@ public class Merchant
 {
     public string Name { get; set; }
     public int Gold { get; set; }
+    private bool FirstEncounter { get; set; }
     public Inventory MerchantInventory { get; set; }
 
     public Merchant(string name, int gold, List<Item> items)
@@ -10,41 +11,50 @@ public class Merchant
         Gold = gold;
         MerchantInventory = new Inventory();
         MerchantInventory.inventory = items;
+        FirstEncounter = true;
     }
 
     public void Interact(Player player)     // Interaktion med merchant, loopar hans inventory, visar stats och pris och låter player köpa eller sälja    
     {
         // Lägg till textures där merchant säger tack för att vi räddat honom från fienden
-        Textures.PrintSavedMerchant();
-        var choice = Console.ReadKey(true); // För att slippa trycka enter
-        Console.CursorVisible = false;
-
-        if (choice.Key == ConsoleKey.Y)
+        if (FirstEncounter)
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Clear.Row(10, 33, 31);
-            Clear.Row(11, 33, 31);
-            Clear.Row(12, 33, 31);
-            Clear.Row(14, 23, 12);
-            Console.SetCursorPosition(33, 10);
-            Write.OneLetterAtATime("Ok, please enter my shop!    \n");
+            Textures.PrintSavedMerchant();
+            FirstEncounter = false;
 
-            Thread.Sleep(2000);
+            var choice = Console.ReadKey(true); // För att slippa trycka enter
+            Console.CursorVisible = false;
+
+            if (choice.Key == ConsoleKey.Y)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Clear.Row(10, 33, 31);
+                Clear.Row(11, 33, 31);
+                Clear.Row(12, 33, 31);
+                Clear.Row(14, 23, 12);
+                Console.SetCursorPosition(33, 10);
+                Write.OneLetterAtATime("Ok, please enter my shop!    \n");
+
+                Thread.Sleep(2000);
+            }
+            else if (choice.Key == ConsoleKey.N)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Clear.Row(10, 33, 31);
+                Clear.Row(11, 33, 31);
+                Clear.Row(12, 33, 31);
+                Clear.Row(14, 23, 12);
+                Console.SetCursorPosition(33, 10);
+                Write.OneLetterAtATime("Ok, thanks again for helping me! \n");
+
+                Thread.Sleep(2000);
+                return;
+            }
         }
-        else if (choice.Key == ConsoleKey.N)
+        else
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Clear.Row(10, 33, 31);
-            Clear.Row(11, 33, 31);
-            Clear.Row(12, 33, 31);
-            Clear.Row(14, 23, 12);
-            Console.SetCursorPosition(33, 10);
-            Write.OneLetterAtATime("Ok, thanks again for helping me! \n");
-
-            Thread.Sleep(2000);
-            return;
+            
         }
-
         bool isShopping = true;
         while (isShopping)
         {
