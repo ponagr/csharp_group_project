@@ -295,7 +295,7 @@ public abstract class Map
             else if (Maplevel[newX, newY] == Boss)
             {
                 HandleBoss(player, BossEnemy, Maplevel, newX, newY);
-                if (BossEnemy.CurrentHp < 1)
+                if (BossEnemy.CurrentHp < 1 && Enemies.Count == 0)
                 {
                     Maplevel[1, 15] = Empty;
                     Maplevel[2, 15] = Empty;
