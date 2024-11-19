@@ -23,7 +23,7 @@ public abstract class Map
     internal static char Empty = ' ';
     internal static char Door = '\\';
     internal static char Door2 = '/';
-    internal static char Heart = '\u2665';
+    internal static char Heart = 'H';
     internal static char GoBack = '=';
     internal static char Cellar = ')';
     internal static char Merchant = 'M';
@@ -42,6 +42,7 @@ public abstract class Map
         }
     }
     #endregion
+    #region ASSASSIN
     internal static void HandleInvisibleAssassin(Player player, Assassin assassin, char[,] gameMap, int newX, int newY)
     {
         Console.SetCursorPosition(0, 29);
@@ -54,6 +55,7 @@ public abstract class Map
             gameMap[newX, newY] = Empty;
         }
     }
+    #endregion
     #region BOSS
     internal static void HandleBoss(Player player, Enemy boss, char[,] gameMap, int newX, int newY) // När player går på boss
     {
@@ -139,7 +141,7 @@ public abstract class Map
     }
     #endregion
 
-    #region MOVE PLAYER
+    #region CURSORPOSITION
     internal static void UpdatePlayerMovement(int posX, int posY, int newX, int newY) // Setcursorpos-metod för att endast uppdatera två platser i konsolen 
     {
         Console.SetCursorPosition(posY * 3, posX + 2); // Töm den gamla positionen
@@ -148,7 +150,9 @@ public abstract class Map
         Console.SetCursorPosition(newY * 3, newX + 2); // Skriv ut den nya positionen
         PrintColor.Green(" @", "Write");
     }
+    #endregion
 
+    #region HELP
     public static void Help()   //Hjälptext, som kan togglas på och av med H
     {
         Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -176,6 +180,7 @@ public abstract class Map
     #endregion
 
     //Göra override om vi vill anpassa beroende på typ av level?
+    #region MAPINFO
     internal static void MapInfo() //Skriver ut info ovanför mappen
     {
         Console.WriteLine();
@@ -189,6 +194,7 @@ public abstract class Map
         Console.ResetColor();
         Console.WriteLine();
     }
+    #endregion
 
     public virtual void MovePlayer(Player player, Map map)
     {
@@ -316,31 +322,24 @@ public abstract class Map
                 HandleInvisibleAssassin(player, Assassin, Maplevel, newX, newY);
                 return;
             }
-
             else // Väggar och terräng
             {
                 //Gör ingenting
             }
             #endregion
 
-            #region INVENTORY
             if (keyPressed.Key == ConsoleKey.C) //Visa playerStats
             {
                 player.OpenInventory(player);  
                 return;
                 //PrintGameBoard(map, player);
             }
-            #endregion
-
-            #region HEAL
             if (keyPressed.Key == ConsoleKey.Q) //Använder Health-Potions
             {
                 player.Heal();
                 Console.SetCursorPosition(0, 25);
                 PlayerUI.UI(player);
             }
-            #endregion
-
             if (keyPressed.Key == ConsoleKey.H)
             {
                 
@@ -414,6 +413,8 @@ public abstract class Map
                     Console.Write($" {gameMap[i, j]} ");
                     Console.ResetColor();
                 }
+                else if (gameMap[i, j] == Heart)
+                    PrintColor.DarkRed($" {'\u2665'} ", "Write");
                 else
                     Console.Write($" {gameMap[i, j]} ");
             }

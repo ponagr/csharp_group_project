@@ -121,7 +121,6 @@ public class CellarMap : Map
             else if (Maplevel[newX, newY] == Cellar)
             {
                 CellarMovement(map, player);
-                //GoToCellar(player, map);
                 break;
             }
             else if (Maplevel[newX, newY] == Door || Maplevel[newX, newY] == Door2)
@@ -139,31 +138,23 @@ public class CellarMap : Map
                 HandleInvisibleAssassin(player, Assassin, Maplevel, newX, newY);
                 return;
             }
-
             else // Väggar och terräng
             {
                 //Gör ingenting
             }
-            #endregion
 
-            #region INVENTORY
             if (keyPressed.Key == ConsoleKey.C) //Visa playerStats
             {
                 player.OpenInventory(player);
                 return;
                 //PrintGameBoard(map, player);
             }
-            #endregion
-
-            #region HEAL
             if (keyPressed.Key == ConsoleKey.Q) //Använder Health-Potions
             {
                 player.Heal();
                 Console.SetCursorPosition(0, 25);
                 PlayerUI.UI(player);
             }
-            #endregion
-
             if (keyPressed.Key == ConsoleKey.H)
             {
 
@@ -180,8 +171,10 @@ public class CellarMap : Map
             }
             Console.SetCursorPosition(0, 27);
         }
+        #endregion
 
     }
+    #region PRINTCELLAR
     public static void PrintCellar(char[,] gameMap, Player player)
     {
         Console.Clear();
@@ -235,6 +228,8 @@ public class CellarMap : Map
                     Console.Write($" {gameMap[i, j]} ");
                     Console.ResetColor();
                 }
+                else if (gameMap[i, j] == Heart)
+                    PrintColor.DarkRed($" {'\u2665'} ", "Write");
                 else
                     Console.Write($" {gameMap[i, j]} ");
             }
@@ -242,6 +237,9 @@ public class CellarMap : Map
         }
         PlayerUI.UI(player);    //visa UI under mappen
     }
+    #endregion
+
+    #region CELLARMOVEMENT
     public static void CellarMovement(Map cellarMap, Player player) // Players rörelse på banan, wasd osv.
     {
         int posX = 0;   //posX,posY är positionen som player har för tillfället
@@ -286,7 +284,6 @@ public class CellarMap : Map
                 newY++;
 
             //Anropar metoder baserat på newX och newY positionerna
-            #region MOVEMENTACTIONS
             if (gameMap[newX, newY] == Empty)
             {
                 UpdatePlayerMovement(posX, posY, newX, newY);
@@ -339,23 +336,18 @@ public class CellarMap : Map
             {
 
             }
-            #endregion
 
-            #region INVENTORY
             if (keyPressed.Key == ConsoleKey.C) //Visa playerStats
             {
                 player.OpenInventory(player);
                 PrintCellar(gameMap, player);
             }
-            #endregion
-
-            #region HEAL
             if (keyPressed.Key == ConsoleKey.Q)
             {
                 player.Heal();  //Använder en Health-Potion
                 PlayerUI.UI(player);
             }
-            #endregion
         }
     }
+    #endregion
 }

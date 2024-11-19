@@ -9,6 +9,7 @@ public class DarkMap : Map
         MerchantObject = merchant;
         Assassin = assassin;
     }
+    
     #region PRINTMAP
     public override void PrintMap(Player player, Map map)
     {
@@ -84,6 +85,8 @@ public class DarkMap : Map
                             Console.Write($" {gameMap[i, j]} ");
                             Console.ResetColor();
                         }
+                        else if (gameMap[i, j] == Heart)
+                            PrintColor.DarkRed($" {'\u2665'} ", "Write");
                         else
                             Console.Write(gameMap[i, j] + "  ");
                     }
@@ -94,6 +97,7 @@ public class DarkMap : Map
         PlayerUI.UI(player);
     }
     #endregion
+
     public override void MovePlayer(Player player, Map map)
     {
         int posX = 0;   //posX,posY är positionen som player har för tillfället
@@ -183,19 +187,14 @@ public class DarkMap : Map
         }
         #endregion
 
-        #region INVENTORY
         if (keyPressed.Key == ConsoleKey.C) //Visa playerStats
         {
             player.OpenInventory(player);
         }
-        #endregion
-
-        #region HEAL
         if (keyPressed.Key == ConsoleKey.Q) //Använder Health-Potions
         {
             player.Heal();
         }
-        #endregion
         if (keyPressed.Key == ConsoleKey.H)
         {
 
