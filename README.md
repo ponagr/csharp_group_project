@@ -2,29 +2,21 @@
 
 ## Prioriterade Funktioner
 
-// Från NATAFANSUSSANNE
-HIGHSCORE!
-Autosave vid ny nivå
-Något fel när man trycker D mot butcherBoss.
-
-
-Lägg till så att vi kan handla alla items, antingen 0-9, eller via piltangenter för att välja, splitfunktion eller bara inte en readkey utan en jämförelse mellan strings/int?
-Lägg till så att items skrivs ut i rött/grönt även hos merchant för att se om vi kan använda dom baserat på item.LevelCap vs player.Level
-Fixa så att xpdrop hos enemy baseras på players level/maxXp
-Fixa så att healing pots healar en viss % av players total hp istället för flat ammount
-
-### GameHandler (main)
+### Map (main)
 - [x] Tydligt flöde för spelhantering.
 
-### GameLevel
+### MapLevels
 - [x] Skapa Player- och en Enemy-karaktär.
 - [x] Utveckla nivå 1 och implementera movement-metod.
 - [x] Enklare interaktion mellan karaktärer (Player och Enemy).
 - [x] SetCururposition på mappen FÖR ATT SLIPPA GLITCH
 - [x] Hjärta för att få liv på banan
+- [x] Balancera fiender/player/items på level 1
+- [x] Balancera fiender/player/items på level 2
+- [ ] Balancera fiender/player/items på level 3
 
 ### GameObject - Enemy - Player
-- [x] Lägg till viktiga egenskaper och metoder för Player och Enemy.
+- [x] Viktiga egenskaper och metoder för Player och Enemy.
 
 ### Combat
 - [x] Skapa visuella representationer, t.ex. streckgubbar, för Player och Enemy under combat.
@@ -39,6 +31,7 @@ Fixa så att healing pots healar en viss % av players total hp istället för fl
 ### Lägg till XP och Levels
 - [x] Implementera XP-system och nivåer för Player.
 - [x] Lägg till XP-drop hos Enemy.
+- [x] Xp-drop ska baseras på players level/maxXp
 
 ### Fler Stats och Multipliers
 - [x] Utveckla fler stats och multipliers för Player.
@@ -53,29 +46,33 @@ Fixa så att healing pots healar en viss % av players total hp istället för fl
 - [x] Implementera drop-rate från dödade bossar och loot-system för kistor.
 - [x] Skapa en inventory (array med typ 5 items) i player-klassen
 - [x] Begränsningar beroende på itemtyp - hjälm, plate osv.
-- [x] Lägg till en Merchant som man kan sälja/köpa ifrån - en char-ikon i stället för klass.
 - [x] Potions
 - [ ] T.ex nycklar i kistor för att kunna öppna gates på banan för att komma vidare LÅTA BLI?
-- [x] Lägg till fler items redan i level 1
-- [x] Lägg till fler items redan i level 2
-- [x] Lägg till LevelCap för items
+- [x] Fler items i level 1
+- [x] Fler items i level 2
+- [x] LevelCap för items
+- [x] Dropfunktion för items och equipment
 
 ### Chests
 - [x] Få kistor att byta färg när de har öppnats (använda bool och koordinatjämförelse).
 - [x] Sortera listan över våra items efter pengar i Merchant-mode
 
 ### Merchant
-- [x] Lägg till en merchant man kan köpa ifrån och sälja till
-- [x] Lägg till en funktion där man säljer allt med en knapptryckning
+- [x] Merchant man kan köpa ifrån och sälja till
+- [x] Sälja allt via en knapp
 - [x] Sortera listan över items efter pris i fallande ordning när man vill sälja
+- [x] Maxantal items 10, + potions att köpa med Q
+- [x] Visa items i rött/grönt beroende på vår level requirement
 
 ### ResourceBar/HealthBar/XPBar
 - [x] Utveckla UI-element för resurser, hälsa och XP.
-- [x] Lägg till Xp-bar under mappen
+- [x] Xp-bar under mappen
+- [x] Fixa så att healing pots healar en viss % av players total hp istället för flat ammount
+- [ ] Highscore
 
 ### Fler GameLevels
 - [x] Utveckla nivå 2, nivå 3 osv. m d unika funktioner, som kortare distanser och nya områden (t.ex. dörrar, trappor).
-- [ ] Lägg till t.ex. vatten med en ö man behöver hoppa till, LÅTA BLI?
+- [ ] Lägg till t.ex. vatten med en ö man behöver hoppa till
 - [x] Balancera fienden på de olika banorna, ordning, styrka osv.
 
 ### Random Enemy Movement
@@ -84,7 +81,7 @@ Fixa så att healing pots healar en viss % av players total hp istället för fl
 - [ ] Definiera en specifik aggro-range för olika enemy-klasser.               
 
 ### Fler Player-funktioner
-- [ ] Implementera ytterligare funktioner för Player, som att hoppa över fiender. LÅTA BLI?
+- [ ] Implementera ytterligare funktioner för Player, som att hoppa över fiender.
 
 ### Meny
 - [x] Skapa en första bild när man startar spelet
@@ -93,7 +90,7 @@ Fixa så att healing pots healar en viss % av players total hp istället för fl
 - [x] Designa en rolig bild eller ikon för menyn.
 
 ### Story
-- [ ] Utveckla en grundläggande berättelse för spelet. LÅTA BLI?
+- [ ] Utveckla en grundläggande berättelse för spelet
 
 ### Generera RandomMaps
 - [ ] Implementera en funktion för att generera slumpmässiga kartor. 

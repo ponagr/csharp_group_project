@@ -233,6 +233,7 @@ public static partial class Textures
         Console.WriteLine("  |  \\__ |   \\                                                    ");
         Console.SetCursorPosition(15, 10);
         Console.WriteLine(" _/    / |    \\                                                ");
+        Console.ResetColor();
 
         
     }
