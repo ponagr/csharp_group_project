@@ -129,7 +129,7 @@ public static class PlayerEquipment
             if (player.EquippedGear[i] != null)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                player.EquippedGear[i].ShowStats();
+                player.EquippedGear[i].ShowStats(i, player);
                 Console.ResetColor();
             }
             else

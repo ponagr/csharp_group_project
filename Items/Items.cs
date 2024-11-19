@@ -12,7 +12,7 @@ public abstract class Item
     public int LevelCap { get; set; }
 
     public abstract void ShowItem();
-    public abstract void ShowStats();
+    public abstract void ShowStats(int i, Player player);
 }
 public class Gear : Item
 {
@@ -32,9 +32,23 @@ public class Gear : Item
         PrintColor.Green($"{ItemType}: {ItemName,10}, {Price/2}g", "WriteLine");
     }
 
-    public override void ShowStats()
+    public override void ShowStats(int i, Player player)
     {
-        Console.WriteLine($"{ItemType, -8} {ItemName,-18}   {Health,3} Hp {Damage,3} Dmg {Resistance,3} Res {Agility,3} Agi");
+        if (player.Level >= LevelCap)
+        {
+            Console.Write($"[{i + 1}] ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{ItemType, -8} {ItemName,-17}   {Health,3} Hp {Damage,3} Dmg {Resistance,3} Res {Agility,3} Agi");
+            Console.ResetColor();
+        }
+        else 
+        {
+            Console.Write($"[{i + 1}] ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"{ItemType,-8} {ItemName,-17}   {Health,3} Hp {Damage,3} Dmg {Resistance,3} Res {Agility,3} Agi");
+            Console.ResetColor();
+            Console.WriteLine($"  -  Requires level: {LevelCap}");
+        }
     }
     public static int CalculatePrice(Item item)     //Räknar ut värdet på ett item baserat på statsen
     {

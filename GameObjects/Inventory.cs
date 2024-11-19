@@ -111,21 +111,22 @@ public class Inventory
         {
             for (int i = 0; i < inventory.Count; i++)
             {
-                if (player.Level >= inventory[i].LevelCap)
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write($"[{i + 1}] ");
-                    inventory[i].ShowStats();
-                    Console.ResetColor();
-                }
+                inventory[i].ShowStats(i, player);
+                // if (player.Level >= inventory[i].LevelCap)
+                // {
+                //     Console.ForegroundColor = ConsoleColor.Green;
+                //     Console.Write($"[{i + 1}] ");
+                //     inventory[i].ShowStats();
+                //     Console.ResetColor();
+                // }
 
-                else 
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($"[{i + 1}] ");
-                    inventory[i].ShowStats();
-                    Console.ResetColor();
-                }
+                // else 
+                // {
+                //     Console.ForegroundColor = ConsoleColor.Red;
+                //     Console.Write($"[{i + 1}] ");
+                //     inventory[i].ShowStats();
+                //     Console.ResetColor();
+                // }
             }
         }
         else
