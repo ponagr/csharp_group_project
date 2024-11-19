@@ -1,7 +1,7 @@
 public class Enemy : GameObject
 {
     public bool isPlayer = false;   // För att kunna använda HealthBar och veta om den ska skrivas ut i rött eller grönt
-    public int XpDrop = 20;
+    public int XpDrop;
     public HealthBar healthBar;
     //Lägg till en AggroRange senare
 

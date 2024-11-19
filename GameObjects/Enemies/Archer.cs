@@ -18,6 +18,8 @@ public class Archer : Enemy
         chargeCounter = 0;
         isCharging = true;
         healthBar = new HealthBar();
+        XpDrop = 20;
+        
     }
 
     public override void PrintCharacter(Enemy enemy)

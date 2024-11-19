@@ -5,11 +5,11 @@ public class AssassinBoss : Assassin
     { 
         Name = "Smygehuk";
         Description = "Assassin BOSS";
-        BaseHp = base.BaseHp * 1.75; 
+        BaseHp = base.BaseHp * 2.5; 
         CurrentHp = TotalHp;
         BaseDamage = base.BaseDamage * 1.75;
         BaseResistance = base.BaseResistance * 1.75;
-        BaseAgility = base.BaseAgility * 1.75;
+        BaseAgility = base.BaseAgility * 2;
 
         healthBar = new HealthBar();
 
@@ -33,7 +33,7 @@ public class AssassinBoss : Assassin
 
     public double ThrowingKnives(double damage, out string attackMessage) 
     {
-        damage = damage * 1.2;
+        damage = damage * 1.5;
         attackMessage = "Triple attack!";
         return damage;
     }
@@ -65,13 +65,13 @@ public class ButcherBoss : Butcher
 
     public ButcherBoss(int level, string name) : base(level, name)
     { 
-        base.BaseHp = base.BaseHp * 1.5;
-        base.BaseDamage = base.BaseDamage * 1.5;
+        base.BaseHp = base.BaseHp * 2.5;
+        base.BaseDamage = base.BaseDamage * 2;
         CurrentHp = TotalHp;
         base.BaseResistance = base.BaseResistance * 1.5;
         base.BaseAgility = base.BaseAgility * 1.5;
         specialAttack = false;
-        XpDrop = 75;
+        XpDrop = 50;
     }   
 
     public override void CharacterAttackAnimation(Enemy enemy)
@@ -88,7 +88,7 @@ public class ButcherBoss : Butcher
 
     double SpecialAttack(double damage, out string attackMessage)
     {
-        damage = damage * 1.75;
+        damage = damage * 2;
         attackMessage = "MEAT CLEAVER!";
         return damage;
     }

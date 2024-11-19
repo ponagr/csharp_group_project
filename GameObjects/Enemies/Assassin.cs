@@ -22,6 +22,7 @@ public class Assassin : Enemy
         healthBar = new HealthBar();
 
         isVisable = false;
+        XpDrop = 20;
     }
 
     public double StealthAttack(double damage)

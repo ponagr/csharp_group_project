@@ -17,6 +17,7 @@ public class Sceletons : Enemy
         healthBar = new HealthBar();
         specialAttack = false;
         bigHit = 1;
+        XpDrop = 15;
     }
 
     // public override string TakeDdge(double damage, bool crit, out string attackMessage)

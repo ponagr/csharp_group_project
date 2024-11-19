@@ -18,6 +18,7 @@ public class Mage : Enemy
         chargeCounter = 0;
         isReadyForThunder = false;
         healthBar = new HealthBar();
+        XpDrop = 30;
     }
 
     public override void PrintCharacter(Enemy enemy)

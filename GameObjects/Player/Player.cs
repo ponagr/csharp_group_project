@@ -76,7 +76,7 @@ public class Player : GameObject
     public void Loot(Chest chest)     //Lägg till Item till inventory
     {
         Item item; // Skapar en referens till ett item
-        if (Inventory.inventory.Count < 15)
+        if (Inventory.inventory.Count < 10)
         {
             Console.WriteLine($"{Name} har lootat:");
             chest.PrintChest();
@@ -166,9 +166,12 @@ public class Player : GameObject
     #region XP OCH LEVELUP
     public void EnemyKilled(Enemy enemy) // Ger xp-drop, anropar textures, kontrollerar om player levlar upp
     {
-        CurrentXp += enemy.XpDrop;
+        double xpDrop = MaxXp * 0.1;
+        int xp = Convert.ToInt32(xpDrop);
+        xp = xp + enemy.XpDrop;
+        CurrentXp += xp;
         Console.SetCursorPosition(0, 11);
-        PrintColor.DarkYellow($"+{enemy.XpDrop} XP        ", "WriteLine");
+        PrintColor.DarkYellow($"+{xp} XP        ", "WriteLine");
 
         Console.SetCursorPosition(0, 12);
         Clear.Row(12, 0, 40);
@@ -211,6 +214,7 @@ public class Player : GameObject
     public string Defend(Player player, Enemy enemy, out string attackMessage)
     {
         string damage = enemy.Attack(player, out string message); // Här attackerar fienden och tar full skada
+
         double totalDamage = Convert.ToDouble(damage);
         totalDamage = totalDamage * 0.5; // Räknar ut halva skadan
         CurrentHp += totalDamage; // Ger sedan tillbaka halva skadan till players hp
