@@ -7,8 +7,8 @@ HIGHSCORE!
 Autosave vid ny nivå
 Något fel när man trycker D mot butcherBoss.
 
-Lägg till sell all funktion hos merchant
-Lägg till så att vi kan handla alla items, antingen 0-9, eller via piltangenter för att välja
+
+Lägg till så att vi kan handla alla items, antingen 0-9, eller via piltangenter för att välja, splitfunktion eller bara inte en readkey utan en jämförelse mellan strings/int?
 Lägg till så att items skrivs ut i rött/grönt även hos merchant för att se om vi kan använda dom baserat på item.LevelCap vs player.Level
 Fixa så att xpdrop hos enemy baseras på players level/maxXp
 Fixa så att healing pots healar en viss % av players total hp istället för flat ammount
@@ -63,6 +63,11 @@ Fixa så att healing pots healar en viss % av players total hp istället för fl
 ### Chests
 - [x] Få kistor att byta färg när de har öppnats (använda bool och koordinatjämförelse).
 - [x] Sortera listan över våra items efter pengar i Merchant-mode
+
+### Merchant
+- [x] Lägg till en merchant man kan köpa ifrån och sälja till
+- [x] Lägg till en funktion där man säljer allt med en knapptryckning
+- [x] Sortera listan över items efter pris i fallande ordning när man vill sälja
 
 ### ResourceBar/HealthBar/XPBar
 - [x] Utveckla UI-element för resurser, hälsa och XP.

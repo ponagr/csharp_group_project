@@ -74,10 +74,24 @@ public class Merchant
                 }
                 else
                 {
-                    Console.Write($"[{i + 1}] {MerchantInventory.inventory[i].ItemType,-13} {MerchantInventory.inventory[i].ItemName,-16}");
-                    PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,5} {'\u00A9'}", "WriteLine");
-                    PrintColor.Blue($"{MerchantInventory.inventory[i].Health,6} Hp {MerchantInventory.inventory[i].Damage,3} Dmg {MerchantInventory.inventory[i].Resistance,3} Res {MerchantInventory.inventory[i].Agility,3} Agi", "WriteLine");
-                    Console.WriteLine();
+                    if (MerchantInventory.inventory[i].LevelCap > player.Level)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write($"[{i + 1}] {MerchantInventory.inventory[i].ItemType,-13} {MerchantInventory.inventory[i].ItemName,-16}");
+                        PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,5} {'\u00A9'}", "WriteLine");
+                        PrintColor.Blue($"{MerchantInventory.inventory[i].Health,6} Hp {MerchantInventory.inventory[i].Damage,3} Dmg {MerchantInventory.inventory[i].Resistance,3} Res {MerchantInventory.inventory[i].Agility,3} Agi", "WriteLine");
+                        Console.WriteLine();
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"[{i + 1}] {MerchantInventory.inventory[i].ItemType,-13} {MerchantInventory.inventory[i].ItemName,-16}");
+                        PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,5} {'\u00A9'}", "WriteLine");
+                        PrintColor.Blue($"{MerchantInventory.inventory[i].Health,6} Hp {MerchantInventory.inventory[i].Damage,3} Dmg {MerchantInventory.inventory[i].Resistance,3} Res {MerchantInventory.inventory[i].Agility,3} Agi", "WriteLine");
+                        Console.WriteLine();
+                        Console.ResetColor();
+                    }
                 }
             }
 
@@ -225,11 +239,27 @@ public class Merchant
         PlayerEquipment.ShowWornGear(player);
 
         Console.SetCursorPosition(45, 16);
-        Console.WriteLine("Vad vill du sälja? - [C] för att lämna");
+        Console.WriteLine("Vad vill du sälja? - [Y] för att sälja allt");
+        Console.SetCursorPosition(45, 17);
+        Console.WriteLine("[C] för att lämna");
         var input = Console.ReadKey(true);
         if (input.Key == ConsoleKey.C)
         {
             return;
+        }
+        if (input.Key == ConsoleKey.Y)
+        {
+            int total = 0;
+            foreach (var item in player.Inventory.inventory)
+            {
+                total += item.Price / 2;
+                player.Gold += item.Price / 2;
+                Gold -= item.Price / 2;
+                MerchantInventory.inventory.Add(item);
+                Console.SetCursorPosition(45, 18);
+                Console.WriteLine($"Du fick {total} guld");
+                player.Inventory.inventory.Remove(item);
+            }
         }
 
         else if (int.TryParse(input.KeyChar.ToString(), out int itemIndex))

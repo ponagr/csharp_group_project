@@ -43,7 +43,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         Mage mage1 = new Mage(1, "Gandalf");
         Archer archer1 = new Archer(1, "Legolas");
         Archer archer2 = new Archer(1, "RubenInTheHood");
-        Archer archer3 = new Archer(1, "Hawkeye");
+        Archer archer3 = new Archer(1, "Fia-Falköga");
         Assassin assassin4 = new Assassin(1, "Ninja");
         Butcher butcher3 = new Butcher(1, "BärzJerker");
         Mage mage2 = new Mage(2, "Moon Queen");
@@ -72,7 +72,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         new TLegs("Manchesterbrallor", 0, 8, 9, 7, 2), 
         new TBreastPlate("Hoodie", 0, 8, 5, 10, 1),
         new TBreastPlate("Rostig rustning", 5, 10, 10, 0, 2) };
-        List<Chest> chestsLevel1 = new List<Chest>() { new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items) };
+        List<Chest> chestsLevel1 = new List<Chest>() { new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items)};
 
         RegularMap level1 = new RegularMap(gameLevel1, enemiesLevel1, assassinInvisable, chestsLevel1, assassinBoss, null);
         return level1;
