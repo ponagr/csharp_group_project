@@ -42,7 +42,7 @@ public class Inventory
         {
             for (int i = 0; i < inventory.Count; i++)
             {
-                Console.Write($"[{i + 1}] {inventory[i].ItemType,-8} {inventory[i].ItemName,-15}"); PrintColor.Yellow($"{inventory[i].Price / 2,7} {'\u00A9',1}", "WriteLine");
+                Console.Write($"[{i + 1}] {inventory[i].ItemType,-8} {inventory[i].ItemName,-15}"); PrintColor.Yellow($"{inventory[i].Price / 3,7} {'\u00A9',1}", "WriteLine");
             }
         }
         else
@@ -68,7 +68,7 @@ public class Inventory
                     Console.WriteLine($"Needs lvl: {inventory[i].LevelCap}");
                     Console.ResetColor();
                     Console.Write($"{inventory[i].Health,6} Hp {inventory[i].Damage,3} Dmg {inventory[i].Resistance,3} Res {inventory[i].Agility,3} Agi");
-                    PrintColor.Yellow($"{inventory[i].Price,4} {'\u00A9',1}", "WriteLine");
+                    PrintColor.Yellow($"{inventory[i].Price / 3,4} {'\u00A9',1}", "WriteLine");
                 }
                 else
                 {
@@ -78,7 +78,7 @@ public class Inventory
                     Console.WriteLine($"Needs lvl: {inventory[i].LevelCap}");
                     Console.ResetColor();
                     Console.Write($"{inventory[i].Health,6} Hp {inventory[i].Damage,3} Dmg {inventory[i].Resistance,3} Res {inventory[i].Agility,3} Agi");
-                    PrintColor.Yellow($"{inventory[i].Price,4} {'\u00A9',1}", "WriteLine");
+                    PrintColor.Yellow($"{inventory[i].Price / 3,4} {'\u00A9',1}", "WriteLine");
                 }
             }
         }
@@ -110,7 +110,16 @@ public class Inventory
 
             if (int.TryParse(strInput, out index) && index >= 1 && index <= player.Inventory.inventory.Count) // Försök att parsa inmatningen till ett heltal
             {
-                PlayerEquipment.CheckGearType(player, player.Inventory.inventory[index - 1]); // Om det är ett giltigt index, kolla itemets typ och jämför stats
+                Console.WriteLine("Vill du sätta på dig eller slänga itemet? ([E]quip/[D]iscard)");
+                var keyInput = Console.ReadKey(true);
+                if (keyInput.Key == ConsoleKey.E) // Om användaren trycker 'E', equippa itemet
+                {
+                    PlayerEquipment.CheckGearType(player, player.Inventory.inventory[index - 1]);
+                }
+                else if (keyInput.Key == ConsoleKey.D) // Om användaren trycker 'D', släng itemet
+                {
+                    player.Inventory.inventory.RemoveAt(index - 1);
+                }
                 break;  // Avsluta loop
             }
             else

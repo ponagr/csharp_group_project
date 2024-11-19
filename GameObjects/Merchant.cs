@@ -252,10 +252,9 @@ public class Merchant
             int total = 0;
             for (int i = 0; i < player.Inventory.inventory.Count; i++)
             {
-                total += player.Inventory.inventory[i].Price / 2;
-                player.Gold += player.Inventory.inventory[i].Price / 2;
-                Gold -= player.Inventory.inventory[i].Price / 2;
-                MerchantInventory.inventory.Add(player.Inventory.inventory[i]);
+                total += player.Inventory.inventory[i].Price / 3;
+                player.Gold += player.Inventory.inventory[i].Price / 3;
+                Gold -= player.Inventory.inventory[i].Price / 3;
             }
             player.Inventory.inventory.Clear();
             Console.SetCursorPosition(45, 18);
@@ -267,9 +266,8 @@ public class Merchant
         {
             var itemToSell = player.Inventory.inventory[itemIndex];
 
-            player.Gold += itemToSell.Price / 2;
-            Gold -= itemToSell.Price / 2;
-            MerchantInventory.inventory.Add(itemToSell);
+            player.Gold += itemToSell.Price / 3;
+            Gold -= itemToSell.Price / 3;
             Console.SetCursorPosition(45, 18);
             Console.WriteLine($"Du har sålt {itemToSell.ItemName}");
             Thread.Sleep(1000);
