@@ -7,7 +7,7 @@ public class Consumable : Item
     {
         ItemName = "Healing Potion";
         ItemType = "Consumable";
-        Healing = 60;
+        Healing = 25;
         Ammount = 5;
         MaxAmmount = 5;
         Price = 20;
@@ -17,7 +17,7 @@ public class Consumable : Item
     {
         Console.WriteLine($"Health Potions: {Ammount}/{MaxAmmount}");
     }
-    public override void ShowStats()
+    public override void ShowStats(int i, Player player)
     {
         Console.WriteLine("");
     }

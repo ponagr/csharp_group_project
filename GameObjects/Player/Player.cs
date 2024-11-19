@@ -61,7 +61,7 @@ public class Player : GameObject
     public void ShowHp()    //Skriver ut en HealthBar och hp i text under
     {
         healthBar.PrintHealthBar(PercentHp, isPlayer);
-        PrintColor.Green($"{CurrentHp:F0}/{TotalHp:F0}({PercentHp:F0}%)", "WriteLine");
+        PrintColor.Green($"{CurrentHp:F0}/{TotalHp:F0}({PercentHp:F0}%)   ", "WriteLine");
     }
     #endregion
 
@@ -114,12 +114,14 @@ public class Player : GameObject
         double healAmmount;
         if (HealingPot.Ammount > 0)
         {
+            healAmmount = TotalHp * 0.3 + HealingPot.Healing; //50 + random.Next(0, 20);
             double missingHealth = TotalHp - CurrentHp;     //Räkna ut hur mycket hp spelaren saknar
-            healAmmount = HealingPot.Healing; //50 + random.Next(0, 20);
+            //healAmmount = HealingPot.Healing; //50 + random.Next(0, 20);
             if (healAmmount > missingHealth)    //Om Heal är mer än spelarens saknade hp, heala till fullt, så att currentHealth inte kan bli mer än TotalHp
             {
                 healAmmount = missingHealth;
             }
+            //healAmmount = TotalHp * 0.5;
             CurrentHp += healAmmount;
             HealingPot.Ammount--;
             return $"+{healAmmount:F0}HP";
