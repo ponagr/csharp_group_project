@@ -4,14 +4,51 @@ public class Merchant
     public int Gold { get; set; }
     private bool FirstEncounter { get; set; }
     public Inventory MerchantInventory { get; set; }
+    public Consumable HealingPot { get; set; }
 
     public Merchant(string name, int gold, List<Item> items)
     {
         Name = name;
         Gold = gold;
         MerchantInventory = new Inventory();
-        MerchantInventory.inventory = items;
+        Random randomItem = new Random();
+        HealingPot = new Consumable();
+        for (int i = 0; i < 10; i++)
+        {
+            MerchantInventory.inventory.Add(items[randomItem.Next(0, items.Count)]);
+        }
         FirstEncounter = true;
+    }
+
+    public void ShowMerchantInventory(Player player)
+    {
+        Console.Write("[Q] ");
+        PrintColor.Green($"{"Health Potion",-20}", "Write");
+        PrintColor.Yellow($"{HealingPot.Price,13} {'\u00A9'}", "WriteLine");
+        Console.WriteLine();
+        for (int i = 0; i < MerchantInventory.inventory.Count; i++)
+        {
+            if (MerchantInventory.inventory[i].LevelCap > player.Level)
+            {
+                Console.Write($"[{i}] ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write($"{MerchantInventory.inventory[i].ItemType,-7} {MerchantInventory.inventory[i].ItemName,-15}");
+                Console.WriteLine($"Needs lvl: {MerchantInventory.inventory[i].LevelCap}");
+                Console.ResetColor();
+                Console.Write($"{MerchantInventory.inventory[i].Health,6} Hp {MerchantInventory.inventory[i].Damage,3} Dmg {MerchantInventory.inventory[i].Resistance,3} Res {MerchantInventory.inventory[i].Agility,3} Agi");
+                PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,4} {'\u00A9',1}", "WriteLine");
+            }
+            else
+            {
+                Console.Write($"[{i}] ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"{MerchantInventory.inventory[i].ItemType,-7} {MerchantInventory.inventory[i].ItemName,-15}");
+                Console.WriteLine($"Needs lvl: {MerchantInventory.inventory[i].LevelCap}");
+                Console.ResetColor();
+                Console.Write($"{MerchantInventory.inventory[i].Health,6} Hp {MerchantInventory.inventory[i].Damage,3} Dmg {MerchantInventory.inventory[i].Resistance,3} Res {MerchantInventory.inventory[i].Agility,3} Agi");
+                PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,4} {'\u00A9',1}", "WriteLine"); 
+            }
+        }
     }
 
     public void Interact(Player player)     // Interaktion med merchant, loopar hans inventory, visar stats och pris och låter player köpa eller sälja    
@@ -19,7 +56,7 @@ public class Merchant
         // Lägg till textures där merchant säger tack för att vi räddat honom från fienden
         if (FirstEncounter)
         {
-            Textures.PrintSavedMerchant();
+            //Textures.PrintSavedMerchant();
             FirstEncounter = false;
 
             var choice = Console.ReadKey(true); // För att slippa trycka enter
@@ -64,36 +101,7 @@ public class Merchant
             PrintColor.Yellow($"{Gold} {'\u00A9'}", "WriteLine");
             Console.WriteLine();
 
-            for (int i = 0; i < MerchantInventory.inventory.Count; i++)
-            {
-                if (MerchantInventory.inventory[i] is Consumable)
-                {
-                    Console.Write($"[{i + 1}] {MerchantInventory.inventory[i].ItemType,-13} {MerchantInventory.inventory[i].ItemName,-16}");
-                    PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,5} {'\u00A9'}", "WriteLine");
-                    Console.WriteLine();
-                }
-                else
-                {
-                    if (MerchantInventory.inventory[i].LevelCap > player.Level)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write($"[{i + 1}] {MerchantInventory.inventory[i].ItemType,-13} {MerchantInventory.inventory[i].ItemName,-16}");
-                        PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,5} {'\u00A9'}", "WriteLine");
-                        PrintColor.Blue($"{MerchantInventory.inventory[i].Health,6} Hp {MerchantInventory.inventory[i].Damage,3} Dmg {MerchantInventory.inventory[i].Resistance,3} Res {MerchantInventory.inventory[i].Agility,3} Agi", "WriteLine");
-                        Console.WriteLine();
-                        Console.ResetColor();
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write($"[{i + 1}] {MerchantInventory.inventory[i].ItemType,-13} {MerchantInventory.inventory[i].ItemName,-16}");
-                        PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,5} {'\u00A9'}", "WriteLine");
-                        PrintColor.Blue($"{MerchantInventory.inventory[i].Health,6} Hp {MerchantInventory.inventory[i].Damage,3} Dmg {MerchantInventory.inventory[i].Resistance,3} Res {MerchantInventory.inventory[i].Agility,3} Agi", "WriteLine");
-                        Console.WriteLine();
-                        Console.ResetColor();
-                    }
-                }
-            }
+            ShowMerchantInventory(player);
 
             Console.SetCursorPosition(45, 0);
             Console.Write($"{player.Name}: ");
@@ -140,23 +148,8 @@ public class Merchant
         Console.WriteLine();
         Console.WriteLine($"To buy:");
         Console.WriteLine();
-        for (int i = 0; i < MerchantInventory.inventory.Count; i++)
-        {
-            if (MerchantInventory.inventory[i] is Consumable)
-            {
-                Console.Write($"[{i + 1}] {MerchantInventory.inventory[i].ItemType,-13} {MerchantInventory.inventory[i].ItemName,-16}");
-                PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,5} {'\u00A9'}", "WriteLine");
-                Console.WriteLine();
-            }
-            else
-            {
-                Console.Write($"[{i + 1}] {MerchantInventory.inventory[i].ItemType,-13} {MerchantInventory.inventory[i].ItemName,-16}");
-                PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,5} {'\u00A9'}", "WriteLine");
-                PrintColor.Blue($"{MerchantInventory.inventory[i].Health,6} Hp {MerchantInventory.inventory[i].Damage,3} Dmg {MerchantInventory.inventory[i].Resistance,3} Res {MerchantInventory.inventory[i].Agility,3} Agi", "WriteLine");
-                Console.WriteLine();
-            }
-        }
-        Console.WriteLine();
+
+        ShowMerchantInventory(player);
 
         Console.SetCursorPosition(45, 0);
         Console.Write($"{player.Name}: ");
@@ -174,17 +167,15 @@ public class Merchant
         {
             return;
         }
-        int itemIndex = Convert.ToInt32(input.KeyChar.ToString()) - 1;
-        var itemToBuy = MerchantInventory.inventory[itemIndex];
-        if (player.Gold >= itemToBuy.Price) // Kontrollerar om player har råd
+        if (input.Key == ConsoleKey.Q)
         {
-            if (itemToBuy is Consumable)
+            if (player.Gold >= HealingPot.Price)
             {
                 if (player.HealingPot.Ammount < player.HealingPot.MaxAmmount)
                 {
-                    player.Gold -= itemToBuy.Price;
+                    player.Gold -= HealingPot.Price;
                     player.HealingPot.Ammount++;
-                    Gold += itemToBuy.Price;
+                    Gold += HealingPot.Price;
                     Console.SetCursorPosition(45, 18);
                     Console.WriteLine("+1 Healing Potion");
                     Thread.Sleep(1000);
@@ -198,19 +189,28 @@ public class Merchant
             }
             else
             {
-                player.Gold -= itemToBuy.Price;
-                Gold += itemToBuy.Price;
-                player.Inventory.inventory.Add(itemToBuy);
                 Console.SetCursorPosition(45, 18);
-                Console.WriteLine($"Du har köpt {itemToBuy.ItemName}");
+                Console.WriteLine("Du har inte råd");
                 Thread.Sleep(1000);
-
-                MerchantInventory.inventory.RemoveAt(itemIndex);
-
             }
+            return;
+        }
+        int itemIndex = Convert.ToInt32(input.KeyChar.ToString());
+        var itemToBuy = MerchantInventory.inventory[itemIndex];
+        if (player.Gold >= itemToBuy.Price) // Kontrollerar om player har råd
+        {
+            player.Gold -= itemToBuy.Price;
+            Gold += itemToBuy.Price;
+            player.Inventory.inventory.Add(itemToBuy);
+            Console.SetCursorPosition(45, 18);
+            Console.WriteLine($"Du har köpt {itemToBuy.ItemName}");
+            Thread.Sleep(1000);
+
+            MerchantInventory.inventory.RemoveAt(itemIndex);
         }
         else
         {
+            Console.SetCursorPosition(45, 18);
             Console.WriteLine("Du har inte råd");
             Thread.Sleep(1000);
         }
@@ -225,7 +225,7 @@ public class Merchant
         Console.WriteLine();
         Console.WriteLine($"To sell:");
         Console.WriteLine();
-        player.Inventory.ShowInventorySortedByPrice();
+        player.Inventory.ShowInventorySortedByPrice(player);
 
         Console.WriteLine();
 
@@ -250,21 +250,21 @@ public class Merchant
         if (input.Key == ConsoleKey.Y)
         {
             int total = 0;
-            foreach (var item in player.Inventory.inventory)
+            for (int i = 0; i < player.Inventory.inventory.Count; i++)
             {
-                total += item.Price / 2;
-                player.Gold += item.Price / 2;
-                Gold -= item.Price / 2;
-                MerchantInventory.inventory.Add(item);
-                Console.SetCursorPosition(45, 18);
-                Console.WriteLine($"Du fick {total} guld");
-                player.Inventory.inventory.Remove(item);
+                total += player.Inventory.inventory[i].Price / 2;
+                player.Gold += player.Inventory.inventory[i].Price / 2;
+                Gold -= player.Inventory.inventory[i].Price / 2;
+                MerchantInventory.inventory.Add(player.Inventory.inventory[i]);
             }
+            player.Inventory.inventory.Clear();
+            Console.SetCursorPosition(45, 18);
+            Console.WriteLine($"Du fick {total} guld");
+            Thread.Sleep(1000);
         }
 
         else if (int.TryParse(input.KeyChar.ToString(), out int itemIndex))
         {
-            itemIndex = itemIndex - 1;
             var itemToSell = player.Inventory.inventory[itemIndex];
 
             player.Gold += itemToSell.Price / 2;

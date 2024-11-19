@@ -51,7 +51,7 @@ public class Inventory
         }
     }
 
-    public void ShowInventorySortedByPrice()        //Skriver ut alla items i inventoryn
+    public void ShowInventorySortedByPrice(Player player)        //Skriver ut alla items i inventoryn
     {
 
         if (inventory.Count > 0)
@@ -60,10 +60,26 @@ public class Inventory
 
             for (int i = 0; i < inventory.Count; i++)
             {
-                Console.Write($"[{i + 1}] {inventory[i].ItemType,-13} {inventory[i].ItemName,-16}");
-                PrintColor.Yellow($"{inventory[i].Price / 2,5} {'\u00A9'}", "WriteLine");
-                PrintColor.Blue($"{inventory[i].Health,6} Hp {inventory[i].Damage,3} Dmg {inventory[i].Resistance,3} Res {inventory[i].Agility,3} Agi", "WriteLine");
-                Console.WriteLine();
+                if (inventory[i].LevelCap > player.Level)
+                {
+                    Console.Write($"[{i}] ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{inventory[i].ItemType,-7} {inventory[i].ItemName,-15}");
+                    Console.WriteLine($"Needs lvl: {inventory[i].LevelCap}");
+                    Console.ResetColor();
+                    Console.Write($"{inventory[i].Health,6} Hp {inventory[i].Damage,3} Dmg {inventory[i].Resistance,3} Res {inventory[i].Agility,3} Agi");
+                    PrintColor.Yellow($"{inventory[i].Price,4} {'\u00A9',1}", "WriteLine");
+                }
+                else
+                {
+                    Console.Write($"[{i}] ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write($"{inventory[i].ItemType,-7} {inventory[i].ItemName,-15}");
+                    Console.WriteLine($"Needs lvl: {inventory[i].LevelCap}");
+                    Console.ResetColor();
+                    Console.Write($"{inventory[i].Health,6} Hp {inventory[i].Damage,3} Dmg {inventory[i].Resistance,3} Res {inventory[i].Agility,3} Agi");
+                    PrintColor.Yellow($"{inventory[i].Price,4} {'\u00A9',1}", "WriteLine");
+                }
             }
         }
         else
@@ -112,21 +128,6 @@ public class Inventory
             for (int i = 0; i < inventory.Count; i++)
             {
                 inventory[i].ShowStats(i, player);
-                // if (player.Level >= inventory[i].LevelCap)
-                // {
-                //     Console.ForegroundColor = ConsoleColor.Green;
-                //     Console.Write($"[{i + 1}] ");
-                //     inventory[i].ShowStats();
-                //     Console.ResetColor();
-                // }
-
-                // else 
-                // {
-                //     Console.ForegroundColor = ConsoleColor.Red;
-                //     Console.Write($"[{i + 1}] ");
-                //     inventory[i].ShowStats();
-                //     Console.ResetColor();
-                // }
             }
         }
         else

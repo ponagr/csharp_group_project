@@ -1,10 +1,5 @@
 public class Butcher : Enemy
 {
-
-    // ASSASSIN - Ta mycket skada, vara osynlig, snabb rörlighet
-    // KLUMPEN - Mycket skada, mycket hp, långsam
-    // PILBÅGSSKYTT - Attackerar från avstånd, lite hp & resistance
-
     public bool hasShield;
     public int bigHit;
     public bool needsRest;

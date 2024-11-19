@@ -6,7 +6,7 @@ class Program
     {
         Console.Clear();
         Console.CursorVisible = false;
-        Textures.PrintFirstScreen();
+        //Textures.PrintFirstScreen();
 
         bool inMenu = true;
 
@@ -71,7 +71,6 @@ class Program
     static void PlayGame(Player player, List<Map> maps)
     {
         bool gameOver = false;
-        //int level = 0; // För att börja på första index i listan av maps
 
         while (!gameOver)
         {

@@ -332,7 +332,6 @@ public abstract class Map
             {
                 player.OpenInventory(player);  
                 return;
-                //PrintGameBoard(map, player);
             }
             if (keyPressed.Key == ConsoleKey.Q) //Använder Health-Potions
             {

@@ -85,7 +85,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         char[,] gameLevel = new char[,]
         {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23      
             { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' },
-            { '=', '@', ' ', ' ', ' ', ' ', ' ', '|', '#', ' ', ' ', '|', '$', '|', '#', ' ', ' ', '|', ' ', ' ', ' ', ' ', '|' },
+            { '=', '@', 'M', ' ', ' ', ' ', ' ', '|', '#', ' ', ' ', '|', '$', '|', '#', ' ', ' ', '|', ' ', ' ', ' ', ' ', '|' },
             { '|', '_', '_', '_', '_', '_', ' ', '|', ' ', ' ', ' ', '|', ' ', '|', '$', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', '|', ' ', '|', '_', '_', '_', '|', ' ', ' ', '|', ' ', '|' },
             { '|', ' ', '_', '_', '_', '_', '_', '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', '_', '|', ' ', '|' },
@@ -111,7 +111,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         char[,] cellarLevel = new char[,]
         {  //  1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23      // DISARMA MINOR?!
             { '_', '_', '_', '_', '_', '_', '_' },
-            { ')', '@', ' ', ' ', '£', 'M', '_' },
+            { ')', '@', ' ', ' ', ' ', 'M', '_' },
             { '_', ' ', ' ', ' ', '_', '_', '_' },
             { '_', ' ', ' ', '¤', ' ', ' ', '_' },
             { '_', ' ', ' ', ' ', ' ', ' ', '_' },
@@ -144,21 +144,35 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
 
         List<Item> itemsLevel2 = new List<Item>() {
         new Consumable(),
-        new THelm("Greater Plåthjälm", 5, 20, 15, 0, 4),
+        new THelm("Plåtsmula", 5, 20, 15, 0, 4),
         new THelm("Truckerkeps", 5, 10, 5, 20, 3),
-        new TWeapon("SplitYouInTwo", 18, 5, 0, 10, 3),
+        new TWeapon("SplitUIn2", 18, 5, 0, 10, 3),
         new TWeapon("Stomper", 20, 7, 0, 5, 4),
         new TBoots("Springskor", 0, 15, 5, 20, 3),
         new TBoots("AirMax", 0, 17, 10, 20, 4),
-        new TGloves("GangsterGloves", 10, 20, 15, 0, 4),
+        new TGloves("G'Gloves", 10, 20, 15, 0, 4),
         new TGloves("Tummisar", 8, 15, 12, 5, 3),
         new TBreastPlate("Chainmail", 5, 20, 20, 0, 4),
-        new TBreastPlate("GoreTex-jacka", 5, 17, 10, 20, 3),
+        new TBreastPlate("GoreTex", 5, 17, 10, 20, 3),
+        new TLegs("Kalasbyxor", 5, 20, 10, 15, 3),
+        new TLegs("Adidas", 7, 15, 12, 20, 4)};
+        
+        List<Item> merchantItems = new List<Item>() {
+        new THelm("Plåtsmula", 5, 20, 15, 0, 4),
+        new THelm("Truckerkeps", 5, 10, 5, 20, 3),
+        new TWeapon("SplitUIn2", 18, 5, 0, 10, 3),
+        new TWeapon("Stomper", 20, 7, 0, 5, 4),
+        new TBoots("Springskor", 0, 15, 5, 20, 3),
+        new TBoots("AirMax", 0, 17, 10, 20, 4),
+        new TGloves("G'Gloves", 10, 20, 15, 0, 4),
+        new TGloves("Tummisar", 8, 15, 12, 5, 3),
+        new TBreastPlate("Chainmail", 5, 20, 20, 0, 4),
+        new TBreastPlate("GoreTex", 5, 17, 10, 20, 3),
         new TLegs("Kalasbyxor", 5, 20, 10, 15, 3),
         new TLegs("Adidas", 7, 15, 12, 20, 4)};
 
         List<Chest> chests = new List<Chest>() { new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2) };
-        Merchant merchant = new Merchant("Merchant", 1000, itemsLevel2);
+        Merchant merchant = new Merchant("Merchant", 1000, merchantItems);
 
         CellarMap level = new CellarMap(gameLevel, cellarLevel, invisibleAssassin, enemies, chests, butcherBoss, merchant);
         return level;
