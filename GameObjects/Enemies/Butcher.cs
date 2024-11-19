@@ -23,6 +23,7 @@ public class Butcher : Enemy
         healthBar = new HealthBar();
 
         hasShield = false;
+        XpDrop = 30;
     }
     public override void PrintCharacter(Enemy enemy)
     {
@@ -49,7 +50,7 @@ public class Butcher : Enemy
     {
         bigHit++;
         double damageDone = CalculateDamage(player, out bool attackCrit);
-        if (bigHit == 2) // BIGHIT
+        if (bigHit == 3) // BIGHIT
         {
             damageDone = BigHit(damageDone);
             bigHit = 0;
@@ -59,12 +60,12 @@ public class Butcher : Enemy
             attackMessage = "MASSIVE HIT!";
             return $"{damageDone:F0}";
         }
-        else if (needsRest) // Behöver vila
+        else if (needsRest) // Behöver vila för att slipap plussa bigHit++
         {
             specialAttack = false;
             needsRest = false;
-            attackMessage = "Butcher needs";
-            return "to rest!";
+            attackMessage = "Butcher needs rest";
+            return $"{0}";
         }
         else // Vanlig attack
         {
