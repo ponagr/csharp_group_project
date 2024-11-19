@@ -6,7 +6,7 @@ public static class PlayerUI
         int currentLine = Console.CursorTop;
         player.ShowHp();
 
-        Console.SetCursorPosition(15, currentLine);
+        Console.SetCursorPosition(16, currentLine);
         Console.ForegroundColor = ConsoleColor.Red;
         player.HealingPot.ShowItem();
         Console.ResetColor();

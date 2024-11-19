@@ -144,6 +144,22 @@ public static class Write
 //Klass med metoder för att skriva ut olika färger på texten
 public static class PrintColor
 {
+    public static void DarkRed(string stringToPrint, string Write)
+    {
+        if (Write == "WriteLine")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(stringToPrint);
+            Console.ResetColor();
+        }
+
+        else if (Write == "Write")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(stringToPrint);
+            Console.ResetColor();
+        }
+    }
     public static void Red(string stringToPrint, string Write)
     {
         if (Write == "WriteLine")

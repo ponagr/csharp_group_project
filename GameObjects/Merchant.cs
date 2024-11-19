@@ -278,7 +278,7 @@ public class Merchant
         }
         else
         {
-            Console.WriteLine("Wrongk inmatning");
+            Console.WriteLine("Wrong inmatning");
         }
     }
 }
