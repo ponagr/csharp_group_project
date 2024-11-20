@@ -21,11 +21,17 @@ public class Inventory
             Console.SetCursorPosition(45, 14);
             Console.WriteLine("Tryck 'E' för att hantera equipments");
             Console.SetCursorPosition(45, 15);
+            Console.WriteLine("Tryck 'D' för att slänga items");
+            Console.SetCursorPosition(45, 16);
             Console.WriteLine("Tryck 'C' för att gå tillbaka");
             var keyInput = Console.ReadKey(true);
             if (keyInput.Key == ConsoleKey.E)
             {
                 EquipmentMenu(player);  //Om användaren tycker 'E' så går vi in i denna metod, som låter användaren välja ett item i inventoryn för att equippa det
+            }
+            else if (keyInput.Key == ConsoleKey.D)
+            {
+                DropEquipment(player);
             }
             else if (keyInput.Key == ConsoleKey.C)
             {
@@ -110,16 +116,7 @@ public class Inventory
 
             if (int.TryParse(strInput, out index) && index >= 1 && index <= player.Inventory.inventory.Count) // Försök att parsa inmatningen till ett heltal
             {
-                Console.WriteLine("Vill du sätta på dig eller slänga itemet? ([E]quip/[D]iscard)");
-                var keyInput = Console.ReadKey(true);
-                if (keyInput.Key == ConsoleKey.E) // Om användaren trycker 'E', equippa itemet
-                {
-                    PlayerEquipment.CheckGearType(player, player.Inventory.inventory[index - 1]);
-                }
-                else if (keyInput.Key == ConsoleKey.D) // Om användaren trycker 'D', släng itemet
-                {
-                    player.Inventory.inventory.RemoveAt(index - 1);
-                }
+                PlayerEquipment.CheckGearType(player, player.Inventory.inventory[index - 1]);
                 break;  // Avsluta loop
             }
             else
@@ -146,4 +143,36 @@ public class Inventory
         Console.WriteLine();
     }
 
+    private void DropEquipment(Player player)
+    {
+        Console.Clear();
+                PlayerEquipment.ShowWornGear(player);   // Skriv ut gear som player har equippat
+                Console.WriteLine();
+                player.Inventory.ShowEquipmentInventory(player);  // Skriv ut gear som player har i inventory tillsammans med gearens stats
+
+                Console.WriteLine("Välj ett item för att slänga ([C] - tillbaka):");
+
+                while (true)
+                {
+                    var input = Console.ReadKey(true);  // Läs användarens inmatning utan att visa den på skärmen
+                    if (input.Key == ConsoleKey.C)  // Om användaren trycker 'C', gå tillbaka till InventoryUI
+                    {
+                        return;
+                    }
+
+                    string strInput = input.KeyChar.ToString();  // Om inmatningen inte är 'C', hantera den som ett val
+                    int index;
+
+                    if (int.TryParse(strInput, out index) && index >= 1 && index <= player.Inventory.inventory.Count) // Försök att parsa inmatningen till ett heltal
+                    {
+                        
+                        player.Inventory.inventory.RemoveAt(index - 1);
+                        break;  // Avsluta loop
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ogiltigt val, välj ett giltigt index eller tryck [C] för att gå tillbaka.");
+                    }
+                }
+    }
 }
