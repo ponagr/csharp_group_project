@@ -45,6 +45,7 @@ class Program
                 case ConsoleKey.D1:
                     Player player = new Player("Player");
                     List<Map> maps = [AddMaps.Level1(), AddMaps.Level2(), AddMaps.Level3(), AddMaps.Level4()];
+
                     Console.SetCursorPosition(40, 11);
                     Console.WriteLine("Whats your name?");
                     Console.SetCursorPosition(60, 11);
@@ -84,8 +85,19 @@ class Program
                 Console.Clear();
                 Console.WriteLine("Du dog"); // LÄGG IN EN ANIMATION
                 Textures.PrintDeadText();
-                Console.ReadKey(true);
-                gameOver = true;
+                Score score = new Score(player);
+                score.PrintScore();
+                Console.WriteLine("Vill du avsluta eller börja om? [A]vsluta/[B]örja om");
+                var choice = Console.ReadKey(true);
+                if (choice.Key == ConsoleKey.B)
+                {
+                    gameOver = true;
+                }
+                else if (choice.Key == ConsoleKey.A)
+                {
+                    Environment.Exit(0);
+                }
+                //gameOver = true;
             }
         }
     }

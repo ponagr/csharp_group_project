@@ -34,6 +34,12 @@ public class Player : GameObject
         get { return BaseResistance + BonusResistance; }
     }
 
+    public int ChestsLooted { get; set; }
+    public int EnemiesKilled { get; set; }
+    public int BossesKilled { get; set; }
+    public int HeartsPickedUp { get; set; }
+    public int TrapsTriggered { get; set; }
+
     public Inventory Inventory { get; set; } // objektet som skapas innehåller en lista av items
 
     public Item[] EquippedGear { get; set; } = new Item[6];
@@ -51,6 +57,11 @@ public class Player : GameObject
         BaseResistance = 5;
         BaseAgility = 10;
         MapLevel = 0;
+        ChestsLooted = 0;
+        EnemiesKilled = 0;
+        BossesKilled = 0;
+        HeartsPickedUp = 0;
+        TrapsTriggered = 0;
 
         HealingPot = new Consumable();
         Inventory = new Inventory();
@@ -75,6 +86,7 @@ public class Player : GameObject
     #region LOOT
     public void Loot(Chest chest)     //Lägg till Item till inventory
     {
+        ChestsLooted++;
         Item item; // Skapar en referens till ett item
         if (Inventory.inventory.Count < 10)
         {

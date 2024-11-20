@@ -39,6 +39,7 @@ public abstract class Map
         {
             enemies.RemoveAt(0);
             gameMap[newX, newY] = Empty;
+            player.EnemiesKilled++;
         }
     }
     #endregion
@@ -53,6 +54,7 @@ public abstract class Map
         if (assassin.CurrentHp < 1)
         {
             gameMap[newX, newY] = Empty;
+            player.EnemiesKilled++;
         }
     }
     #endregion
@@ -63,6 +65,7 @@ public abstract class Map
         if (boss.CurrentHp < 1)
         {
             gameMap[newX, newY] = Empty;
+            player.BossesKilled++;
         }
     }
     #endregion
@@ -99,6 +102,7 @@ public abstract class Map
     #region HEART
     internal static void HandleHeart(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på hjärta
     {
+        player.HeartsPickedUp++;
         player.HealingPot.Ammount = 5;
         player.CurrentHp = player.TotalHp;
         HandleEmpty(gameMap, posX, posY, newX, newY);
@@ -108,6 +112,7 @@ public abstract class Map
     #region TRAP
     internal static void HandleTrap(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på mina
     {
+        player.TrapsTriggered++;
         player.CurrentHp -= 20;
         HandleEmpty(gameMap, posX, posY, newX, newY);
     }
