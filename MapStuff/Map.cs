@@ -132,7 +132,6 @@ public abstract class Map
     {
         Console.Clear();
         player.MapLevel--;
-       // Console.WriteLine("Du gick tillbaka en nivå");
         Textures.PrintLoading();
     }
     #endregion

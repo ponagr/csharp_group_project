@@ -56,7 +56,7 @@ public class Merchant
         // Lägg till textures där merchant säger tack för att vi räddat honom från fienden
         if (FirstEncounter)
         {
-            //Textures.PrintSavedMerchant();
+            Textures.PrintSavedMerchant();
             FirstEncounter = false;
 
             var choice = Console.ReadKey(true); // För att slippa trycka enter

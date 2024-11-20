@@ -16,7 +16,7 @@ public class Chest
             itemstoAdd.Add(items[itemIndex]);       //Lägger till random items från listan som innehåller alla items som finns i spelet
         }
         Random goldDrop = new Random();
-        Gold = goldDrop.Next(0, 11);    //Random hur mycket guld en kista innehåller, om ens något guld alls
+        Gold = goldDrop.Next(0, 5);    //Random hur mycket guld en kista innehåller, om ens något guld alls
         ChestLoot = itemstoAdd;
     }
 

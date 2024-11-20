@@ -60,7 +60,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         new THelm("Tomteluva", 0, 5, 5, 15, 2),
         new TWeapon("Gimlis Yxa", 8, 5, 0, 6, 2),
         new TWeapon("Legolas Pilbåge", 8, 5, 5, 10, 1),
-        new TWeapon("Slunger", 9, 0, 5, 10, 2),
+        new TWeapon("Slunger", 9, 0, 5, 7, 2),
         new TBoots("Foppatofflor", 5, 0, 5, -5, 1),
         new TBoots("Träskor", 8, 5, 5, 0, 2),
         new TGloves("Plåthandskar", 5, 10, 10, 5, 2),
@@ -112,7 +112,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
             { '_', ' ', ' ', ' ', '_', '_', '_' },
             { '_', ' ', ' ', '¤', ' ', ' ', '_' },
             { '_', ' ', ' ', ' ', ' ', ' ', '_' },
-            { '_', '$', ' ', ' ', ' ', '#', '_' },
+            { '_', '$', ' ', ' ', ' ', '$', '_' },
             { '_', '_', '_', '_', '_', '_', '_' },
         };
 
