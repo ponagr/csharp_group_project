@@ -10,7 +10,7 @@ public class AssassinBoss : Assassin
         CurrentHp = TotalHp;
         BaseDamage = base.BaseDamage * 2;
         BaseResistance = base.BaseResistance * 1.75;
-        BaseAgility = base.BaseAgility * 2;
+        BaseAgility = base.BaseAgility * 1.4;
 
         healthBar = new HealthBar();
 
