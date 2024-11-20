@@ -118,7 +118,7 @@ public abstract class Map
     {
         Console.Clear();
         player.MapLevel++;
-        Console.WriteLine("Du klarade nivån");
+       // Console.WriteLine("Du klarade nivån");
         Textures.PrintLoading();
     }
     #endregion
@@ -128,7 +128,7 @@ public abstract class Map
     {
         Console.Clear();
         player.MapLevel--;
-        Console.WriteLine("Du gick tillbaka en nivå");
+       // Console.WriteLine("Du gick tillbaka en nivå");
         Textures.PrintLoading();
     }
     #endregion

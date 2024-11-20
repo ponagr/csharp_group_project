@@ -104,7 +104,7 @@ public static partial class Textures
                 if (loadingBar[j] == " |")
                 {
                     Console.BackgroundColor = ConsoleColor.Magenta;
-                    Console.Write(loadingBar[j]);      
+                    Console.Write(loadingBar[j]);
                     Console.ResetColor();
                 }
                 else
@@ -191,7 +191,52 @@ public static partial class Textures
             Console.ResetColor();
         }
     }
-#endregion
+    #endregion
+    public static void PrintCongratz()
+    {
+// ______ ______  ___   __   ______  ______     ____  _____ ______
+/// /     | | | | | |\  | | / /    | | | \ \   / /\ \  | |     / /
+//| |     | | | | | |\\ | | | | ___  | |__|_| / /__\ \ | |    / /
+//| |     | | | | | | \\| | | |  | | | | \ \  | |  | | | |   / /
+//|_|____ |_|_|_| |_|  \|_|  \_\_|_| |_|  \_\ |_|  |_| |_|  /_/___  
+
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.SetCursorPosition(25, 6);
+        Console.WriteLine(" ______ ______  ___   ___  ______  ______     ____  _____ ______");
+        Console.SetCursorPosition(25, 7);
+        Console.WriteLine("/ /     | | | | | |\\  | | / /    | | | \\ \\   / /\\ \\  | |     / /");
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.SetCursorPosition(25, 8);
+        Console.WriteLine("| |     | | | | | |\\\\ | | | | ___  | |__|_| / /__\\ \\ | |    / /");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.SetCursorPosition(25, 9);
+        Console.WriteLine("| |     | | | | | | \\\\| | | |  | | | | \\ \\  | |  | | | |   / /");
+        Console.SetCursorPosition(25, 10);
+        Console.WriteLine("|_|____ |_|_|_| |_|  \\|_|  \\_\\_|_| |_|  \\_\\ |_|  |_| |_|  /_/___");
+        
+    
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.SetCursorPosition(26, 12);
+        // Console.WriteLine(" ---by---pontrik---");
+        Console.WriteLine("by == Pontus Ågren och Henrik Pilback                               ");
+
+        while (!Console.KeyAvailable)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.SetCursorPosition(47, 14);
+            Console.WriteLine("  PRESS TO QUIT	");
+
+            Thread.Sleep(300);
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(47, 14);
+            Console.WriteLine("  PRESS TO QUIT	");
+
+            Thread.Sleep(300);
+            Console.ResetColor();
+        }
+    }
 
 }
 

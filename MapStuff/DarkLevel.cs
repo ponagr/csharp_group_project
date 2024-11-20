@@ -171,6 +171,7 @@ public class DarkMap : Map
         }
         else if (Maplevel[newX, newY] == Door || Maplevel[newX, newY] == Door2)
         {
+            //Textures.PrintCongratz();
             NextLevel(player);
         }
         else if (Maplevel[newX, newY] == GoBack)

@@ -6,6 +6,7 @@ class Program
     {
         Console.Clear();
         Console.CursorVisible = false;
+        //Textures.PrintCongratz();
         //Textures.PrintFirstScreen();
 
         bool inMenu = true;
@@ -43,7 +44,7 @@ class Program
             {
                 case ConsoleKey.D1:
                     Player player = new Player("Player");
-                    List<Map> maps = [AddMaps.Level1(), AddMaps.Level2(), AddMaps.Level3()];
+                    List<Map> maps = [AddMaps.Level4(), AddMaps.Level1(), AddMaps.Level2(), AddMaps.Level3()];
                     Console.SetCursorPosition(40, 11);
                     Console.WriteLine("Whats your name?");
                     Console.SetCursorPosition(60, 11);
