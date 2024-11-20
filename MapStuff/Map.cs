@@ -123,7 +123,6 @@ public abstract class Map
     {
         Console.Clear();
         player.MapLevel++;
-       // Console.WriteLine("Du klarade nivån");
         Textures.PrintLoading();
     }
     #endregion

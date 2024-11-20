@@ -7,7 +7,7 @@ class Program
         Console.Clear();
         Console.CursorVisible = false;
         //Textures.PrintCongratz();
-        //Textures.PrintFirstScreen();
+        Textures.PrintFirstScreen();
 
         bool inMenu = true;
 

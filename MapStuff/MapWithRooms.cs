@@ -168,7 +168,12 @@ public class MapWithRooms : Map
             }
             else if (Maplevel[newX, newY] == Door || Maplevel[newX, newY] == Door2)
             {
-                NextLevel(player);
+                //NextLevel(player);
+                Textures.PrintCongratz();
+                Score score = new Score(player);
+                score.PrintScore();
+                // Visa score och highscore
+                // Fråga om vi vill spela igen eller avsluta
                 break;
             }
             else if (Maplevel[newX, newY] == GoBack)

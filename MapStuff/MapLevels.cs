@@ -58,7 +58,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         {new Consumable(),
         new THelm("Plåthjälm", 5, 10, 10, 0, 1),
         new THelm("Tomteluva", 0, 5, 5, 15, 2),
-        new TWeapon("Gimlis Yxa", 10, 10, 0, 10, 2),
+        new TWeapon("Gimlis Yxa", 8, 5, 0, 6, 2),
         new TWeapon("Legolas Pilbåge", 8, 5, 5, 10, 1),
         new TWeapon("Slunger", 9, 0, 5, 10, 2),
         new TBoots("Foppatofflor", 5, 0, 5, -5, 1),
@@ -143,32 +143,32 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
 
         List<Item> itemsLevel2 = new List<Item>() {
         new Consumable(),
-        new THelm("Plåtsmula", 5, 20, 15, 0, 4),
-        new THelm("Truckerkeps", 5, 10, 5, 20, 3),
-        new TWeapon("SplitUIn2", 18, 5, 0, 10, 3),
-        new TWeapon("Stomper", 20, 7, 0, 5, 4),
-        new TBoots("Springskor", 0, 15, 5, 20, 3),
-        new TBoots("AirMax", 0, 17, 10, 20, 4),
-        new TGloves("G'Gloves", 10, 20, 15, 0, 4),
-        new TGloves("Tummisar", 8, 15, 12, 5, 3),
-        new TBreastPlate("Chainmail", 5, 20, 20, 0, 4),
-        new TBreastPlate("GoreTex", 5, 17, 10, 20, 3),
-        new TLegs("Kalasbyxor", 5, 20, 10, 15, 3),
-        new TLegs("Adidas", 7, 15, 12, 20, 4)};
+        new THelm("Plåtsmula", 5, 20, 15, 0, 5),
+        new THelm("Truckerkeps", 5, 10, 5, 20, 4),
+        new TWeapon("SplitUIn2", 18, 5, 0, 10, 4),
+        new TWeapon("Stomper", 20, 7, 0, 5, 5),
+        new TBoots("Springskor", 0, 15, 5, 20, 4),
+        new TBoots("AirMax", 0, 17, 10, 20, 5),
+        new TGloves("G'Gloves", 10, 20, 15, 0, 5),
+        new TGloves("Tummisar", 8, 15, 12, 5, 4),
+        new TBreastPlate("Chainmail", 5, 20, 20, 0, 5),
+        new TBreastPlate("GoreTex", 5, 17, 10, 20, 4),
+        new TLegs("Kalasbyxor", 5, 20, 10, 15, 4),
+        new TLegs("Adidas", 7, 15, 12, 20, 5)};
 
         List<Item> merchantItems = new List<Item>() {
-        new THelm("Plåtsmula", 5, 20, 15, 0, 4),
-        new THelm("Truckerkeps", 5, 10, 5, 20, 3),
-        new TWeapon("SplitUIn2", 18, 5, 0, 10, 3),
-        new TWeapon("Stomper", 20, 7, 0, 5, 4),
-        new TBoots("Springskor", 0, 15, 5, 20, 3),
-        new TBoots("AirMax", 0, 17, 10, 20, 4),
-        new TGloves("G'Gloves", 10, 20, 15, 0, 4),
-        new TGloves("Tummisar", 8, 15, 12, 5, 3),
-        new TBreastPlate("Chainmail", 5, 20, 20, 0, 4),
-        new TBreastPlate("GoreTex", 5, 17, 10, 20, 3),
-        new TLegs("Kalasbyxor", 5, 20, 10, 15, 3),
-        new TLegs("Adidas", 7, 15, 12, 20, 4)};
+        new THelm("Plåtsmula", 5, 20, 15, 0, 5),
+        new THelm("Truckerkeps", 5, 10, 5, 20, 4),
+        new TWeapon("SplitUIn2", 18, 5, 0, 10, 4),
+        new TWeapon("Stomper", 20, 7, 0, 5, 5),
+        new TBoots("Springskor", 0, 15, 5, 20, 4),
+        new TBoots("AirMax", 0, 17, 10, 20, 5),
+        new TGloves("G'Gloves", 10, 20, 15, 0, 5),
+        new TGloves("Tummisar", 8, 15, 12, 5, 4),
+        new TBreastPlate("Chainmail", 5, 20, 20, 0, 5),
+        new TBreastPlate("GoreTex", 5, 17, 10, 20, 4),
+        new TLegs("Kalasbyxor", 5, 20, 10, 15, 4),
+        new TLegs("Adidas", 7, 15, 12, 20, 5)};
 
         List<Chest> chests = new List<Chest>() { new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2), new Chest(itemsLevel2) };
         Merchant merchant = new Merchant("Merchant", 1000, merchantItems);
@@ -192,7 +192,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
             { '|', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '|' },
             { '|', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '$', '|', '_', '_', '_', '_', '_', '_', '_', '_', ' ', '|' },
             { '|', '£', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '$', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
-            { '|', ' ', '|', '#', ' ', ' ', ' ', ' ', ' ', ' ', '|', '£', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
+            { '|', ' ', '|', '#', ' ', ' ', ' ', ' ', ' ', 'H', '|', '£', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|' },
             { '|', ' ', '|', '_', '_', '_', '_', '_', '_', '_', '_', ' ', '|', ' ', '|', '_', '_', ' ', '_', '_', '|', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '£', '|', '#', '|', ' ', ' ', ' ', '|', ' ', '|' },
             { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '|', ' ', '|', ' ', ' ', ' ', '|', ' ', '|' },
@@ -300,12 +300,12 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
 
         MageBoss mageBoss = new MageBoss(4, "IllusiUno");
         Assassin Massassin = new Assassin(4, "SerInga-Lill");
-        
-        List<Enemy> enemies1 = new List<Enemy> {assassin, assassin1};
-        List<Enemy> enemies2 = new List<Enemy> {assassin2, assassin3, mage, mage1, mage2};
-        List<Enemy> enemies3 = new List<Enemy> {mage3, archer, archer1, archer2};
-        List<Enemy> enemies4 = new List<Enemy> {archer3, archer4};
-        List<Enemy> enemiesBeforeBoss = new List<Enemy> {butcher, butcher1, butcher2, butcher3 };
+
+        List<Enemy> enemies1 = new List<Enemy> { assassin, assassin1 };
+        List<Enemy> enemies2 = new List<Enemy> { assassin2, assassin3, mage, mage1, mage2 };
+        List<Enemy> enemies3 = new List<Enemy> { mage3, archer, archer1, archer2 };
+        List<Enemy> enemies4 = new List<Enemy> { archer3, archer4 };
+        List<Enemy> enemiesBeforeBoss = new List<Enemy> { butcher, butcher1, butcher2, butcher3 };
 
         // List<Enemy> enemies1 = new List<Enemy> {archer1};
         // List<Enemy> enemies2 = new List<Enemy> {archer2};

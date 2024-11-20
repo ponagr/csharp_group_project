@@ -178,7 +178,7 @@ public class Player : GameObject
     #region XP OCH LEVELUP
     public void EnemyKilled(Enemy enemy) // Ger xp-drop, anropar textures, kontrollerar om player levlar upp
     {
-        double xpDrop = MaxXp * 0.1;
+        double xpDrop = MaxXp * 0.05;
         int xp = Convert.ToInt32(xpDrop);
         xp = xp + enemy.XpDrop;
         CurrentXp += xp;

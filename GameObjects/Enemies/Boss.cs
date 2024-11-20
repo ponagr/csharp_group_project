@@ -68,7 +68,7 @@ public class ButcherBoss : Butcher
     public ButcherBoss(int level, string name) : base(level, name)
     { 
         base.BaseHp = base.BaseHp * 2.5;
-        base.BaseDamage = base.BaseDamage * 2;
+        base.BaseDamage = base.BaseDamage * 1.5;
         CurrentHp = TotalHp;
         base.BaseResistance = base.BaseResistance * 1.5;
         base.BaseAgility = base.BaseAgility * 1.5;
