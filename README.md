@@ -2,6 +2,8 @@
 
 ## Prioriterade Funktioner
 
+FIXA HIGHSCORE plussa ihop massa olika värden, för enkel jsonsparning.
+
 ### Map (main)
 - [x] Tydligt flöde för spelhantering.
 
