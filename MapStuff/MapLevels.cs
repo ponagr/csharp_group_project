@@ -35,28 +35,25 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         };
 
         Assassin assassin = new Assassin(1, "Fegkräk");
-        Butcher butcher = new Butcher(1, "Slaktarn");
         Archer archer = new Archer(1, "Lena-Långbåge");
         Mage mage = new Mage(1, "Magiska-Lars");
         Assassin assassin1 = new Assassin(1, "Assassinator");
-        Butcher butcher1 = new Butcher(1, "Gimli");
         Mage mage1 = new Mage(1, "Gandalf");
         Archer archer1 = new Archer(1, "Legolas");
         Archer archer2 = new Archer(1, "RubenInTheHood");
         Archer archer3 = new Archer(1, "Fia-Falköga");
         Assassin assassin4 = new Assassin(1, "Kassassin");
-        Butcher butcher3 = new Butcher(1, "BärzJerker");
         Mage mage2 = new Mage(2, "Moon Queen");
         Mage mage3 = new Mage(2, "Magic-Mike");
-        Butcher butcher2 = new Butcher(1, "Butchie");
+        Butcher butcher = new Butcher(1, "Butchie");
         Assassin assassin3 = new Assassin(1, "Asian");
 
         Assassin assassinInvisable = new Assassin(1, "Inge-visable");
-        AssassinBoss assassinBoss = new AssassinBoss(1, "Smygehuk");
+        ArcherBoss archerBoss = new ArcherBoss(1, "PilIMagenAB");
 
 
         List<Enemy> enemiesLevel1 = new List<Enemy> {archer, archer3, mage, assassin, assassin1, archer1, archer2, mage1,
-        assassin3, mage3, assassin4, mage2, butcher2};
+        assassin3, mage3, assassin4, mage2, butcher};
         List<Item> items = new List<Item>()
         {new Consumable(),
         new THelm("Plåthjälm", 5, 10, 10, 0, 1),
@@ -74,7 +71,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         new TBreastPlate("Rostig rustning", 5, 10, 10, 0, 2) };
         List<Chest> chestsLevel1 = new List<Chest>() { new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items), new Chest(items) };
 
-        RegularMap level1 = new RegularMap(gameLevel1, enemiesLevel1, assassinInvisable, chestsLevel1, assassinBoss, null);
+        RegularMap level1 = new RegularMap(gameLevel1, enemiesLevel1, assassinInvisable, chestsLevel1, archerBoss, null);
         return level1;
     }
     #endregion

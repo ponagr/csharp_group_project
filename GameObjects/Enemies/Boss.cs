@@ -1,3 +1,4 @@
+#region Assassinboss
 public class AssassinBoss : Assassin
 {
     bool specialAttack;
@@ -7,7 +8,7 @@ public class AssassinBoss : Assassin
         Description = "Assassin BOSS";
         BaseHp = base.BaseHp * 2.5; 
         CurrentHp = TotalHp;
-        BaseDamage = base.BaseDamage * 1.75;
+        BaseDamage = base.BaseDamage * 2;
         BaseResistance = base.BaseResistance * 1.75;
         BaseAgility = base.BaseAgility * 2;
 
@@ -15,7 +16,6 @@ public class AssassinBoss : Assassin
 
         isVisable = false;
         XpDrop = 50;
-
     }
 
     // Olika animationer beroende på attack
@@ -59,6 +59,8 @@ public class AssassinBoss : Assassin
         }    
     }
 }
+#endregion
+#region  Butcherboss
 public class ButcherBoss : Butcher
 {
     bool specialAttack;
@@ -123,27 +125,67 @@ public class ButcherBoss : Butcher
         }
     } 
 }
+#endregion
 
 
-
+#region ArcherBoss
 public class ArcherBoss : Archer
 {
+    bool specialAttack;
     public ArcherBoss(int level, string name) : base(level, name)
     { 
-        base.BaseHp = (base.BaseHp) * 1.5;
+        base.BaseHp = (base.BaseHp) * 3;
         CurrentHp = TotalHp;
-        base.BaseDamage = (base.BaseDamage) * 1.5;
-        base.BaseResistance = (base.BaseResistance) * 1.5;
-        base.BaseAgility = (base.BaseAgility) * 1.5;
+        base.BaseDamage = (base.BaseDamage) * 0.75;
+        base.BaseResistance = (base.BaseResistance) * 2;
+        base.BaseAgility = (base.BaseAgility) * 3;
         XpDrop = 100;
+    }
+
+    double SpecialAttack(double damage, out string attackMessage)
+    {
+        damage = damage * 5;
+        attackMessage = "5 ARROWS!!!";
+        return damage;
     }
 
     public override string Attack(Player player, out string attackMessage)
     {
-        return base.Attack(player, out attackMessage);
-        
+        double damage;
+        damage = CalculateDamage(player, out bool attackCrit);
+        Random random = new Random();
+        if (random.Next(0,3) == 1)
+        {
+            specialAttack = true; // Sätts på true för textures, false nästa runda
+            damage = SpecialAttack(damage, out attackMessage);
+            if (attackCrit)
+            {
+                attackMessage = "CRIT " + attackMessage; 
+            }
+            player.CurrentHp -= damage;
+            return $"{damage:F0}";
+        }
+        else
+        {
+            specialAttack = false;
+            return base.Attack(player, out attackMessage);
+        }
+    } 
+ 
+      public override void CharacterAttackAnimation(Enemy enemy)
+    {
+        if (!specialAttack)
+        {
+            Textures.ArcherAttackAnimation();
+        }
+        else 
+        {
+            Textures.ArcherBossSpecialAttackAnimation();
+        }   
     }
 }
+#endregion
+#region MageBoss
 
 public class MageBoss : Mage
 {
@@ -153,7 +195,7 @@ public class MageBoss : Mage
         base.BaseDamage = base.BaseDamage * 1.5;
         base.BaseResistance = base.BaseResistance * 1.5;
         base.BaseAgility = base.BaseAgility * 1.5;
-        XpDrop = 125;
+        XpDrop = 50;
     }
 
     public override string Attack(Player player, out string attackMessage)
@@ -162,3 +204,4 @@ public class MageBoss : Mage
         
     }
 }
+#endregion
