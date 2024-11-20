@@ -164,7 +164,7 @@ public static class Combat
                         Console.WriteLine($"{player.Name}");
                         Console.SetCursorPosition(18, 7);
                         Console.WriteLine("is ready to defend");
-                        //Textures för defendposition för player
+                        Textures.playerDefend(5, 0);
                         break;
                     case ConsoleKey.C:
                         return;

@@ -156,9 +156,9 @@ public class Player : GameObject
         Random rndDamage = new Random();
         double damageNegation = enemy.TotalResistance * 0.2; // För att enemies resistance ska räknas med
         totalDamageDone = damage + rndDamage.Next(0, 10) - damageNegation;
-        
+
         //Skickar in players skada, men avgör sedan i enemy.TakeDamage metoden OM attacken blir dodgad/blockad eller om fienden är "unhittable" osv
-        printDamage = enemy.TakeDamage(totalDamageDone, attackCrit, out attackMessage); 
+        printDamage = enemy.TakeDamage(totalDamageDone, attackCrit, out attackMessage);
 
         return printDamage;
     }
@@ -221,5 +221,6 @@ public class Player : GameObject
         attackMessage = "DEFENDED";
         return $"{totalDamage:F0}";
     }
+
     #endregion
 }

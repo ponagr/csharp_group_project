@@ -45,5 +45,18 @@ public static partial class Textures
         Console.ResetColor();
         Console.WriteLine();
     }
+    public static void playerDefend(int startLine, int linePosition)
+    {
+        List<string> textForRow = new List<string>();
+        textForRow.Add("          ");
+        textForRow.Add("     0    ");
+        textForRow.Add("    ||--[]");
+        textForRow.Add("    /\\   ");
+        textForRow.Add("   /  \\  ");
+        Console.ForegroundColor = ConsoleColor.Green;
+        Write.MultipleLines(textForRow, startLine, linePosition);
+        Console.ResetColor();
+        Console.WriteLine();
+    }
     #endregion
 }
