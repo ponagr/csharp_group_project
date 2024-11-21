@@ -6,11 +6,11 @@ public class AssassinBoss : Assassin
     { 
         Name = "Smygehuk";
         Description = "Assassin BOSS";
-        BaseHp = base.BaseHp * 2.5; 
+        BaseHp = base.BaseHp * 2.2; 
         CurrentHp = TotalHp;
         BaseDamage = base.BaseDamage * 2;
         BaseResistance = base.BaseResistance * 1.75;
-        BaseAgility = base.BaseAgility * 1.3;
+        BaseAgility = base.BaseAgility * 1.2;
 
         healthBar = new HealthBar();
 
@@ -134,7 +134,7 @@ public class ArcherBoss : Archer
     bool specialAttack;
     public ArcherBoss(int level, string name) : base(level, name)
     { 
-        base.BaseHp = (base.BaseHp) * 3;
+        base.BaseHp = (base.BaseHp) * 5;
         CurrentHp = TotalHp;
         base.BaseDamage = (base.BaseDamage) * 0.75;
         base.BaseResistance = (base.BaseResistance) * 2;
@@ -191,11 +191,11 @@ public class MageBoss : Mage
 {
     public MageBoss(int level, string name) : base(level, name)
     { 
-        base.BaseHp = base.BaseHp * 1.5;
-        base.BaseDamage = base.BaseDamage * 1.5;
-        base.BaseResistance = base.BaseResistance * 1.5;
+        base.BaseHp = base.BaseHp * 3;
+        base.BaseDamage = base.BaseDamage * 3;
+        base.BaseResistance = base.BaseResistance * 2;
         base.BaseAgility = base.BaseAgility * 1.5;
-        XpDrop = 50;
+        XpDrop = 150;
     }
 
     public override string Attack(Player player, out string attackMessage)

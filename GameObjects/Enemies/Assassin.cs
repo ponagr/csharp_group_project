@@ -15,7 +15,7 @@ public class Assassin : Enemy
         Description = "Assassin";
         BaseHp = (75 + random.Next(0, 25)) * multiplier;
         CurrentHp = TotalHp;
-        BaseDamage = (15 + random.Next(0, 10)) * multiplier;
+        BaseDamage = (20 + random.Next(0, 10)) * multiplier;
         BaseResistance = (0 + random.Next(0, 5)) * multiplier;
         BaseAgility = 15 * multiplier;
 

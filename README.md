@@ -19,6 +19,7 @@ FIXA HIGHSCORE plussa ihop massa olika värden, för enkel jsonsparning.
 
 ### GameObject - Enemy - Player
 - [x] Viktiga egenskaper och metoder för Player och Enemy.
+- [ ] När sceletons kommer så dödar vi de på ett slag men får en random skada automatiskt
 
 ### Combat
 - [x] Skapa visuella representationer, t.ex. streckgubbar, för Player och Enemy under combat.
