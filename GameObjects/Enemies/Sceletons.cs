@@ -16,6 +16,11 @@ public class Sceletons : Enemy
         XpDrop = 15;
     }
 
+    public override void PrintCharacter(Enemy enemy)
+    {
+        Textures.PrintSceletons();
+    }
+
     public override string TakeDamage(double damage, bool crit, out string attackMessage)
     {
         attackMessage = "";
