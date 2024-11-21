@@ -69,7 +69,7 @@ public class DarkMap : Map
                             PrintColor.Yellow(" M ", "Write");
 
                         else if (gameMap[i, j] == Coin)
-                            PrintColor.DarkYellow($" {gameMap[i, j]} ", "Write");
+                            PrintColor.DarkYellow($" {'\u00A9'} ", "Write");
 
                         else if (gameMap[i, j] == Wall || gameMap[i, j] == Terrain)
                             PrintColor.BackgroundDarkGray("   ", "Write");
