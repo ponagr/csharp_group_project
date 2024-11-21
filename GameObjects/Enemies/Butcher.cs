@@ -15,7 +15,7 @@ public class Butcher : Enemy
         BaseHp = (100 + random.Next(0, 25)) * multiplier;
         CurrentHp = TotalHp;
         BaseDamage = (23 + random.Next(0, 10)) * multiplier;
-        BaseResistance = (10 + random.Next(0, 5)) * multiplier;
+        BaseResistance = (15 + random.Next(0, 5)) * multiplier;
         BaseAgility = 5 * multiplier;
         bigHit = 1;
         specialAttack = false;

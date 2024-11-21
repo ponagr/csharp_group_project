@@ -8,7 +8,7 @@ public class Enemy : GameObject
     public virtual string TakeDamage(double damage, bool crit, out string attackMessage) // Tar emot printDamage från Players Attack(), kallas här för damage
     {
         Random rndDodge = new Random();           // DODGE
-        int dodgeChance = Convert.ToInt32(BaseAgility);
+        int dodgeChance = Convert.ToInt32(BaseAgility/2);
         int dodge = rndDodge.Next(0, 101);
         
         if (dodge <= dodgeChance)
@@ -39,7 +39,7 @@ public class Enemy : GameObject
     {   //För att kunna räkna ut damageNegation osv utan att använda base.Attack()
         Random rndCrit = new Random();
         double damageDone;
-        int critChange = Convert.ToInt32(BaseAgility);
+        int critChange = Convert.ToInt32(BaseAgility/2);
         int crit = rndCrit.Next(0, 101);
         double damage;
         attackCrit = false;
@@ -63,7 +63,7 @@ public class Enemy : GameObject
         double damageDone = CalculateDamage(player, out bool attackCrit);
 
         Random rndDodge = new Random();
-        int dodgeChance = Convert.ToInt32(BaseAgility);
+        int dodgeChance = Convert.ToInt32(player.TotalAgility/3);
         int dodge = rndDodge.Next(0, 101);
         if (dodge <= dodgeChance) // Om vi har mer baseAgility än den randomizade dodgen
         {
