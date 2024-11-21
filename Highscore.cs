@@ -1,28 +1,74 @@
+using System.Text.Json;
 public static class Highscore
 {
-    public static List<Score> Highscores { get; set; }
+    public static List<Score> Highscores { get; set; } // Innehåller bara en lista av scores (namn och score)
 
-
+    public static void SaveHighscore()
+    {
+        string json = JsonSerializer.Serialize(Highscores);
+        File.WriteAllText("highscore.json", json);
+    }
+    public static void LoadHighScore()
+    {
+        if (File.Exists("highscore.json"))
+        {
+            string json = File.ReadAllText("highscore.json");
+            List<Score> loadedHighscores = new List<Score>();
+            loadedHighscores = JsonSerializer.Deserialize<List<Score>>(json);
+            if (loadedHighscores != null)
+            {
+                Highscores = loadedHighscores;
+            }
+            else // Skapar om filen är tom
+            {
+                Highscores = new List<Score>();
+            }
+        }
+        else // Skapar om ingen fil finns
+        {
+            Highscores = new List<Score>();
+        }
+    }
     public static void AddScore(Player player)
     {
-        Highscores.Add(new Score(player));
+        Score score = new Score(player);
+        Highscores = Highscores.OrderByDescending(x => x.TotalScore).ToList();
+        if (score.TotalScore > Highscores[0].TotalScore) 
+        {   
+            Console.SetCursorPosition(46, 16);
+            PrintColor.Green("NEW HIGHSCORE: ", "Write");
+            score.PrintScore();
+        }
+        else
+        {
+            Console.SetCursorPosition(46, 16);
+            PrintColor.Green("SCORE: ", "Write");
+            score.PrintScore();
+        }
+        Highscores.Add(score);
+        SaveHighscore();
     }
 
     public static void ShowHighscore()
     {
         Highscores = Highscores.OrderByDescending(x => x.TotalScore).ToList();
-        for (int i = 0; i < 10; i++)
+        int linePosition = 46;
+        int startLine = 20;
+        for (int i = 0; i < Highscores.Count; i++)
         {
-            PrintColor.Yellow($"{i + 1}. {Highscores[i].TotalScore} points", "WriteLine");
-        }   
+            Console.SetCursorPosition(linePosition, startLine);
+            Console.WriteLine($"{i + 1}. {Highscores[i].PlayerName}- {Highscores[i].TotalScore} points");
+            startLine++;
+        }
     }
 }
 
-public class Score      //Lägga till en Score egenskap i Player?
+public class Score 
 {
     public int TotalScore { get; set; }
     public string PlayerName { get; set; }
 
+    public Score() { }
     public Score(Player player)
     {
         PlayerName = player.Name;
@@ -32,7 +78,6 @@ public class Score      //Lägga till en Score egenskap i Player?
     public void PrintScore()
     {
         PrintColor.Yellow($"{TotalScore} points", "WriteLine");
-        Console.ReadKey();
     }
 
     public int CountScore(Player player)
@@ -62,7 +107,6 @@ public class Score      //Lägga till en Score egenskap i Player?
                 score += item.Price;
             }
         }
-        
         return (int)score;
     }
 }

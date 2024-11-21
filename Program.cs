@@ -8,7 +8,8 @@ class Program
         Console.CursorVisible = false;
         //Textures.PrintCongratz();
         Textures.PrintFirstScreen();
-
+        Player player = new Player("Player");
+        Highscore.LoadHighScore();
         bool inMenu = true;
 
         while (inMenu)
@@ -27,7 +28,7 @@ class Program
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("        2. ");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Load Game");
+            Console.WriteLine("Highscores");
             Console.SetCursorPosition(40, 8);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("        3. ");
@@ -37,13 +38,11 @@ class Program
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("******************************");
             Console.ResetColor();
-            
             var choice = Console.ReadKey(true);
 
             switch (choice.Key)
             {
                 case ConsoleKey.D1:
-                    Player player = new Player("Player");
                     List<Map> maps = [AddMaps.Level1(), AddMaps.Level2(), AddMaps.Level3(), AddMaps.Level4()];
 
                     Console.SetCursorPosition(40, 11);
@@ -54,10 +53,12 @@ class Program
                     break;
 
                 case ConsoleKey.D2: // GREJER FÖR ATT LADDA, JSON
-
+                    //Textures.PrintCongratz();
+                    Highscore.ShowHighscore();
                     break;
 
                 case ConsoleKey.D3:
+                    Highscore.AddScore(player);
                     Console.WriteLine("quitting...");
                     inMenu = false;
                     Environment.Exit(0);
@@ -85,8 +86,7 @@ class Program
                 Console.Clear();
                 Console.WriteLine("Du dog"); // LÄGG IN EN ANIMATION
                 Textures.PrintDeadText();
-                Score score = new Score(player);
-                score.PrintScore();
+                Highscore.AddScore(player);
                 Console.WriteLine("Vill du avsluta eller börja om? [A]vsluta/[B]örja om");
                 var choice = Console.ReadKey(true);
                 if (choice.Key == ConsoleKey.B)

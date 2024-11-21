@@ -18,7 +18,7 @@ public class MapWithRooms : Map
         Assassin = assassin;
     }
 
-    public void HandleWalls() // Kollar om enemies listorna är tomma - ta isåfall bort en vägg
+    protected void HandleWalls() // Kollar om enemies listorna är tomma - ta isåfall bort en vägg
     {
         if (Enemies1.Count == 0)
         {
@@ -168,13 +168,11 @@ public class MapWithRooms : Map
             }
             else if (Maplevel[newX, newY] == Door || Maplevel[newX, newY] == Door2)
             {
-                //NextLevel(player);
                 Console.Clear();
+                Highscore.AddScore(player);
                 Textures.PrintCongratz();
                 Thread.Sleep(4000);
-                Console.Clear();
-                Score score = new Score(player);
-                score.PrintScore();
+                Console.WriteLine();
                 Console.ReadKey();
                 // Visa score och highscore
                 // Fråga om vi vill spela igen eller avsluta

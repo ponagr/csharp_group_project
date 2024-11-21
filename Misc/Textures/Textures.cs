@@ -194,12 +194,12 @@ public static partial class Textures
     #endregion
     public static void PrintCongratz()
     {
-// ______ ______  ___   __   ______  ______     ____  _____ ______
-/// /     | | | | | |\  | | / /    | | | \ \   / /\ \  | |     / /
-//| |     | | | | | |\\ | | | | ___  | |__|_| / /__\ \ | |    / /
-//| |     | | | | | | \\| | | |  | | | | \ \  | |  | | | |   / /
-//|_|____ |_|_|_| |_|  \|_|  \_\_|_| |_|  \_\ |_|  |_| |_|  /_/___  
-
+        // ______ ______  ___   __   ______  ______     ____  _____ ______
+        /// /     | | | | | |\  | | / /    | | | \ \   / /\ \  | |     / /
+        //| |     | | | | | |\\ | | | | ___  | |__|_| / /__\ \ | |    / /
+        //| |     | | | | | | \\| | | |  | | | | \ \  | |  | | | |   / /
+        //|_|____ |_|_|_| |_|  \|_|  \_\_|_| |_|  \_\ |_|  |_| |_|  /_/___  
+        //Console.Clear();
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.SetCursorPosition(25, 6);
         Console.WriteLine(" ______ ______  ___   ___  ______  ______     ____  _____ ______");
@@ -220,17 +220,25 @@ public static partial class Textures
         Console.SetCursorPosition(26, 12);
         // Console.WriteLine(" ---by---pontrik---");
         Console.WriteLine("by == Pontus Ågren och Henrik Pilback                               ");
+        
+        
+        Console.SetCursorPosition(48, 18);
+        Console.WriteLine("******HIGHSCORES******");
+        Console.SetCursorPosition(48, 19);
+        Console.WriteLine("======================");
+
+        Highscore.ShowHighscore();
 
         while (!Console.KeyAvailable)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.SetCursorPosition(47, 14);
+            Console.SetCursorPosition(49, 14);
             Console.WriteLine("  PRESS TO QUIT	");
 
             Thread.Sleep(300);
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(47, 14);
+            Console.SetCursorPosition(49, 14);
             Console.WriteLine("  PRESS TO QUIT	");
 
             Thread.Sleep(300);
