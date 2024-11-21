@@ -89,6 +89,7 @@
 - [x] Skapa en första bild när man startar spelet
 - [x] Skapa en meny med alternativ för att spela, ladda, spara och avsluta.
 - [x] Använda JSON för att hantera highscore
+- [ ] Anpassa utskrift av highscore vid DEAD och vid val att skriva ut Highscores i mainmenyn
 - [ ] Använda JSON för att hantera spara/ladda.
 - [x] Designa en rolig bild eller ikon för menyn.
 
