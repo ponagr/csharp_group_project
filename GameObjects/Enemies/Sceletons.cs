@@ -1,79 +1,32 @@
 public class Sceletons : Enemy
 {
-    public int bigHit;
-    public bool specialAttack;
     public Sceletons(int level, string name)
     {
         double multiplier = level * 0.60;
         Random random = new Random();
         Name = name; 
         Description = "Sceletons";
-        BaseHp = (45 + random.Next(0, 25)) * multiplier;
+        BaseHp = 1;
         CurrentHp = TotalHp;
-        BaseDamage = (20 + random.Next(0, 10)) * multiplier;
-        BaseResistance = (0 + random.Next(0, 5)) * multiplier;
-        BaseAgility = 10 * multiplier;
+        BaseDamage = (30 + random.Next(0, 30)) * multiplier; // Standard attackskada
+        BaseResistance = 0;
+        BaseAgility = 0;
 
         healthBar = new HealthBar();
-        specialAttack = false;
-        bigHit = 1;
         XpDrop = 15;
     }
 
-    // public override string TakeDdge(double damage, bool crit, out string attackMessage)
-    // {
-    //     if (isVisable)
-    //     {
-    //         return base.TakeDamage(damage, crit, out attackMessage);
-    //     }
-    //     else
-    //     {
-    //         attackMessage = $"Unhittable!";
-    //         return "";
-    //     }
-    // }
-
-    public override void PrintCharacter(Enemy enemy)
+    public override string TakeDamage(double damage, bool crit, out string attackMessage)
     {
-        Textures.SceletonsAnimation();
-    }
-    public override void CharacterAttackAnimation(Enemy enemy)
-    {
-        if (specialAttack)
-        {
-            Textures.SceletonsAnimation();
-           // Textures.SceletonsSpecialAttackAnimation();
-        }
-        else
-        {
-            Textures.SceletonsAnimation();
-           // Textures.SceletonsAttackAnimation();
-        }
+        attackMessage = "";
+        return "";
     }
 
     public override string Attack(Player player, out string attackMessage) // Borde attackMessage heta typ fightmessage eller attackinfo?
     {
-        bigHit++;
-        double damageDone = CalculateDamage(player, out bool attackCrit);
-
-        if (bigHit == 3)
-        {
-            specialAttack = true;
-            damageDone = SpecialAttack(damageDone);
-            bigHit = 0;
-            player.CurrentHp -= damageDone;
-            attackMessage = "MASSIVE HIT!";
-            return $"{damageDone:F0}"; 
-        }
-        else // Vanlig attack
-        {
-            return base.Attack(player, out attackMessage);
-        }
-    }
-
-     public double SpecialAttack(double damage)
-    {
-        damage = damage * 3;
-        return damage;
+        player.CurrentHp -= BaseDamage;
+        CurrentHp = 0;
+        attackMessage = "SUICIDE";
+        return $"{BaseDamage:F0}";
     }
 }

@@ -61,6 +61,22 @@ public static class Combat
         Console.ReadKey(true);
     }
     #endregion
+    private static void SceletonsKilled(Player player, Enemy enemy)
+    {
+        Textures.SceletonsAnimation();
+        Clear.Damage();
+        
+        Console.SetCursorPosition(20, 6);
+        PrintColor.Red($"{attackMessageEnemy}", "WriteLine");
+        Console.SetCursorPosition(20, 7);
+        PrintColor.Red($"<-- {enemyDamage} DMG", "WriteLine");
+        Clear.EnemyHp();
+        enemy.ShowHp();
+        Console.SetCursorPosition(0, 2);
+        player.ShowHp();
+        Thread.Sleep(500);
+        player.EnemyKilled(enemy);
+    }
     #region PLAYERATTACK
     private static void PlayerAttack(Enemy enemy)
     {
@@ -195,10 +211,20 @@ public static class Combat
                 if (input.Key == ConsoleKey.D)
                 {
                     enemyDamage = player.Defend(player, enemy, out attackMessageEnemy); // Måste vi lägga till boss i inparameter
+                    if (enemy.CurrentHp < 1)   // BARA FÖR SCELETONS
+                    {
+                        SceletonsKilled(player, enemy);
+                        return;
+                    }
                 }
                 else
                 {
                     enemyDamage = enemy.Attack(player, out attackMessageEnemy);
+                    if (enemy.CurrentHp < 1)   // Endast för sceletons som dör direkt vid attack
+                    {
+                        SceletonsKilled(player, enemy);
+                        return;
+                    }
                 }
             }
             else    //Om vi är stunnad, kan vi inte attackera
