@@ -90,7 +90,7 @@ public class ButcherBoss : Butcher
 
     double SpecialAttack(double damage, out string attackMessage)
     {
-        damage = damage * 2;
+        damage = damage * 1.7;
         attackMessage = "MEAT CLEAVER!";
         return damage;
     }
@@ -127,7 +127,6 @@ public class ButcherBoss : Butcher
 }
 #endregion
 
-
 #region ArcherBoss
 public class ArcherBoss : Archer
 {
@@ -144,7 +143,7 @@ public class ArcherBoss : Archer
 
     double SpecialAttack(double damage, out string attackMessage)
     {
-        damage = damage * 3.5;
+        damage = damage * 4;
         attackMessage = "5 ARROWS!!!";
         return damage;
     }
