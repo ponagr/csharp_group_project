@@ -150,7 +150,7 @@ public class Player : GameObject
         Random rndCrit = new Random();
         double totalDamageDone;
         int critChance = Convert.ToInt32(BaseAgility); // Om Agility är 10 // CRITICAL HITS
-        int crit = rndCrit.Next(0, 201); // 0 - 10
+        int crit = rndCrit.Next(0, 150); // 0 - 10
         double damage;
         bool attackCrit = false;
         string printDamage;

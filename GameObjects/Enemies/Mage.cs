@@ -12,7 +12,7 @@ public class Mage : Enemy
         Description = "Mage";
         BaseHp = (70 + random.Next(0, 15)) * multiplier;
         CurrentHp = TotalHp;
-        BaseDamage = (15 + random.Next(0, 10)) * multiplier;
+        BaseDamage = (17 + random.Next(0, 10)) * multiplier;
         BaseResistance = (5 + random.Next(0, 5)) * multiplier;
         BaseAgility = 10 * multiplier;
         chargeCounter = 0;

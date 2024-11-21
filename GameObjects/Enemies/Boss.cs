@@ -138,13 +138,13 @@ public class ArcherBoss : Archer
         CurrentHp = TotalHp;
         base.BaseDamage = (base.BaseDamage) * 0.75;
         base.BaseResistance = (base.BaseResistance) * 2;
-        base.BaseAgility = (base.BaseAgility) * 3;
+        base.BaseAgility = (base.BaseAgility) * 2;
         XpDrop = 100;
     }
 
     double SpecialAttack(double damage, out string attackMessage)
     {
-        damage = damage * 5;
+        damage = damage * 3.5;
         attackMessage = "5 ARROWS!!!";
         return damage;
     }
@@ -192,6 +192,7 @@ public class MageBoss : Mage
     public MageBoss(int level, string name) : base(level, name)
     { 
         base.BaseHp = base.BaseHp * 3;
+        CurrentHp = BaseHp;
         base.BaseDamage = base.BaseDamage * 3;
         base.BaseResistance = base.BaseResistance * 2;
         base.BaseAgility = base.BaseAgility * 1.5;

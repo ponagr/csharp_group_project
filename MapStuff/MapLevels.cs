@@ -219,7 +219,7 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         Archer archer1 = new Archer(3, "Legolas");
         Archer archer2 = new Archer(3, "Robin Hood");
         Archer archer3 = new Archer(3, "Hawkeye");
-        Archer archer4 = new Archer(3, "ArrowMax");
+        Archer archer4 = new Archer(2, "ArrowMax");
         Assassin assassin4 = new Assassin(3, "Ninja");
         Butcher butcher3 = new Butcher(3, "Berzerker");
         Mage mage2 = new Mage(3, "Moon Queen");
@@ -292,11 +292,11 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         Butcher butcher1 = new Butcher(4, "Ove Hacka");
         Butcher butcher2 = new Butcher(4, "Sofia Snitzel");
         Butcher butcher3 = new Butcher(4, "Pelle Pölsa");
-        Archer archer = new Archer(4, "Aim-Eva");
-        Archer archer1 = new Archer(4, "Pil-Pelle");
-        Archer archer2 = new Archer(4, "Fjäderfjärt");
-        Archer archer3 = new Archer(4, "Pilback");
-        Archer archer4 = new Archer(4, "SlutaPila"); // 17 st
+        Archer archer = new Archer(5, "Aim-Eva");
+        Archer archer1 = new Archer(5, "Pil-Pelle");
+        Archer archer2 = new Archer(5, "Fjäderfjärt");
+        Archer archer3 = new Archer(5, "Pilback");
+        Archer archer4 = new Archer(5, "SlutaPila"); // 17 st
 
         MageBoss mageBoss = new MageBoss(4, "IllusiUno");
         Assassin Massassin = new Assassin(4, "SerInga-Lill");
@@ -315,25 +315,25 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
 
         List<Item> itemsLevel4 = new List<Item>() {
         new Consumable(),
-        new THelm("theHelm", 10, 40, 30, 10, 8),
-        new THelm("Zulu-hjälm", 8, 35, 20, 15, 7),
-        new TWeapon("Klyvyxa", 35, 10, 5, 10, 7),
-        new TWeapon("theAxe", 40, 15, 5, 25, 8),
-        new TBoots("theBoots", 10, 40, 20, 12, 8),
-        new TBoots("Bagheera", 5, 34, 22, 25, 7),
-        new TGloves("theGloves", 20, 40, 20, 15, 8),
-        new TBreastPlate("thePlate", 15, 40, 30, 10, 8)};
+        new THelm("theHelm", 10, 40, 30, 10, 9),
+        new THelm("Zulu-hjälm", 8, 35, 20, 15, 8),
+        new TWeapon("Klyvyxa", 35, 10, 5, 10, 8),
+        new TWeapon("theAxe", 40, 15, 5, 25, 9),
+        new TBoots("theBoots", 10, 40, 20, 12, 9),
+        new TBoots("Bagheera", 5, 34, 22, 25, 8),
+        new TGloves("theGloves", 20, 40, 20, 15, 9),
+        new TBreastPlate("thePlate", 15, 40, 30, 10, 9)};
 
         List<Item> merchantItemsLevel4 = new List<Item>() {
         new Consumable(),
-        new THelm("theHelm", 10, 40, 30, 10, 8),
-        new THelm("Zulu-hjälm", 8, 35, 20, 15, 7),
-        new TWeapon("Klyvyxa", 35, 10, 5, 10, 7),
-        new TWeapon("theAxe", 40, 15, 5, 20, 8),
-        new TBoots("theBoots", 10, 40, 20, 12, 8),
-        new TBoots("Bagheera", 5, 34, 22, 20, 7),
-        new TGloves("theGloves", 20, 40, 20, 15, 8),
-        new TBreastPlate("thePlate", 15, 40, 30, 10, 8)};
+        new THelm("theHelm", 10, 40, 30, 10, 9),
+        new THelm("Zulu-hjälm", 8, 35, 20, 15, 8),
+        new TWeapon("Klyvyxa", 35, 10, 5, 10, 8),
+        new TWeapon("theAxe", 40, 15, 5, 25, 9),
+        new TBoots("theBoots", 10, 40, 20, 12, 9),
+        new TBoots("Bagheera", 5, 34, 22, 25, 8),
+        new TGloves("theGloves", 20, 40, 20, 15, 9),
+        new TBreastPlate("thePlate", 15, 40, 30, 10, 9)};
 
         List<Chest> chestsLevel4 = new List<Chest>() { new Chest(itemsLevel4), new Chest(itemsLevel4), new Chest(itemsLevel4), new Chest(itemsLevel4), new Chest(itemsLevel4), new Chest(itemsLevel4) };
         Merchant merchantLevel4 = new Merchant("KolleKöpman", 1000, merchantItemsLevel4);
