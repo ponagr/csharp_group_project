@@ -40,21 +40,21 @@ public class Score      //Lägga till en Score egenskap i Player?
         double score = 0;
 
         score += player.Level * 100;
-        score += player.TotalHp * 5;
-        score += player.TotalDamage * 10;
-        score += player.TotalAgility * 10;
-        score += player.TotalResistance * 10;
+        score += player.TotalHp * 10;
+        score += player.TotalDamage * 20;
+        score += player.TotalAgility * 20;
+        score += player.TotalResistance * 50;
         score += player.MapLevel * 100;
         score += player.Gold * 10;
-        score += player.HealingPot.Ammount * 5;
+        score += player.HealingPot.Ammount * 10;
         score += player.ChestsLooted * 20;
         score += player.EnemiesKilled * 10;
         score += player.BossesKilled * 100;
         score += player.CurrentXp * 10;
-        score += player.CurrentHp * 5;
-        score += player.Inventory.inventory.Count * 10;
-        score -= player.HeartsPickedUp * 10;
-        score -= player.TrapsTriggered * 10;
+        score += player.CurrentHp * 10;
+        score += player.Inventory.inventory.Count * 50;
+        score -= player.HeartsPickedUp * 50;
+        score -= player.TrapsTriggered * 100;
         foreach (Item item in player.EquippedGear)
         {
             if (item != null)
