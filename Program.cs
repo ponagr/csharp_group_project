@@ -6,7 +6,6 @@ class Program
     {
         Console.Clear();
         Console.CursorVisible = false;
-        //Textures.PrintCongratz();
         Textures.PrintFirstScreen();
         Player player = new Player("Player");
         Highscore.LoadHighScore();
@@ -53,8 +52,8 @@ class Program
                     break;
 
                 case ConsoleKey.D2: // GREJER FÖR ATT LADDA, JSON
-                    //Textures.PrintCongratz();
                     Highscore.ShowHighscore();
+                    Console.ReadKey();
                     break;
 
                 case ConsoleKey.D3:
@@ -97,7 +96,6 @@ class Program
                 {
                     Environment.Exit(0);
                 }
-                //gameOver = true;
             }
         }
     }
