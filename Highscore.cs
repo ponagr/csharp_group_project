@@ -2,10 +2,6 @@ public static class Highscore
 {
     public static List<Score> Highscores { get; set; }
 
-    // public Highscore()
-    // {
-    //     Highscores = new List<Score>();
-    // }
 
     public static void AddScore(Player player)
     {
@@ -15,16 +11,14 @@ public static class Highscore
     public static void ShowHighscore()
     {
         Highscores = Highscores.OrderByDescending(x => x.TotalScore).ToList();
-        int i = 1;
-        foreach (Score score in Highscores)
+        for (int i = 0; i < 10; i++)
         {
-            PrintColor.Yellow($"{i}. {score.TotalScore} points", "WriteLine");
-            i++;
-        }
+            PrintColor.Yellow($"{i + 1}. {Highscores[i].TotalScore} points", "WriteLine");
+        }   
     }
 }
 
-public class Score
+public class Score      //Lägga till en Score egenskap i Player?
 {
     public int TotalScore { get; set; }
     public string PlayerName { get; set; }
