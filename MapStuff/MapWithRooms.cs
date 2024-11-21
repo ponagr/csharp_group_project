@@ -219,6 +219,11 @@ public class MapWithRooms : Map
                     showHelp = false;
                 }
             }
+            if (keyPressed.Key == ConsoleKey.Escape)
+            {
+                PauseMenu();
+                return;
+            }
             Console.SetCursorPosition(0, 27);
         }
     }

@@ -198,7 +198,6 @@ public class DarkMap : Map
         }
         if (keyPressed.Key == ConsoleKey.H)
         {
-
             if (showHelp == false)
             {
                 Help();
@@ -209,6 +208,10 @@ public class DarkMap : Map
                 PlayerUI.HelpText();
                 showHelp = false;
             }
+        }
+        if (keyPressed.Key == ConsoleKey.Escape)
+        {
+            PauseMenu();
         }
     }
 }

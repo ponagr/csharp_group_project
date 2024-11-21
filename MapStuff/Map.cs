@@ -30,6 +30,64 @@ public abstract class Map
     protected static char OpenChest = '4';
     protected static char invisableAssassin = 'a';
 
+
+    public static void PauseMenu()
+    {
+        bool inMenu = true;
+
+        while (inMenu)
+        {
+            // Lägga till funktion att välja med wasd eller upp och ner tangenterna?
+            Console.Clear();
+            Console.SetCursorPosition(44, 9);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("********** MAINMENU **********");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(44, 10);
+            Console.Write("        1. ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Continue");
+            Console.SetCursorPosition(44, 11);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("        2. ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Highscores");
+            Console.SetCursorPosition(44, 12);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("        3. ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Quit Game");
+            Console.SetCursorPosition(44, 13);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("******************************");
+            Console.ResetColor();
+            var choice = Console.ReadKey(true);
+
+            switch (choice.Key)
+            {
+                case ConsoleKey.D1:
+                    return;
+
+                case ConsoleKey.D2: // GREJER FÖR ATT LADDA, JSON
+                    Highscore.ShowHighscore();
+                    Console.ReadKey();
+                    break;
+
+                case ConsoleKey.D3:
+                    Console.WriteLine("quitting...");
+                    inMenu = false;
+                    Environment.Exit(0);
+                    break;
+
+                case ConsoleKey.Escape:
+                    return;
+
+                default:
+                    Console.WriteLine("Thats not a choice!");
+                    break;
+            }
+        }
+    }
     #region ENEMY 
     // Borde vi inte kunna ha en gemensam metod för enemy, inv assassin och boss??
     protected static void HandleEnemy(Player player, List<Enemy> enemies, char[,] gameMap, int newX, int newY) // När player går på enemy 
@@ -333,7 +391,7 @@ public abstract class Map
 
             if (keyPressed.Key == ConsoleKey.C) //Visa playerStats
             {
-                player.OpenInventory(player);  
+                player.OpenInventory(player);
                 return;
             }
             if (keyPressed.Key == ConsoleKey.Q) //Använder Health-Potions
@@ -344,8 +402,8 @@ public abstract class Map
             }
             if (keyPressed.Key == ConsoleKey.H)
             {
-                
-                if(showHelp == false)
+
+                if (showHelp == false)
                 {
                     Help();
                     showHelp = true;
@@ -355,6 +413,11 @@ public abstract class Map
                     PlayerUI.HelpText();
                     showHelp = false;
                 }
+            }
+            if (keyPressed.Key == ConsoleKey.Escape)
+            {
+                PauseMenu();
+                return;
             }
             Console.SetCursorPosition(0, 27);
         }

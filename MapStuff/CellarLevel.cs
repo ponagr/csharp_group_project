@@ -336,7 +336,6 @@ public class CellarMap : Map
             {
 
             }
-
             if (keyPressed.Key == ConsoleKey.C) //Visa playerStats
             {
                 player.OpenInventory(player);
@@ -346,6 +345,11 @@ public class CellarMap : Map
             {
                 player.Heal();  //Använder en Health-Potion
                 PlayerUI.UI(player);
+            }
+            if (keyPressed.Key == ConsoleKey.Escape)
+            {
+                PauseMenu();
+                return;
             }
         }
     }
