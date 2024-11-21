@@ -1,7 +1,7 @@
 
 public static partial class Textures
 {
-    #region DEAD
+
     public static void PrintGrave()
     {
         for (int i = 0; i < 5; i++)
@@ -30,52 +30,73 @@ public static partial class Textures
         Thread.Sleep(1000);
     }
 
-
+    #region DEAD
     public static void PrintDeadText() // Likadan fast grön eller liknande till vår gubbe?
     {
         Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.SetCursorPosition(18, 5);
+        Console.SetCursorPosition(47, 6);
         Console.WriteLine("____  ____   _   ____  ");
-        Console.SetCursorPosition(18, 6);
+        Console.SetCursorPosition(47, 7);
         Console.WriteLine("|| \\\\ ||    /\\\\  || \\\\ ");
-        Console.SetCursorPosition(18, 7);
+        Console.SetCursorPosition(47, 8);
         Console.WriteLine("||  ||||-- //_\\\\ ||  ||");
-        Console.SetCursorPosition(18, 8);
+        Console.SetCursorPosition(47, 9);
         Console.WriteLine("||_// ||__//   \\\\||_// ");
 
-        Console.SetCursorPosition(18, 9);
+        Console.SetCursorPosition(47, 10);
         Console.WriteLine("                         "); // För att ta bort gammal text
-        Console.SetCursorPosition(18, 10);
+        Console.SetCursorPosition(47, 11);
         Console.WriteLine("                         "); // --"--
 
         Thread.Sleep(100);
-        Console.SetCursorPosition(18, 9);
+        Console.SetCursorPosition(47, 10);
         Console.WriteLine("        |          | ");
 
         Thread.Sleep(200);
-        Console.SetCursorPosition(18, 9);
+        Console.SetCursorPosition(47, 10);
         Console.WriteLine("  |     |          | ");
 
         Thread.Sleep(250);
-        Console.SetCursorPosition(18, 9);
+        Console.SetCursorPosition(47, 10);
         Console.WriteLine("  | |   | |        | ");
 
         Thread.Sleep(200);
-        Console.SetCursorPosition(18, 10);
+        Console.SetCursorPosition(47, 11);
         Console.WriteLine("        |            ");
 
         Thread.Sleep(250);
-        Console.SetCursorPosition(18, 10);
+        Console.SetCursorPosition(47, 11);
         Console.WriteLine("  |     |            ");
 
         Thread.Sleep(300);
-        Console.SetCursorPosition(18, 10);
+        Console.SetCursorPosition(47, 11);
         Console.WriteLine("  |     |      |     ");
 
         Thread.Sleep(300);
-        Console.SetCursorPosition(18, 11);
+        Console.SetCursorPosition(47, 12);
         Console.WriteLine("        |            ");
         Console.ResetColor();
+
+        
+
+        Highscore.ShowHighscore();
+
+        while (!Console.KeyAvailable)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.SetCursorPosition(49, 14);
+            Console.WriteLine("  PRESS TO QUIT	");
+
+            Thread.Sleep(300);
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(49, 14);
+            Console.WriteLine("  PRESS TO QUIT	");
+
+            Thread.Sleep(300);
+            Console.ResetColor();
+        }
+
     }
     #endregion
 
@@ -124,67 +145,67 @@ public static partial class Textures
     public static void PrintFirstScreen()
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.SetCursorPosition(25, 4);
+        Console.SetCursorPosition(32, 4);
         Console.WriteLine("     /\\                                       /\\     ");
-        Console.SetCursorPosition(25, 5);
+        Console.SetCursorPosition(32, 5);
         Console.WriteLine("    /  \\                                     /  \\    ");
         Console.ForegroundColor = ConsoleColor.DarkGray;
-        Console.SetCursorPosition(25, 6);
+        Console.SetCursorPosition(32, 6);
         Console.WriteLine("    |  |                                     |  |      ");
-        Console.SetCursorPosition(25, 7);
+        Console.SetCursorPosition(32, 7);
         Console.WriteLine("    |  |                                     |  |      ");
-        Console.SetCursorPosition(25, 8);
+        Console.SetCursorPosition(32, 8);
         Console.WriteLine("    |  |                                     |  |      ");
-        Console.SetCursorPosition(25, 9);
+        Console.SetCursorPosition(32, 9);
         Console.WriteLine("    |  |                                     |  |      ");
-        Console.SetCursorPosition(25, 10);
+        Console.SetCursorPosition(32, 10);
         Console.WriteLine("    <  >                                     <  >      ");
-        Console.SetCursorPosition(25, 11);
+        Console.SetCursorPosition(32, 11);
         Console.WriteLine("{}==|  |=={}                             {}==|  |=={}  ");
-        Console.SetCursorPosition(25, 12);
+        Console.SetCursorPosition(32, 12);
         Console.WriteLine("     []                                       []       ");
-        Console.SetCursorPosition(25, 13);
+        Console.SetCursorPosition(32, 13);
         Console.WriteLine("     []                                       []       ");
-        Console.SetCursorPosition(25, 14);
+        Console.SetCursorPosition(32, 14);
         Console.WriteLine("                                                      ");
 
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.SetCursorPosition(39, 5);
+        Console.SetCursorPosition(46, 5);
         Console.WriteLine("    ____ __  __ ____  ");
-        Console.SetCursorPosition(39, 6);
+        Console.SetCursorPosition(46, 6);
         Console.WriteLine("     ||  ||  || ||    ");
-        Console.SetCursorPosition(39, 7);
+        Console.SetCursorPosition(46, 7);
         Console.WriteLine("     ||  ||__|| ||_   ");
         Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.SetCursorPosition(39, 8);
+        Console.SetCursorPosition(46, 8);
         Console.WriteLine("     ||  ||  || ||__  ");
-        Console.SetCursorPosition(39, 9);
+        Console.SetCursorPosition(46, 9);
         Console.WriteLine("   __   __    __  ____ ");
-        Console.SetCursorPosition(39, 10);
+        Console.SetCursorPosition(46, 10);
         Console.WriteLine("  //|| //||  //\\\\ \\\\  \\\\ ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.SetCursorPosition(39, 11);
+        Console.SetCursorPosition(46, 11);
         Console.WriteLine(" // |//  || ||__|| \\\\__\\\\  ");
-        Console.SetCursorPosition(39, 12);
+        Console.SetCursorPosition(46, 12);
         Console.WriteLine("//  |/   || ||  ||  \\\\	");
-        Console.SetCursorPosition(39, 13);
+        Console.SetCursorPosition(46, 13);
         Console.WriteLine("  ´´´´´´´´´´´´´´´´´´	");
 
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.SetCursorPosition(27, 14);
+        Console.SetCursorPosition(34, 14);
         // Console.WriteLine(" ---by---pontrik---");
         Console.WriteLine("by == p0ntr1k                               ==");
 
         while (!Console.KeyAvailable)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.SetCursorPosition(44, 14);
+            Console.SetCursorPosition(51, 14);
             Console.WriteLine("  PRESS START	");
 
             Thread.Sleep(300);
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(44, 14);
+            Console.SetCursorPosition(51, 14);
             Console.WriteLine("  PRESS START	");
 
             Thread.Sleep(300);
@@ -192,6 +213,7 @@ public static partial class Textures
         }
     }
     #endregion
+    #region ENDSCENE
     public static void PrintCongratz()
     {
         // ______ ______  ___   __   ______  ______     ____  _____ ______
@@ -213,19 +235,13 @@ public static partial class Textures
         Console.WriteLine("| |     | | | | | | \\\\| | | |  | | | | \\ \\  | |  | | | |   / /");
         Console.SetCursorPosition(25, 10);
         Console.WriteLine("|_|____ |_|_|_| |_|  \\|_|  \\_\\_|_| |_|  \\_\\ |_|  |_| |_|  /_/___");
-        
-    
+
+
 
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.SetCursorPosition(26, 12);
         // Console.WriteLine(" ---by---pontrik---");
         Console.WriteLine("by == Pontus Ågren och Henrik Pilback                               ");
-        
-        
-        Console.SetCursorPosition(48, 18);
-        Console.WriteLine("******HIGHSCORES******");
-        Console.SetCursorPosition(48, 19);
-        Console.WriteLine("======================");
 
         Highscore.ShowHighscore();
 
@@ -245,7 +261,7 @@ public static partial class Textures
             Console.ResetColor();
         }
     }
-
+    #endregion
 }
 
 

@@ -33,15 +33,16 @@ public static class Highscore
     {
         Score score = new Score(player);
         Highscores = Highscores.OrderByDescending(x => x.TotalScore).ToList();
+        
         if (score.TotalScore > Highscores[0].TotalScore) 
         {   
-            Console.SetCursorPosition(46, 16);
+            Console.SetCursorPosition(49, 16);
             PrintColor.Green("NEW HIGHSCORE: ", "Write");
             score.PrintScore();
         }
         else
         {
-            Console.SetCursorPosition(46, 16);
+            Console.SetCursorPosition(49, 16);
             PrintColor.Green("SCORE: ", "Write");
             score.PrintScore();
         }
@@ -54,11 +55,24 @@ public static class Highscore
         Highscores = Highscores.OrderByDescending(x => x.TotalScore).ToList();
         int linePosition = 46;
         int startLine = 20;
+        int nrOfScores = 0;
+        Console.SetCursorPosition(48, 18);
+        Console.WriteLine("******HIGHSCORES******");
+        Console.SetCursorPosition(48, 19);
+        Console.WriteLine("======================");
         for (int i = 0; i < Highscores.Count; i++)
         {
-            Console.SetCursorPosition(linePosition, startLine);
-            Console.WriteLine($"{i + 1}. {Highscores[i].PlayerName}- {Highscores[i].TotalScore} points");
-            startLine++;
+            if (nrOfScores < 5)
+            {
+                Console.SetCursorPosition(linePosition, startLine);
+                Console.WriteLine($"{i + 1}. {Highscores[i].PlayerName}- {Highscores[i].TotalScore} points");
+                startLine++;
+            }  
+            else    
+            {
+                break;
+            }
+            nrOfScores++;
         }
     }
 }

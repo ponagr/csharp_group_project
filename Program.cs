@@ -15,25 +15,25 @@ class Program
         {
             // Lägga till funktion att välja med wasd eller upp och ner tangenterna?
             Console.Clear();
-            Console.SetCursorPosition(40, 5);
+            Console.SetCursorPosition(44, 9);
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("********** MAINMENU **********");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.SetCursorPosition(40, 6);
+            Console.SetCursorPosition(44, 10);
             Console.Write("        1. ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("New Game");
-            Console.SetCursorPosition(40, 7);
+            Console.SetCursorPosition(44, 11);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("        2. ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Highscores");
-            Console.SetCursorPosition(40, 8);
+            Console.SetCursorPosition(44, 12);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("        3. ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Quit Game");
-            Console.SetCursorPosition(40, 9);
+            Console.SetCursorPosition(44, 13);
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("******************************");
             Console.ResetColor();
@@ -44,9 +44,9 @@ class Program
                 case ConsoleKey.D1:
                     List<Map> maps = [AddMaps.Level1(), AddMaps.Level2(), AddMaps.Level3(), AddMaps.Level4()];
 
-                    Console.SetCursorPosition(40, 11);
+                    Console.SetCursorPosition(46, 15);
                     Console.WriteLine("Whats your name?");
-                    Console.SetCursorPosition(60, 11);
+                    Console.SetCursorPosition(65, 15);
                     player.Name = Console.ReadLine();
                     PlayGame(player, maps);
                     break;
@@ -83,9 +83,8 @@ class Program
             if (player.CurrentHp < 1)    //börjar sedan om loop och skriver ut mapp igen, om inte player.CurrentHp är 0, isåfall avslutas loop(GameOver)
             {
                 Console.Clear();
-                Console.WriteLine("Du dog"); // LÄGG IN EN ANIMATION
-                Textures.PrintDeadText();
                 Highscore.AddScore(player);
+                Textures.PrintDeadText();
                 Console.WriteLine("Vill du avsluta eller börja om? [A]vsluta/[B]örja om");
                 var choice = Console.ReadKey(true);
                 if (choice.Key == ConsoleKey.B)
