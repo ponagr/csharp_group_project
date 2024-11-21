@@ -11,28 +11,28 @@ public abstract class Map
     public List<Chest> Chests { get; set; }
     public Enemy BossEnemy { get; set; }
 
-    internal bool showHelp = false;
-    internal static char Player = '@';
-    internal static char Enemy = '£';
-    internal static char Boss = 'B';
-    internal static char Coin = '$';
-    internal static char Wall = '|';
-    internal static char Terrain = '_';
-    internal static char Chest = '#';
-    internal static char Trap = '¤';
-    internal static char Empty = ' ';
-    internal static char Door = '\\';
-    internal static char Door2 = '/';
-    internal static char Heart = 'H';
-    internal static char GoBack = '=';
-    internal static char Cellar = ')';
-    internal static char Merchant = 'M';
-    internal static char OpenChest = '4';
-    internal static char invisableAssassin = 'a';
+    protected bool showHelp = false;
+    protected static char Player = '@';
+    protected static char Enemy = '£';
+    protected static char Boss = 'B';
+    protected static char Coin = '$';
+    protected static char Wall = '|';
+    protected static char Terrain = '_';
+    protected static char Chest = '#';
+    protected static char Trap = '¤';
+    protected static char Empty = ' ';
+    protected static char Door = '\\';
+    protected static char Door2 = '/';
+    protected static char Heart = 'H';
+    protected static char GoBack = '=';
+    protected static char Cellar = ')';
+    protected static char Merchant = 'M';
+    protected static char OpenChest = '4';
+    protected static char invisableAssassin = 'a';
 
     #region ENEMY 
     // Borde vi inte kunna ha en gemensam metod för enemy, inv assassin och boss??
-    internal static void HandleEnemy(Player player, List<Enemy> enemies, char[,] gameMap, int newX, int newY) // När player går på enemy 
+    protected static void HandleEnemy(Player player, List<Enemy> enemies, char[,] gameMap, int newX, int newY) // När player går på enemy 
     {
         Combat.FightMode(player, enemies[0]);
         if (enemies[0].CurrentHp < 1)
@@ -44,7 +44,7 @@ public abstract class Map
     }
     #endregion
     #region ASSASSIN
-    internal static void HandleInvisibleAssassin(Player player, Assassin assassin, char[,] gameMap, int newX, int newY)
+    protected static void HandleInvisibleAssassin(Player player, Assassin assassin, char[,] gameMap, int newX, int newY)
     {
         Console.SetCursorPosition(0, 29);
         Console.WriteLine("An invisable assassin shows up!");
@@ -59,7 +59,7 @@ public abstract class Map
     }
     #endregion
     #region BOSS
-    internal static void HandleBoss(Player player, Enemy boss, char[,] gameMap, int newX, int newY) // När player går på boss
+    protected static void HandleBoss(Player player, Enemy boss, char[,] gameMap, int newX, int newY) // När player går på boss
     {
         Combat.FightMode(player, boss);
         if (boss.CurrentHp < 1)
@@ -70,7 +70,7 @@ public abstract class Map
     }
     #endregion
     #region GOLD
-    internal static void HandleGold(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på guld
+    protected static void HandleGold(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på guld
     {
         Random random = new Random();
         int goldDrop = random.Next(1, 6);
@@ -82,7 +82,7 @@ public abstract class Map
     #endregion
 
     #region CHEST
-    internal static void HandleChest(List<Chest> chest, Player player, char[,] gameMap, int newX, int newY) // När player går på chest
+    protected static void HandleChest(List<Chest> chest, Player player, char[,] gameMap, int newX, int newY) // När player går på chest
     {
         player.Loot(chest[0]);
         chest.RemoveAt(0);
@@ -93,14 +93,14 @@ public abstract class Map
     #endregion
 
     #region MERCHANT
-    internal static void HandleMerchant(Merchant merchant, Player player) // När player går på merchant
+    protected static void HandleMerchant(Merchant merchant, Player player) // När player går på merchant
     {
         merchant.Interact(player);
     }
     #endregion
 
     #region HEART
-    internal static void HandleHeart(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på hjärta
+    protected static void HandleHeart(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på hjärta
     {
         player.HeartsPickedUp++;
         player.HealingPot.Ammount = 5;
@@ -110,7 +110,7 @@ public abstract class Map
     #endregion
 
     #region TRAP
-    internal static void HandleTrap(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på mina
+    protected static void HandleTrap(Player player, char[,] gameMap, int posX, int posY, int newX, int newY) // När player går på mina
     {
         player.TrapsTriggered++;
         player.CurrentHp -= 20;
@@ -119,7 +119,7 @@ public abstract class Map
     #endregion
 
     #region NEXTLEVEL
-    internal static void NextLevel(Player player) // Går till nästa map i listan av maps
+    protected static void NextLevel(Player player) // Går till nästa map i listan av maps
     {
         Console.Clear();
         player.MapLevel++;
@@ -128,7 +128,7 @@ public abstract class Map
     #endregion
 
     #region GOBACK
-    internal static void PreviousLevel(Player player) // Går till förgående map i listan av maps
+    protected static void PreviousLevel(Player player) // Går till förgående map i listan av maps
     {
         Console.Clear();
         player.MapLevel--;
@@ -137,7 +137,7 @@ public abstract class Map
     #endregion
 
     #region EMPTY
-    internal static void HandleEmpty(char[,] gameMap, int posX, int posY, int newX, int newY)
+    protected static void HandleEmpty(char[,] gameMap, int posX, int posY, int newX, int newY)
     {
         gameMap[newX, newY] = Player; // Byter plats
         gameMap[posX, posY] = Empty; // Där vi stod blir tom
@@ -145,7 +145,7 @@ public abstract class Map
     #endregion
 
     #region CURSORPOSITION
-    internal static void UpdatePlayerMovement(int posX, int posY, int newX, int newY) // Setcursorpos-metod för att endast uppdatera två platser i konsolen 
+    protected static void UpdatePlayerMovement(int posX, int posY, int newX, int newY) // Setcursorpos-metod för att endast uppdatera två platser i konsolen 
     {
         Console.SetCursorPosition(posY * 3, posX + 2); // Töm den gamla positionen
         Console.Write("  "); // Antag att symbolerna är enkla, annars justera bredden
@@ -184,7 +184,7 @@ public abstract class Map
 
     //Göra override om vi vill anpassa beroende på typ av level?
     #region MAPINFO
-    internal static void MapInfo() //Skriver ut info ovanför mappen
+    protected static void MapInfo() //Skriver ut info ovanför mappen
     {
         Console.WriteLine();
         PrintColor.Green($" Player: {Player}  ", "Write");
