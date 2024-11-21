@@ -2,8 +2,6 @@
 
 ## Prioriterade Funktioner
 
-FIXA HIGHSCORE plussa ihop massa olika värden, för enkel jsonsparning.
-
 ### Map (main)
 - [x] Tydligt flöde för spelhantering.
 
@@ -15,11 +13,12 @@ FIXA HIGHSCORE plussa ihop massa olika värden, för enkel jsonsparning.
 - [x] Hjärta för att få liv på banan
 - [x] Balancera fiender/player/items på level 1
 - [x] Balancera fiender/player/items på level 2
-- [ ] Balancera fiender/player/items på level 3
+- [x] Balancera fiender/player/items på level 3
+- [x] Balancera fiender/player/items på level 4
 
 ### GameObject - Enemy - Player
 - [x] Viktiga egenskaper och metoder för Player och Enemy.
-- [ ] När sceletons kommer så dödar vi de på ett slag men får en random skada automatiskt
+- [x] När sceletons kommer så dödar vi de på ett slag men får en random skada automatiskt
 
 ### Combat
 - [x] Skapa visuella representationer, t.ex. streckgubbar, för Player och Enemy under combat.
@@ -71,7 +70,7 @@ FIXA HIGHSCORE plussa ihop massa olika värden, för enkel jsonsparning.
 - [x] Utveckla UI-element för resurser, hälsa och XP.
 - [x] Xp-bar under mappen
 - [x] Fixa så att healing pots healar en viss % av players total hp istället för flat ammount
-- [ ] Highscore
+- [x] Highscore
 
 ### Fler GameLevels
 - [x] Utveckla nivå 2, nivå 3 osv. m d unika funktioner, som kortare distanser och nya områden (t.ex. dörrar, trappor).
@@ -89,6 +88,7 @@ FIXA HIGHSCORE plussa ihop massa olika värden, för enkel jsonsparning.
 ### Meny
 - [x] Skapa en första bild när man startar spelet
 - [x] Skapa en meny med alternativ för att spela, ladda, spara och avsluta.
+- [x] Använda JSON för att hantera highscore
 - [ ] Använda JSON för att hantera spara/ladda.
 - [x] Designa en rolig bild eller ikon för menyn.
 
