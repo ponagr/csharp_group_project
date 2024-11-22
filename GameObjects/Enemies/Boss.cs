@@ -8,7 +8,7 @@ public class AssassinBoss : Assassin
         Description = "Assassin BOSS";
         BaseHp = base.BaseHp * 2.2; 
         CurrentHp = TotalHp;
-        BaseDamage = base.BaseDamage * 2;
+        BaseDamage = base.BaseDamage * 1.5;
         BaseResistance = base.BaseResistance * 1.75;
         BaseAgility = base.BaseAgility * 1.2;
 
@@ -73,6 +73,7 @@ public class ButcherBoss : Butcher
         base.BaseResistance = base.BaseResistance * 1.5;
         base.BaseAgility = base.BaseAgility * 1.5;
         specialAttack = false;
+        needsRest = false;
         XpDrop = 50;
     }   
 
@@ -94,7 +95,7 @@ public class ButcherBoss : Butcher
         attackMessage = "MEAT CLEAVER!";
         return damage;
     }
-
+    
     public override string Attack(Player player, out string attackMessage)
     {
         double damage;

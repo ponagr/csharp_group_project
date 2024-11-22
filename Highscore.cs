@@ -65,7 +65,7 @@ public static class Highscore
             if (nrOfScores < 5)
             {
                 Console.SetCursorPosition(linePosition, startLine);
-                Console.WriteLine($"{i + 1}. {Highscores[i].PlayerName}- {Highscores[i].TotalScore} points");
+                Console.WriteLine($"{i + 1}. {Highscores[i].PlayerName} - {Highscores[i].TotalScore} points");
                 startLine++;
             }  
             else    
@@ -104,7 +104,7 @@ public class Score
         score += player.TotalAgility * 20;
         score += player.TotalResistance * 50;
         score += player.MapLevel * 100;
-        score += player.Gold * 10;
+        score += player.Gold * 100;
         score += player.HealingPot.Ammount * 10;
         score += player.ChestsLooted * 20;
         score += player.EnemiesKilled * 10;

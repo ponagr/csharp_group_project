@@ -37,7 +37,7 @@ public class MapWithRooms : Map
         {
             Maplevel[15, 16] = Empty;
         }
-        if (Enemies.Count == 0)
+        if (Enemies.Count == 0) // && BossEnemy.CurrentHp == 0 ??
         {
             Maplevel[22, 20] = Door;
         }
