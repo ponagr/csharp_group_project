@@ -30,8 +30,8 @@ public abstract class Map
     protected static char OpenChest = '4';
     protected static char invisableAssassin = 'a';
 
-
-    public static void PauseMenu()
+    #region PAUSEMENU
+    public static void PauseMenu(Player player)
     {
         bool inMenu = true;
 
@@ -74,6 +74,7 @@ public abstract class Map
                     break;
 
                 case ConsoleKey.D3:
+                    Highscore.AddScore(player);
                     Console.WriteLine("quitting...");
                     inMenu = false;
                     Environment.Exit(0);
@@ -88,6 +89,8 @@ public abstract class Map
             }
         }
     }
+    #endregion
+
     #region ENEMY 
     // Borde vi inte kunna ha en gemensam metod för enemy, inv assassin och boss??
     protected static void HandleEnemy(Player player, List<Enemy> enemies, char[,] gameMap, int newX, int newY) // När player går på enemy 
@@ -402,7 +405,6 @@ public abstract class Map
             }
             if (keyPressed.Key == ConsoleKey.H)
             {
-
                 if (showHelp == false)
                 {
                     Help();
@@ -416,7 +418,7 @@ public abstract class Map
             }
             if (keyPressed.Key == ConsoleKey.Escape)
             {
-                PauseMenu();
+                PauseMenu(player);
                 return;
             }
             Console.SetCursorPosition(0, 27);

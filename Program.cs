@@ -7,9 +7,9 @@ class Program
         Console.Clear();
         Console.CursorVisible = false;
         Textures.PrintFirstScreen();
-        Player player = new Player("Player");
         Highscore.LoadHighScore();
         bool inMenu = true;
+        bool playAgain = false;
 
         while (inMenu)
         {
@@ -38,18 +38,32 @@ class Program
             Console.WriteLine("******************************");
             Console.ResetColor();
             var choice = Console.ReadKey(true);
+            List<Map> maps = [AddMaps.Level1(), AddMaps.Level2(), AddMaps.Level3(), AddMaps.Level4()];
+            Player player = new Player("Player");
 
             switch (choice.Key)
             {
                 case ConsoleKey.D1:
-                    List<Map> maps = [AddMaps.Level1(), AddMaps.Level2(), AddMaps.Level3(), AddMaps.Level4()];
-
-                    Console.SetCursorPosition(46, 15);
-                    Console.WriteLine("Whats your name?");
-                    Console.SetCursorPosition(65, 15);
-                    player.Name = Console.ReadLine();
-                    PlayGame(player, maps);
-                    break;
+                    if (playAgain)
+                    {
+                        player = NewPlayer();
+                        maps = NewMaps();
+                        Console.SetCursorPosition(46, 15);
+                        Console.WriteLine("Whats your name?");
+                        Console.SetCursorPosition(65, 15);
+                        player.Name = Console.ReadLine();
+                        PlayGame(player, maps, out playAgain);
+                        break;
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(46, 15);
+                        Console.WriteLine("Whats your name?");
+                        Console.SetCursorPosition(65, 15);
+                        player.Name = Console.ReadLine();
+                        PlayGame(player, maps, out playAgain);
+                        break;
+                    }
 
                 case ConsoleKey.D2: // GREJER FÖR ATT LADDA, JSON
                     Highscore.ShowHighscore();
@@ -57,7 +71,6 @@ class Program
                     break;
 
                 case ConsoleKey.D3:
-                    Highscore.AddScore(player);
                     Console.WriteLine("quitting...");
                     inMenu = false;
                     Environment.Exit(0);
@@ -70,9 +83,21 @@ class Program
         }
     }
 
-    static void PlayGame(Player player, List<Map> maps)
+    static Player NewPlayer()
+    {
+        Player newPlayer = new Player("Player");
+        return newPlayer;
+    }
+    static List<Map> NewMaps()
+    {
+        List<Map> maps = [AddMaps.Level1(), AddMaps.Level2(), AddMaps.Level3(), AddMaps.Level4()];
+        return maps;
+    }
+
+    static void PlayGame(Player player, List<Map> maps, out bool playAgain)
     {
         bool gameOver = false;
+        playAgain = false;
 
         while (!gameOver)
         {
@@ -84,17 +109,20 @@ class Program
             {
                 Console.Clear();
                 Highscore.AddScore(player);
-                Textures.PrintDeadText();
-                Console.WriteLine("Vill du avsluta eller börja om? [A]vsluta/[B]örja om");
-                var choice = Console.ReadKey(true);
-                if (choice.Key == ConsoleKey.B)
+                var choice = Textures.PrintDeadText();
+                if (choice.Key == ConsoleKey.R)
                 {
-                    gameOver = true;
+                    playAgain = true;
+                    return;
                 }
-                else if (choice.Key == ConsoleKey.A)
+                else if (choice.Key == ConsoleKey.Q)
                 {
                     Environment.Exit(0);
                 }
+            }
+            if (player.wonGame)
+            {
+                return;
             }
         }
     }

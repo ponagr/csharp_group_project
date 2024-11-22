@@ -38,7 +38,6 @@ public static class Combat
         Console.SetCursorPosition(0, 14);
 
         Console.WriteLine($"C. Flee");
-        // Console.SetCursorPosition(0, 16);
     }
     #endregion
 
@@ -90,8 +89,8 @@ public static class Combat
         Console.SetCursorPosition(20, 7);
         PrintColor.Green($"DMG {playerDamage} -->", "WriteLine");
     }
-#endregion
-#region ENEMYATTACK
+    #endregion
+    #region ENEMYATTACK
     private static void EnemyAttack(Player player, Enemy enemy)
     {
         enemy.CharacterAttackAnimation(enemy);
@@ -109,8 +108,8 @@ public static class Combat
         Console.SetCursorPosition(20, 7);
         PrintColor.Red($"<-- {enemyDamage} DMG", "WriteLine");
     }
-#endregion
-#region PLAYERHEAL
+    #endregion
+    #region PLAYERHEAL
     private static void PlayerHeal(Player player) 
     {
         Clear.PlayerHp(); // CLEARAR OCH LÄGGER TILL FÖR ATT UPPDATERA HPBar
@@ -121,8 +120,8 @@ public static class Combat
 
         PrintColor.Green($"{playerHealing}", "WriteLine");
     }
-#endregion
-#region STARTPOSITION
+    #endregion
+    #region STARTPOSITION
     private static void StartPosition(Player player, Enemy enemy)
     {
         Console.SetCursorPosition(0, 0);
@@ -146,7 +145,7 @@ public static class Combat
 
         enemy.PrintCharacter(enemy);
     }
-#endregion
+    #endregion
 
     public static void FightMode(Player player, Enemy enemy)
     {

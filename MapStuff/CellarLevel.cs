@@ -147,7 +147,6 @@ public class CellarMap : Map
             {
                 player.OpenInventory(player);
                 return;
-                //PrintGameBoard(map, player);
             }
             if (keyPressed.Key == ConsoleKey.Q) //Använder Health-Potions
             {
@@ -157,7 +156,6 @@ public class CellarMap : Map
             }
             if (keyPressed.Key == ConsoleKey.H)
             {
-
                 if (showHelp == false)
                 {
                     Help();
@@ -168,6 +166,11 @@ public class CellarMap : Map
                     PlayerUI.HelpText();
                     showHelp = false;
                 }
+            }
+            if (keyPressed.Key == ConsoleKey.Escape)
+            {
+                PauseMenu(player);
+                return;
             }
             Console.SetCursorPosition(0, 27);
         }
@@ -348,7 +351,7 @@ public class CellarMap : Map
             }
             if (keyPressed.Key == ConsoleKey.Escape)
             {
-                PauseMenu();
+                PauseMenu(player);
                 return;
             }
         }

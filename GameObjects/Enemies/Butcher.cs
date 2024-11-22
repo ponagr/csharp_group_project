@@ -93,7 +93,6 @@ public class Butcher : Enemy
     }
 
 
-
     public override string TakeDamage(double damage, bool crit, out string attackMessage)
     {
         Random rndShield = new Random();

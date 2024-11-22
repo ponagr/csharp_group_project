@@ -171,12 +171,8 @@ public class MapWithRooms : Map
                 Console.Clear();
                 Highscore.AddScore(player);
                 Textures.PrintCongratz();
-                Thread.Sleep(4000);
-                Console.WriteLine();
-                Console.ReadKey();
-                // Visa score och highscore
-                // Fråga om vi vill spela igen eller avsluta
-                break;
+                player.wonGame = true;
+                return;
             }
             else if (Maplevel[newX, newY] == GoBack)
             {
@@ -221,7 +217,7 @@ public class MapWithRooms : Map
             }
             if (keyPressed.Key == ConsoleKey.Escape)
             {
-                PauseMenu();
+                PauseMenu(player);
                 return;
             }
             Console.SetCursorPosition(0, 27);

@@ -31,7 +31,7 @@ public static partial class Textures
     }
 
     #region DEAD
-    public static void PrintDeadText() // Likadan fast grön eller liknande till vår gubbe?
+    public static ConsoleKeyInfo PrintDeadText() // Likadan fast grön eller liknande till vår gubbe?
     {
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.SetCursorPosition(47, 6);
@@ -77,26 +77,28 @@ public static partial class Textures
         Console.WriteLine("        |            ");
         Console.ResetColor();
 
-        
-
         Highscore.ShowHighscore();
 
         while (!Console.KeyAvailable)
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.SetCursorPosition(49, 14);
-            Console.WriteLine("  PRESS TO QUIT	");
+            Console.Write("[Q]UIT	");
+            Console.WriteLine("  [R]ESTART");
 
             Thread.Sleep(300);
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(49, 14);
-            Console.WriteLine("  PRESS TO QUIT	");
+            Console.Write("[Q]UIT	");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("[R]ESTART");
 
             Thread.Sleep(300);
             Console.ResetColor();
         }
+        var choice = Console.ReadKey(true);
 
+        return choice;
     }
     #endregion
 
@@ -193,7 +195,6 @@ public static partial class Textures
 
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.SetCursorPosition(34, 14);
-        // Console.WriteLine(" ---by---pontrik---");
         Console.WriteLine("by == p0ntr1k                               ==");
 
         while (!Console.KeyAvailable)

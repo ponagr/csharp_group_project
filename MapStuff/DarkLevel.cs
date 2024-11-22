@@ -211,7 +211,7 @@ public class DarkMap : Map
         }
         if (keyPressed.Key == ConsoleKey.Escape)
         {
-            PauseMenu();
+            PauseMenu(player);
         }
     }
 }
