@@ -47,7 +47,7 @@ public class Gear : Item
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write($"{ItemType,-8} {ItemName,-17}   {Health,3} Hp {Damage,3} Dmg {Resistance,3} Res {Agility,3} Agi");
             Console.ResetColor();
-            Console.WriteLine($"  -  Requires level: {LevelCap}");
+            Console.WriteLine($"  -  Req. level: {LevelCap}");
         }
     }
     public static int CalculatePrice(Item item)     //Räknar ut värdet på ett item baserat på statsen

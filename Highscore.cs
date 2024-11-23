@@ -5,7 +5,11 @@ public static class Highscore
 
     public static void SaveHighscore()
     {
-        string json = JsonSerializer.Serialize(Highscores);
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true // Aktiverar indentering
+        };
+        string json = JsonSerializer.Serialize(Highscores, options);
         File.WriteAllText("highscore.json", json);
     }
     public static void LoadHighScore()
@@ -56,6 +60,7 @@ public static class Highscore
         int linePosition = 46;
         int startLine = 20;
         int nrOfScores = 0;
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.SetCursorPosition(48, 18);
         Console.WriteLine("******HIGHSCORES******");
         Console.SetCursorPosition(48, 19);
@@ -74,6 +79,7 @@ public static class Highscore
             }
             nrOfScores++;
         }
+        Console.ResetColor();
     }
 }
 

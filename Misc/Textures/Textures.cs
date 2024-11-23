@@ -91,7 +91,7 @@ public static partial class Textures
             Console.SetCursorPosition(49, 14);
             Console.Write("[Q]UIT	");
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("[R]ESTART");
+            Console.WriteLine("  [R]ESTART");
 
             Thread.Sleep(300);
             Console.ResetColor();

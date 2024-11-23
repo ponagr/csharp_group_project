@@ -71,7 +71,7 @@ public class Inventory
                     Console.Write($"[{i}] ");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write($"{inventory[i].ItemType,-7} {inventory[i].ItemName,-15}");
-                    Console.WriteLine($"Needs lvl: {inventory[i].LevelCap}");
+                    Console.WriteLine($"Req. lvl: {inventory[i].LevelCap}");
                     Console.ResetColor();
                     Console.Write($"{inventory[i].Health,6} Hp {inventory[i].Damage,3} Dmg {inventory[i].Resistance,3} Res {inventory[i].Agility,3} Agi");
                     PrintColor.Yellow($"{inventory[i].Price / 3,4} {'\u00A9',1}", "WriteLine");
@@ -81,7 +81,7 @@ public class Inventory
                     Console.Write($"[{i}] ");
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write($"{inventory[i].ItemType,-7} {inventory[i].ItemName,-15}");
-                    Console.WriteLine($"Needs lvl: {inventory[i].LevelCap}");
+                    Console.WriteLine($"Req. lvl: {inventory[i].LevelCap}");
                     Console.ResetColor();
                     Console.Write($"{inventory[i].Health,6} Hp {inventory[i].Damage,3} Dmg {inventory[i].Resistance,3} Res {inventory[i].Agility,3} Agi");
                     PrintColor.Yellow($"{inventory[i].Price / 3,4} {'\u00A9',1}", "WriteLine");

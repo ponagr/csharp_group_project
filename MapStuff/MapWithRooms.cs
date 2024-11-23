@@ -51,7 +51,7 @@ public class MapWithRooms : Map
 
         Console.CursorVisible = false;
 
-        while (player.CurrentHp > 0)
+        while (player.CurrentHp > 1)
         {
             //Clearar raderna för utskrift om loot
             Console.SetCursorPosition(0, 28);

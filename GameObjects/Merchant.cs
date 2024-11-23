@@ -33,7 +33,7 @@ public class Merchant
                 Console.Write($"[{i}] ");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write($"{MerchantInventory.inventory[i].ItemType,-7} {MerchantInventory.inventory[i].ItemName,-15}");
-                Console.WriteLine($"Needs lvl: {MerchantInventory.inventory[i].LevelCap}");
+                Console.WriteLine($"Req. lvl: {MerchantInventory.inventory[i].LevelCap}");
                 Console.ResetColor();
                 Console.Write($"{MerchantInventory.inventory[i].Health,6} Hp {MerchantInventory.inventory[i].Damage,3} Dmg {MerchantInventory.inventory[i].Resistance,3} Res {MerchantInventory.inventory[i].Agility,3} Agi");
                 PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,4} {'\u00A9',1}", "WriteLine");
@@ -43,7 +43,7 @@ public class Merchant
                 Console.Write($"[{i}] ");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write($"{MerchantInventory.inventory[i].ItemType,-7} {MerchantInventory.inventory[i].ItemName,-15}");
-                Console.WriteLine($"Needs lvl: {MerchantInventory.inventory[i].LevelCap}");
+                Console.WriteLine($"Req. lvl: {MerchantInventory.inventory[i].LevelCap}");
                 Console.ResetColor();
                 Console.Write($"{MerchantInventory.inventory[i].Health,6} Hp {MerchantInventory.inventory[i].Damage,3} Dmg {MerchantInventory.inventory[i].Resistance,3} Res {MerchantInventory.inventory[i].Agility,3} Agi");
                 PrintColor.Yellow($"{MerchantInventory.inventory[i].Price,4} {'\u00A9',1}", "WriteLine"); 
