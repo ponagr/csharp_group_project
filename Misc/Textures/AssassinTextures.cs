@@ -7,15 +7,15 @@ public static partial class Textures
 
         Console.ForegroundColor = ConsoleColor.Red;
         Console.SetCursorPosition(40, 5);
-        Console.WriteLine(".        ");
+        Console.WriteLine(" .        ");
         Console.SetCursorPosition(40, 6);
-        Console.WriteLine("|  0    ");
+        Console.WriteLine(" |  0    ");
         Console.SetCursorPosition(40, 7);
-        Console.WriteLine("T--||-[E]  ");
+        Console.WriteLine(" T--||-[E]  ");
         Console.SetCursorPosition(40, 8);
-        Console.WriteLine("   /\\  	");
+        Console.WriteLine("    /\\  	");
         Console.SetCursorPosition(40, 9);
-        Console.WriteLine("  |  \\");
+        Console.WriteLine("   |  \\");
         Console.ResetColor();
         Console.WriteLine();
 
@@ -24,15 +24,15 @@ public static partial class Textures
     {
         Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.SetCursorPosition(40, 5);
-        Console.WriteLine(".        ");
+        Console.WriteLine(" .        ");
         Console.SetCursorPosition(40, 6);
-        Console.WriteLine("|  0    ");
+        Console.WriteLine(" |  0    ");
         Console.SetCursorPosition(40, 7);
-        Console.WriteLine("T--||-[E]  ");
+        Console.WriteLine(" T--||-[E]  ");
         Console.SetCursorPosition(40, 8);
-        Console.WriteLine("   /\\  	");
+        Console.WriteLine("    /\\  	");
         Console.SetCursorPosition(40, 9);
-        Console.WriteLine("  |  \\");
+        Console.WriteLine("   |  \\");
         Console.ResetColor();
         Console.WriteLine();
     }
@@ -41,29 +41,29 @@ public static partial class Textures
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.SetCursorPosition(40, 5);
-        Console.WriteLine("        ");
+        Console.WriteLine("         ");
         Console.SetCursorPosition(40, 6);
-        Console.WriteLine(" \\~  0  ");
+        Console.WriteLine("  \\~  0  ");
         Console.SetCursorPosition(40, 7);
-        Console.WriteLine("  T--||\\[]  ");
+        Console.WriteLine("   T--||\\[]  ");
         Console.SetCursorPosition(40, 8);
-        Console.WriteLine("     /\\  ");
+        Console.WriteLine("      /\\  ");
         Console.SetCursorPosition(40, 9);
-        Console.WriteLine("    |  \\ ");
+        Console.WriteLine("     |  \\ ");
         Console.WriteLine();
 
         Thread.Sleep(300);
 
         Console.SetCursorPosition(40, 5);
-        Console.WriteLine("        ");
+        Console.WriteLine("         ");
         Console.SetCursorPosition(40, 6);
-        Console.WriteLine("      0  ");
+        Console.WriteLine("       0  ");
         Console.SetCursorPosition(40, 7);
-        Console.WriteLine("*--+--||\\    ");
+        Console.WriteLine(" *--+--||\\    ");
         Console.SetCursorPosition(40, 8);
-        Console.WriteLine("      /\\[]  ");
+        Console.WriteLine("       /\\[]  ");
         Console.SetCursorPosition(40, 9);
-        Console.WriteLine("     |  \\ ");
+        Console.WriteLine("      |  \\ ");
         Console.WriteLine();
         Console.ResetColor();
     }

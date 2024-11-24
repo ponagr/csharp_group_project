@@ -7,27 +7,27 @@ public static partial class Textures
         for (int i = 0; i < 5; i++)
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.SetCursorPosition(40, 4);
+            Console.SetCursorPosition(41, 4);
             Console.WriteLine("  _____                        ");
-            Console.SetCursorPosition(40, 5);
+            Console.SetCursorPosition(41, 5);
             Console.WriteLine(" /  .  \\                      ");
-            Console.SetCursorPosition(40, 6);
+            Console.SetCursorPosition(41, 6);
             Console.WriteLine("(  =|=  )                      ");
-            Console.SetCursorPosition(40, 7);
+            Console.SetCursorPosition(41, 7);
             Console.WriteLine(" |  |  |                       ");
-            Console.SetCursorPosition(40, 8);
+            Console.SetCursorPosition(41, 8);
             Console.WriteLine(" |_____|                       ");
-            Console.SetCursorPosition(40, 9);
+            Console.SetCursorPosition(41, 9);
             Console.WriteLine("/_______\\                     ");
 
             Thread.Sleep(300);
 
-            Console.SetCursorPosition(40, 9);
+            Console.SetCursorPosition(41, 9);
             Console.WriteLine("/__RIP__\\                     ");
 
             Thread.Sleep(300);
         }
-        Thread.Sleep(1000);
+        Thread.Sleep(700);
     }
 
     #region DEAD
