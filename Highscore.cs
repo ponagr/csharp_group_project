@@ -36,21 +36,43 @@ public static class Highscore
     public static void AddScore(Player player)
     {
         Score score = new Score(player);
-        Highscores = Highscores.OrderByDescending(x => x.TotalScore).ToList();
         
-        if (score.TotalScore > Highscores[0].TotalScore) 
-        {   
-            Console.SetCursorPosition(49, 16);
-            PrintColor.Green("NEW HIGHSCORE: ", "Write");
-            score.PrintScore();
-        }
-        else
+        Highscores = Highscores.OrderByDescending(x => x.TotalScore).ToList();
+        var existingScore = Highscores.FirstOrDefault(x => x.PlayerName == score.PlayerName);
+
+        if (existingScore != null)  //Kolla om det redan finns en sparad "profil" med samma namn, och jämför isåfall om det nya scoret är högre
         {
-            Console.SetCursorPosition(49, 16);
-            PrintColor.Green("SCORE: ", "Write");
-            score.PrintScore();
+            if (score.TotalScore > existingScore.TotalScore) 
+            {   
+                Console.SetCursorPosition(46, 16);
+                PrintColor.Green("NEW HIGHSCORE: ", "Write");
+                score.PrintScore();
+                Highscores.Remove(existingScore);
+                Highscores.Add(score);
+            }
+            else
+            {
+                Console.SetCursorPosition(49, 16);
+                PrintColor.Green("SCORE: ", "Write");
+                score.PrintScore();
+            }
         }
-        Highscores.Add(score);
+        else    //annars kontrollera endast om nya score tillhör top 5
+        {
+            if (Highscores.Count < 5 || score.TotalScore > Highscores[4].TotalScore) 
+            {   
+                Console.SetCursorPosition(46, 16);
+                PrintColor.Green("NEW HIGHSCORE: ", "Write");
+                score.PrintScore();
+            }
+            else
+            {
+                Console.SetCursorPosition(49, 16);
+                PrintColor.Green("SCORE: ", "Write");
+                score.PrintScore();
+            }
+            Highscores.Add(score);
+        }
         SaveHighscore();
     }
 
