@@ -51,7 +51,6 @@ public static class AddMaps     //Innehåller alla färdiga maplevels
         Assassin assassinInvisable = new Assassin(1, "Inge-visable");
         ArcherBoss archerBoss = new ArcherBoss(1, "PilIMagenAB");
 
-
         List<Enemy> enemiesLevel1 = new List<Enemy> {archer, archer3, mage, assassin, assassin1, archer1, archer2, mage1,
         assassin3, mage3, assassin4, mage2, butcher};
         List<Item> items = new List<Item>()

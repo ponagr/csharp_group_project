@@ -110,6 +110,7 @@ class Program
                 Console.Clear();
                 Highscore.AddScore(player);
                 var choice = Textures.PrintDeadText();
+                Console.SetCursorPosition(0, 27);
                 if (choice.Key == ConsoleKey.R)
                 {
                     playAgain = true;
