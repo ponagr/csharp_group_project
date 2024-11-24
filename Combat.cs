@@ -57,7 +57,6 @@ public static class Combat
         Console.WriteLine("            ");
         Console.WriteLine("            "); // FÖR ATT DÖLJA TIDIGARE TEXT
         Console.WriteLine("            ");
-        Console.ReadKey(true);
     }
     #endregion
     private static void SceletonsKilled(Player player, Enemy enemy)
@@ -161,7 +160,7 @@ public static class Combat
             Console.Clear();
             StartPosition(player, enemy);
 
-            if (attackMessageEnemy != "STUNNED")
+            if (player.IsStunned == false)   //Om vi inte är
             {
                 CombatMenu(player, enemy);
 
@@ -226,10 +225,11 @@ public static class Combat
                     }
                 }
             }
-            else    //Om vi är stunnad, kan vi inte attackera
+            else if (player.IsStunned == true)   //Om vi är stunnad, kan vi inte attackera
             {
                 Console.WriteLine("You are stunned and cant attack this round");
                 enemyDamage = enemy.Attack(player, out attackMessageEnemy);
+                player.IsStunned = false;
             }
 
             Thread.Sleep(700);

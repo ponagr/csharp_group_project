@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 public class Player : GameObject
 {
     public bool wonGame;
+    public bool IsStunned { get; set; }
     public bool isPlayer = true;
     public int MapLevel { get; set; }
     public int CurrentXp { get; set; }
@@ -63,6 +64,7 @@ public class Player : GameObject
         BossesKilled = 0;
         HeartsPickedUp = 0;
         TrapsTriggered = 0;
+        IsStunned = false;
         wonGame = false;
 
         HealingPot = new Consumable();

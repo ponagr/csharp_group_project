@@ -67,6 +67,7 @@ public class ButcherBoss : Butcher
 
     public ButcherBoss(int level, string name) : base(level, name)
     { 
+        Name = "Trangius";
         base.BaseHp = base.BaseHp * 2.5;
         base.BaseDamage = base.BaseDamage * 1.5;
         CurrentHp = TotalHp;
@@ -101,7 +102,7 @@ public class ButcherBoss : Butcher
         double damage;
         damage = CalculateDamage(player, out bool attackCrit);
         Random random = new Random();
-        if (random.Next(0,5) == 3 && !needsRest)
+        if (random.Next(0, 5) == 3 && !needsRest)
         {
             damage = SpecialAttack(damage, out attackMessage);
             if (attackCrit)
@@ -112,11 +113,13 @@ public class ButcherBoss : Butcher
             specialAttack = true; // Sätts på true för textures, false nästa runda
             return $"{damage:F0}";
         }
-        else if (random.Next(0,3) == 1 && !needsRest)
+        else if (random.Next(0, 3) == 1 && bigHit != 1 && player.IsStunned == false)
         {
+            bigHit++;
             specialAttack = false;
             attackMessage = "STUNNED";
             player.CurrentHp -= damage;
+            player.IsStunned = true;
             return $"{damage:F0}";
         }
         else
@@ -134,9 +137,10 @@ public class ArcherBoss : Archer
     bool specialAttack;
     public ArcherBoss(int level, string name) : base(level, name)
     { 
+        Name = "Pill Bågen";
         base.BaseHp = (base.BaseHp) * 5;
         CurrentHp = TotalHp;
-        base.BaseDamage = (base.BaseDamage) * 0.75;
+        base.BaseDamage = (base.BaseDamage) * 1.1;
         base.BaseResistance = (base.BaseResistance) * 2;
         base.BaseAgility = (base.BaseAgility) * 2;
         XpDrop = 100;
@@ -144,7 +148,7 @@ public class ArcherBoss : Archer
 
     double SpecialAttack(double damage, out string attackMessage)
     {
-        damage = damage * 4;
+        damage = damage * 3.5;
         attackMessage = "5 ARROWS!!!";
         return damage;
     }
