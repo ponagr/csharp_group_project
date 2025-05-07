@@ -2,8 +2,8 @@
 
 ***A 2D-game with combat, visuals, lootsystem, levelsystem and interactive map played in the terminal.***
 
-## School group project in C# with focus on
-### C#
+## School group project in C# with focus on:
+#### C#
 **OOP, classes, inheritance and polymorphism.**
-### Git
+#### Git
 **Collaboration, commiting, branches, merging, pulling and pushing.**
